@@ -5,6 +5,7 @@
     angular
         .module('smart_container')
         .config(routeConfig);
+        
 
     function routeConfig($stateProvider, $urlRouterProvider) {
 

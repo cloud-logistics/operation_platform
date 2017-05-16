@@ -1,5 +1,5 @@
 {
-  "name": "IntelligenceContainerBlock",
+  "name": "SmartContainer",
   "version": "0.6.8",
   "dependencies": {
     "gulp-jshint-html-reporter": "^0.1.3",

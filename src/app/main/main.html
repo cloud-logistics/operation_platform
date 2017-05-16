@@ -11,7 +11,25 @@
     <div ui-butterbar></div>
     <a href class="off-screen-toggle hide" ui-toggle-class="off-screen" data-target=".app-aside" ></a>
     <div class="hbox hbox-auto-xs hbox-auto-sm">
-        <div class="app-content-body fade-in-up col" ui-view></div>
+        <div class="app-content-body fade-in-up col">
+            <div class="col">
+                <div class="wrapper-md m-t m-b" style="padding-left:0;padding-right:0;">
+                    <ul class="bg-light" style="margin:0;list-style: none;">
+                        <li style="float:left;">
+                        <a class="h4" ng-click="main.goSeperateState(-1,item)" style="font-weight: bold; font-size: 15px;">
+                            <i class="fa fa-home"></i> 主页
+                        </a>
+                        </li>
+                        <li style="float:left;" ng-repeat="item in main.pageRoutes">
+                        <span class="divider" style="padding:0 4px 0 6px;">></span>
+                        <a class="h4" ng-click="main.goSeperateState($index,item)" style="font-weight: bold; font-size: 14px;">{{item.url}}
+                        </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="app-content-body fade-in-up col" ui-view>
+        </div>
     </div>
 </div>
 <!-- /content -->
