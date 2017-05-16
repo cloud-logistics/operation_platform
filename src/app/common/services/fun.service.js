@@ -9,7 +9,7 @@
      *
      */
     angular
-        .module('airs')
+        .module('smart_container')
         .filter('capitalize', capitalize);
 
     /** @ngInject */
@@ -23,7 +23,7 @@
 
 
     angular
-        .module('airs')
+        .module('smart_container')
         .filter('orderdesc', orderdesc);
 
     /** @ngInject */
@@ -70,7 +70,7 @@
 
 
     angular
-        .module('airs')
+        .module('smart_container')
         .filter('descTime', descTime);
 
         /** @ngInject */
@@ -97,7 +97,7 @@
      *
      */
     angular
-        .module('airs')
+        .module('smart_container')
         .filter('num', num);
 
     /** @ngInject */
@@ -111,7 +111,7 @@
 
 
     angular
-        .module('airs')
+        .module('smart_container')
         .factory('iotUtil', iotUtil);
 
     /** @ngInject */
@@ -297,7 +297,7 @@
 
 
     angular
-        .module('airs')
+        .module('smart_container')
         .factory('deepcopy', deepcopy);
 
     /** @ngInject */
@@ -324,7 +324,7 @@
     //  *
     //  */
     // angular
-    //     .module('airs')
+    //     .module('smart_container')
     //     .filter("T", T);
     //
     // /** @ngInject */
@@ -343,7 +343,7 @@
      *
      */
     angular
-        .module('airs')
+        .module('smart_container')
         .factory("i18n", i18n);
 
     /** @ngInject */
@@ -370,7 +370,7 @@
      *
      */
     angular
-        .module('airs')
+        .module('smart_container')
         .factory('logger', logger);
 
     /** @ngInject */

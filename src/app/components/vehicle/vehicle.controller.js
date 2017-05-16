@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    angular.module('airs').controller('VehicleController', VehicleController);
+    angular.module('smart_container').controller('VehicleController', VehicleController);
 
     /** @ngInject */
     function VehicleController($stateParams,ApiServer,toastr,$state,$timeout) {

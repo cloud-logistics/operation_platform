@@ -10,7 +10,7 @@
     'use strict';
 
     angular
-        .module('airs')
+        .module('smart_container')
         .config(config);
 
     /** @ngInject */

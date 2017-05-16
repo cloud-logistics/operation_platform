@@ -3,7 +3,7 @@
 
     /** RestService */
     angular
-        .module('airs')
+        .module('smart_container')
         .factory('RestService', RestService);
 
     // REST service based on Restangular  that uses setFullResponse
@@ -26,7 +26,7 @@
 
     /** NetworkService */
     angular
-        .module('airs')
+        .module('smart_container')
         .factory('NetworkService', NetworkService);
 
     /** @ngInject */
@@ -136,7 +136,7 @@
 
     /** StorageService */
     angular
-        .module('airs')
+        .module('smart_container')
         .service('StorageService', StorageService);
 
     /** @ngInject */

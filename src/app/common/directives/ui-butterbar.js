@@ -1,4 +1,4 @@
-angular.module('airs')
+angular.module('smart_container')
   .directive('uiButterbar', ['$rootScope', '$anchorScroll', function($rootScope, $anchorScroll) {
      return {
       restrict: 'AC',

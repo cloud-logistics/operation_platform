@@ -13,7 +13,7 @@
      *
      */
     angular
-        .module('airs')
+        .module('smart_container')
         .factory('MainServer', MainServer);
 
     /** @ngInject */

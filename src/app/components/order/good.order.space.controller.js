@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    angular.module('airs').controller('orderGoodSpaceController', orderGoodSpaceController);
+    angular.module('smart_container').controller('orderGoodSpaceController', orderGoodSpaceController);
 
     /** @ngInject */
     function orderGoodSpaceController($log,$uibModal,$state,ApiServer,$stateParams,toastr,$timeout) {

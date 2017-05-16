@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    angular.module('airs').controller('StorageController', StorageController);
+    angular.module('smart_container').controller('StorageController', StorageController);
 
     /** @ngInject */
     function StorageController($stateParams,ApiServer,toastr) {

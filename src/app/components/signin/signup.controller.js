@@ -5,7 +5,7 @@
 (function () {
     'use strict';
 
-    angular.module('airs').controller('SignupController', SignupController);
+    angular.module('smart_container').controller('SignupController', SignupController);
 
     /** @ngInject */
     function SignupController(toastr,StorageService,$http,$state,constdata,iotUtil) {

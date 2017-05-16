@@ -3,7 +3,7 @@
 
     /** @ngInject */
     angular
-        .module('airs')
+        .module('smart_container')
         .config(routeConfig);
 
     function routeConfig($stateProvider, $urlRouterProvider) {

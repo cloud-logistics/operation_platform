@@ -1,4 +1,4 @@
-angular.module('airs')
+angular.module('smart_container')
   .directive('uiShift', ['$timeout', function($timeout) {
     return {
       restrict: 'A',

@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    angular.module('airs').controller('ContainerController', ContainerController);
+    angular.module('smart_container').controller('ContainerController', ContainerController);
 
     /** @ngInject */
     function ContainerController($stateParams,ApiServer,toastr,$state,$timeout) {

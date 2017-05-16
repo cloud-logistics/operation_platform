@@ -1,4 +1,4 @@
-angular.module('airs')
+angular.module('smart_container')
   .directive('uiFocus', function($timeout, $parse) {
     return {
       link: function(scope, element, attr) {
