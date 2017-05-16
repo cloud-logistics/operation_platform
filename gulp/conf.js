@@ -17,7 +17,7 @@ exports.server={
     port: 9000
 }
 exports.pkg = pkg;
-exports.module='airs';
+exports.module='smart_container';
 
 /**
  *  The main paths of your project handle these with care
