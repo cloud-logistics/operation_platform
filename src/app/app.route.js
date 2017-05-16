@@ -4,7 +4,76 @@
     /** @ngInject */
     angular
         .module('smart_container')
-        .config(routeConfig);
+        .config(routeConfig)
+        .run(function($rootScope, $state, $stateParams,constdata,$location) {
+            $rootScope.$state = $state;
+            $rootScope.$stateParams = $stateParams;
+            $rootScope.pageRoutes = [];
+            var count = 0;
+
+            $rootScope.$on("$stateChangeSuccess",  function(event, toState, toParams, fromState, fromParams) {
+                // to be used for back button //won't work when page is reloaded.
+                var findedIndex = -1;
+                $rootScope.previousState_name = fromState.name;
+                $rootScope.previousState_params = fromParams;
+                console.log("toState: ", toState);
+                var myUrl = constdata.routeName[toState.name];
+                var routeObj = {
+                url : myUrl,
+                name : toState.name,
+                params : toParams
+                }
+
+                var firstLevelNav = [
+                    'app.dashboard',
+                    'app.mapview',
+                    'app.signin'
+                ];
+
+                //点击一级把一级和后面所有的route全部去掉
+                if ( R.any(R.equals(routeObj.name))(firstLevelNav) ) {
+                    // have to use splice, otherwise, nav works abnormal, do not know why...
+                    $rootScope.pageRoutes.splice(0);
+                } else {
+                    findedIndex = R.findIndex(R.propEq("name", routeObj.name))($rootScope.pageRoutes)
+                    //去掉同一级别的route及以后的route
+                    if (findedIndex !== -1) {
+                        var dropLen = R.length($rootScope.pageRoutes) - findedIndex;
+                        $rootScope.pageRoutes.splice(findedIndex, dropLen);
+                        // $rootScope.pageRoutes = R.dropLast(dropLen)($rootScope.pageRoutes)
+                    }
+                }
+
+                $rootScope.pageRoutes.push(routeObj);
+
+                //对后追加的两个routeName进行去重处理
+                // checkLastTwoRoute($rootScope.pageRoutes);
+
+                //数组去重处理函数
+                function checkLastTwoRoute(arr) {
+                var arrLen = arr.length;
+                if(arrLen>=2) {
+                    //后两个重复处理
+                    if(arr[arrLen-1].url == arr[arrLen-2].url) {
+                    arr.splice(arrLen-1,1);
+                    return;
+                    }
+                    //最后一个和前面的某一个重复处理
+                    var arrExceptLast = arr.slice(0, arrLen-2);
+                    var urlArrExceptLast = [];
+                    arrExceptLast.forEach(function(item, index) {
+                    urlArrExceptLast.push(item.url);
+                    });
+                    var findIndex = urlArrExceptLast.indexOf(arr[arrLen-1].url);
+                    findIndex>=0 ? arr.splice(findIndex+1) : console.log();
+                }
+                }
+            });
+            //back button function called from back button's ng-click="backPre()"
+            $rootScope.backPre = function() {//实现返回的函数
+                $state.go($rootScope.previousState_name,$rootScope.previousState_params);
+            };
+        });
         
 
     function routeConfig($stateProvider, $urlRouterProvider) {
