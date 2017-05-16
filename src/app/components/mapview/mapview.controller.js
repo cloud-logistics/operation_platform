@@ -15,15 +15,16 @@
         var info = ApiServer.info();
         var roleType = info.role;
         vm.title = '全景平台';
-        vm.containerlists = [];
-        var width = document.body.clientWidth;
-        var height = document.body.clientHeight;
-        vm.mapSize = {"width":width + 'px',"height":height + 'px'};
-        vm.flag = false;
-        vm.flag1 = false;
+
 
 
         // 全景地图功能
+        var _map = document.getElementById('map');
+        function calcMap(){
+            _map.style.width = window.innerWidth - 59 +'px';
+            _map.style.height = window.innerHeight - 53 + 'px';
+        }
+        calcMap();
         var chart = echarts.init(document.getElementById('map'));
         var geoCoordMap = {
             '上海': [121.4648,31.2891],
@@ -288,8 +289,8 @@
         var option = {
             backgroundColor: '#404a59',
             title : {
-                text: '模拟迁徙',
-                subtext: '数据纯属虚构',
+                text: '智能集装箱',
+                subtext: '云箱全景平台',
                 left: 'center',
                 textStyle : {
                     color: '#fff'
@@ -315,7 +316,7 @@
                         show: false
                     }
                 },
-                roam: true,
+                roam: false,
                 itemStyle: {
                     normal: {
                         areaColor: '#323c48',
