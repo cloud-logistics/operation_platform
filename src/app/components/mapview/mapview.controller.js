@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    angular.module('airs').controller('MapviewController', MapviewController);
+    angular.module('smart_container').controller('MapviewController', MapviewController);
 
     /** @ngInject */
     function MapviewController($stateParams,ApiServer,toastr,$state,$timeout,$interval) {
