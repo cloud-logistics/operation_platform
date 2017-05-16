@@ -5,7 +5,7 @@
 (function () {
     'use strict';
 
-    angular.module('airs').controller('MainController', MainController);
+    angular.module('smart_container').controller('MainController', MainController);
 
     /** @ngInject */
     function MainController($timeout,$translate,$location,ApiServer, $state, toastr,$scope) {

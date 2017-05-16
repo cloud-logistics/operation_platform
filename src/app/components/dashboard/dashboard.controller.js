@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    angular.module('airs').controller('DashboardController', DashboardController);
+    angular.module('smart_container').controller('DashboardController', DashboardController);
 
     /** @ngInject */
     function DashboardController($stateParams,ApiServer,toastr,$state,$timeout,$interval) {

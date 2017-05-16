@@ -1,4 +1,4 @@
-angular.module('airs')
+angular.module('smart_container')
   .directive('uiScrollTo', ['$location', '$anchorScroll', function($location, $anchorScroll) {
     return {
       restrict: 'AC',

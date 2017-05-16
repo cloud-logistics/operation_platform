@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    angular.module('airs').controller('ProfileController', ProfileController);
+    angular.module('smart_container').controller('ProfileController', ProfileController);
 
     /** @ngInject */
     function ProfileController($scope,ApiServer,toastr,constdata,$state) {

@@ -1,4 +1,4 @@
-angular.module('airs')
+angular.module('smart_container')
   .directive('uiNav', ['$timeout', function($timeout) {
     return {
       restrict: 'AC',

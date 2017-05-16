@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    angular.module('airs').controller('CompanyController', CompanyController);
+    angular.module('smart_container').controller('CompanyController', CompanyController);
 
     /** @ngInject */
     function CompanyController(toastr,ApiServer,$stateParams,$state) {

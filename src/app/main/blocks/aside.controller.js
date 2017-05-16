@@ -5,7 +5,7 @@
 (function () {
     'use strict';
 
-    angular.module('airs').controller('AsideController', AsideController);
+    angular.module('smart_container').controller('AsideController', AsideController);
 
     /** @ngInject */
     function AsideController(ApiServer,$state) {

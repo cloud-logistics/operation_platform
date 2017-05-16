@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-      .module('airs')
+      .module('smart_container')
       .service('webDevTec', webDevTec);
 
 

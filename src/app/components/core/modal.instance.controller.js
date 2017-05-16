@@ -6,7 +6,7 @@
     'use strict';
 
     angular
-        .module('airs')
+        .module('smart_container')
         .controller('ModalInstanceCtrl', ModalInstanceCtrl);
 
     /** @ngInject */

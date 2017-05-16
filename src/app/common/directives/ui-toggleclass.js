@@ -1,4 +1,4 @@
-angular.module('airs')
+angular.module('smart_container')
   .directive('uiToggleClass', ['$timeout', '$document', function($timeout, $document) {
     return {
       restrict: 'AC',

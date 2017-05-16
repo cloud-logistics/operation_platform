@@ -3,7 +3,7 @@
 
     // Declare app directives module which depends on views, and components
     angular
-        .module('airs')
+        .module('smart_container')
         .directive('autoPagination',autoPagination);
 
     /** @ngInject */

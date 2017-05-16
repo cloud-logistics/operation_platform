@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    angular.module('airs').controller('TransportTaskController', TransportTaskController);
+    angular.module('smart_container').controller('TransportTaskController', TransportTaskController);
 
     /** @ngInject */
     function TransportTaskController($state,toastr,ApiServer) {

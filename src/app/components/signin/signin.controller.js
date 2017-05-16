@@ -5,7 +5,7 @@
 (function () {
     'use strict';
 
-    angular.module('airs').controller('SigninController', SigninController);
+    angular.module('smart_container').controller('SigninController', SigninController);
 
     /** @ngInject */
     function SigninController(logger,toastr,StorageService,$timeout,$state,constdata,$rootScope,iotUtil,$translate,ApiServer) {

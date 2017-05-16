@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    angular.module('airs').controller('orderShipAddController', orderShipAddController);
+    angular.module('smart_container').controller('orderShipAddController', orderShipAddController);
 
     /** @ngInject */
     function orderShipAddController($scope,$log,$uibModal,ApiServer,$stateParams,toastr,$state,$filter) {
