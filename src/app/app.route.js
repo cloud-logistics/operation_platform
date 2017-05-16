@@ -15,9 +15,14 @@
         $stateProvider
 
 
-            .state('app.dashboard',{
+            .state('app.dashboard', {
                 url: 'dashboard',
                 templateUrl: 'app/components/dashboard/dashboard.html'
+            })
+
+            .state('app.mapview', {
+                url: 'mapview',
+                templateUrl: 'app/components/mapview/mapview.html'
             })
 
             /** LOGIN **/
@@ -31,7 +36,7 @@
                 url: '/signin',
                 templateUrl: 'app/components/signin/signin.html'
             })
-            .state('access.signup',{
+            .state('access.signup', {
                 url: '/signup',
                 templateUrl: 'app/components/signin/signup.html'
             })
