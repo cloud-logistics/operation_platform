@@ -30,6 +30,8 @@
             vm.title = '智能云箱';
         }else if (vm.roleType === 'shipper'){
             vm.title = '智能云箱';
+        }else{
+            vm.title = '智能云箱';
         }
 
         vm.infomation = ApiServer.info();

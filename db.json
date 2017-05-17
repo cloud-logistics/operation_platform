@@ -1,0 +1,22 @@
+{
+  "login": {
+    "OK": {
+      "userid": "111",
+      "sessionid": "111",
+      "token": "eyJraWQiOiJJT1RfSU9UX0VYSElCSVRJT05fU0VDVVJFS0VZIiwiYWxnIjoiUlMyNTYifQ.eyJpc3MiOiJJT1RfRVhISUJJVElPTiIsImF1ZCI6IklPVF9DTElFTlQiLCJleHAiOjE3OTg3ODEwODMsImp0aSI6ImJtX3BoSFdKM0w5d2xWMnNuc0Y1R1EiLCJpYXQiOjE0ODc3NDEwODMsInN1YiI6InRlc3QifQ.NxGpjh_b60-i6iaNK7KZPVkemTKhcVMiGecbIMk4gn3xDyRzRWe2jnBxdsZwA3FAANmkVj9Y5_jY9dwrTjKxFg6dxAGsY0A19suqElFx3tOIlvT2EOOxKu9-468H66UgecTPn10FnPaylm6ffHkIBkUe1fSqJgnY-lvbvLMtEcXCOzv71gjjC-LiQ7LGedD44vPSEH9Flj0RLQiFxN7kynyeHKH6qZcenuyBl4Tt-xgZwfA420FBQW_RvOx1JDt7cVJTgDiZASCuUfZjcz3L73ZWvnWqijNAR9viZFvplfrl-KqyfM6FKbzUiNv2UHw3OqxOB1-bLipcWnG7flqOmA"
+    }
+  },
+  "user": {
+    "OK": {
+      "id": "111",
+      "role": "regularclient"
+    }
+  },
+  "messageByUserId": {
+    "OK": {
+      "userid": "111",
+      "sessionid": "111",
+      "token": "eyJraWQiOiJJT1RfSU9UX0VYSElCSVRJT05fU0VDVVJFS0VZIiwiYWxnIjoiUlMyNTYifQ.eyJpc3MiOiJJT1RfRVhISUJJVElPTiIsImF1ZCI6IklPVF9DTElFTlQiLCJleHAiOjE3OTg3ODEwODMsImp0aSI6ImJtX3BoSFdKM0w5d2xWMnNuc0Y1R1EiLCJpYXQiOjE0ODc3NDEwODMsInN1YiI6InRlc3QifQ.NxGpjh_b60-i6iaNK7KZPVkemTKhcVMiGecbIMk4gn3xDyRzRWe2jnBxdsZwA3FAANmkVj9Y5_jY9dwrTjKxFg6dxAGsY0A19suqElFx3tOIlvT2EOOxKu9-468H66UgecTPn10FnPaylm6ffHkIBkUe1fSqJgnY-lvbvLMtEcXCOzv71gjjC-LiQ7LGedD44vPSEH9Flj0RLQiFxN7kynyeHKH6qZcenuyBl4Tt-xgZwfA420FBQW_RvOx1JDt7cVJTgDiZASCuUfZjcz3L73ZWvnWqijNAR9viZFvplfrl-KqyfM6FKbzUiNv2UHw3OqxOB1-bLipcWnG7flqOmA"
+    }
+  }
+}

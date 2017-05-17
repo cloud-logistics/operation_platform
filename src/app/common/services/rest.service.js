@@ -98,7 +98,7 @@
                     }
                 }else{
                     var rst = angular.fromJson(data);
-                    successHandler({data:null});
+                    successHandler({data:rst});
                 }
             }else{
                 successHandler({data:null});
