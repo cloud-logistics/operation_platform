@@ -23,6 +23,11 @@
                 order:'order',
                 user:'user',
                 message:'message'
+            },
+            routeName:{
+                "app.dashboard":"全景展示",
+                "app.mapview":"地图展示",
+                "app.signin":"登陆"
             }
         });
 })();

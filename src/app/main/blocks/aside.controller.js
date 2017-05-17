@@ -23,13 +23,13 @@
         vm.messages = [];
         vm.roleType = ApiServer.roleType();
         if (vm.roleType === 'regularclient'){
-            vm.title = '用户系统';
+            vm.title = '智能云箱';
         }else if (vm.roleType === 'cargoagent'){
-            vm.title = '货代公司管理系统';
+            vm.title = '智能云箱';
         }else if (vm.roleType === 'carrier'){
-            vm.title = '拖车公司管理系统';
+            vm.title = '智能云箱';
         }else if (vm.roleType === 'shipper'){
-            vm.title = '船运公司管理系统';
+            vm.title = '智能云箱';
         }
 
         vm.infomation = ApiServer.info();
