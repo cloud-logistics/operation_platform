@@ -87,15 +87,20 @@
                 url: 'dashboard',
                 templateUrl: 'app/components/dashboard/dashboard.html'
             })
-
+            //全景地图
             .state('app.mapview', {
                 url: 'mapview',
                 templateUrl: 'app/components/mapview/mapview.html'
             })
-
+            //全景视图
             .state('app.overview',{
                 url: 'overview',
                 templateUrl: 'app/components/overview/overview.html'
+            })
+            //云箱监控
+            .state('app.monitor',{
+                url: 'monitor',
+                templateUrl: 'app/components/monitor/monitor.html'
             })
 
             /** LOGIN **/
