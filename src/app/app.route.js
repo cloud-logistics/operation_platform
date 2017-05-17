@@ -16,7 +16,6 @@
                 var findedIndex = -1;
                 $rootScope.previousState_name = fromState.name;
                 $rootScope.previousState_params = fromParams;
-                console.log("toState: ", toState);
                 var myUrl = constdata.routeName[toState.name];
                 var routeObj = {
                 url : myUrl,
@@ -80,7 +79,7 @@
 
         // $locationProvider.html5Mode(true);
         $urlRouterProvider
-            .otherwise('dashboard');
+            .otherwise('mapview');
         $stateProvider
 
 

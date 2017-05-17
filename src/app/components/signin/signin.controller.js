@@ -58,7 +58,7 @@
                     $rootScope.userInfo = infoResponse.data;
                     StorageService.put(userInfo,infoResponse.data,24 * 3 * 60 * 60);
 
-                    var appGo = 'app.dashboard';
+                    var appGo = 'app.mapview';
                     var roleType = infoResponse.data.role;
                     // if (roleType === 'cargoagent'){
                     //     appGo = 'app.goodorder';
