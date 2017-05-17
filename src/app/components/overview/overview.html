@@ -1,0 +1,43 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="OverviewController as vm"
+     ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
+    <!-- main -->
+    <div class="col">
+        <!-- main header -->
+        <!--<div class="bg-light lter b-b wrapper-xs">-->
+        <!--<div class="row">-->
+        <!--<div class="col-md-6 col-sm-6 col-xs-12">-->
+        <!--<h1 class="font-thin h3 text-black m-l m-t-sm">{{vm.title}}</h1>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <div id="content" style="height: 100vh;">
+            <div class="wrapper-md">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="panel b-a">
+                            <div class="panel-heading no-border bg-primary">
+                                <span class="text-lt">The Restaurant</span>
+                            </div>
+                            <div class="item m-l-n-xxs m-r-n-xxs">
+                                <div ng-init="x = 3" class="top text-right padder m-t-xs w-full">
+                                    <rating ng-model="x" max="5" state-on="'fa fa-star text-white'"
+                                            state-off="'fa fa-star-o text-white'"></rating>
+                                </div>
+
+                                <div class="bottom wrapper bg-gd-dk text-white">
+                                    <div class="text-u-c h3 m-b-sm text-primary-lter">Coffee</div>
+                                    <div>Restaurant</div>
+                                    <div>9:00 am - 12:00 pm</div>
+                                </div>
+                                <img src="assets/images/c0.jpg" class="img-full">
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
