@@ -144,7 +144,12 @@
 
         // 百度地图API功能
         var map = new BMap.Map("goodtrack",{minZoom:3,maxZoom:14});    // 创建Map实例
-        map.centerAndZoom("上海",5);      // 初始化地图,用城市名设置地图中心点
+        var  mapStyle ={ 
+            features: ["road", "building","water","land"],//隐藏地图上的poi
+            style : "light"  //设置地图风格为高端黑
+        }
+        map.setMapStyle(mapStyle)
+        map.centerAndZoom("上海",3);      // 初始化地图,用城市名设置地图中心点
         map.enableScrollWheelZoom(false);     //开启鼠标滚轮缩放
         // 创建地址解析器实例
         var myGeo = new BMap.Geocoder();
@@ -158,6 +163,8 @@
 
         var top_right_navigation = new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_LEFT, type: BMAP_NAVIGATION_CONTROL_SMALL}); //右上角，仅包含平移和缩放按钮
         map.addControl(top_right_navigation);
+        map.addControl(new BMap.OverviewMapControl());
+        map.addControl(new BMap.MapTypeControl()); 
 
         // 从集团IoT云平台获取集装箱定位信息
         function getOrderLists() {

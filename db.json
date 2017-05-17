@@ -18,5 +18,33 @@
       "sessionid": "111",
       "token": "eyJraWQiOiJJT1RfSU9UX0VYSElCSVRJT05fU0VDVVJFS0VZIiwiYWxnIjoiUlMyNTYifQ.eyJpc3MiOiJJT1RfRVhISUJJVElPTiIsImF1ZCI6IklPVF9DTElFTlQiLCJleHAiOjE3OTg3ODEwODMsImp0aSI6ImJtX3BoSFdKM0w5d2xWMnNuc0Y1R1EiLCJpYXQiOjE0ODc3NDEwODMsInN1YiI6InRlc3QifQ.NxGpjh_b60-i6iaNK7KZPVkemTKhcVMiGecbIMk4gn3xDyRzRWe2jnBxdsZwA3FAANmkVj9Y5_jY9dwrTjKxFg6dxAGsY0A19suqElFx3tOIlvT2EOOxKu9-468H66UgecTPn10FnPaylm6ffHkIBkUe1fSqJgnY-lvbvLMtEcXCOzv71gjjC-LiQ7LGedD44vPSEH9Flj0RLQiFxN7kynyeHKH6qZcenuyBl4Tt-xgZwfA420FBQW_RvOx1JDt7cVJTgDiZASCuUfZjcz3L73ZWvnWqijNAR9viZFvplfrl-KqyfM6FKbzUiNv2UHw3OqxOB1-bLipcWnG7flqOmA"
     }
-  }
+  },
+  "sateliteInfo": [
+    {"title":"东海","detail":"latitude:122.289718 \n longitude:30.027183","latitude":122.289718,"longitude":30.027183},
+    {"title":"长沙西海宾馆火车站店","detail":"地址：长沙火车站远大路与东二环交汇处(纬一路19号)","latitude":113.026814,"longitude":28.205349},
+    {"title":"马尼拉","detail":"地址：菲律宾国家首都大区","latitude":121.025813,"longitude":14.731058},
+    {"title":"黎牙实比","detail":"地址：西港路4号","latitude":123.667378,"longitude":13.191784},
+    {"title":"上海","detail":"芦潮港","latitude":121.557348,"longitude":31.179784},
+    {"title":"马尼拉","detail":"地址：菲律宾国家首都大区","latitude":121.025813,"longitude":14.731058},
+    {"title":"浙江宁波","detail":"港吉码头","latitude":119.305681,"longitude":26.098211},
+    {"title":"新加坡","detail":"地址：马来西亚的巴生港","latitude":103.847353,"longitude":1.398561},
+    {"title":"浙江宁波","detail":"港吉码头","latitude":117.291177,"longitude":39.112243},
+    {"title":"首尔","detail":"首尔","latitude":126.60021,"longitude":34.727164},
+    {"title":"长崎","detail":"长崎港","latitude":130.022107,"longitude":32.77553},
+    {"title":"香港","detail":"地址：维多利亚港","latitude":114.175321,"longitude":22.27729},
+    {"title":"西沙群岛","detail":"latitude:113.459016 \n longitude:16.257474","latitude":113.459016,"longitude":16.257474},
+    {"title":"香港","detail":"首尔","latitude":110.589037,"longitude":9.035837},
+    {"title":"北美","detail":"","latitude":47.611602,"longitude":-19.157715},
+    {"title":"南昌","detail":"南昌火车站","latitude":116.034637,"longitude":28.608328},
+    {"title":"广岛","detail":"","latitude":132.583006,"longitude":34.343678},
+    {"title":"海口","detail":"","latitude":110.294681,"longitude":20.125332},
+    {"title":"河内","detail":"","latitude":105.70656,"longitude":20.928518},
+    {"title":"河内","detail":"","latitude":109.264432,"longitude":16.399602},
+    {"title":"河内","detail":"","latitude":109.926735,"longitude":10.641485},
+    {"title":"吉隆坡","detail":"","latitude":101.870724,"longitude":3.096005},
+    {"title":"马六甲","detail":"","latitude":102.245863,"longitude":2.210829},
+    {"title":"新山","detail":"","latitude":103.570469,"longitude":1.683243},
+    {"title":"合肥","detail":"合肥火车站","latitude":117.285653,"longitude":31.866508},
+    {"title":"钓鱼岛","detail":"latitude:120.854729 \n longitude:25.754035","latitude":120.854729,"longitude":25.754035}
+  ]
 }

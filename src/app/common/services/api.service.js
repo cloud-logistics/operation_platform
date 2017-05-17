@@ -134,6 +134,10 @@
             NetworkService.get(constdata.api.user + '/findByUserRoleType?roletype=' + type,null,successHandler,failedHandler);
         }
 
+        function getSateliteInfo(successHandler,failedHandler) {
+            NetworkService.get(constdata.api.user + '/sateliteInfo',successHandler,failedHandler);
+        }
+
         function userLogin(name,pwd,successHandler,failedHandler) {
             NetworkService.get(constdata.api.user + '/session/login?username=' + name + '&password=' + iotUtil.sha256(pwd),null,successHandler,failedHandler);
         }
