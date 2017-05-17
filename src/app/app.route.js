@@ -79,7 +79,7 @@
 
         // $locationProvider.html5Mode(true);
         $urlRouterProvider
-            .otherwise('mapview');
+            .otherwise('dashboard');
         $stateProvider
 
 
@@ -91,6 +91,11 @@
             .state('app.mapview', {
                 url: 'mapview',
                 templateUrl: 'app/components/mapview/mapview.html'
+            })
+
+            .state('app.overview',{
+                url: 'overview',
+                templateUrl: 'app/components/overview/overview.html'
             })
 
             /** LOGIN **/
