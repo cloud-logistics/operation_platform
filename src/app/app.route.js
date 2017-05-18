@@ -24,8 +24,11 @@
                 }
 
                 var firstLevelNav = [
-                    'app.dashboard',
-                    'app.mapview',
+                    'app.overview',
+                    'app.monitor',
+                    'app.pipelineview',
+                    'app.satellite',
+                    'app.container_overview',
                     'app.signin'
                 ];
 
@@ -79,14 +82,14 @@
 
         // $locationProvider.html5Mode(true);
         $urlRouterProvider
-            .otherwise('mapview');
+            .otherwise('pipelineview');
         $stateProvider
 
 
-            .state('app.dashboard', {
-                url: 'dashboard',
-                templateUrl: 'app/components/dashboard/dashboard.html'
-            })
+            // .state('app.dashboard', {
+            //     url: 'dashboard',
+            //     templateUrl: 'app/components/dashboard/dashboard.html'
+            // })
             //全景地图
             .state('app.overview', {
                 url: 'overview',
@@ -103,9 +106,9 @@
                 templateUrl: 'app/components/monitor/monitor.html'
             })
 
-            .state('app.satelite',{
-                url: 'satelite',
-                templateUrl: 'app/components/satelite/satelite.html'
+            .state('app.satellite',{
+                url: 'satellite',
+                templateUrl: 'app/components/satellite/satellite.html'
             })
 
             .state('app.container_overview',{

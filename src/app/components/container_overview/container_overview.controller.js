@@ -13,14 +13,16 @@
 
         var width = document.body.clientWidth;
         var height = document.body.clientHeight;
+        var containers = [];
+        var markers = [];
         vm.mapSize = {"width":width + 'px',"height":height + 'px'};
 
-        var mapInfo = MapService.map_init("container_overview");
+        var mapInfo = MapService.map_init("container_overview", "terrain");
 
         // 鼠标绘图工具
-        var overlays = [];
+        var overlay = undefined;
 
-        // drawingManagerInit(mapInfo.map)
+        drawingManagerInit(mapInfo.map)
 
 
         getContainerOverviewInfo();
@@ -30,45 +32,74 @@
 
 
         function drawingManagerInit (map) {
-            var overlaycomplete = function(e){
-                overlays.push(e.overlay);
-                console.log(e.overlay);
-            };
             var styleOptions = {
-                strokeColor:"red",    //边线颜色。
-                fillColor:"red",      //填充颜色。当参数为空时，圆形将没有填充效果。
-                strokeWeight: 3,       //边线的宽度，以像素为单位。
-                strokeOpacity: 0.8,	   //边线透明度，取值范围0 - 1。
-                fillOpacity: 0.6,      //填充的透明度，取值范围0 - 1。
-                strokeStyle: 'solid' //边线的样式，solid或dashed。
-            }
-            //实例化鼠标绘制工具
-            var drawingManager = new BMapLib.DrawingManager(map, {
-                isOpen: false, //是否开启绘制模式
-                enableDrawingTool: true, //是否显示工具栏
-                drawingToolOptions: {
-                    anchor: BMAP_ANCHOR_TOP_RIGHT, //位置
-                    offset: new BMap.Size(5, 5), //偏离值
-                },
-                circleOptions: styleOptions, //圆的样式
-                // polylineOptions: styleOptions, //线的样式
-                // polygonOptions: styleOptions, //多边形的样式
-                rectangleOptions: styleOptions //矩形的样式
-            });  
-            //添加鼠标绘制工具监听事件，用于获取绘制结果
-            drawingManager.addEventListener('overlaycomplete', overlaycomplete);
-            drawingManager.addEventListener('circlecomplete', function (e) {
-                var radius = parseInt(e.getRadius());
-                var center = e.getCenter()
+                    // fillColor: '#ffff00',
+                    // fillColor:"red",      //填充颜色。当参数为空时，圆形将没有填充效果。
+                    fillOpacity: 0.6,
+                    strokeWeight: 3,
+                    clickable: false,
+                    editable: true,
+                    strokeColor:"red",    //边线颜色。
+                    strokeOpacity: 0.8,	   //边线透明度，取值范围0 - 1。
+                    strokeStyle: 'solid', //边线的样式，solid或dashed。
+                    zIndex: 1
+                }
 
-                console.log("radius: ", radius);
-                console.log("center: ", center);
+            var drawingManager = new google.maps.drawing.DrawingManager({
+                drawingMode: google.maps.drawing.OverlayType.null,
+                drawingControl: true,
+                drawingControlOptions: {
+                    position: google.maps.ControlPosition.TOP_CENTER,
+                    drawingModes: ['marker', 'circle', /*'polygon', 'polyline',*/ 'rectangle']
+                },
+                circleOptions: styleOptions,
+                rectangleOptions: styleOptions
             });
+            drawingManager.setMap(map);
+
+            google.maps.event.addListener(drawingManager, 'circlecomplete', function(circle) {
+                var radius = circle.getRadius();
+                var center = circle.getCenter();
+                var bounds = circle.getBounds();
+
+                updateMarker(bounds);
+            });
+
+            google.maps.event.addListener(drawingManager, 'rectanglecomplete', function(rectangle) {
+                var bounds = rectangle.getBounds();
+                updateMarker(bounds)
+            });
+
+            google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
+                if(!R.isNil(overlay)) {
+                    overlay.setMap(null)
+                }
+                overlay = event.overlay;
+            });
+        }
+
+        function updateMarker(bounds) {
+            var remainContainer = containers.filter(function (container) {
+                return bounds.contains({
+                    lat: container.latitude,
+                    lng: container.longitude
+                })
+            })
+
+            markers.map(function (marker){
+                marker.setMap(null)
+            })
+            markers = []
+
+            markers = remainContainer.map(MapService.addMarker(mapInfo.map))
+
+            alert("此区域有" + R.length(remainContainer) + "个智能云箱");
         }
 
         function getContainerOverviewInfo() {
             ApiServer.getContainerOverviewInfo(function (response) {
-                // response.data.map(MapService.addPoint(mapInfo.map, false, "container"))
+                containers = response.data
+                // markers = response.data.map(MapService.addMarker(mapInfo.map))
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);
             });
