@@ -51,7 +51,7 @@
             // var  mapStyle = constdate.map.mapStyle;
             var  mapStyle = { 
                     features: ["road", "building","water","land"],//隐藏地图上的poi
-                    style : "light"  //设置地图风格为高端黑
+                    style : "grayscale"  //设置地图风格为高端黑
                 }
             map.setMapStyle(mapStyle)
             map.centerAndZoom("上海",3);      // 初始化地图,用城市名设置地图中心点
@@ -67,7 +67,7 @@
 
 
             var top_right_navigation = new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_LEFT, type: BMAP_NAVIGATION_CONTROL_SMALL}); //右上角，仅包含平移和缩放按钮
-            map.addControl(top_right_navigation);
+            // map.addControl(top_right_navigation);
             map.addControl(new BMap.OverviewMapControl());
             map.addControl(new BMap.MapTypeControl());
 

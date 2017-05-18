@@ -307,7 +307,7 @@
                 textStyle: {
                     color: '#fff'
                 },
-                selectedMode: 'single'
+                selectedMode: 'multiple'
             },
             geo: {
                 map: 'world',
