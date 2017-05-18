@@ -18,9 +18,241 @@
 .panel.b-a.panel-radius {
   border: none;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px #000;
+  box-shadow: 0 20px 40px 0 #000;
+  height:400px;
+  overflow: hidden;
+}
+
+.panel-heading.no-border.bg-primary.panel-top-radius {
+  height: 100px;
 }
 
 .panel-top-radius .text-lt {
   font-size: 20px;
 }
+
+// 实时报文
+.panel.b-a.panel-radius.baowen {
+  background-image: url('../../images/map1.png');
+  height: 350px;
+  //background-repeat: no-repeat;
+  box-shadow: 0 20px 40px 0 #8fc261;
+}
+
+.panel.b-a.panel-radius.baowen .input {
+  padding: 20px 10px 20px 10px;
+  background-color: #ffffff;
+  border-radius: 10px 10px 0 0;
+}
+
+.panel.b-a.panel-radius.baowen .input .form-control {
+  font-size: 15px;
+}
+
+.text-baowen {
+  font-size: 24px;
+  font-weight: bold;
+  color: #8fc261;
+  margin-bottom: 6px;
+}
+
+//实时位置
+.panel.b-a.panel-radius.location {
+  background-image: url('../../images/map1.png');
+  height: 350px;
+  //background-repeat: no-repeat;
+  box-shadow: 0 20px 40px 0 #7e8bd0;
+}
+
+.panel.b-a.panel-radius.location .input {
+  padding: 20px 10px 20px 10px;
+  background-color: #ffffff;
+  border-radius: 10px 10px 0 0;
+}
+
+.panel.b-a.panel-radius.location .input .form-control {
+  font-size: 15px;
+}
+
+.text-location {
+  font-size: 24px;
+  font-weight: bold;
+  color: #7e8bd0;
+  margin-bottom: 6px;
+}
+
+//历史轨迹
+.panel.b-a.panel-radius.track {
+  background-image: url('../../images/map1.png');
+  height: 350px;
+  //background-repeat: no-repeat;
+  box-shadow: 0 20px 40px 0 #f2ba7a;
+}
+
+.panel.b-a.panel-radius.track .input {
+  padding: 20px 10px 20px 10px;
+  background-color: #ffffff;
+  border-radius: 10px 10px 0 0;
+}
+
+.panel.b-a.panel-radius.track .input .form-control {
+  font-size: 15px;
+}
+
+.text-track {
+  font-size: 24px;
+  font-weight: bold;
+  color: #f2ba7a;
+  margin-bottom: 6px;
+}
+
+.track-line {
+  position: relative;
+}
+
+.track-line:after {
+  content: "";
+  display: block;
+  width: 7px;
+  border-bottom: 1px solid #333;
+  position: absolute;
+  right: -13px;
+  top: 15px;
+}
+
+.btn.btn-md.btn-block.track {
+  border-radius: 5px;
+  background-color: #f2ba7a;
+  color: #ffffff;
+}
+
+.top5 {
+  top: 5px;
+}
+
+//云箱状态汇总
+.panel.b-a.panel-radius.box-status {
+  background-image: url('../../images/map1.png');
+  height: 350px;
+  //background-repeat: no-repeat;
+  box-shadow: 0 20px 40px 0 #b76ebf;
+}
+
+.panel.b-a.panel-radius.box-status .input {
+  padding: 20px 10px 20px 10px;
+  background-color: #ffffff;
+  border-radius: 10px 10px 0 0;
+}
+
+.panel.b-a.panel-radius.box-status .input .form-control {
+  font-size: 15px;
+}
+
+.btn.btn-md.btn-block.box-status {
+  border-radius: 5px;
+  background-color: #b76ebf;
+  color: #ffffff;
+}
+
+.text-box-status {
+  font-size: 24px;
+  font-weight: bold;
+  color: #b76ebf;
+  margin-bottom: 6px;
+}
+
+//报警监控
+.panel.b-a.panel-radius.box-alert {
+  background-image: url('../../images/map1.png');
+  height: 350px;
+  //background-repeat: no-repeat;
+  box-shadow: 0 20px 40px 0 #63b5be;
+}
+
+.panel.b-a.panel-radius.box-alert .input {
+  padding: 20px 10px 20px 10px;
+  background-color: #ffffff;
+  border-radius: 10px 10px 0 0;
+}
+
+.panel.b-a.panel-radius.box-alert .input .form-control {
+  font-size: 15px;
+}
+
+.btn.btn-md.btn-block.box-alert {
+  border-radius: 5px;
+  background-color: #63b5be;
+  color: #ffffff;
+}
+
+.text-box-alert {
+  font-size: 24px;
+  font-weight: bold;
+  color: #63b5be;
+  margin-bottom: 6px;
+}
+
+//基本信息查询
+.panel.b-a.panel-radius.box-info {
+  background-image: url('../../images/map1.png');
+  height: 350px;
+  //background-repeat: no-repeat;
+  box-shadow: 0 20px 40px 0 #4cb587;
+}
+
+.panel.b-a.panel-radius.box-info .input {
+  padding: 20px 10px 20px 10px;
+  background-color: #ffffff;
+  border-radius: 10px 10px 0 0;
+}
+
+.panel.b-a.panel-radius.box-info .input .form-control {
+  font-size: 15px;
+}
+
+.btn.btn-md.btn-block.box-info {
+  border-radius: 5px;
+  background-color: #4cb587;
+  color: #ffffff;
+}
+
+.text-box-info {
+  font-size: 24px;
+  font-weight: bold;
+  color: #4cb587;
+  margin-bottom: 6px;
+}
+
+//历史报文
+.panel.b-a.panel-radius.box-history {
+  background-image: url('../../images/map1.png');
+  height: 350px;
+  //background-repeat: no-repeat;
+  box-shadow: 0 20px 40px 0 #cd6868;
+}
+
+.panel.b-a.panel-radius.box-history .input {
+  padding: 20px 10px 20px 10px;
+  background-color: #ffffff;
+  border-radius: 10px 10px 0 0;
+}
+
+.panel.b-a.panel-radius.box-history .input .form-control {
+  font-size: 15px;
+}
+
+.btn.btn-md.btn-block.box-history {
+  border-radius: 5px;
+  background-color: #cd6868;
+  color: #ffffff;
+}
+
+.text-box-history {
+  font-size: 24px;
+  font-weight: bold;
+  color: #cd6868;
+  margin-bottom: 6px;
+}
+
+
+
