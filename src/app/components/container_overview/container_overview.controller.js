@@ -20,7 +20,7 @@
         // 鼠标绘图工具
         var overlays = [];
 
-        drawingManagerInit(mapInfo.map)
+        // drawingManagerInit(mapInfo.map)
 
 
         getContainerOverviewInfo();
@@ -68,7 +68,7 @@
 
         function getContainerOverviewInfo() {
             ApiServer.getContainerOverviewInfo(function (response) {
-                response.data.map(MapService.addPoint(mapInfo.map, false, "container"))
+                // response.data.map(MapService.addPoint(mapInfo.map, false, "container"))
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);
             });

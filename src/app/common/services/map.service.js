@@ -46,34 +46,18 @@
         ////////////信息
 
         function map_init(id) {
-            // 百度地图API功能
-            var map = new BMap.Map(id,{minZoom:3,maxZoom:14});    // 创建Map实例
-            // var  mapStyle = constdate.map.mapStyle;
-            var  mapStyle = { 
-                    features: ["road", "building","water","land"],//隐藏地图上的poi
-                    style : "grayscale"  //设置地图风格为高端黑
-                }
-            map.setMapStyle(mapStyle)
-            map.centerAndZoom("上海",3);      // 初始化地图,用城市名设置地图中心点
-            map.enableScrollWheelZoom(false);     //开启鼠标滚轮缩放
-            // 创建地址解析器实例
-            var goe = new BMap.Geocoder();
-            //点击地图，获取经纬度坐标
-            map.addEventListener("click",function (e) {
-                var ll = e.point.lng+","+e.point.lat;
-                console.log(ll);
+            // Create a map object and specify the DOM element for display.
+            var map = new google.maps.Map(document.getElementById(id), {
+                center: {lat: -34.397, lng: 150.644},
+                // center: {lat: 121.4648, lng: 31.2891},
+                mapTypeId: 'satellite',
+                scrollwheel: true,
+                zoom: 3
             });
-
-
-
-            var top_right_navigation = new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_LEFT, type: BMAP_NAVIGATION_CONTROL_SMALL}); //右上角，仅包含平移和缩放按钮
-            // map.addControl(top_right_navigation);
-            map.addControl(new BMap.OverviewMapControl());
-            map.addControl(new BMap.MapTypeControl());
 
             return {
               map: map,
-              geo: goe
+              geo: null
             }
         }
 
