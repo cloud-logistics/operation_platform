@@ -1,3 +1,8 @@
+<style>
+    .no-padding {
+        padding: 0 !important;
+    }
+</style>
 <div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="MonitorController as vm"
      ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
     <!-- main -->
@@ -14,48 +19,298 @@
         <div id="content" style="height: 100vh;">
             <div class="wrapper-md">
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="panel b-a panel-radius">
-                            <div class="panel-heading no-border bg-primary panel-top-radius">
-                                <span class="text-lt">云箱全景概览</span>
+                    <div class="col-md-11">
+                        <div class="col-md-4">
+                            <div class="text-baowen">
+                                <span>实时报文</span>
                             </div>
-                            <div class="item m-l-n-xxs panel-bottom-radius">
+                            <div class="panel b-a panel-radius baowen">
+                                <div class="input">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control input-sm btn-rounded"
+                                               placeholder="请输入云箱ID">
+                                        <span class="input-group-btn">
+              <button type="submit" class="btn btn-default btn-sm btn-rounded"><i class="fa fa-search"></i></button>
+            </span>
+                                    </div>
+                                </div>
 
-                                <img src="assets/images/map1.png" class="img-full">
                             </div>
+                        </div>
 
+                        <div class="col-md-4">
+                            <div class="text-location">
+                                <span>实时位置</span>
+                            </div>
+                            <div class="panel b-a panel-radius location">
+                                <div class="input">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control input-sm btn-rounded"
+                                               placeholder="请输入云箱ID">
+                                        <span class="input-group-btn">
+              <button type="submit" class="btn btn-default btn-sm btn-rounded"><i class="fa fa-search"></i></button>
+            </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="text-track">
+                                <span>历史轨迹</span>
+                            </div>
+                            <div class="panel b-a panel-radius track">
+                                <div class="input">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label text-right no-padding top5">ID</label>
+                                            <div class="col-md-10">
+                                                <input type="text" class="form-control" placeholder="请输入">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label text-right no-padding top5">时间</label>
+                                            <div class="col-md-10">
+                                                <div class="col-md-6 track-line no-padding">
+                                                    <input type="text" class="form-control" placeholder="yyyy-mm-dd">
+                                                </div>
+
+                                                <div class="col-md-offset-1 col-md-5 no-padding">
+                                                    <input type="text" class="form-control" placeholder="yyyy-mm-dd">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <button type="submit" class="btn btn-md btn-block track">查 询</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-
-                    <div class="col-md-4">
-                        <div class="panel b-a panel-radius">
-                            <div class="panel-heading no-border bg-primary panel-top-radius">
-                                <span class="text-lt">云箱流水线概览</span>
-                            </div>
-                            <div class="item m-l-n-xxs panel-bottom-radius">
-
-
-                                <img src="assets/images/map1.png" class="img-full">
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="panel b-a panel-radius">
-                            <div class="panel-heading no-border bg-primary panel-top-radius">
-                                <span class="text-lt">云箱全景概览</span>
-                            </div>
-                            <div class="item m-l-n-xxs panel-bottom-radius">
-
-
-                                <img src="assets/images/map1.png" class="img-full">
-                            </div>
-
-                        </div>
-                    </div>
-
                 </div>
+
+                <div class="row">
+                    <div class="col-md-11">
+                        <div class="col-md-4">
+                            <div class="text-box-alert">
+                                <span>报警监控</span>
+                            </div>
+                            <div class="panel b-a panel-radius box-alert">
+                                <div class="input">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label text-right no-padding top5">ID</label>
+                                            <div class="col-md-10">
+                                                <input type="text" class="form-control" placeholder="请输入">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">最高告警级别</label>
+                                            <div class="col-md-7">
+                                                <select name="account" class="form-control m-b">
+                                                    <option>option 1</option>
+                                                    <option>option 2</option>
+                                                    <option>option 3</option>
+                                                    <option>option 4</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">故障类型</label>
+                                            <div class="col-md-7">
+                                                <select name="account" class="form-control m-b">
+                                                    <option>option 1</option>
+                                                    <option>option 2</option>
+                                                    <option>option 3</option>
+                                                    <option>option 4</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">故障代码</label>
+                                            <div class="col-md-7">
+                                                <select name="account" class="form-control m-b">
+                                                    <option>option 1</option>
+                                                    <option>option 2</option>
+                                                    <option>option 3</option>
+                                                    <option>option 4</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <button type="submit" class="btn btn-md btn-block box-alert">查 询</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="text-box-info">
+                                <span>基础信息查询</span>
+                            </div>
+                            <div class="panel b-a panel-radius box-info">
+                                <div class="input">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label text-right no-padding top5">ID</label>
+                                            <div class="col-md-10">
+                                                <input type="text" class="form-control" placeholder="请输入">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">云箱型号</label>
+                                            <div class="col-md-7">
+                                                <select name="account" class="form-control m-b">
+                                                    <option>option 1</option>
+                                                    <option>option 2</option>
+                                                    <option>option 3</option>
+                                                    <option>option 4</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">生产厂家</label>
+                                            <div class="col-md-7">
+                                                <select name="account" class="form-control m-b">
+                                                    <option>option 1</option>
+                                                    <option>option 2</option>
+                                                    <option>option 3</option>
+                                                    <option>option 4</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <button type="submit" class="btn btn-md btn-block box-info">查 询</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="text-box-history">
+                                <span>历史报文</span>
+                            </div>
+                            <div class="panel b-a panel-radius box-history">
+                                <div class="input">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label text-right no-padding top5">ID</label>
+                                            <div class="col-md-10">
+                                                <input type="text" class="form-control" placeholder="请输入">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">云箱型号</label>
+                                            <div class="col-md-7">
+                                                <select name="account" class="form-control m-b">
+                                                    <option>option 1</option>
+                                                    <option>option 2</option>
+                                                    <option>option 3</option>
+                                                    <option>option 4</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label text-right no-padding top5">时间</label>
+                                            <div class="col-md-10">
+                                                <div class="col-md-6 track-line no-padding">
+                                                    <input type="text" class="form-control" placeholder="yyyy-mm-dd">
+                                                </div>
+
+                                                <div class="col-md-offset-1 col-md-5 no-padding">
+                                                    <input type="text" class="form-control" placeholder="yyyy-mm-dd">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <button type="submit" class="btn btn-md btn-block box-history">查 询</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-11">
+                        <div class="col-md-4">
+                            <div class="text-box-status">
+                                <span>云箱状态汇总</span>
+                            </div>
+                            <div class="panel b-a panel-radius box-status">
+                                <div class="input">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label text-right no-padding top5">ID</label>
+                                            <div class="col-md-10">
+                                                <input type="text" class="form-control" placeholder="请输入">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">当前状态</label>
+                                            <div class="col-md-7">
+                                                <select name="account" class="form-control m-b">
+                                                    <option>在运</option>
+                                                    <option>option 2</option>
+                                                    <option>option 3</option>
+                                                    <option>option 4</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">故障类型</label>
+                                            <div class="col-md-7">
+                                                <select name="account" class="form-control m-b">
+                                                    <option>option 1</option>
+                                                    <option>option 2</option>
+                                                    <option>option 3</option>
+                                                    <option>option 4</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <button type="submit" class="btn btn-md btn-block box-status">查 询</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
