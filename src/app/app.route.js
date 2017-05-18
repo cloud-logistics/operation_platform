@@ -108,6 +108,11 @@
                 templateUrl: 'app/components/satelite/satelite.html'
             })
 
+            .state('app.container_overview',{
+                url: 'container_overview',
+                templateUrl: 'app/components/container_overview/container_overview.html'
+            })
+
             /** LOGIN **/
             .state('access', {
                 url: '/access',

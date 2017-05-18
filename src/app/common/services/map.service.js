@@ -33,17 +33,21 @@
           addCurve: addCurve,
           addPoint: addPoint,
           addCircle: addCircle,
-          addTip: addTip,
 
         };
+
+        var mapIcons = {
+            container: "images/container.png",
+            satelite: "images/satelite.png"
+        }
 
         return service;
 
         ////////////信息
 
-        function map_init() {
+        function map_init(id) {
             // 百度地图API功能
-            var map = new BMap.Map("sitelite_overview",{minZoom:3,maxZoom:14});    // 创建Map实例
+            var map = new BMap.Map(id,{minZoom:3,maxZoom:14});    // 创建Map实例
             // var  mapStyle = constdate.map.mapStyle;
             var  mapStyle = { 
                     features: ["road", "building","water","land"],//隐藏地图上的poi
@@ -91,26 +95,28 @@
             }, city);
         }
         // 编写自定义函数,创建标注
-        function addMarker(point){
-            var marker = new BMap.Marker(point);
-            map.addOverlay(marker);
+        function addMarker(map){
+            return function (point) {
+              var marker = new BMap.Marker(point);
+              map.addOverlay(marker);
+            }
         }
-        function addMainlandRouteCurve(info1,info2,handler,color) {
+        function addMainlandRouteCurve(map, info1,info2,handler,color) {
             if (color){
                 addCurve(info1,info2,handler,color,4);
             }else{
                 addCurve(info1,info2,handler,"#27c24c",4);
             }
         }
-        function addOceanRouteCurve(info1,info2,handler,color) {
+        function addOceanRouteCurve(map, info1,info2,handler,color) {
             if (color){
-                addCurve(info1,info2,handler,color,4);
+                addCurve(map, info1,info2,handler,color,4);
             }else{
-                addCurve(info1,info2,handler,"#23b7e5",4);
+                addCurve(map, info1,info2,handler,"#23b7e5",4);
             }
         }
         //向地图中添加线函数
-        function addLine(points,color) {
+        function addLine(map, color, points) {
             var plPoints;
             if (color){
                 plPoints = [{style:"solid",weight:4,color:color,opacity:0.6,points:points}];
@@ -119,7 +125,7 @@
             }
             addPolyline(plPoints);
         }
-        function addPolyline(plPoints){
+        function addPolyline(map, plPoints){
             for(var i=0;i<plPoints.length;i++){
 
                 var json = plPoints[i];
@@ -133,7 +139,7 @@
                 map.addOverlay(line);
             }
         }
-        function addCurve(info1,info2,handler,color,weight) {
+        function addCurve(map, info1,info2,handler,color,weight) {
             var p1 = new BMap.Point(info1.latitude,info1.longitude);
             var p2 = new BMap.Point(info2.latitude,info2.longitude);
             var points = [p1, p2];
@@ -143,12 +149,16 @@
                 handler();
             });
         }
-        function addPoint(map, jump) {
+        function addPoint(map, jump, type) {
             return function (info) {
                 var pt = new BMap.Point(info.latitude, info.longitude);
                 var marker;
-                var icon = 'images/icon-point.png';
-                
+                var icon = mapIcons[type];
+
+                if (!icon) {
+                    icon = "images/container.png"
+                }
+
                 var myIcon = new BMap.Icon(icon, new BMap.Size(36,36));
                 marker = new BMap.Marker(pt,{icon:myIcon});  // 创建标注
                 // marker = new BMap.Marker(pt);
@@ -169,18 +179,18 @@
                 });
 
                 if (info.message){
-                    addTip(info);
+                    addTip(map, info);
                 }
             }
         }
-        function addCircle(map, info) {
+        function addCircle(map) {
             return function (info) {
               var pt = new BMap.Point(info.latitude, info.longitude);
               var circle = new BMap.Circle(pt,500000,{strokeColor:"red", strokeWeight:2, strokeOpacity:0.5}); //创建圆
               map.addOverlay(circle);
             }
         }
-        function addTip(info) {
+        function addTip(map, info) {
             var pt = new BMap.Point(info.latitude, info.longitude);
             var opts = {
                 position : pt,    // 指定文本标注所在的地理位置

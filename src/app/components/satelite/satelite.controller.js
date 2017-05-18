@@ -15,13 +15,13 @@
         var height = document.body.clientHeight;
         vm.mapSize = {"width":width + 'px',"height":height + 'px'};
 
-        var mapInfo = MapService.map_init();
+        var mapInfo = MapService.map_init("sitelite_overview");
 
         //创建航线，航线是固定的。。。出于保密原因，先这样
 
         function getSateliteInfo() {
             ApiServer.getSateliteInfo(function (response) {
-                response.data.map(MapService.addPoint(mapInfo.map, false))
+                response.data.map(MapService.addPoint(mapInfo.map, false, "satelite"))
                 response.data.map(MapService.addCircle(mapInfo.map))
             },function (err) {
                 console.log("Get Satelite Info Failed", err);

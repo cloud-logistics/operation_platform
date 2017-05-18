@@ -23,7 +23,9 @@
                     transportTask:'resource/transporttask'
                 },
                 overview: {
-                    satelite: 'sateliteInfo'
+                    satelites: 'overview/satelites',
+                    containers: "overview/containers",
+                    pipelines: "overview/pipelines"
                 },
                 order:'order',
                 user:'user',

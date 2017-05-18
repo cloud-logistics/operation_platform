@@ -34,6 +34,7 @@
 
             userLogin: userLogin,
             getSateliteInfo: getSateliteInfo,
+            getContainerOverviewInfo: getContainerOverviewInfo,
             userRefresh: userRefresh,
             userLogout: userLogout,
 
@@ -136,7 +137,11 @@
         }
 
         function getSateliteInfo(successHandler,failedHandler) {
-            NetworkService.get(constdata.api.overview.satelite, null, successHandler,failedHandler);
+            NetworkService.get(constdata.api.overview.satelites, null, successHandler,failedHandler);
+        }
+
+        function getContainerOverviewInfo(successHandler,failedHandler) {
+            NetworkService.get(constdata.api.overview.containers, null, successHandler,failedHandler);
         }
 
         function userLogin(name,pwd,successHandler,failedHandler) {
