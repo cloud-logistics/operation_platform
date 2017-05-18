@@ -79,7 +79,7 @@
 
         // $locationProvider.html5Mode(true);
         $urlRouterProvider
-            .otherwise('dashboard');
+            .otherwise('mapview');
         $stateProvider
 
 
@@ -88,19 +88,29 @@
                 templateUrl: 'app/components/dashboard/dashboard.html'
             })
             //全景地图
-            .state('app.mapview', {
-                url: 'mapview',
-                templateUrl: 'app/components/mapview/mapview.html'
-            })
-            //全景视图
-            .state('app.overview',{
+            .state('app.overview', {
                 url: 'overview',
                 templateUrl: 'app/components/overview/overview.html'
+            })
+            //全景视图
+            .state('app.pipelineview',{
+                url: 'pipelineview',
+                templateUrl: 'app/components/pipelineview/pipelineview.html'
             })
             //云箱监控
             .state('app.monitor',{
                 url: 'monitor',
                 templateUrl: 'app/components/monitor/monitor.html'
+            })
+
+            .state('app.satelite',{
+                url: 'satelite',
+                templateUrl: 'app/components/satelite/satelite.html'
+            })
+
+            .state('app.container_overview',{
+                url: 'container_overview',
+                templateUrl: 'app/components/container_overview/container_overview.html'
             })
 
             /** LOGIN **/

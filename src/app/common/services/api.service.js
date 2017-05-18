@@ -33,6 +33,8 @@
             userGetByRoleType: userGetByRoleType,
 
             userLogin: userLogin,
+            getSateliteInfo: getSateliteInfo,
+            getContainerOverviewInfo: getContainerOverviewInfo,
             userRefresh: userRefresh,
             userLogout: userLogout,
 
@@ -132,6 +134,14 @@
         }
         function userGetByRoleType(type,successHandler,failedHandler) {
             NetworkService.get(constdata.api.user + '/findByUserRoleType?roletype=' + type,null,successHandler,failedHandler);
+        }
+
+        function getSateliteInfo(successHandler,failedHandler) {
+            NetworkService.get(constdata.api.overview.satelites, null, successHandler,failedHandler);
+        }
+
+        function getContainerOverviewInfo(successHandler,failedHandler) {
+            NetworkService.get(constdata.api.overview.containers, null, successHandler,failedHandler);
         }
 
         function userLogin(name,pwd,successHandler,failedHandler) {

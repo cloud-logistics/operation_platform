@@ -11,7 +11,9 @@ var router = jsonServer.router('db.json')
 server.use(jsonServer.rewriter({
   '/user/session/login': '/login',
   '/user/111': '/user',
-  '/message/findByUserId': '/messageByUserId'
+  '/message/findByUserId': '/messageByUserId',
+  "/overview/satelites": "/satelites",
+  "/overview/containers": "/containers",
 }))
 
 server.use(router)

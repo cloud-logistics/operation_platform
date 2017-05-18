@@ -78,7 +78,7 @@
                     // }else if (roleType === 'shipper'){
                     //     $state.go('app.shiporder');
                     // }else{
-                        $state.go('app.mapview');
+                        $state.go('app.pipelineview');
                     // }
                 },10);
             }

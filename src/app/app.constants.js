@@ -22,6 +22,11 @@
                     container:'resource/container',
                     transportTask:'resource/transporttask'
                 },
+                overview: {
+                    satelites: 'overview/satelites',
+                    containers: "overview/containers",
+                    pipelines: "overview/pipelines"
+                },
                 order:'order',
                 user:'user',
                 message:'message'
@@ -30,6 +35,12 @@
                 "app.dashboard":"全景展示",
                 "app.mapview":"地图展示",
                 "app.signin":"登陆"
+            },
+            map:{
+                mapStyle: { 
+                    features: ["road", "building","water","land"],//隐藏地图上的poi
+                    style : "light"  //设置地图风格为高端黑
+                }
             }
         });
 })();
