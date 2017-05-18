@@ -33,6 +33,7 @@
             userGetByRoleType: userGetByRoleType,
 
             userLogin: userLogin,
+            getSateliteInfo: getSateliteInfo,
             userRefresh: userRefresh,
             userLogout: userLogout,
 
@@ -135,7 +136,7 @@
         }
 
         function getSateliteInfo(successHandler,failedHandler) {
-            NetworkService.get(constdata.api.user + '/sateliteInfo',successHandler,failedHandler);
+            NetworkService.get(constdata.api.overview.satelite, null, successHandler,failedHandler);
         }
 
         function userLogin(name,pwd,successHandler,failedHandler) {

@@ -87,7 +87,7 @@
         }
 
         function successResponse(res,successHandler) {
-            var data = res.data['OK'];
+            var data = res.data;
             if (data){
                 if (typeof data === 'string'){
                     try {

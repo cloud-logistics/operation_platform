@@ -22,6 +22,9 @@
                     container:'resource/container',
                     transportTask:'resource/transporttask'
                 },
+                overview: {
+                    satelite: 'sateliteInfo'
+                },
                 order:'order',
                 user:'user',
                 message:'message'
