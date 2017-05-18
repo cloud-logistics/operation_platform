@@ -4,10 +4,10 @@
 (function () {
     'use strict';
 
-    angular.module('smart_container').controller('MapviewController', MapviewController);
+    angular.module('smart_container').controller('PipelineviewController', PipelineviewController);
 
     /** @ngInject */
-    function MapviewController($stateParams,ApiServer,toastr,$state,$timeout,$interval) {
+    function PipelineviewController($stateParams,ApiServer,toastr,$state,$timeout,$interval) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -19,13 +19,13 @@
 
 
         // 全景地图功能
-        var _map = document.getElementById('map');
+        var _map = document.getElementById('pipelineview');
         function calcMap(){
             _map.style.width = window.innerWidth - 59 +'px';
             _map.style.height = window.innerHeight - 53 + 'px';
         }
         calcMap();
-        var chart = echarts.init(document.getElementById('map'));
+        var chart = echarts.init(document.getElementById('pipelineview'));
         var geoCoordMap = {
             '上海': [121.4648,31.2891],
             '东莞': [113.8953,22.901],
