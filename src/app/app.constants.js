@@ -12,7 +12,9 @@
             apiHost_ONLINE:'http://52.80.40.26:9090/', //http://54.223.162.108:9090/ production1
             // apiHost_OFFLINE:'http://52.80.40.26:9090/',//http://54.223.29.24:9090/ production2
             // local JSON-server:
-            apiHost_OFFLINE:'http://localhost:4000/',
+            apiHost_OFFLINE:'http://127.0.0.1:80/',
+            // apiHost_OFFLINE:'http://192.168.100.97:8000/',
+            // apiHost_OFFLINE:'http://172.16.2.189:8000/',
             token:'airspc_access_authorization',
             informationKey:'airspc_information',
             api:{
@@ -28,6 +30,7 @@
                     pipelines: "overview/pipelines"
                 },
                 order:'order',
+                auth:'api/v1/cloudbox/auth',
                 user:'user',
                 message:'message'
             },

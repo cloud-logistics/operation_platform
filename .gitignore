@@ -11,4 +11,7 @@ erl_crash.dump
 /node_modules
 /lint
 /bower_components
+/build
+/dist
+/tmp
 

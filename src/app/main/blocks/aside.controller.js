@@ -19,23 +19,10 @@
         vm.clearAllMessageAction = clearAllMessageAction;
         vm.logoutAction = logoutAction;
 
-        vm.title = 'IntelligenceContainerBlock';
         vm.messages = [];
-        vm.roleType = ApiServer.roleType();
-        if (vm.roleType === 'regularclient'){
-            vm.title = '智能云箱';
-        }else if (vm.roleType === 'cargoagent'){
-            vm.title = '智能云箱';
-        }else if (vm.roleType === 'carrier'){
-            vm.title = '智能云箱';
-        }else if (vm.roleType === 'shipper'){
-            vm.title = '智能云箱';
-        }else{
-            vm.title = '智能云箱';
-        }
+        vm.roleType = "regularclient";
+        vm.title = '智能云箱';
 
-        vm.infomation = ApiServer.info();
-        
         function clearAllMessageAction() {
             vm.messages = [];
             for (var i = 0; i < vm.messages.length; i++){

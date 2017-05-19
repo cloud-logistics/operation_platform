@@ -30,7 +30,7 @@
 
         var mapIcons = {
             container: "images/container.png",
-            satelite: "images/satelite.png"
+            satellite: "images/satellite.png"
         }
 
         return service;
@@ -53,12 +53,13 @@
         }
 
         // 编写自定义函数,创建标注
-        function addMarker(map){
+        function addMarker(map, type){
             return function (point) {
                 var latLng = new google.maps.LatLng(point.latitude, point.longitude)
                 var marker = new google.maps.Marker({
                     map: map,
                     position: latLng,
+                    icon: mapIcons[type],
                     title: point.title
                 });
                 return marker

@@ -12,7 +12,6 @@
         /* jshint validthis: true */
         var vm = this;
         var authorizationKey = constdata.token;
-        var userInfo = constdata.informationKey;
         //语言
         var langChi = '中文';
         var langEng = 'English';
@@ -40,47 +39,40 @@
             vm.isLogining = true;
             StorageService.remove(constdata.token);
 
-            ApiServer.userLogin(vm.user.username,vm.user.password,function (response) {
+            var user = {
+                    username: vm.user.username,
+                    password: vm.user.password
+                }
+
+            ApiServer.userLogin(user,function (response) {
 
                 console.log('login success');
+                console.log(response);
                 var result = response.data;
 
-                var userId = result.userid;
                 var sessionId = result.sessionid;
                 var token = result.token;
+                var userInfo = {
+                    username: user.username,
+                    role: "regularclient"
+                }
 
-                var sessionInfo = {userid:userId,sessionid:sessionId,token:token};
+                var sessionInfo = {username: user.username,token:token};
 
-                StorageService.put(authorizationKey,sessionInfo,24 * 7 * 60 * 60);//3 天过期
+                // StorageService.put(authorizationKey,sessionInfo,24 * 7 * 60 * 60);//3 天过期
+                // StorageService.put(constdata.informationKey,userInfo,24 * 3 * 60 * 60);
 
-                ApiServer.userGet(userId,function (infoResponse) {
-                    console.log(infoResponse.data);
-                    $rootScope.userInfo = infoResponse.data;
-                    StorageService.put(userInfo,infoResponse.data,24 * 3 * 60 * 60);
 
-                    var appGo = 'app.mapview';
-                    var roleType = infoResponse.data.role;
-                    // if (roleType === 'cargoagent'){
-                    //     appGo = 'app.goodorder';
-                    // }else if (roleType === 'carrier'){
-                    //     appGo = 'app.carorder';
-                    // }else if (roleType === 'shipper'){
-                    //     appGo = 'app.shiporder';
-                    // }else{
-                    //     appGo = 'app.dashboard';
-                    // }
+                var appGo = 'app.pipelineview';
+                var roleType = "regularclient";
 
-                    $rootScope.$on('$locationChangeSuccess',function(){//返回前页时，刷新前页
-                        parent.location.reload();
-                    });
-
-                    $state.go(appGo);
-                },function (infoError) {
-                    var errInfo = '登录失败：' + infoError.statusText + ' (' + infoError.status +')';
-                    toastr.error(errInfo);
-                    vm.isLogining = false;
+                $rootScope.$on('$locationChangeSuccess',function(){//返回前页时，刷新前页
+                    parent.location.reload();
                 });
+
+                $state.go(appGo);
             },function (err) {
+                console.log(err);
                 var errInfo = '登录失败：' + err.statusText + ' (' + err.status +')';
                 toastr.error(errInfo);
                 vm.isLogining = false;

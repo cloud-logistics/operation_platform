@@ -21,7 +21,7 @@
 
         function getSateliteInfo() {
             ApiServer.getSateliteInfo(function (response) {
-                response.data.map(MapService.addMarker(mapInfo.map))
+                response.data.map(MapService.addMarker(mapInfo.map, "satellite"))
                 response.data.map(MapService.addCircle(mapInfo.map))
             },function (err) {
                 console.log("Get Satelite Info Failed", err);

@@ -144,8 +144,9 @@
             NetworkService.get(constdata.api.overview.containers, null, successHandler,failedHandler);
         }
 
-        function userLogin(name,pwd,successHandler,failedHandler) {
-            NetworkService.get(constdata.api.user + '/session/login?username=' + name + '&password=' + iotUtil.sha256(pwd),null,successHandler,failedHandler);
+        function userLogin(param,successHandler,failedHandler) {
+            console.log("user login");
+            NetworkService.post(constdata.api.auth, param,successHandler,failedHandler);
         }
         function userRefresh(successHandler,failedHandler) {
             NetworkService.put(constdata.api.user + '/session/refresh',null,successHandler,failedHandler);

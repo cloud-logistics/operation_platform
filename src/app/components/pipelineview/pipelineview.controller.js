@@ -11,9 +11,6 @@
         /* jshint validthis: true */
         var vm = this;
 
-
-        var info = ApiServer.info();
-        var roleType = info.role;
         vm.title = '全景平台';
 
 
@@ -24,7 +21,7 @@
             _map.style.width = window.innerWidth - 59 +'px';
             _map.style.height = window.innerHeight - 53 + 'px';
         }
-        calcMap();
+        // calcMap();
         var chart = echarts.init(document.getElementById('pipelineview'));
         var geoCoordMap = {
             '上海': [121.4648,31.2891],
