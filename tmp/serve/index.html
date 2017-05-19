@@ -98,6 +98,7 @@
     <!-- build:js({tmp/serve,tmp/partials,src}) scripts/app.js -->
     <!-- inject:js -->
     <script src="app/app.module.js"></script>
+    <script src="app/main/blocks/aside.controller.js"></script>
     <script src="app/components/webdevtec/webdevtec.service.js"></script>
     <script src="app/components/vehicle/vehicles.controller.js"></script>
     <script src="app/components/vehicle/vehicle.controller.js"></script>
@@ -108,9 +109,10 @@
     <script src="app/components/signin/signin.controller.js"></script>
     <script src="app/components/shippingschedule/shippingschedule.controller.js"></script>
     <script src="app/components/shippingschedule/shippingschedule.add.controller.js"></script>
-    <script src="app/components/satelite/satelite.controller.js"></script>
+    <script src="app/components/satellite/satellite.controller.js"></script>
     <script src="app/components/profile/profile.controller.js"></script>
     <script src="app/components/pipelineview/pipelineview.controller.js"></script>
+    <script src="app/components/overview/overview.controller.js"></script>
     <script src="app/components/order/user.order.controller.js"></script>
     <script src="app/components/order/user.order.add.controller.js"></script>
     <script src="app/components/order/ship.order.controller.js"></script>
@@ -122,36 +124,19 @@
     <script src="app/components/order/car.order.packing.controller.js"></script>
     <script src="app/components/order/car.order.controller.js"></script>
     <script src="app/components/order/car.order.add.controller.js"></script>
-<<<<<<< HEAD
-    <script src="app/components/overview/overview.controller.js"></script>
-=======
-<<<<<<< HEAD
     <script src="app/components/monitor/monitor.controller.js"></script>
-    <script src="app/components/mapview/mapview.controller.js"></script>
-=======
->>>>>>> e1a39f64f6991c7d9c090e59ccc465fe8761cb9f
->>>>>>> 4dcdcfeef503dfbb1c35006b83bf70bfd9a7226d
     <script src="app/components/dashboard/dashboard.controller.js"></script>
-    <script src="app/components/monitor/monitor.controller.js"></script>
     <script src="app/components/core/modal.order4client.controller.js"></script>
     <script src="app/components/core/modal.instance.controller.js"></script>
     <script src="app/components/container_overview/container_overview.controller.js"></script>
-    <script src="app/components/company/company.controller.js"></script>
     <script src="app/components/container/containers.controller.js"></script>
     <script src="app/components/container/container.controller.js"></script>
-<<<<<<< HEAD
-=======
     <script src="app/components/company/company.controller.js"></script>
-<<<<<<< HEAD
-    <script src="app/main/blocks/aside.controller.js"></script>
-=======
->>>>>>> e1a39f64f6991c7d9c090e59ccc465fe8761cb9f
     <script src="app/common/services/ui-load.js"></script>
     <script src="app/common/services/rest.service.js"></script>
     <script src="app/common/services/map.service.js"></script>
     <script src="app/common/services/fun.service.js"></script>
     <script src="app/common/services/api.service.js"></script>
->>>>>>> 4dcdcfeef503dfbb1c35006b83bf70bfd9a7226d
     <script src="app/common/directives/ui.page.directive.js"></script>
     <script src="app/common/directives/ui-toggleclass.js"></script>
     <script src="app/common/directives/ui-shift.js"></script>
@@ -161,11 +146,6 @@
     <script src="app/common/directives/ui-jq.js"></script>
     <script src="app/common/directives/ui-focus.js"></script>
     <script src="app/common/directives/ui-butterbar.js"></script>
-    <script src="app/common/services/ui-load.js"></script>
-    <script src="app/common/services/rest.service.js"></script>
-    <script src="app/common/services/map.service.js"></script>
-    <script src="app/common/services/fun.service.js"></script>
-    <script src="app/common/services/api.service.js"></script>
     <script src="app/main/main.service.js"></script>
     <script src="app/main/main.controller.js"></script>
     <script src="app/app.run.js"></script>
@@ -179,16 +159,17 @@
     <!-- endbuild -->
 
     <script src="https://cdn.bootcss.com/jquery.textcomplete/1.8.0/jquery.textcomplete.js"></script>
+    <!--
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=XAGw9PHtz6Pkk04c9SGnsTs0xerOlx8y"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/library/CurveLine/1.5/src/CurveLine.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlTpe56P1HR770Ym0R-nLePpsdaDshO14"
+	<script type="text/javascript" src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
+	<link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
+    -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlTpe56P1HR770Ym0R-nLePpsdaDshO14&libraries=drawing"
     async defer></script>
     <script type="text/javascript" src="//cdn.bootcss.com/ramda/0.23.0/ramda.min.js"></script>
     <script type="text/javascript" src="js/echarts.min.js"></script>
     <script type="text/javascript" src="js/world.js"></script>
-    <!--加载鼠标绘制工具-->
-	<script type="text/javascript" src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
-	<link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
 </body>
 
 </html>

@@ -14,6 +14,7 @@ server.use(jsonServer.rewriter({
   '/message/findByUserId': '/messageByUserId',
   "/overview/satelites": "/satelites",
   "/overview/containers": "/containers",
+  "/overview/alertLevel":"/alertLevel"
 }))
 
 server.post('/auth', function (req, res) {

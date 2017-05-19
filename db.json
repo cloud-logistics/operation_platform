@@ -76,5 +76,12 @@
     {"title":"悉尼","detail":"","longitude":150.989501,"latitude":-34.347096},
     {"title":"太平洋","detail":"","longitude":166.001695,"latitude":10.058534},
     {"title":"埃及","detail":"","longitude":186.753846,"latitude":21.233447}
+  ],
+  "alertLevel":[
+    {"level":"INFO","desc":"通知"},
+    {"level":"WARNING","desc":"警告"},
+    {"level":"ERROR","desc":"错误"},
+    {"level":"FATAL","desc":"严重"}
   ]
+
 }

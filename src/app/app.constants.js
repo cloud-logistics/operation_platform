@@ -27,7 +27,8 @@
                 overview: {
                     satelites: 'overview/satelites',
                     containers: "overview/containers",
-                    pipelines: "overview/pipelines"
+                    pipelines: "overview/pipelines",
+                    alertLevel:"overview/alertLevel"
                 },
                 order:'order',
                 auth:'api/v1/cloudbox/auth',
