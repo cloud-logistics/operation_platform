@@ -25,7 +25,8 @@
                 overview: {
                     satelites: 'overview/satelites',
                     containers: "overview/containers",
-                    pipelines: "overview/pipelines"
+                    pipelines: "overview/pipelines",
+                    alertLevel:"overview/alertLevel"
                 },
                 order:'order',
                 user:'user',
