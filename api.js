@@ -12,9 +12,10 @@ server.use(jsonServer.rewriter({
   '/api/v1/cloudbox/auth': '/auth',
   '/user/111': '/user',
   '/message/findByUserId': '/messageByUserId',
-  "/overview/satelites": "/satelites",
-  "/overview/containers": "/containers",
-  "/overview/alertLevel":"/alertLevel"
+  '/api/v1/cloudbox/containerhistory': '/containerhistory',
+  "/api/v1/cloudbox/satellites": "/satelites",
+  "/api/v1/cloudbox/containers": "/containers",
+  "/api/v1/cloudbox/alertLevel":"/alertLevel"
 }))
 
 server.post('/auth', function (req, res) {

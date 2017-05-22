@@ -8,6 +8,25 @@
     "id": "111",
     "role": "regularclient"
   },
+  "containerhistory": [
+    {
+      "containerId": "111",
+      "start": {
+        "time": "111",
+        "position": {
+          "longitude": 121.557348,
+          "latitude":31.179784
+        }
+      },
+      "end": {
+        "time": "222",
+        "position": {
+          "longitude": 116.46,
+          "latitude":39.92
+        }
+      }
+    }
+  ],
   "messageByUserId": {
     "userid": "111",
     "sessionid": "111",

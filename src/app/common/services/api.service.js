@@ -22,6 +22,11 @@
 
         var service = {
 
+            userLogin: userLogin,
+            getSateliteInfo: getSateliteInfo,
+            getContainerOverviewInfo: getContainerOverviewInfo,
+            getHistoryviewInfo: getHistoryviewInfo,
+
             isAuthed: isAuthed,
             roleType: roleType,
             info: info,
@@ -32,9 +37,6 @@
             userGet: userGet,
             userGetByRoleType: userGetByRoleType,
 
-            userLogin: userLogin,
-            getSateliteInfo: getSateliteInfo,
-            getContainerOverviewInfo: getContainerOverviewInfo,
             userRefresh: userRefresh,
             userLogout: userLogout,
 
@@ -142,6 +144,17 @@
 
         function getContainerOverviewInfo(successHandler,failedHandler) {
             NetworkService.get(constdata.api.overview.containers, null, successHandler,failedHandler);
+        }
+
+        function getHistoryviewInfo(params, successHandler,failedHandler) {
+            var containerId = params.containerId
+            var startTime = params.startTime
+            var endTime = params.endTime
+
+            NetworkService.get(constdata.api.containerhistory + '?containerId=' + containerId + "?startTime=" + startTime + "endTime" + endTime,
+                                null,
+                                successHandler,
+                                failedHandler);
         }
 
         function userLogin(param,successHandler,failedHandler) {

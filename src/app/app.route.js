@@ -116,6 +116,11 @@
                 templateUrl: 'app/components/container_overview/container_overview.html'
             })
 
+            .state('app.historyview',{
+                url: 'historyview',
+                templateUrl: 'app/components/historyview/historyview.html'
+            })
+
             /** LOGIN **/
             .state('access', {
                 url: '/access',
