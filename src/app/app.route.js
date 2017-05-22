@@ -115,6 +115,16 @@
                 url: 'boxstatus',
                 templateUrl: 'app/components/monitor/boxstatus.html'
             })
+            //历史报文查询
+            .state('app.history',{
+                url: 'history',
+                templateUrl: 'app/components/monitor/history.html'
+            })
+            //基础信息查询
+            .state('app.basicinfo',{
+                url: 'basicinfo',
+                templateUrl: 'app/components/monitor/basicinfo.html'
+            })
 
 
             .state('app.satellite',{
