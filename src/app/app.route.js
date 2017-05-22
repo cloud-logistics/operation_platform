@@ -105,6 +105,12 @@
                 url: 'monitor',
                 templateUrl: 'app/components/monitor/monitor.html'
             })
+            //告警详情
+            .state('app.alert',{
+                url: 'alert',
+                templateUrl: 'app/components/monitor/alert.html'
+            })
+
 
             .state('app.satellite',{
                 url: 'satellite',
