@@ -110,6 +110,11 @@
                 url: 'alert',
                 templateUrl: 'app/components/monitor/alert.html'
             })
+            //云箱状态汇总
+            .state('app.boxstatus',{
+                url: 'boxstatus',
+                templateUrl: 'app/components/monitor/boxstatus.html'
+            })
 
 
             .state('app.satellite',{
