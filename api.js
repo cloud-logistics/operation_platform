@@ -9,13 +9,14 @@ server.use(jsonServer.defaults())
 var router = jsonServer.router('db.json')
 
 server.use(jsonServer.rewriter({
-  '/api/v1/cloudbox/auth': '/auth',
+  '/container/api/v1/cloudbox/auth': '/auth',
   '/user/111': '/user',
-  '/message/findByUserId': '/messageByUserId',
-  '/api/v1/cloudbox/containerhistory': '/containerhistory',
-  "/api/v1/cloudbox/satellites": "/satelites",
-  "/api/v1/cloudbox/containers": "/containers",
-  "/api/v1/cloudbox/alertLevel":"/alertLevel"
+  '/container/api/v1/cloudbox/message': '/messageByUserId',
+  '/container/api/v1/cloudbox/containerhistory': '/containerhistory',
+  '/container/api/v1/cloudbox/containerInstantInfo': '/containerInstantInfo',
+  "/container/api/v1/cloudbox/satellites": "/satelites",
+  "/container/api/v1/cloudbox/containers": "/containers",
+  "/container/api/v1/cloudbox/alertLevel":"/alertLevel"
 }))
 
 server.post('/auth', function (req, res) {

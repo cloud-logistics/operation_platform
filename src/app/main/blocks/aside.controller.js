@@ -31,7 +31,7 @@
             }
         }
         
-        ApiServer.messageGetByUserId(info.id,function (res) {
+        ApiServer.messageGetByUserId(function (res) {
             vm.messages = res.data;
             if (vm.messages.length > 5){
                 vm.messages = vm.messages.slice(0,5);

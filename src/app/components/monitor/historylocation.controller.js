@@ -4,10 +4,10 @@
 (function () {
     'use strict';
 
-    angular.module('smart_container').controller('HistoryviewController', HistoryviewController);
+    angular.module('smart_container').controller('HistorylocationController', HistorylocationController);
 
     /** @ngInject */
-    function HistoryviewController($stateParams,ApiServer,MapService,toastr,$state,$timeout,$interval) {
+    function HistorylocationController($stateParams,ApiServer,MapService,toastr,$state,$timeout,$interval) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -17,45 +17,45 @@
         var routes = [];
         vm.mapSize = {"width":width + 'px',"height":height + 'px'};
 
-        var mapInfo = MapService.map_init("histotyview", "terrain", 4);
+        var map = MapService.map_init("histotylocation", "terrain", 4);
 
         // 鼠标绘图工具
         var overlay = undefined;
 
         var geocoder = new google.maps.Geocoder;
 
-        getHistoryviewInfo();
+        getHistorylocationInfo();
         // var timer = $interval(function(){
-        //     getHistoryviewInfo();
+        //     getHistorylocationInfo();
         // },5000, 500);
 
-        function getHistoryviewInfo() {
+        function getHistorylocationInfo() {
             var queryParams = {
               containerId: "123",
               startTime:"111",
               endTime: "321"
             }
-            ApiServer.getHistoryviewInfo(queryParams, function (response) {
+            ApiServer.getHistorylocationInfo(queryParams, function (response) {
                 var bounds = new google.maps.LatLngBounds();
 
                 histories = response.data
 
                 routes = response.data.map(function (route) {
-                  var startPointLatlng = {lat: route.start.position.latitude, lng: route.start.position.longitude}
-                  var endPointLatlng = {lat: route.end.position.latitude, lng: route.end.position.longitude}
+                  var startPointLatlng = route.start.position
+                  var endPointLatlng = route.end.position
 
-                  var startPointMarker = MapService.addMarker(mapInfo.map)(route.start.position)
-                  var endPointMarker = MapService.addMarker(mapInfo.map)(route.end.position)
+                  var startPointMarker = MapService.addMarker(map)(route.start.position)
+                  var endPointMarker = MapService.addMarker(map)(route.end.position)
 
                   geocoder.geocode({'location': startPointLatlng}, function(results, status){
                     if(!R.isNil(results)) {
-                      infoWindow(mapInfo.map, startPointMarker, "起点: " + R.head(results).formatted_address)
+                      infoWindow(map, startPointMarker, "起点: " + R.head(results).formatted_address)
                     }
                   })
 
                   geocoder.geocode({'location': endPointLatlng}, function(results, status){
                     if(!R.isNil(results)) {
-                      infoWindow(mapInfo.map, endPointMarker, "终点: " + R.head(results).formatted_address)
+                      infoWindow(map, endPointMarker, "终点: " + R.head(results).formatted_address)
                     }
                   })
 
@@ -65,7 +65,7 @@
                   direction(startPointLatlng, endPointLatlng)
                 })
 
-                mapInfo.map.fitBounds(bounds);
+                map.fitBounds(bounds);
 
             },function (err) {
                 console.log("Get Historyview Info Failed", err);
@@ -84,7 +84,7 @@
           var directionsDisplay = new google.maps.DirectionsRenderer();
           var directionsService = new google.maps.DirectionsService();
 
-          directionsDisplay.setMap(mapInfo.map);
+          directionsDisplay.setMap(map);
 
           var request = {
             origin: startPointLatlng,

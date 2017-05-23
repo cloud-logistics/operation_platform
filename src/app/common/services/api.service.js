@@ -25,7 +25,8 @@
             userLogin: userLogin,
             getSateliteInfo: getSateliteInfo,
             getContainerOverviewInfo: getContainerOverviewInfo,
-            getHistoryviewInfo: getHistoryviewInfo,
+            getHistorylocationInfo: getHistorylocationInfo,
+            getInstantlocationInfo: getInstantlocationInfo,
 
             isAuthed: isAuthed,
             roleType: roleType,
@@ -146,13 +147,25 @@
             NetworkService.get(constdata.api.overview.containers, null, successHandler,failedHandler);
         }
 
-        function getHistoryviewInfo(params, successHandler,failedHandler) {
+        function getHistorylocationInfo(params, successHandler,failedHandler) {
             var containerId = params.containerId
             var startTime = params.startTime
             var endTime = params.endTime
 
             // NetworkService.get(constdata.api.containerhistory + '?containerId=' + containerId + "?startTime=" + startTime + "endTime" + endTime,
             NetworkService.get(constdata.api.containerhistory,
+                                null,
+                                successHandler,
+                                failedHandler);
+        }
+
+        function getInstantlocationInfo(params, successHandler,failedHandler) {
+            var containerId = params.containerId
+            var startTime = params.startTime
+            var endTime = params.endTime
+
+            // NetworkService.get(constdata.api.containerInstantInfo + '?containerId=' + containerId + "?startTime=" + startTime + "endTime" + endTime,
+            NetworkService.get(constdata.api.containerInstantInfo,
                                 null,
                                 successHandler,
                                 failedHandler);
@@ -178,7 +191,7 @@
             NetworkService.get(constdata.api.message + '/' + messageId,null,successHandler,failedHandler);
         }
         function messageGetByUserId(userId,successHandler,failedHandler) {
-            NetworkService.get(constdata.api.message + '/findByUserId?userId=' + userId,null,successHandler,failedHandler);
+            NetworkService.get(constdata.api.message,null,successHandler,failedHandler);
         }
         function messageDelete(messageId,successHandler,failedHandler) {
             NetworkService.delete(constdata.api.message + '/' + messageId,null,successHandler,failedHandler);

@@ -17,12 +17,12 @@
         var markers = [];
         vm.mapSize = {"width":width + 'px',"height":height + 'px'};
 
-        var mapInfo = MapService.map_init("container_overview", "terrain");
+        var map = MapService.map_init("container_overview", "terrain");
 
         // 鼠标绘图工具
         var overlay = undefined;
 
-        drawingManagerInit(mapInfo.map)
+        drawingManagerInit(map)
 
 
         getContainerOverviewInfo();
@@ -80,10 +80,7 @@
 
         function updateMarker(bounds) {
             var remainContainer = containers.filter(function (container) {
-                return bounds.contains({
-                    lat: container.latitude,
-                    lng: container.longitude
-                })
+                return bounds.contains(container.position)
             })
 
             markers.map(function (marker){
@@ -91,7 +88,10 @@
             })
             markers = []
 
-            markers = remainContainer.map(MapService.addMarker(mapInfo.map))
+            markers = R.compose(
+                R.map(MapService.addMarker(map)),
+                R.map(R.prop("position"))
+            )(remainContainer)
 
             alert("此区域有" + R.length(remainContainer) + "个智能云箱");
         }
@@ -100,7 +100,10 @@
             ApiServer.getContainerOverviewInfo(function (response) {
                 containers = response.data
                 console.log(containers);
-                // markers = response.data.map(MapService.addMarker(mapInfo.map))
+                markers = R.compose(
+                    R.map(MapService.addMarker(map)),
+                    R.map(R.prop("position"))
+                )(containers)
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);
             });
