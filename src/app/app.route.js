@@ -126,6 +126,11 @@
                 templateUrl: 'app/components/monitor/basicinfo.html'
             })
 
+            //实时报文详情
+            .state('app.realtime',{
+                url: 'realtime',
+                templateUrl: 'app/components/monitor/realtime.html'
+            })
 
             .state('app.satellite',{
                 url: 'satellite',
