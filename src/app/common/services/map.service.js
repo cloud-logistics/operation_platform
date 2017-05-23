@@ -46,29 +46,23 @@
                 zoom: zoomLevel | 3
             });
 
-            return {
-              map: map,
-              geo: null
-            }
+            return map
         }
 
         // 编写自定义函数,创建标注
         function addMarker(map, type){
-            return function (point) {
-                var latLng = new google.maps.LatLng(point.latitude, point.longitude)
+            return function (position) {
                 var marker = new google.maps.Marker({
                     map: map,
-                    position: latLng,
+                    position: position,
                     icon: mapIcons[type],
-                    title: point.title,
                 });
                 return marker
             }
         }
         
         function addCircle(map) {
-            return function (point) {
-                var latLng = new google.maps.LatLng(point.latitude, point.longitude)
+            return function (position) {
                 var circle = new google.maps.Circle({
                     strokeColor: 'white',
                     strokeOpacity: 0.5,
@@ -76,7 +70,7 @@
                     fillColor: 'red',
                     fillOpacity: 0.2,
                     map: map,
-                    center: latLng,
+                    center: position,
                     radius: 1000000
                 });
             }

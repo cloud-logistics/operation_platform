@@ -142,9 +142,14 @@
                 templateUrl: 'app/components/container_overview/container_overview.html'
             })
 
-            .state('app.historyview',{
-                url: 'historyview',
-                templateUrl: 'app/components/monitor/historyview.html'
+            .state('app.historylocation',{
+                url: 'historylocation',
+                templateUrl: 'app/components/monitor/historylocation.html'
+            })
+
+            .state('app.instantlocation',{
+                url: 'instantlocation',
+                templateUrl: 'app/components/monitor/instantlocation.html'
             })
 
             /** LOGIN **/

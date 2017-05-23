@@ -15,14 +15,26 @@
         var height = document.body.clientHeight;
         vm.mapSize = {"width":width + 'px',"height":height + 'px'};
 
-        var mapInfo = MapService.map_init("satellite_overview", "satellite");
+        var map = MapService.map_init("satellite_overview", "satellite");
+        var markers = []
+        var circles = []
 
         //创建航线，航线是固定的。。。出于保密原因，先这样
 
         function getSateliteInfo() {
             ApiServer.getSateliteInfo(function (response) {
-                response.data.map(MapService.addMarker(mapInfo.map, "satellite"))
-                response.data.map(MapService.addCircle(mapInfo.map))
+                var satellites = response.data
+
+                markers = R.compose(
+                    R.map(MapService.addMarker(map, "satellite")),
+                    R.map(R.prop("position"))
+                )(satellites)
+
+                circles = R.compose(
+                    R.map(MapService.addCircle(map)),
+                    R.map(R.prop("position"))
+                )(satellites)
+
             },function (err) {
                 console.log("Get Satelite Info Failed", err);
             });
