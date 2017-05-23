@@ -124,7 +124,7 @@
 
             .state('app.historyview',{
                 url: 'historyview',
-                templateUrl: 'app/components/historyview/historyview.html'
+                templateUrl: 'app/components/monitor/historyview.html'
             })
 
             /** LOGIN **/

@@ -37,13 +37,13 @@
 
         ////////////信息
 
-        function map_init(id, mapType) {
+        function map_init(id, mapType, zoomLevel) {
             // Create a map object and specify the DOM element for display.
             var map = new google.maps.Map(document.getElementById(id), {
                 center: {lat: 31.2891, lng: 121.4648},
                 mapTypeId: mapType,
                 scrollwheel: true,
-                zoom: 3
+                zoom: zoomLevel | 3
             });
 
             return {
@@ -60,7 +60,7 @@
                     map: map,
                     position: latLng,
                     icon: mapIcons[type],
-                    title: point.title
+                    title: point.title,
                 });
                 return marker
             }

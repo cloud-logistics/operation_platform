@@ -151,7 +151,8 @@
             var startTime = params.startTime
             var endTime = params.endTime
 
-            NetworkService.get(constdata.api.containerhistory + '?containerId=' + containerId + "?startTime=" + startTime + "endTime" + endTime,
+            // NetworkService.get(constdata.api.containerhistory + '?containerId=' + containerId + "?startTime=" + startTime + "endTime" + endTime,
+            NetworkService.get(constdata.api.containerhistory,
                                 null,
                                 successHandler,
                                 failedHandler);

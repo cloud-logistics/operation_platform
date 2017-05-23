@@ -29,9 +29,9 @@
         }
 
         getSateliteInfo();
-        var timer = $interval(function(){
-            getSateliteInfo();
-        },5000, 500);
+        // var timer = $interval(function(){
+        //     getSateliteInfo();
+        // },5000, 500);
 
     }
 

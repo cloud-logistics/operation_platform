@@ -26,9 +26,9 @@
 
 
         getContainerOverviewInfo();
-        var timer = $interval(function(){
-            getContainerOverviewInfo();
-        },5000, 500);
+        // var timer = $interval(function(){
+        //     getContainerOverviewInfo();
+        // },5000, 500);
 
 
         function drawingManagerInit (map) {
@@ -99,6 +99,7 @@
         function getContainerOverviewInfo() {
             ApiServer.getContainerOverviewInfo(function (response) {
                 containers = response.data
+                console.log(containers);
                 // markers = response.data.map(MapService.addMarker(mapInfo.map))
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);
