@@ -1,4 +1,4 @@
-<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="AlertController as vm"
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="BasicinfoController as vm"
      ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
     <!-- main -->
     <div class="col">
@@ -14,22 +14,22 @@
         <div id="content" style="height: 100vh;">
             <div class="wrapper-md">
                 <div class="row m-l m-r" style="background-color: #fff">
-                    <div class="alert-title-posi"><h3 class="alert-title">报警监控</h3></div>
+                    <div class="alert-title-posi"><h3 class="basicinfo-title">基础信息查询</h3></div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">ID</label>
                             <div class="col-md-8">
-                                <input type="email" class="form-control" placeholder="请输入云箱ID">
+                                <input type="text" class="form-control" placeholder="请输入云箱ID">
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label class="col-md-4 control-label form-control-static">故障类型</label>
+                            <label class="col-md-4 control-label form-control-static">云箱型号</label>
                             <div class="col-md-8">
                                 <select name="account" class="form-control m-b">
-                                    <option>option 1</option>
+                                    <option>标准云箱</option>
                                     <option>option 2</option>
                                     <option>option 3</option>
                                     <option>option 4</option>
@@ -39,10 +39,10 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label class="col-md-4 control-label form-control-static">故障类型</label>
+                            <label class="col-md-4 control-label form-control-static">承运人</label>
                             <div class="col-md-8">
                                 <select name="account" class="form-control m-b">
-                                    <option>option 1</option>
+                                    <option>中集集团</option>
                                     <option>option 2</option>
                                     <option>option 3</option>
                                     <option>option 4</option>
@@ -53,21 +53,36 @@
                     <!-- line2 -->
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label class="col-md-4 control-label form-control-static">故障类型</label>
-                            <div class="col-md-8">
-                                <select name="account" class="form-control m-b">
-                                    <option>option 1</option>
-                                    <option>option 2</option>
-                                    <option>option 3</option>
-                                    <option>option 4</option>
-                                </select>
+                            <label class="col-md-4 control-label form-control-static">出 厂</label>
+                            <div class="col-md-4 dash-line">
+                                <input type="text" class="form-control m-b" placeholder="yyyy-mm-dd">
+                            </div>
+                            <div class="col-md-4 ">
+                                <input type="text" class="form-control" placeholder="yyyy-mm-dd">
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-offset-4 col-md-4">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label form-control-static">生产厂家</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="请输入">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label form-control-static">生产地点</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="请输入">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- line3-->
+                    <div class="col-md-offset-8 col-md-4">
                         <div class="form-group">
                             <div class="col-md-offset-4 col-md-8">
-                                <button type="submit" class="btn btn-sm btn-block btn-alert">查 询</button>
+                                <button type="submit" class="btn btn-sm btn-block btn-basicinfo m-b">查询监控</button>
                             </div>
                         </div>
                     </div>
@@ -78,69 +93,79 @@
                         <thead>
                         <tr>
                             <!--<th ng-repeat="title in vm.titles">-->
-                                <!--{{title}}-->
+                            <!--{{title}}-->
                             <!--</th>-->
                             <th>云箱ID</th>
-                            <th>报警时间</th>
-                            <th>报警类别</th>
+                            <th>云箱型号</th>
+                            <th>生产地</th>
+                            <th>生产厂家</th>
                             <th>承运人</th>
+                            <th>出厂日期</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td>22932214122313</td>
-                            <td>2017-03-03 12:33</td>
-                            <td>一般故障</td>
+                            <td>标准云箱</td>
+                            <td>中国-上海</td>
                             <td>中集集团</td>
+                            <td>中集集团</td>
+                            <td>2017-02-12</td>
                             <td><a href="#" class="btn-table-detail">查看详情</a></td>
                         </tr>
                         <tr>
                             <td>22932214122313</td>
-                            <td>2017-03-03 12:33</td>
-                            <td>一般故障</td>
+                            <td>标准云箱</td>
+                            <td>中国-上海</td>
                             <td>中集集团</td>
+                            <td>中集集团</td>
+                            <td>2017-02-12</td>
                             <td><a href="#" class="btn-table-detail">查看详情</a></td>
                         </tr>
                         <tr>
                             <td>22932214122313</td>
-                            <td>2017-03-03 12:33</td>
-                            <td>一般故障</td>
+                            <td>标准云箱</td>
+                            <td>中国-上海</td>
                             <td>中集集团</td>
+                            <td>中集集团</td>
+                            <td>2017-02-12</td>
                             <td><a href="#" class="btn-table-detail">查看详情</a></td>
                         </tr>
                         <tr>
                             <td>22932214122313</td>
-                            <td>2017-03-03 12:33</td>
-                            <td>一般故障</td>
+                            <td>标准云箱</td>
+                            <td>中国-上海</td>
                             <td>中集集团</td>
+                            <td>中集集团</td>
+                            <td>2017-02-12</td>
                             <td><a href="#" class="btn-table-detail">查看详情</a></td>
                         </tr>
                         <!--<tr ng-repeat="item in vm.items track by $index" ng-click="vm.gotoDetail('detail',$index)">-->
-                            <!--<td>-->
-                                <!--{{item.containerno}}-->
-                            <!--</td>-->
-                            <!--<td>-->
-                                <!--{{item.type}}-->
-                            <!--</td>-->
-                            <!--<td>-->
-                                <!--{{item.maxweight}}-->
-                            <!--</td>-->
-                            <!--<td>-->
-                                <!--{{item.tareweight}}-->
-                            <!--</td>-->
-                            <!--<td>-->
-                                <!--{{item.measurement}}-->
-                            <!--</td>-->
-                            <!--&lt;!&ndash;<td>&ndash;&gt;-->
-                            <!--&lt;!&ndash;{{item.location}}&ndash;&gt;-->
-                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<td>&ndash;&gt;-->
-                            <!--&lt;!&ndash;{{item.status !== 'free' ? '使用中' : '空闲'}}&ndash;&gt;-->
-                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
-                            <!--<td>-->
-                                <!--<a ng-click="vm.openAlert('',$index);$event.stopPropagation();" class="btn-danger">&nbsp;删除&nbsp;</a>-->
-                            <!--</td>-->
+                        <!--<td>-->
+                        <!--{{item.containerno}}-->
+                        <!--</td>-->
+                        <!--<td>-->
+                        <!--{{item.type}}-->
+                        <!--</td>-->
+                        <!--<td>-->
+                        <!--{{item.maxweight}}-->
+                        <!--</td>-->
+                        <!--<td>-->
+                        <!--{{item.tareweight}}-->
+                        <!--</td>-->
+                        <!--<td>-->
+                        <!--{{item.measurement}}-->
+                        <!--</td>-->
+                        <!--&lt;!&ndash;<td>&ndash;&gt;-->
+                        <!--&lt;!&ndash;{{item.location}}&ndash;&gt;-->
+                        <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<td>&ndash;&gt;-->
+                        <!--&lt;!&ndash;{{item.status !== 'free' ? '使用中' : '空闲'}}&ndash;&gt;-->
+                        <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                        <!--<td>-->
+                        <!--<a ng-click="vm.openAlert('',$index);$event.stopPropagation();" class="btn-danger">&nbsp;删除&nbsp;</a>-->
+                        <!--</td>-->
                         <!--</tr>-->
                         </tbody>
                     </table>
