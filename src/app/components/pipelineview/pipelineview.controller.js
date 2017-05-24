@@ -225,7 +225,7 @@
                     zlevel: 1,
                     effect: {
                         show: true,
-                        period: 6,
+                        period: 12,
                         trailLength: 0.7,
                         color: '#fff',
                         symbolSize: 3
@@ -247,7 +247,7 @@
                     symbolSize: 10,
                     effect: {
                         show: true,
-                        period: 6,
+                        period: 12,
                         trailLength: 0,
                         symbol: planePath,
                         symbolSize: 15
@@ -328,7 +328,7 @@
                 roam: false,
                 itemStyle: {
                     normal: {
-                        areaColor: '#323c48',
+                        areaColor: '#E4E8E4',
                         borderColor: '#404a59'
                     },
                     emphasis: {
