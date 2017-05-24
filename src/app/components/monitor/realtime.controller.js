@@ -129,7 +129,7 @@
 
             tempChart.setOption(tempOption);
 
-            setTimeout(function() {
+            setTimeout(function () {
                 var value = parseInt(Math.random() * 55) + 30,
                     value_ = (100 - value) * 266 / 360;
                 tempOption.title.text = value + "℃";
@@ -139,12 +139,13 @@
             }, 1000);
 
         }
+
         initTemp();
 
         var humiChart;
         var humiOption;
         /*初始化湿度chart*/
-        function initHumi(){
+        function initHumi() {
             humiChart = echarts.init(document.getElementById('humi-chart'));
 
             humiOption = {
@@ -259,7 +260,7 @@
 
             humiChart.setOption(humiOption);
 
-            setTimeout(function() {
+            setTimeout(function () {
                 var value = parseInt(Math.random() * 55) + 30,
                     value_ = (100 - value) * 266 / 360;
                 humiOption.title.text = value + "℃";
@@ -268,8 +269,78 @@
                 humiChart.setOption(humiOption, true);
             }, 1000);
         }
+
         initHumi();
 
+        var battChart;
+        var battOption;
+
+        function initBatt() {
+            battChart = echarts.init(document.getElementById('batt-chart'));
+            battOption = {
+                series: [{
+                    type: 'liquidFill',
+                    data: [{
+                        value: 0.5,
+                        itemStyle: {
+                            normal: {
+                                color: '#77CADA',
+                                opacity: 0.6
+                            },
+                            emphasis: {
+                                color: '#77CADA',
+                                opacity: 0.6
+                            }
+                        }
+                    }, {
+                        value: 0.4,
+                        itemStyle: {
+                            normal: {
+                                color: '#B8EDD7',
+                                opacity: 0.4
+                            },
+                            emphasis: {
+                                color: '#B8EDD7',
+                                opacity: 0.4
+                            }
+                        }
+                    }],
+                    radius: '90%',
+                    label: {
+                        normal: {
+                            // position: ['38%', '40%'],
+                            formatter: function (param) {
+                                // param.value is 0.61245
+                                return (Math.floor(param.value * 10000) / 100) + '%';
+                            },
+                            textStyle: {
+                                fontSize: 24,
+                                color: '#6DB988'
+                            }
+                            //shadowBlur: 0
+                            // textStyle {
+                            //     fontSize: 10,
+                            //     color: '#fff'
+                            // }
+                        }
+
+                    },
+                    outline: {
+                        borderDistance: 0,
+                        itemStyle: {
+                            borderWidth: 1,
+                            borderColor: '#86cea0'
+                            // shadowBlur: 0,
+                            // shadowColor: 'rgba(255, 0, 0, 1)'
+                        }
+                    }
+
+                }]
+            };
+            battChart.setOption(battOption);
+        }
+
+        initBatt();
 
 
         var info = ApiServer.info();
