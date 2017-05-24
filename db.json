@@ -26,6 +26,177 @@
       "lat":31.179784
     }
   },
+  "containerReportHistory":[
+    {
+      "containerId": "22932214122313",
+      "containerType":"标准云箱",
+      "reportType":"实时报文",
+      "reportLength":60,
+      "originalReport": "23-3030202",
+      "factoryDate":"1495597347299"
+    },
+    {
+      "containerId": "22932214122313",
+      "containerType":"标准云箱",
+      "reportType":"实时报文",
+      "reportLength":60,
+      "originalReport": "23-3030202",
+      "factoryDate":"1495597347299"
+    },
+    {
+      "containerId": "22932214122313",
+      "containerType":"标准云箱",
+      "reportType":"实时报文",
+      "reportLength":60,
+      "originalReport": "23-3030202",
+      "factoryDate":"1495597347299"
+    },
+    {
+      "containerId": "22932214122313",
+      "containerType":"标准云箱",
+      "reportType":"实时报文",
+      "reportLength":60,
+      "originalReport": "23-3030202",
+      "factoryDate":"1495597347299"
+    },
+    {
+      "containerId": "22932214122313",
+      "containerType":"标准云箱",
+      "reportType":"实时报文",
+      "reportLength":60,
+      "originalReport": "23-3030202",
+      "factoryDate":"1495597347299"
+    },
+    {
+      "containerId": "22932214122313",
+      "containerType":"标准云箱",
+      "reportType":"实时报文",
+      "reportLength":60,
+      "originalReport": "23-3030202",
+      "factoryDate":"1495597347299"
+    }
+  ],
+  "alerts":[
+    {
+      "containerId": "22932214122313",
+      "alertTime":"1495597347299",
+      "alertType":"实时报文",
+      "carrier":"中集集团"
+    },
+    {
+      "containerId": "22932214122313",
+      "alertTime":"1495597347299",
+      "alertType":"实时报文",
+      "carrier":"中集集团"
+    },
+    {
+      "containerId": "22932214122313",
+      "alertTime":"1495597347299",
+      "alertType":"实时报文",
+      "carrier":"中集集团"
+    },
+    {
+      "containerId": "22932214122313",
+      "alertTime":"1495597347299",
+      "alertType":"实时报文",
+      "carrier":"中集集团"
+    },
+    {
+      "containerId": "22932214122313",
+      "alertTime":"1495597347299",
+      "alertType":"实时报文",
+      "carrier":"中集集团"
+    }
+  ],
+  "basicInfo":[
+    {
+      "containerId": "22932214122313",
+      "containerType":"标准云箱",
+      "factoryLocation":"中国-上海",
+      "factory":"中集集团",
+      "carrier":"中集集团",
+      "factoryDate":"1495597347299"
+    },
+    {
+      "containerId": "22932214122313",
+      "containerType":"标准云箱",
+      "factoryLocation":"中国-上海",
+      "factory":"中集集团",
+      "carrier":"中集集团",
+      "factoryDate":"1495597347299"
+    },
+    {
+      "containerId": "22932214122313",
+      "containerType":"标准云箱",
+      "factoryLocation":"中国-上海",
+      "factory":"中集集团",
+      "carrier":"中集集团",
+      "factoryDate":"1495597347299"
+    },
+    {
+      "containerId": "22932214122313",
+      "containerType":"标准云箱",
+      "factoryLocation":"中国-上海",
+      "factory":"中集集团",
+      "carrier":"中集集团",
+      "factoryDate":"1495597347299"
+    },
+    {
+      "containerId": "22932214122313",
+      "containerType":"标准云箱",
+      "factoryLocation":"中国-上海",
+      "factory":"中集集团",
+      "carrier":"中集集团",
+      "factoryDate":"1495597347299"
+    }
+  ],
+  "boxStatus":[
+    {
+      "containerId": "22932214122313",
+      "currentStatus":"标准云箱",
+      "position": {
+        "lng": 121.557348,
+        "lat":31.179784
+      },
+      "carrier":"中集集团"
+    },
+    {
+      "containerId": "22932214122313",
+      "currentStatus":"标准云箱",
+      "position": {
+        "lng": 121.557348,
+        "lat":31.179784
+      },
+      "carrier":"中集集团"
+    },
+    {
+      "containerId": "22932214122313",
+      "currentStatus":"标准云箱",
+      "position": {
+        "lng": 121.557348,
+        "lat":31.179784
+      },
+      "carrier":"中集集团"
+    },
+    {
+      "containerId": "22932214122313",
+      "currentStatus":"标准云箱",
+      "position": {
+        "lng": 121.557348,
+        "lat":31.179784
+      },
+      "carrier":"中集集团"
+    },
+    {
+      "containerId": "22932214122313",
+      "currentStatus":"标准云箱",
+      "position": {
+        "lng": 121.557348,
+        "lat":31.179784
+      },
+      "carrier":"中集集团"
+    }
+  ],
   "containerhistory": [
     {
       "containerId": "111",

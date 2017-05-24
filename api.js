@@ -10,10 +10,14 @@ var router = jsonServer.router('db.json')
 
 server.use(jsonServer.rewriter({
   '/container/api/v1/cloudbox/auth': '/auth',
-  '/user/111': '/user',
+  // '/user/111': '/user',
   '/container/api/v1/cloudbox/message': '/messageByUserId',
   '/container/api/v1/cloudbox/containerhistory': '/containerhistory',
   '/container/api/v1/cloudbox/containerInstantInfo': '/containerInstantInfo',
+  '/container/api/v1/cloudbox/containerReportHistory': '/containerReportHistory',
+  '/container/api/v1/cloudbox/alerts': '/alerts',
+  '/container/api/v1/cloudbox/basicInfo': '/basicInfo',
+  '/container/api/v1/cloudbox/boxStatus': '/boxStatus',
   "/container/api/v1/cloudbox/satellites": "/satelites",
   "/container/api/v1/cloudbox/containers": "/containers",
   "/container/api/v1/cloudbox/alertLevel":"/alertLevel"

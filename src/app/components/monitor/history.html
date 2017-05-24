@@ -1,4 +1,4 @@
-<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="AlertController as vm"
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="HistoryController as vm"
      ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
     <!-- main -->
     <div class="col">
@@ -19,7 +19,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">ID</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" placeholder="请输入云箱ID">
+                                <input type="text" class="form-control" placeholder="请输入云箱ID" ng-model="vm.queryParams.containerId">
                             </div>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">云箱型号</label>
                             <div class="col-md-8">
-                                <select name="account" class="form-control m-b">
+                                <select name="account" class="form-control m-b" ng-model="vm.queryParams.containerType" >
                                     <option>标准云箱</option>
                                     <option>option 2</option>
                                     <option>option 3</option>
@@ -41,7 +41,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">报文类型</label>
                             <div class="col-md-8">
-                                <select name="account" class="form-control m-b">
+                                <select name="account" class="form-control m-b" ng-model="vm.queryParams.reportType" >
                                     <option>实时报文</option>
                                     <option>option 2</option>
                                     <option>option 3</option>
@@ -55,17 +55,17 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">出 厂</label>
                             <div class="col-md-4 dash-line">
-                                <input type="text" class="form-control m-b" placeholder="yyyy-mm-dd">
+                                <input type="text" class="form-control m-b" placeholder="yyyy-mm-dd" ng-model="vm.queryParams.startTime">
                             </div>
                             <div class="col-md-4 ">
-                                <input type="text" class="form-control" placeholder="yyyy-mm-dd">
+                                <input type="text" class="form-control" placeholder="yyyy-mm-dd" ng-model="vm.queryParams.endTime" >
                             </div>
                         </div>
                     </div>
                     <div class="col-md-offset-4 col-md-4">
                         <div class="form-group">
                             <div class="col-md-offset-4 col-md-8">
-                                <button type="submit" class="btn btn-sm btn-block btn-history">查询监控</button>
+                                <button type="submit" class="btn btn-sm btn-block btn-history" ng-click="vm.getContainerReportHistory()">查询监控</button>
                             </div>
                         </div>
                     </div>
@@ -87,64 +87,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>22932214122313</td>
-                            <td>标准云箱</td>
-                            <td>实时报文</td>
-                            <td>60</td>
-                            <td>23-3030202</td>
-                            <td>2017-02-12</td>
-                        </tr>
-                        <tr>
-                            <td>22932214122313</td>
-                            <td>标准云箱</td>
-                            <td>实时报文</td>
-                            <td>60</td>
-                            <td>23-3030202</td>
-                            <td>2017-02-12</td>
-                        </tr>
-                        <tr>
-                            <td>22932214122313</td>
-                            <td>标准云箱</td>
-                            <td>实时报文</td>
-                            <td>60</td>
-                            <td>23-3030202</td>
-                            <td>2017-02-12</td>
-                        </tr>
-                        <tr>
-                            <td>22932214122313</td>
-                            <td>标准云箱</td>
-                            <td>实时报文</td>
-                            <td>60</td>
-                            <td>23-3030202</td>
-                            <td>2017-02-12</td>
-                        </tr>
-                        <!--<tr ng-repeat="item in vm.items track by $index" ng-click="vm.gotoDetail('detail',$index)">-->
-                        <!--<td>-->
-                        <!--{{item.containerno}}-->
-                        <!--</td>-->
-                        <!--<td>-->
-                        <!--{{item.type}}-->
-                        <!--</td>-->
-                        <!--<td>-->
-                        <!--{{item.maxweight}}-->
-                        <!--</td>-->
-                        <!--<td>-->
-                        <!--{{item.tareweight}}-->
-                        <!--</td>-->
-                        <!--<td>-->
-                        <!--{{item.measurement}}-->
-                        <!--</td>-->
-                        <!--&lt;!&ndash;<td>&ndash;&gt;-->
-                        <!--&lt;!&ndash;{{item.location}}&ndash;&gt;-->
-                        <!--&lt;!&ndash;</td>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<td>&ndash;&gt;-->
-                        <!--&lt;!&ndash;{{item.status !== 'free' ? '使用中' : '空闲'}}&ndash;&gt;-->
-                        <!--&lt;!&ndash;</td>&ndash;&gt;-->
-                        <!--<td>-->
-                        <!--<a ng-click="vm.openAlert('',$index);$event.stopPropagation();" class="btn-danger">&nbsp;删除&nbsp;</a>-->
-                        <!--</td>-->
-                        <!--</tr>-->
+                            <tr ng-repeat="item in vm.reports track by $index">
+                                <td style="vertical-align: middle;">{{item.containerId}}</td>
+                                <td style="vertical-align: middle;">{{item.containerType}}</td>
+                                <td style="vertical-align: middle;">{{item.reportType}}</td>
+                                <td style="vertical-align: middle;">{{item.reportLength}}</td>
+                                <td style="vertical-align: middle;">{{item.originalReport}}</td>
+                                <td style="vertical-align: middle;">{{item.factoryDate | date:"yyyy-MM-dd"}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

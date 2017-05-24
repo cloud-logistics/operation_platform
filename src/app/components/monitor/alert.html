@@ -19,14 +19,14 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">ID</label>
                             <div class="col-md-8">
-                                <input type="email" class="form-control" placeholder="请输入云箱ID">
+                                <input type="email" class="form-control" placeholder="请输入云箱ID" ng-model="vm.queryParams.containerId">
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label class="col-md-4 control-label form-control-static">故障类型</label>
+                            <label class="col-md-4 control-label form-control-static" ng-model="vm.queryParams.alertLevel" >最高报警级别</label>
                             <div class="col-md-8">
                                 <select name="account" class="form-control m-b">
                                     <option>option 1</option>
@@ -39,9 +39,9 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label class="col-md-4 control-label form-control-static">故障类型</label>
+                            <label class="col-md-4 control-label form-control-static">故障代码</label>
                             <div class="col-md-8">
-                                <select name="account" class="form-control m-b">
+                                <select name="account" class="form-control m-b" ng-model="vm.queryParams.alertCode" >
                                     <option>option 1</option>
                                     <option>option 2</option>
                                     <option>option 3</option>
@@ -55,7 +55,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">故障类型</label>
                             <div class="col-md-8">
-                                <select name="account" class="form-control m-b">
+                                <select name="account" class="form-control m-b" ng-model="vm.queryParams.alertType" >
                                     <option>option 1</option>
                                     <option>option 2</option>
                                     <option>option 3</option>
@@ -67,7 +67,7 @@
                     <div class="col-md-offset-4 col-md-4">
                         <div class="form-group">
                             <div class="col-md-offset-4 col-md-8">
-                                <button type="submit" class="btn btn-sm btn-block btn-alert">查 询</button>
+                                <button type="submit" class="btn btn-sm btn-block btn-alert" ng-click="vm.getAlerts()" >查 询</button>
                             </div>
                         </div>
                     </div>
@@ -88,60 +88,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>22932214122313</td>
-                            <td>2017-03-03 12:33</td>
-                            <td>一般故障</td>
-                            <td>中集集团</td>
-                            <td><a href="#" class="btn-table-detail">查看详情</a></td>
-                        </tr>
-                        <tr>
-                            <td>22932214122313</td>
-                            <td>2017-03-03 12:33</td>
-                            <td>一般故障</td>
-                            <td>中集集团</td>
-                            <td><a href="#" class="btn-table-detail">查看详情</a></td>
-                        </tr>
-                        <tr>
-                            <td>22932214122313</td>
-                            <td>2017-03-03 12:33</td>
-                            <td>一般故障</td>
-                            <td>中集集团</td>
-                            <td><a href="#" class="btn-table-detail">查看详情</a></td>
-                        </tr>
-                        <tr>
-                            <td>22932214122313</td>
-                            <td>2017-03-03 12:33</td>
-                            <td>一般故障</td>
-                            <td>中集集团</td>
-                            <td><a href="#" class="btn-table-detail">查看详情</a></td>
-                        </tr>
-                        <!--<tr ng-repeat="item in vm.items track by $index" ng-click="vm.gotoDetail('detail',$index)">-->
-                            <!--<td>-->
-                                <!--{{item.containerno}}-->
-                            <!--</td>-->
-                            <!--<td>-->
-                                <!--{{item.type}}-->
-                            <!--</td>-->
-                            <!--<td>-->
-                                <!--{{item.maxweight}}-->
-                            <!--</td>-->
-                            <!--<td>-->
-                                <!--{{item.tareweight}}-->
-                            <!--</td>-->
-                            <!--<td>-->
-                                <!--{{item.measurement}}-->
-                            <!--</td>-->
-                            <!--&lt;!&ndash;<td>&ndash;&gt;-->
-                            <!--&lt;!&ndash;{{item.location}}&ndash;&gt;-->
-                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<td>&ndash;&gt;-->
-                            <!--&lt;!&ndash;{{item.status !== 'free' ? '使用中' : '空闲'}}&ndash;&gt;-->
-                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
-                            <!--<td>-->
-                                <!--<a ng-click="vm.openAlert('',$index);$event.stopPropagation();" class="btn-danger">&nbsp;删除&nbsp;</a>-->
-                            <!--</td>-->
-                        <!--</tr>-->
+                            <tr ng-repeat="item in vm.alerts track by $index">
+                                <td style="vertical-align: middle;">{{item.containerId}}</td>
+                                <td style="vertical-align: middle;">{{item.alertTime}}</td>
+                                <td style="vertical-align: middle;">{{item.alertType}}</td>
+                                <td style="vertical-align: middle;">{{item.carrier}}</td>
+                                <td><a href="#" class="btn-table-detail">查看详情</a></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

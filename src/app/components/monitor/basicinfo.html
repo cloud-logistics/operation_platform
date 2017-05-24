@@ -19,7 +19,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">ID</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" placeholder="请输入云箱ID">
+                                <input type="text" class="form-control" placeholder="请输入云箱ID" ng-model="vm.queryParams.containerId" >
                             </div>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">云箱型号</label>
                             <div class="col-md-8">
-                                <select name="account" class="form-control m-b">
+                                <select name="account" class="form-control m-b" ng-model="vm.queryParams.containerType" >
                                     <option>标准云箱</option>
                                     <option>option 2</option>
                                     <option>option 3</option>
@@ -41,7 +41,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">承运人</label>
                             <div class="col-md-8">
-                                <select name="account" class="form-control m-b">
+                                <select name="account" class="form-control m-b" ng-model="vm.queryParams.carrier" >
                                     <option>中集集团</option>
                                     <option>option 2</option>
                                     <option>option 3</option>
@@ -55,10 +55,10 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">出 厂</label>
                             <div class="col-md-4 dash-line">
-                                <input type="text" class="form-control m-b" placeholder="yyyy-mm-dd">
+                                <input type="text" class="form-control m-b" placeholder="yyyy-mm-dd" ng-model="vm.queryParams.startTime" >
                             </div>
                             <div class="col-md-4 ">
-                                <input type="text" class="form-control" placeholder="yyyy-mm-dd">
+                                <input type="text" class="form-control" placeholder="yyyy-mm-dd" ng-model="vm.queryParams.endTime" >
                             </div>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">生产厂家</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" placeholder="请输入">
+                                <input type="text" class="form-control" placeholder="请输入" ng-model="vm.queryParams.factory" >
                             </div>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">生产地点</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" placeholder="请输入">
+                                <input type="text" class="form-control" placeholder="请输入" ng-model="vm.queryParams.factoryLocation" >
                             </div>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                     <div class="col-md-offset-8 col-md-4">
                         <div class="form-group">
                             <div class="col-md-offset-4 col-md-8">
-                                <button type="submit" class="btn btn-sm btn-block btn-basicinfo m-b">查询监控</button>
+                                <button type="submit" class="btn btn-sm btn-block btn-basicinfo m-b" ng-click="vm.getBasicInfo()" >查询监控</button>
                             </div>
                         </div>
                     </div>
@@ -105,68 +105,15 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>22932214122313</td>
-                            <td>标准云箱</td>
-                            <td>中国-上海</td>
-                            <td>中集集团</td>
-                            <td>中集集团</td>
-                            <td>2017-02-12</td>
-                            <td><a href="#" class="btn-table-detail">查看详情</a></td>
-                        </tr>
-                        <tr>
-                            <td>22932214122313</td>
-                            <td>标准云箱</td>
-                            <td>中国-上海</td>
-                            <td>中集集团</td>
-                            <td>中集集团</td>
-                            <td>2017-02-12</td>
-                            <td><a href="#" class="btn-table-detail">查看详情</a></td>
-                        </tr>
-                        <tr>
-                            <td>22932214122313</td>
-                            <td>标准云箱</td>
-                            <td>中国-上海</td>
-                            <td>中集集团</td>
-                            <td>中集集团</td>
-                            <td>2017-02-12</td>
-                            <td><a href="#" class="btn-table-detail">查看详情</a></td>
-                        </tr>
-                        <tr>
-                            <td>22932214122313</td>
-                            <td>标准云箱</td>
-                            <td>中国-上海</td>
-                            <td>中集集团</td>
-                            <td>中集集团</td>
-                            <td>2017-02-12</td>
-                            <td><a href="#" class="btn-table-detail">查看详情</a></td>
-                        </tr>
-                        <!--<tr ng-repeat="item in vm.items track by $index" ng-click="vm.gotoDetail('detail',$index)">-->
-                        <!--<td>-->
-                        <!--{{item.containerno}}-->
-                        <!--</td>-->
-                        <!--<td>-->
-                        <!--{{item.type}}-->
-                        <!--</td>-->
-                        <!--<td>-->
-                        <!--{{item.maxweight}}-->
-                        <!--</td>-->
-                        <!--<td>-->
-                        <!--{{item.tareweight}}-->
-                        <!--</td>-->
-                        <!--<td>-->
-                        <!--{{item.measurement}}-->
-                        <!--</td>-->
-                        <!--&lt;!&ndash;<td>&ndash;&gt;-->
-                        <!--&lt;!&ndash;{{item.location}}&ndash;&gt;-->
-                        <!--&lt;!&ndash;</td>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<td>&ndash;&gt;-->
-                        <!--&lt;!&ndash;{{item.status !== 'free' ? '使用中' : '空闲'}}&ndash;&gt;-->
-                        <!--&lt;!&ndash;</td>&ndash;&gt;-->
-                        <!--<td>-->
-                        <!--<a ng-click="vm.openAlert('',$index);$event.stopPropagation();" class="btn-danger">&nbsp;删除&nbsp;</a>-->
-                        <!--</td>-->
-                        <!--</tr>-->
+                            <tr ng-repeat="item in vm.containerlist track by $index">
+                                <td style="vertical-align: middle;">{{item.containerId}}</td>
+                                <td style="vertical-align: middle;">{{item.containerType}}</td>
+                                <td style="vertical-align: middle;">{{item.factoryLocation}}</td>
+                                <td style="vertical-align: middle;">{{item.factory}}</td>
+                                <td style="vertical-align: middle;">{{item.carrier}}</td>
+                                <td style="vertical-align: middle;">{{item.factoryDate | date:"yyyy-MM-dd"}}</td>
+                                <td><a href="#" class="btn-table-detail">查看详情</a></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
