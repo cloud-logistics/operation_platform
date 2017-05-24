@@ -27,6 +27,10 @@
             getContainerOverviewInfo: getContainerOverviewInfo,
             getHistorylocationInfo: getHistorylocationInfo,
             getInstantlocationInfo: getInstantlocationInfo,
+            getContainerReportHistory: getContainerReportHistory,
+            getAlerts: getAlerts,
+            getBasicInfo: getBasicInfo,
+            getBoxStatus: getBoxStatus,
 
             isAuthed: isAuthed,
             roleType: roleType,
@@ -166,6 +170,54 @@
 
             // NetworkService.get(constdata.api.containerInstantInfo + '?containerId=' + containerId + "?startTime=" + startTime + "endTime" + endTime,
             NetworkService.get(constdata.api.containerInstantInfo,
+                                null,
+                                successHandler,
+                                failedHandler);
+        }
+
+        function getContainerReportHistory(params, successHandler,failedHandler) {
+            var containerId = params.containerId
+            var startTime = params.startTime
+            var endTime = params.endTime
+
+            // NetworkService.get(constdata.api.containerInstantInfo + '?containerId=' + containerId + "?startTime=" + startTime + "endTime" + endTime,
+            NetworkService.get(constdata.api.containerReportHistory,
+                                null,
+                                successHandler,
+                                failedHandler);
+        }
+
+        function getAlerts(params, successHandler,failedHandler) {
+            var containerId = params.containerId
+            var startTime = params.startTime
+            var endTime = params.endTime
+
+            // NetworkService.get(constdata.api.containerInstantInfo + '?containerId=' + containerId + "?startTime=" + startTime + "endTime" + endTime,
+            NetworkService.get(constdata.api.alerts,
+                                null,
+                                successHandler,
+                                failedHandler);
+        }
+
+        function getBasicInfo(params, successHandler,failedHandler) {
+            var containerId = params.containerId
+            var startTime = params.startTime
+            var endTime = params.endTime
+
+            // NetworkService.get(constdata.api.containerInstantInfo + '?containerId=' + containerId + "?startTime=" + startTime + "endTime" + endTime,
+            NetworkService.get(constdata.api.basicInfo,
+                                null,
+                                successHandler,
+                                failedHandler);
+        }
+
+        function getBoxStatus(params, successHandler,failedHandler) {
+            var containerId = params.containerId
+            var startTime = params.startTime
+            var endTime = params.endTime
+
+            // NetworkService.get(constdata.api.containerInstantInfo + '?containerId=' + containerId + "?startTime=" + startTime + "endTime" + endTime,
+            NetworkService.get(constdata.api.boxStatus,
                                 null,
                                 successHandler,
                                 failedHandler);

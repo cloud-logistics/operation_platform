@@ -210,60 +210,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>22932214122313</td>
-                            <td>在运</td>
-                            <td>中国-上海</td>
-                            <td>中集集团</td>
-                            <td><a href="#" class="btn-table-detail">查看详情</a></td>
-                        </tr>
-                        <tr>
-                            <td>22932214122313</td>
-                            <td>在运</td>
-                            <td>中国-上海</td>
-                            <td>中集集团</td>
-                            <td><a href="#" class="btn-table-detail">查看详情</a></td>
-                        </tr>
-                        <tr>
-                            <td>22932214122313</td>
-                            <td>在运</td>
-                            <td>中国-上海</td>
-                            <td>中集集团</td>
-                            <td><a href="#" class="btn-table-detail">查看详情</a></td>
-                        </tr>
-                        <tr>
-                            <td>22932214122313</td>
-                            <td>在运</td>
-                            <td>中国-上海</td>
-                            <td>中集集团</td>
-                            <td><a href="#" class="btn-table-detail">查看详情</a></td>
-                        </tr>
-                        <!--<tr ng-repeat="item in vm.items track by $index" ng-click="vm.gotoDetail('detail',$index)">-->
-                        <!--<td>-->
-                        <!--{{item.containerno}}-->
-                        <!--</td>-->
-                        <!--<td>-->
-                        <!--{{item.type}}-->
-                        <!--</td>-->
-                        <!--<td>-->
-                        <!--{{item.maxweight}}-->
-                        <!--</td>-->
-                        <!--<td>-->
-                        <!--{{item.tareweight}}-->
-                        <!--</td>-->
-                        <!--<td>-->
-                        <!--{{item.measurement}}-->
-                        <!--</td>-->
-                        <!--&lt;!&ndash;<td>&ndash;&gt;-->
-                        <!--&lt;!&ndash;{{item.location}}&ndash;&gt;-->
-                        <!--&lt;!&ndash;</td>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<td>&ndash;&gt;-->
-                        <!--&lt;!&ndash;{{item.status !== 'free' ? '使用中' : '空闲'}}&ndash;&gt;-->
-                        <!--&lt;!&ndash;</td>&ndash;&gt;-->
-                        <!--<td>-->
-                        <!--<a ng-click="vm.openAlert('',$index);$event.stopPropagation();" class="btn-danger">&nbsp;删除&nbsp;</a>-->
-                        <!--</td>-->
-                        <!--</tr>-->
+                            <tr ng-repeat="item in vm.containerlist track by $index">
+                                <td style="vertical-align: middle;">{{item.containerId}}</td>
+                                <td style="vertical-align: middle;">{{item.currentStatus}}</td>
+                                <td style="vertical-align: middle;">{{item.position}}</td>
+                                <td style="vertical-align: middle;">{{item.carrier}}</td>
+                                <td><a href="#" class="btn-table-detail">查看详情</a></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

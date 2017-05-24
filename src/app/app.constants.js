@@ -33,6 +33,10 @@
                 auth:'auth',
                 containerhistory : "containerhistory",
                 containerInstantInfo : "containerInstantInfo",
+                containerReportHistory : "containerReportHistory",
+                alerts : "alerts",
+                basicInfo : "basicInfo",
+                boxStatus : "boxStatus",
                 user:'user',
                 message:'message'
             },

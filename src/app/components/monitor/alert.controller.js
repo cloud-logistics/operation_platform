@@ -11,12 +11,25 @@
         /* jshint validthis: true */
         var vm = this;
 
-
-        var info = ApiServer.info();
-        var roleType = info.role;
         vm.title = '报警监控';
         vm.containerlists = [];
 
+        vm.alerts = [];
+        vm.queryParams = {}
+
+        getAlerts();
+
+        vm.getAlerts = getAlerts
+        
+        function getAlerts () {
+            ApiServer.getAlerts(vm.queryParams, function (response) {
+                console.log(vm.queryParams);
+                vm.alerts = response.data
+                console.log(vm.alerts);
+            },function (err) {
+                console.log("Get ContainerOverview Info Failed", err);
+            });
+        }
     }
 
 })();
