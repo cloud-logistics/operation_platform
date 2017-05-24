@@ -74,9 +74,3 @@
 
 
 })();
-
-                // geocoder.geocode({'location': currentPosition}, function(results, status){
-                //   if(!R.isNil(results)) {
-                //     infoWindow(map, currentPositionMarker, "当前点: " + R.head(results).formatted_address)
-                //   }
-                // })

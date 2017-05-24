@@ -86,10 +86,10 @@
         $stateProvider
 
 
-            // .state('app.dashboard', {
-            //     url: 'dashboard',
-            //     templateUrl: 'app/components/dashboard/dashboard.html'
-            // })
+            .state('app.dashboard', {
+                url: 'dashboard',
+                templateUrl: 'app/components/dashboard/dashboard.html'
+            })
             //全景地图
             .state('app.overview', {
                 url: 'overview',
