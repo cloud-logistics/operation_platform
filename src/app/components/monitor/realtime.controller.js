@@ -263,7 +263,7 @@
             setTimeout(function () {
                 var value = parseInt(Math.random() * 55) + 30,
                     value_ = (100 - value) * 266 / 360;
-                humiOption.title.text = value + "℃";
+                humiOption.title.text = value + "%";
                 humiOption.series[1].data[0].value = value_;
                 humiOption.series[1].data[1].value = 100 - value_;
                 humiChart.setOption(humiOption, true);
@@ -341,6 +341,90 @@
         }
 
         initBatt();
+
+        var speedChart;
+        var speedOption;
+
+        function initSpeed() {
+            speedChart = echarts.init(document.getElementById('speed-chart'));
+            speedOption = {
+                tooltip: {
+                    formatter: "{a} <br/>{c} {b}"
+                },
+                toolbox: {
+                    show: false,
+                    feature: {
+                        restore: {show: false},
+                        saveAsImage: {show: false}
+                    }
+                },
+                series: [
+                    {
+                        name: '速度',
+                        type: 'gauge',
+                        z: 3,
+                        min: 0,
+                        max: 1000,
+                        splitNumber: 10,
+                        radius: '90%',
+                        axisLine: {            // 坐标轴线
+                            lineStyle: {       // 属性lineStyle控制线条样式
+                                color: [[0.1, '#lime'], [0.82, '#1e90ff'], [1, '#ff4500']],
+                                width: 10,
+                                shadowColor: '#fff', //默认透明
+                                shadowBlur: 10
+                            }
+                        },
+                        axisLabel: {            // 坐标轴小标记
+                            textStyle: {       // 属性lineStyle控制线条样式
+                                fontWeight: 'normal',
+                                //color: '#fff',
+                                shadowColor: '#fff', //默认透明
+                                shadowBlur: 10
+                            }
+                        },
+                        axisTick: {            // 坐标轴小标记
+                            length: 15,        // 属性length控制线长
+                            lineStyle: {       // 属性lineStyle控制线条样式
+                                color: 'auto'
+                            }
+                        },
+                        splitLine: {           // 分隔线
+                            length: 20,         // 属性length控制线长
+                            lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                                color: 'auto'
+                            }
+                        },
+                        title: {
+                            textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                fontWeight: 'normal',
+                                fontSize: 20,
+                                color: '#000',
+                                fontStyle: 'italic'
+                            }
+                        },
+                        detail: {
+                            textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                fontWeight: 'normal',
+                                fontSize: 20,
+                                color: '#000'
+                            },
+                            offsetCenter: [0, '90%'],
+                            detail: {formatter:'{value}km/h'}
+                        },
+                        data: [{value: 40, name: 'km/h'}]
+                    }
+                ]
+            };
+            speedChart.setOption(speedOption);
+
+            // setInterval(function () {
+            //     speedOption.series[0].data[0].value = (Math.random() * 1000).toFixed(2) - 0;
+            //     speedChart.setOption(speedOption, true);
+            // }, 2000);
+        }
+
+        initSpeed();
 
 
         var info = ApiServer.info();
