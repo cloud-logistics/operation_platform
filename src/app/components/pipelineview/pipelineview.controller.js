@@ -225,7 +225,7 @@
                     zlevel: 1,
                     effect: {
                         show: true,
-                        period: 6,
+                        period: 12,
                         trailLength: 0.7,
                         color: '#fff',
                         symbolSize: 3
@@ -247,7 +247,7 @@
                     symbolSize: 10,
                     effect: {
                         show: true,
-                        period: 6,
+                        period: 12,
                         trailLength: 0,
                         symbol: planePath,
                         symbolSize: 15
@@ -295,7 +295,7 @@
         });
 
         var option = {
-            backgroundColor: '#AEBFCF',
+            backgroundColor: '#B5C4D4',
             // color: '#E4E8E4',
             title : {
                 text: '智能集装箱',
@@ -328,11 +328,11 @@
                 roam: false,
                 itemStyle: {
                     normal: {
-                        areaColor: '#323c48',
-                        borderColor: '#404a59'
+                        areaColor: '#EBEFEB',
+                        borderColor: '#D2D6D6'
                     },
                     emphasis: {
-                        areaColor: '#2a333d'
+                        areaColor: '#D8E4D8'
                     }
                 }
             },
