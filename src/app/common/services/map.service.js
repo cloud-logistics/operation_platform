@@ -29,7 +29,7 @@
         };
 
         var mapIcons = {
-            container: "images/container.png",
+            container: "images/box.svg",
             satellite: "images/satellite.png"
         }
 
