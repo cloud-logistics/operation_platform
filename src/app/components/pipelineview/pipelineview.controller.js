@@ -295,7 +295,7 @@
         });
 
         var option = {
-            backgroundColor: '#AEBFCF',
+            backgroundColor: '#B5C4D4',
             // color: '#E4E8E4',
             title : {
                 text: '智能集装箱',
@@ -328,11 +328,11 @@
                 roam: false,
                 itemStyle: {
                     normal: {
-                        areaColor: '#E4E8E4',
-                        borderColor: '#404a59'
+                        areaColor: '#EBEFEB',
+                        borderColor: '#D2D6D6'
                     },
                     emphasis: {
-                        areaColor: '#2a333d'
+                        areaColor: '#D8E4D8'
                     }
                 }
             },
