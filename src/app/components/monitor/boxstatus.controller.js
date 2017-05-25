@@ -20,13 +20,8 @@
         vm.getBoxStatus = getBoxStatus
 
         function getBoxStatus () {
+            console.log(vm.queryParams);
             ApiServer.getBoxStatus(vm.queryParams, function (response) {
-                var transformations = {
-                    position: {elapsed: R.add(1), remaining: R.add(-1)}
-                };
-
-                console.log(vm.queryParams);
-
                 vm.containerlist = R.map(function(container){
                     var locationName = undefined;
 

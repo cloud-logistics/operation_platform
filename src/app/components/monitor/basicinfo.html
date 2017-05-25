@@ -55,10 +55,11 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">出 厂</label>
                             <div class="col-md-4 dash-line">
-                                <input type="text" class="form-control m-b" placeholder="yyyy-mm-dd" ng-model="vm.queryParams.startTime" >
+                                <!--<input type="text" class="form-control m-b" placeholder="yyyy-mm-dd" ng-model="vm.queryParams.startTime" >-->
+                                <input date-time ng-model="vm.queryParams.startTime" class="form-control m-b" min-view="hours" format="YYYY-MM-DD HH:mm">
                             </div>
                             <div class="col-md-4 ">
-                                <input type="text" class="form-control" placeholder="yyyy-mm-dd" ng-model="vm.queryParams.endTime" >
+                                <input date-time ng-model="vm.queryParams.endTime" class="form-control m-b" min-view="hours" format="YYYY-MM-DD HH:mm">
                             </div>
                         </div>
                     </div>

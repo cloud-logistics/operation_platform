@@ -19,16 +19,16 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">ID</label>
                             <div class="col-md-8">
-                                <input type="email" class="form-control" placeholder="请输入云箱ID" ng-model="vm.queryParams.containerId">
+                                <input type="text" class="form-control" placeholder="请输入云箱ID" ng-model="vm.queryParams.containerId" >
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label class="col-md-4 control-label form-control-static" ng-model="vm.queryParams.alertLevel" >最高报警级别</label>
+                            <label class="col-md-4 control-label form-control-static" >最高报警级别</label>
                             <div class="col-md-8">
-                                <select name="account" class="form-control m-b">
+                                <select name="account" class="form-control m-b" ng-model="vm.queryParams.alertLevel" >
                                     <option>option 1</option>
                                     <option>option 2</option>
                                     <option>option 3</option>

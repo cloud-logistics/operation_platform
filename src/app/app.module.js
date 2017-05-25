@@ -28,7 +28,8 @@
             'pascalprecht.translate',
             'restangular',
             'base64',
-            'w5c.validator'
+            'w5c.validator',
+            'datePicker',
     ]);
 
 })();
