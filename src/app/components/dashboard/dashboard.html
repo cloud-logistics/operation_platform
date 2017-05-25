@@ -1,17 +1,98 @@
-<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="DashboardController as vm" ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="DashboardController as vm"
+     ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
     <!-- main -->
     <div class="col">
         <!-- main header -->
-        <div class="bg-light lter b-b wrapper-xs">
-            <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <h1 class="font-thin h3 text-black m-l m-t-sm">{{vm.title}}</h1>
+        <!--<div class="bg-light lter b-b wrapper-xs">-->
+        <!--<div class="row">-->
+        <!--<div class="col-md-6 col-sm-6 col-xs-12">-->
+        <!--<h1 class="font-thin h3 text-black m-l m-t-sm">{{vm.title}}</h1>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <div class="wrapper-md">
+
+            <div class="row ds-map">
+                <div id="dashboard_map" class="embeded_mapview"></div>
+            </div>
+            <div class="row ds-calc">
+                <div class="col-md-4">
+                    <div class="ds-total">
+                        <div class="ds-title">
+                            <span>云箱总数</span>
+                        </div>
+                        <div class="ds-num">
+                            <p><span>1000000</span>个</p>
+                        </div>
+                        <div class="ds-progress">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                                     aria-valuemax="100" style="width: 80%;">
+                                    <span class="sr-only">60% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="ds-lease">
+                        <div class="ds-title">
+                            <span>租赁数量</span>
+                        </div>
+                        <div class="ds-num">
+                            <p><span>900000</span>个</p>
+                        </div>
+                        <div class="ds-progress">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                                     aria-valuemax="100" style="width: 80%;">
+                                    <span class="sr-only">60% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="ds-trans">
+                        <div class="ds-title">
+                            <span>在运数量</span>
+                        </div>
+                        <div class="ds-num">
+                            <p><span>650000</span>个</p>
+                        </div>
+                        <div class="ds-progress">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                                     aria-valuemax="100" style="width: 80%;">
+                                    <span class="sr-only">60% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="row ds-chart">
+                <div class="col-md-6">
+                    <div class="ds-pie">
+                        <div class="ds-pie-title">
+                            <span>云箱分布国家</span>
+                        </div>
+                        <div class="ds-pie-chart" id="pie-chart">
 
-        <div class="">
-            <div id="dashboard_map" class="embeded_mapview"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="ds-line">
+                        <div class="ds-line-title">
+                            <span>云箱租赁与在运</span>
+                        </div>
+                        <div class="ds-line-chart" id="line-chart">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
