@@ -31,6 +31,7 @@
             getAlerts: getAlerts,
             getBasicInfo: getBasicInfo,
             getBoxStatus: getBoxStatus,
+            getRealtimeInfo: getRealtimeInfo,
 
             isAuthed: isAuthed,
             roleType: roleType,
@@ -218,6 +219,15 @@
 
             // NetworkService.get(constdata.api.containerInstantInfo + '?containerId=' + containerId + "?startTime=" + startTime + "endTime" + endTime,
             NetworkService.get(constdata.api.boxStatus,
+                                null,
+                                successHandler,
+                                failedHandler);
+        }
+
+        function getRealtimeInfo(containerId, successHandler,failedHandler) {
+
+            // NetworkService.get(constdata.api.containerInstantInfo + '?containerId=' + containerId + "?startTime=" + startTime + "endTime" + endTime,
+            NetworkService.get(constdata.api.realtimeInfo,
                                 null,
                                 successHandler,
                                 failedHandler);

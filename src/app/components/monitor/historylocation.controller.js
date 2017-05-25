@@ -38,9 +38,9 @@
             ApiServer.getHistorylocationInfo(queryParams, function (response) {
                 var bounds = new google.maps.LatLngBounds();
 
-                histories = response.data
+                histories = response.data.containerhistory
 
-                routes = response.data.map(function (route) {
+                routes = histories.map(function (route) {
                   var startPointLatlng = route.start.position
                   var endPointLatlng = route.end.position
 

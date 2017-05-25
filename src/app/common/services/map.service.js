@@ -17,7 +17,7 @@
         .factory('MapService', MapService);
 
     /** @ngInject */
-    function MapService(constdata,NetworkService,StorageService,iotUtil,$timeout,$state,toastr) {
+    function MapService(constdata,NetworkService,$q, StorageService,iotUtil,$timeout,$state,toastr) {
 
 
         var service = {
@@ -25,6 +25,7 @@
           map_init: map_init,
           addMarker: addMarker,
           addCircle: addCircle,
+          geoCodePosition: geoCodePosition
 
         };
 
@@ -74,6 +75,20 @@
                     radius: 1000000
                 });
             }
+        }
+
+        function geoCodePosition(position) {
+            return $q(function(resolve, reject) {
+                var geocoder = new google.maps.Geocoder;
+
+                geocoder.geocode({"location": position}, function(results, status){
+                    if(status == google.maps.GeocoderStatus.OK) {
+                        resolve(results)
+                    } else {
+                        reject(status)
+                    }
+                })
+            })
         }
 
     }

@@ -18,6 +18,7 @@ server.use(jsonServer.rewriter({
   '/container/api/v1/cloudbox/alerts': '/alerts',
   '/container/api/v1/cloudbox/basicInfo': '/basicInfo',
   '/container/api/v1/cloudbox/boxStatus': '/boxStatus',
+  '/container/api/v1/cloudbox/realtimeInfo': '/realtimeInfo',
   "/container/api/v1/cloudbox/satellites": "/satelites",
   "/container/api/v1/cloudbox/containers": "/containers",
   "/container/api/v1/cloudbox/alertLevel":"/alertLevel"

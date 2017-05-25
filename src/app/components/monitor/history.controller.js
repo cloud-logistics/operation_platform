@@ -22,7 +22,7 @@
         function getContainerReportHistory () {
             ApiServer.getContainerReportHistory(vm.queryParams, function (response) {
                 console.log(vm.queryParams);
-                vm.reports = response.data
+                vm.reports = response.data.containerReportHistory
                 console.log(vm.reports);
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);

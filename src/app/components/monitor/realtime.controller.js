@@ -7,19 +7,67 @@
     angular.module('smart_container').controller('RealtimeController', RealtimeController);
 
     /** @ngInject */
-    function RealtimeController(constdata, NetworkService, $stateParams, ApiServer, toastr, $state, $timeout, $interval, $scope) {
+    function RealtimeController(constdata, NetworkService, MapService, $stateParams, ApiServer, toastr, $state, $timeout, $interval, $scope) {
         /* jshint validthis: true */
         var vm = this;
         var tempOption;
         var tempChart;
 
+        var humiChart;
+        var humiOption;
+
+        var battChart;
+        var battOption;
+
+        var speedChart;
+        var speedOption;
+
+        vm.title = '实时报文';
+        vm.containerlists = [];
+        vm.getRealtimeInfo = getRealtimeInfo
+
+        getRealtimeInfo(vm.containerId)
+
+        function getRealtimeInfo () {
+            ApiServer.getRealtimeInfo(vm.containerId, function (response) {
+                var locationName = undefined;
+
+                console.log(vm.containerId);
+                vm.realtimeInfo = response.data
+                console.log(vm.realtimeInfo);
+
+                initTemp(vm.realtimeInfo.temperature)
+                initHumi(vm.realtimeInfo.humidity)
+                initBatt(vm.realtimeInfo.battery);
+                initSpeed(vm.realtimeInfo.speed);
+
+                MapService.geoCodePosition(vm.realtimeInfo.position)
+                .then(function(results){
+                    if(!R.isNil(results)){
+                        locationName = R.head(results).formatted_address
+                    } else {
+                        locationName = "未找到地名"
+                    }
+
+                    vm.realtimeInfo.locationName = locationName
+                })
+                .catch(function(status){
+                    alert(status)
+                })
+            },function (err) {
+                console.log("Get RealtimeInfo Info Failed", err);
+            });
+        }
+
         /* 温度chart初始化 */
-        function initTemp() {
+        function initTemp(value) {
+            var value_ = (100 - value) * 266 / 360;
+
             tempChart = echarts.init(document.getElementById('temp-chart'));
 
             tempOption = {
                 title: {
-                    "text": '',
+                    "text": value + "℃",
                     "x": '48%',
                     "y": '50%',
                     textAlign: "center",
@@ -115,10 +163,10 @@
                             }
                         },
                         "data": [{
-                            // "value": (100 - value1) * 266 / 360,
+                            "value": value_,
                             "name": ''
                         }, {
-                            // "value": 100 - (100 - value1) * 266 / 360,
+                            "value": 100 - value_,
                             "name": ''
                         }
                         ]
@@ -128,29 +176,17 @@
             };
 
             tempChart.setOption(tempOption);
-
-            setTimeout(function () {
-                var value = parseInt(Math.random() * 55) + 30,
-                    value_ = (100 - value) * 266 / 360;
-                tempOption.title.text = value + "℃";
-                tempOption.series[1].data[0].value = value_;
-                tempOption.series[1].data[1].value = 100 - value_;
-                tempChart.setOption(tempOption, true);
-            }, 1000);
-
         }
 
-        initTemp();
-
-        var humiChart;
-        var humiOption;
         /*初始化湿度chart*/
-        function initHumi() {
+        function initHumi(value) {
+            var value_ = (100 - value) * 266 / 360;
+
             humiChart = echarts.init(document.getElementById('humi-chart'));
 
             humiOption = {
                 title: {
-                    "text": '',
+                    "text": value + "%",
                     "x": '48%',
                     "y": '50%',
                     textAlign: "center",
@@ -246,10 +282,10 @@
                             }
                         },
                         "data": [{
-                            // "value": (100 - value1) * 266 / 360,
+                            "value": value_,
                             "name": ''
                         }, {
-                            // "value": 100 - (100 - value1) * 266 / 360,
+                            "value": 100 - value_,
                             "name": ''
                         }
                         ]
@@ -259,29 +295,16 @@
             };
 
             humiChart.setOption(humiOption);
-
-            setTimeout(function () {
-                var value = parseInt(Math.random() * 55) + 30,
-                    value_ = (100 - value) * 266 / 360;
-                humiOption.title.text = value + "%";
-                humiOption.series[1].data[0].value = value_;
-                humiOption.series[1].data[1].value = 100 - value_;
-                humiChart.setOption(humiOption, true);
-            }, 1000);
         }
 
-        initHumi();
 
-        var battChart;
-        var battOption;
-
-        function initBatt() {
+        function initBatt(value) {
             battChart = echarts.init(document.getElementById('batt-chart'));
             battOption = {
                 series: [{
                     type: 'liquidFill',
                     data: [{
-                        value: 0.5,
+                        value: value,
                         itemStyle: {
                             normal: {
                                 color: '#77CADA',
@@ -340,12 +363,8 @@
             battChart.setOption(battOption);
         }
 
-        initBatt();
 
-        var speedChart;
-        var speedOption;
-
-        function initSpeed() {
+        function initSpeed(value) {
             speedChart = echarts.init(document.getElementById('speed-chart'));
             speedOption = {
                 tooltip: {
@@ -412,7 +431,7 @@
                             offsetCenter: [0, '90%'],
                             detail: {formatter:'{value}km/h'}
                         },
-                        data: [{value: 40, name: 'km/h'}]
+                        data: [{value: value, name: 'km/h'}]
                     }
                 ]
             };
@@ -423,14 +442,6 @@
             //     speedChart.setOption(speedOption, true);
             // }, 2000);
         }
-
-        initSpeed();
-
-
-        var info = ApiServer.info();
-        var roleType = info.role;
-        vm.title = '实时报文';
-        vm.containerlists = [];
 
     }
 

@@ -24,7 +24,7 @@
         function getAlerts () {
             ApiServer.getAlerts(vm.queryParams, function (response) {
                 console.log(vm.queryParams);
-                vm.alerts = response.data
+                vm.alerts = response.data.alerts
                 console.log(vm.alerts);
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);

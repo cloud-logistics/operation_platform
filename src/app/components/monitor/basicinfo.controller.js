@@ -22,7 +22,7 @@
         function getBasicInfo () {
             ApiServer.getBasicInfo(vm.queryParams, function (response) {
                 console.log(vm.queryParams);
-                vm.containerlist = response.data
+                vm.containerlist = response.data.basicInfo
                 console.log(vm.containerlist);
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);
