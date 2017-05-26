@@ -1,0 +1,58 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="DashboardController as vm"
+     ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
+    <!-- main -->
+    <div class="col">
+        <!-- main header -->
+        <!--<div class="bg-light lter b-b wrapper-xs">-->
+        <!--<div class="row">-->
+        <!--<div class="col-md-6 col-sm-6 col-xs-12">-->
+        <!--<h1 class="font-thin h3 text-black m-l m-t-sm">{{vm.title}}</h1>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <div class="wrapper-md">
+
+            <div class="row ds-map">
+                <div id="dashboard_map" class="embeded_mapview"></div>
+            </div>
+
+            <div class="row" style="background-color: #fff;margin-top: 30px">
+                <div class="pull-left">
+                    <span>云箱全局租赁状态管理</span>
+                </div>
+                <div class="pull-right">
+                    <img src="http://ol37p4zz4.bkt.clouddn.com/icon_lease.png">
+                    <span>租赁方管理</span>
+                </div>
+            </div>
+
+            <div class="row" style="background-color: #fff;margin-top: 30px">
+                <table st-table="vm.items" st-safe-src="vm.items" class="table table-striped table-hover m-t">
+                    <thead>
+                    <tr>
+                        <!--<th ng-repeat="title in vm.titles">-->
+                        <!--{{title}}-->
+                        <!--</th>-->
+                        <th>云箱ID</th>
+                        <th>租赁起始日</th>
+                        <th>当前位置</th>
+                        <th>当前租赁房</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr >
+                        <td style="vertical-align: middle;"></td>
+                        <td style="vertical-align: middle;"></td>
+                        <td style="vertical-align: middle;"></td>
+                        <td style="vertical-align: middle;"></td>
+                        <td><a href="#" class="btn-table-detail">查看详情</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div auto-pagination pageination="vm.pageination"></div>
+
+        </div>
+    </div>
+</div>
