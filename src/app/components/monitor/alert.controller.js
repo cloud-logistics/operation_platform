@@ -22,8 +22,8 @@
         vm.getAlerts = getAlerts
         
         function getAlerts () {
+            console.log(vm.queryParams);
             ApiServer.getAlerts(vm.queryParams, function (response) {
-                console.log(vm.queryParams);
                 vm.alerts = response.data.alerts
                 console.log(vm.alerts);
             },function (err) {

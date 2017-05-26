@@ -20,8 +20,16 @@
         vm.getBasicInfo = getBasicInfo
         
         function getBasicInfo () {
-            ApiServer.getBasicInfo(vm.queryParams, function (response) {
-                console.log(vm.queryParams);
+            var transformations = {
+                startTime: R.compose(R.toString, Date.parse),
+                endTime: R.compose(R.toString, Date.parse)
+            };
+            var queryParams = R.evolve(transformations)(vm.queryParams)
+
+            console.log(queryParams);
+
+            ApiServer.getBasicInfo(queryParams, function (response) {
+                // console.log(Date.parse(vm.queryParams.startTime).toString());
                 vm.containerlist = response.data.basicInfo
                 console.log(vm.containerlist);
             },function (err) {

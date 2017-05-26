@@ -153,82 +153,50 @@
         }
 
         function getHistorylocationInfo(params, successHandler,failedHandler) {
-            var containerId = params.containerId
-            var startTime = params.startTime
-            var endTime = params.endTime
-
-            // NetworkService.get(constdata.api.containerhistory + '?containerId=' + containerId + "?startTime=" + startTime + "endTime" + endTime,
-            NetworkService.get(constdata.api.containerhistory,
+            NetworkService.post(constdata.api.containerhistory,
                                 null,
                                 successHandler,
                                 failedHandler);
         }
 
         function getInstantlocationInfo(params, successHandler,failedHandler) {
-            var containerId = params.containerId
-            var startTime = params.startTime
-            var endTime = params.endTime
-
-            // NetworkService.get(constdata.api.containerInstantInfo + '?containerId=' + containerId + "?startTime=" + startTime + "endTime" + endTime,
-            NetworkService.get(constdata.api.containerInstantInfo,
+            NetworkService.post(constdata.api.containerInstantInfo,
                                 null,
                                 successHandler,
                                 failedHandler);
         }
 
         function getContainerReportHistory(params, successHandler,failedHandler) {
-            var containerId = params.containerId
-            var startTime = params.startTime
-            var endTime = params.endTime
-
-            // NetworkService.get(constdata.api.containerInstantInfo + '?containerId=' + containerId + "?startTime=" + startTime + "endTime" + endTime,
-            NetworkService.get(constdata.api.containerReportHistory,
-                                null,
+            NetworkService.post(constdata.api.containerReportHistory,
+                                params,
                                 successHandler,
                                 failedHandler);
         }
 
         function getAlerts(params, successHandler,failedHandler) {
-            var containerId = params.containerId
-            var startTime = params.startTime
-            var endTime = params.endTime
-
-            // NetworkService.get(constdata.api.containerInstantInfo + '?containerId=' + containerId + "?startTime=" + startTime + "endTime" + endTime,
-            NetworkService.get(constdata.api.alerts,
-                                null,
+            NetworkService.post(constdata.api.alerts,
+                                params,
                                 successHandler,
                                 failedHandler);
         }
 
         function getBasicInfo(params, successHandler,failedHandler) {
-            var containerId = params.containerId
-            var startTime = params.startTime
-            var endTime = params.endTime
-
-            // NetworkService.get(constdata.api.containerInstantInfo + '?containerId=' + containerId + "?startTime=" + startTime + "endTime" + endTime,
-            NetworkService.get(constdata.api.basicInfo,
-                                null,
+            NetworkService.post(constdata.api.basicInfo,
+                                params,
                                 successHandler,
                                 failedHandler);
         }
 
         function getBoxStatus(params, successHandler,failedHandler) {
-            var containerId = params.containerId
-            var startTime = params.startTime
-            var endTime = params.endTime
-
-            // NetworkService.get(constdata.api.containerInstantInfo + '?containerId=' + containerId + "?startTime=" + startTime + "endTime" + endTime,
-            NetworkService.get(constdata.api.boxStatus,
-                                null,
+            NetworkService.post(constdata.api.boxStatus,
+                                params,
                                 successHandler,
                                 failedHandler);
         }
 
-        function getRealtimeInfo(containerId, successHandler,failedHandler) {
-
-            // NetworkService.get(constdata.api.containerInstantInfo + '?containerId=' + containerId + "?startTime=" + startTime + "endTime" + endTime,
-            NetworkService.get(constdata.api.realtimeInfo,
-                                null,
+        function getRealtimeInfo(params, successHandler,failedHandler) {
+            NetworkService.post(constdata.api.realtimeInfo,
+                                params,
                                 successHandler,
                                 failedHandler);
         }

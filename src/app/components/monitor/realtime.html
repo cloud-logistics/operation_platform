@@ -39,11 +39,11 @@
                             </div>
 
                             <div class="rt-brief-content">
-                                <p><span>云箱ID</span>49375027403872x2</p>
-                                <p><span>云箱型号</span>dd</p>
-                                <p><span>承运方</span>49375027403872x2</p>
-                                <p><span>当前所在地</span>49375027403872x2</p>
-                                <p><span>当前位置</span>49375027403872x2</p>
+                                <p><span>云箱ID</span>{{vm.realtimeInfo.containerId}}</p>
+                                <p><span>云箱型号</span>{{vm.realtimeInfo.containerType}}</p>
+                                <p><span>承运方</span>{{vm.realtimeInfo.carrier}}</p>
+                                <p><span>当前所在地</span>{{vm.realtimeInfo.locationName}}</p>
+                                <p><span>当前位置</span>经度: {{vm.realtimeInfo.position.lat}} 纬度: {{vm.realtimeInfo.position.lng}}</p>
                             </div>
 
                         </div>

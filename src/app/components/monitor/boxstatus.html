@@ -2,15 +2,6 @@
      ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
     <!-- main -->
     <div class="col">
-        <!-- main header -->
-        <!--<div class="bg-light lter b-b wrapper-xs">-->
-        <!--<div class="row">-->
-        <!--<div class="col-md-6 col-sm-6 col-xs-12">-->
-        <!--<h1 class="font-thin h3 text-black m-l m-t-sm">{{vm.title}}</h1>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-
         <div id="content" style="height: 100vh;">
             <div class="wrapper-md">
                 <div class="row m-l m-r" style="background-color: #fff">
@@ -19,7 +10,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">ID</label>
                             <div class="col-md-8">
-                                <input type="email" class="form-control" placeholder="请输入云箱ID">
+                                <input type="text" class="form-control" placeholder="请输入云箱ID" ng-model="vm.queryParams.containerId" >
                             </div>
                         </div>
                     </div>
@@ -27,7 +18,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">当前状态</label>
                             <div class="col-md-8">
-                                <select name="account" class="form-control m-b">
+                                <select name="account" class="form-control m-b" ng-model="vm.queryParams.status" >
                                     <option>在运</option>
                                     <option>option 2</option>
                                     <option>option 3</option>
@@ -40,7 +31,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">当前所在地</label>
                             <div class="col-md-8">
-                                <select name="account" class="form-control m-b">
+                                <select name="account" class="form-control m-b" ng-model="vm.queryParams.location" >
                                     <option>中国上海</option>
                                     <option>option 2</option>
                                     <option>option 3</option>
@@ -56,7 +47,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">最高报警级别</label>
                             <div class="col-md-8">
-                                <select name="account" class="form-control m-b">
+                                <select name="account" class="form-control m-b" ng-model="vm.queryParams.alertLevelHigh" >
                                     <option>无障碍</option>
                                     <option>option 2</option>
                                     <option>option 3</option>
@@ -69,7 +60,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">故障类型</label>
                             <div class="col-md-8">
-                                <select name="account" class="form-control m-b">
+                                <select name="account" class="form-control m-b" ng-model="vm.queryParams.alertType" >
                                     <option>失联</option>
                                     <option>option 2</option>
                                     <option>option 3</option>
@@ -82,7 +73,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">故障代码</label>
                             <div class="col-md-8">
-                                <select name="account" class="form-control m-b">
+                                <select name="account" class="form-control m-b" ng-model="vm.queryParams.alertCode" >
                                     <option>029724</option>
                                     <option>option 2</option>
                                     <option>option 3</option>
@@ -98,7 +89,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">当前速度</label>
                             <div class="col-md-8">
-                                <select name="account" class="form-control m-b">
+                                <select name="account" class="form-control m-b" ng-model="vm.queryParams.speed" >
                                     <option>静止</option>
                                     <option>option 2</option>
                                     <option>option 3</option>
@@ -111,11 +102,11 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">碰撞次数</label>
                             <div class="col-md-4 dash-line">
-                                <input type="text" class="form-control" placeholder="请输入">
+                                <input type="text" class="form-control" placeholder="请输入" ng-model="vm.queryParams.collideLow" >
                             </div>
 
                             <div class="col-md-4 ">
-                                <input type="text" class="form-control" placeholder="请输入">
+                                <input type="text" class="form-control" placeholder="请输入" ng-model="vm.queryParams.collideHigh" >
                             </div>
                         </div>
                     </div>
@@ -123,11 +114,11 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">开关门数</label>
                             <div class="col-md-4 dash-line">
-                                <input type="text" class="form-control" placeholder="请输入">
+                                <input type="text" class="form-control" placeholder="请输入" ng-model="vm.queryParams.numDoorLow" >
                             </div>
 
                             <div class="col-md-4 ">
-                                <input type="text" class="form-control" placeholder="请输入">
+                                <input type="text" class="form-control" placeholder="请输入" ng-model="vm.queryParams.numDoorHigh" >
                             </div>
                         </div>
                     </div>
@@ -139,10 +130,10 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">温度区间</label>
                             <div class="col-md-4 dash-line">
-                                <input type="text" class="form-control m-b" placeholder="请输入">
+                                <input type="text" class="form-control m-b" placeholder="请输入" ng-model="vm.queryParams.tempLow" >
                             </div>
                             <div class="col-md-4 ">
-                                <input type="text" class="form-control m-b" placeholder="请输入">
+                                <input type="text" class="form-control m-b" placeholder="请输入" ng-model="vm.queryParams.tempHigh" >
                             </div>
                         </div>
                     </div>
@@ -150,11 +141,11 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">湿度区间</label>
                             <div class="col-md-4 dash-line">
-                                <input type="text" class="form-control" placeholder="请输入">
+                                <input type="text" class="form-control" placeholder="请输入" ng-model="vm.queryParams.humidityLow" >
                             </div>
 
                             <div class="col-md-4 ">
-                                <input type="text" class="form-control" placeholder="请输入">
+                                <input type="text" class="form-control" placeholder="请输入" ng-model="vm.queryParams.humidityHigh">
                             </div>
                         </div>
                     </div>
@@ -162,10 +153,10 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">电池电量</label>
                             <div class="col-md-4 dash-line">
-                                <input type="text" class="form-control" placeholder="请输入">
+                                <input type="text" class="form-control" placeholder="请输入" ng-model="vm.queryParams.batteryLow">
                             </div>
                             <div class="col-md-4 ">
-                                <input type="text" class="form-control" placeholder="请输入">
+                                <input type="text" class="form-control" placeholder="请输入" ng-model="vm.queryParams.batteryHigh">
                             </div>
                         </div>
                     </div>
@@ -176,7 +167,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">承运人</label>
                             <div class="col-md-8">
-                                <select name="account" class="form-control m-b">
+                                <select name="account" class="form-control m-b" ng-model="vm.queryParams.carrier">
                                     <option>option 1</option>
                                     <option>option 2</option>
                                     <option>option 3</option>
@@ -188,7 +179,7 @@
                     <div class="col-md-offset-4 col-md-4">
                         <div class="form-group">
                             <div class="col-md-offset-4 col-md-8">
-                                <button type="submit" class="btn btn-sm btn-block btn-boxstatus">查 询</button>
+                                <button type="submit" class="btn btn-sm btn-block btn-boxstatus" ng-click="vm.getBoxStatus()" >查 询</button>
                             </div>
                         </div>
                     </div>

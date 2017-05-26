@@ -20,8 +20,14 @@
         vm.getContainerReportHistory = getContainerReportHistory
         
         function getContainerReportHistory () {
-            ApiServer.getContainerReportHistory(vm.queryParams, function (response) {
-                console.log(vm.queryParams);
+            var transformations = {
+                startTime: R.compose(R.toString, Date.parse),
+                endTime: R.compose(R.toString, Date.parse)
+            };
+            var queryParams = R.evolve(transformations)(vm.queryParams)
+
+            ApiServer.getContainerReportHistory(queryParams, function (response) {
+                console.log(queryParams);
                 vm.reports = response.data.containerReportHistory
                 console.log(vm.reports);
             },function (err) {

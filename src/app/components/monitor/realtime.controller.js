@@ -25,16 +25,20 @@
         vm.title = '实时报文';
         vm.containerlists = [];
         vm.getRealtimeInfo = getRealtimeInfo
+        vm.realtimeInfo = {
+            locationName: "未找到"
+        }
 
-        getRealtimeInfo(vm.containerId)
+        getRealtimeInfo()
 
         function getRealtimeInfo () {
-            ApiServer.getRealtimeInfo(vm.containerId, function (response) {
+            var queryParams = {
+                containerId: vm.containerId
+            }
+            ApiServer.getRealtimeInfo(queryParams, function (response) {
                 var locationName = undefined;
 
-                console.log(vm.containerId);
                 vm.realtimeInfo = response.data
-                console.log(vm.realtimeInfo);
 
                 initTemp(vm.realtimeInfo.temperature)
                 initHumi(vm.realtimeInfo.humidity)
@@ -49,7 +53,7 @@
                         locationName = "未找到地名"
                     }
 
-                    vm.realtimeInfo.locationName = locationName
+                    // vm.realtimeInfo.locationName = locationName
                 })
                 .catch(function(status){
                     alert(status)

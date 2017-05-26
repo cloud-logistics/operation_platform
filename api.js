@@ -32,6 +32,297 @@ server.post('/auth', function (req, res) {
   });
 })
 
+
+server.post('/containerInstantInfo', function (req, res) {
+  res.json({
+    "containerInfo": {
+      "containerId": "111",
+      "carrier": "中集智能"
+    },
+    "startPosition": {
+      "lng": 117,
+      "lat": 36.65
+    },
+    "currentPosition": {
+      "lng": 118.78,
+      "lat": 32.04
+    },
+    "endPosition": {
+      "lng": 121.557348,
+      "lat": 31.179784
+    }
+  });
+})
+
+
+server.post('/containerReportHistory', function (req, res) {
+  res.json({
+    "containerReportHistory": [
+      {
+        "containerId": "22932214122313",
+        "containerType": "标准云箱",
+        "reportType": "实时报文",
+        "reportLength": 60,
+        "originalReport": "23-3030202",
+        "factoryDate": "1495597347299"
+      },
+      {
+        "containerId": "22932214122313",
+        "containerType": "标准云箱",
+        "reportType": "实时报文",
+        "reportLength": 60,
+        "originalReport": "23-3030202",
+        "factoryDate": "1495597347299"
+      },
+      {
+        "containerId": "22932214122313",
+        "containerType": "标准云箱",
+        "reportType": "实时报文",
+        "reportLength": 60,
+        "originalReport": "23-3030202",
+        "factoryDate": "1495597347299"
+      },
+      {
+        "containerId": "22932214122313",
+        "containerType": "标准云箱",
+        "reportType": "实时报文",
+        "reportLength": 60,
+        "originalReport": "23-3030202",
+        "factoryDate": "1495597347299"
+      },
+      {
+        "containerId": "22932214122313",
+        "containerType": "标准云箱",
+        "reportType": "实时报文",
+        "reportLength": 60,
+        "originalReport": "23-3030202",
+        "factoryDate": "1495597347299"
+      },
+      {
+        "containerId": "22932214122313",
+        "containerType": "标准云箱",
+        "reportType": "实时报文",
+        "reportLength": 60,
+        "originalReport": "23-3030202",
+        "factoryDate": "1495597347299"
+      }
+    ]
+  });
+})
+
+server.post('/alerts', function (req, res) {
+  res.json({
+    "alerts": [
+      {
+        "containerId": "22932214122313",
+        "alertTime": "1495597347299",
+        "alertType": "实时报文",
+        "carrier": "中集集团"
+      },
+      {
+        "containerId": "22932214122313",
+        "alertTime": "1495597347299",
+        "alertType": "实时报文",
+        "carrier": "中集集团"
+      },
+      {
+        "containerId": "22932214122313",
+        "alertTime": "1495597347299",
+        "alertType": "实时报文",
+        "carrier": "中集集团"
+      },
+      {
+        "containerId": "22932214122313",
+        "alertTime": "1495597347299",
+        "alertType": "实时报文",
+        "carrier": "中集集团"
+      },
+      {
+        "containerId": "22932214122313",
+        "alertTime": "1495597347299",
+        "alertType": "实时报文",
+        "carrier": "中集集团"
+      }
+    ]
+  });
+})
+
+server.post('/boxStatus', function (req, res) {
+  res.json({
+    "boxStatus": [
+      {
+        "containerId": "22932214122313",
+        "currentStatus": "标准云箱",
+        "position": {
+          "lng": 121.557348,
+          "lat": 31.179784
+        },
+        "carrier": "中集集团"
+      },
+      {
+        "containerId": "22932214122313",
+        "currentStatus": "标准云箱",
+        "position": {
+          "lng": 121.557348,
+          "lat": 31.179784
+        },
+        "carrier": "中集集团"
+      },
+      {
+        "containerId": "22932214122313",
+        "currentStatus": "标准云箱",
+        "position": {
+          "lng": 121.557348,
+          "lat": 31.179784
+        },
+        "carrier": "中集集团"
+      },
+      {
+        "containerId": "22932214122313",
+        "currentStatus": "标准云箱",
+        "position": {
+          "lng": 121.557348,
+          "lat": 31.179784
+        },
+        "carrier": "中集集团"
+      },
+      {
+        "containerId": "22932214122313",
+        "currentStatus": "标准云箱",
+        "position": {
+          "lng": 121.557348,
+          "lat": 31.179784
+        },
+        "carrier": "中集集团"
+      }
+    ]
+  });
+})
+
+server.post('/containerhistory', function (req, res) {
+  res.json({
+    "containerhistory": [
+      {
+        "containerId": "111",
+        "start": {
+          "time": "111",
+          "position": {
+            "lng": 121.557348,
+            "lat": 31.179784
+          }
+        },
+        "end": {
+          "time": "222",
+          "position": {
+            "lng": 117,
+            "lat": 36.65
+          }
+        }
+      },
+      {
+        "containerId": "222",
+        "start": {
+          "time": "111",
+          "position": {
+            "lng": 104.06,
+            "lat": 30.67
+          }
+        },
+        "end": {
+          "time": "222",
+          "position": {
+            "lng": 118.78,
+            "lat": 32.04
+          }
+        }
+      },
+      {
+        "containerId": "333",
+        "start": {
+          "time": "111",
+          "position": {
+            "lng": 113,
+            "lat": 28.21
+          }
+        },
+        "end": {
+          "time": "222",
+          "position": {
+            "lng": 108.95,
+            "lat": 34.27
+          }
+        }
+      }
+    ]
+  });
+})
+
+server.post('/basicInfo', function (req, res) {
+  res.json({
+    "basicInfo":[
+      {
+        "containerId": "22932214122313",
+        "containerType":"标准云箱",
+        "factoryLocation":"中国-上海",
+        "factory":"中集集团",
+        "carrier":"中集集团",
+        "factoryDate":"1495597347299"
+      },
+      {
+        "containerId": "22932214122313",
+        "containerType":"标准云箱",
+        "factoryLocation":"中国-上海",
+        "factory":"中集集团",
+        "carrier":"中集集团",
+        "factoryDate":"1495597347299"
+      },
+      {
+        "containerId": "22932214122313",
+        "containerType":"标准云箱",
+        "factoryLocation":"中国-上海",
+        "factory":"中集集团",
+        "carrier":"中集集团",
+        "factoryDate":"1495597347299"
+      },
+      {
+        "containerId": "22932214122313",
+        "containerType":"标准云箱",
+        "factoryLocation":"中国-上海",
+        "factory":"中集集团",
+        "carrier":"中集集团",
+        "factoryDate":"1495597347299"
+      },
+      {
+        "containerId": "22932214122313",
+        "containerType":"标准云箱",
+        "factoryLocation":"中国-上海",
+        "factory":"中集集团",
+        "carrier":"中集集团",
+        "factoryDate":"1495597347299"
+      }
+    ]
+  });
+})
+
+server.post('/realtimeInfo', function (req, res) {
+  res.json({
+    "containerId": "111",
+    "containerType": "标准云箱",
+    "carrier": "中集智能",
+    "position": {
+      "lng": 118.78,
+      "lat":32.04
+    },
+    "speed": 120,
+    "temperature": 39,
+    "humidity": 70,
+    "battery": 0.6,
+    "boxStatus": {
+      "num_of_collide": 24,
+      "num_of_door_open": 54
+    }
+  });
+})
 server.use(router)
 console.log('Listening at 4000')
 server.listen(4000)
