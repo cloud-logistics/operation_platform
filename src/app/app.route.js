@@ -132,10 +132,22 @@
                 templateUrl: 'app/components/monitor/realtime.html'
             })
 
-            //实时报文详情
+            //租赁admin
             .state('app.lease',{
                 url: 'lease',
                 templateUrl: 'app/components/lease/lease.html'
+            })
+
+            //租赁承运商
+            .state('app.mylease',{
+                url: 'mylease',
+                templateUrl: 'app/components/lease/mylease.html'
+            })
+
+            //基础信息查询
+            .state('app.basicmanage',{
+                url: 'basicmanage',
+                templateUrl: 'app/components/monitor/basicmanage.html'
             })
 
             .state('app.satellite',{

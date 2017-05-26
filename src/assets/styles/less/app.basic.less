@@ -1,0 +1,219 @@
+.manage-box {
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  .middle {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+  margin-top: 30px;
+  background: #455a7f;
+  height: 431px;
+  border-radius: 14px;
+  .manage-title {
+    height: 85px;
+    line-height: 85px;
+    background: #5080d3;
+    color: #fff;
+    border-radius: 14px 14px 0 0;
+    font-size: 24px;
+    padding: 0 34px;
+    h4 {
+      font-size: 24px;
+      margin: 0;
+      padding: 0;
+      line-height: 85px;
+    }
+    .inputBtn {
+      padding: 0 15px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      font-size: 18px;
+      color: #5080d2;
+      background: #fff;
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      border-radius: 8px;
+      i {
+        margin-right: 9px;
+      }
+    }
+  }
+  .manage-list {
+    ul {
+      list-style: none;
+      border-top: 1px solid #3a457a;
+      li {
+        padding: 0 34px;
+        height: 57px;
+        line-height: 57px;
+        border-bottom: 1px solid #3a457a;
+        color: #fff;
+        font-size: 18px;
+        span {
+          display: inline-block;
+          width: 60px;
+          height: 30px;
+          line-height: 30px;
+          text-align: center;
+          background: #8496da;
+          border-radius: 8px;
+          float: right;
+          position: relative;
+          top: 50%;
+          -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+          cursor: pointer;
+        }
+        em {
+          margin-right: 48px;
+          font-style: normal;
+        }
+        &:nth-child(odd) {
+          background: #4c6084;
+        }
+      }
+    }
+  }
+  .manage-paging {
+    color: #fff;
+  }
+  &.police-box {
+    background: #623445;
+    .manage-title {
+      background: #cd6884;
+      .inputBtn {
+        color: #cd6884;
+      }
+    }
+    .manage-list ul li:nth-child(odd) {
+      background: rgba(249, 251, 251, 0.04);
+    }
+  }
+  &.safe-box {
+    background: #356c6c;
+    position: relative;
+    .manage-title {
+      background: #77cfa5;
+    }
+    .manage-item {
+      color: #fff;
+      margin-top: 22px;
+      padding: 0 35px;
+      .form-group {
+        label {
+          margin-right: 15px;
+          font-size: 16px;
+        }
+      }
+      .form-control {
+        width: 80px;
+        height: 40px;
+        background: rgba(247, 247, 247, 0.05);
+        color: #fff;
+        font-size: 14px;
+        padding: 0 10px;
+        border-radius: 8px;
+        &::-webkit-input-placeholder {
+          /* WebKit browsers */
+          color: #fff;
+        }
+        &:-moz-placeholder {
+          /* Mozilla Firefox 4 to 18 */
+          color: #fff;
+        }
+        &::-moz-placeholder {
+          /* Mozilla Firefox 19+ */
+          color: #fff;
+        }
+        &:-ms-input-placeholder {
+          /* Internet Explorer 10+ */
+          color: #fff;
+        }
+      }
+      .update-btn {
+        height: 40px;
+        padding: 0 22px;
+        background: #fff;
+        border-radius: 8px;
+        color: #52bf8b;
+        border: 1px solid #fff;
+        font-size: 18px;
+      }
+      &.manage-gps {
+        .form-control {
+          width: 105px;
+        }
+      }
+    }
+    .manage-input {
+      .nav-tabs.nav-justified {
+        width: 350px;
+        height: 82px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        li {
+        	border-bottom: 5px solid #52bf8b;
+          > a {
+            padding: 0;
+            font-size: 24px;
+            height: 80px;
+            border: none;
+            line-height: 85px;
+            color: #fff;
+            background: #52bf8b;
+          }
+          &.active {
+          	border-bottom: 5px solid #b3f0d3;
+          }
+        }
+      }
+    }
+  }
+}
+
+.basic-paging{
+  .pagination{
+    padding: 15px 20px 5px 0;
+    .btn-default{
+      height: 30px;
+      background-color: #455a7f;
+      padding:0 5px;
+      color:#fff !important;
+    }
+
+  }
+}
+
+.alert-paging{
+  .pagination{
+    padding: 15px 20px 5px 0;
+    .btn-default{
+      height: 30px;
+      background-color: #623445;
+      padding:0 5px;
+      color:#fff !important;
+    }
+
+  }
+}
+
+.mal-paging{
+  .pagination{
+    padding: 15px 20px 5px 0;
+    .btn-default{
+      height: 30px;
+      background-color: #455a7f;
+      padding:0 5px;
+      color:#fff !important;
+    }
+
+  }
+}
