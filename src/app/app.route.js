@@ -132,6 +132,12 @@
                 templateUrl: 'app/components/monitor/realtime.html'
             })
 
+            //实时报文详情
+            .state('app.lease',{
+                url: 'lease',
+                templateUrl: 'app/components/lease/lease.html'
+            })
+
             .state('app.satellite',{
                 url: 'satellite',
                 templateUrl: 'app/components/satellite/satellite.html'
