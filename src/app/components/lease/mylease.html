@@ -1,0 +1,111 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="MyleaseController as vm"
+     ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
+    <!-- main -->
+    <div class="col">
+        <!-- main header -->
+        <!--<div class="bg-light lter b-b wrapper-xs">-->
+        <!--<div class="row">-->
+        <!--<div class="col-md-6 col-sm-6 col-xs-12">-->
+        <!--<h1 class="font-thin h3 text-black m-l m-t-sm">{{vm.title}}</h1>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <div class="wrapper-md">
+
+            <div class="row ds-map">
+                <div id="dashboard_map" class="embeded_mapview"></div>
+            </div>
+            <div class="row mls-block">
+                <div class="col-md-4">
+                    <div class="mls-mine">
+                        <div class="mls-title">
+                            <span>云箱总数</span>
+                        </div>
+                        <div class="mls-num">
+                            <p><span>1000000</span>个</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mls-lease">
+                        <div class="mls-title">
+                            <span>租赁数量</span>
+                        </div>
+                        <div class="mls-num">
+                            <p><span>900000</span>个</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mls-refund">
+                        <div class="mls-title">
+                            <span>在运数量</span>
+                        </div>
+                        <div class="mls-num">
+                            <p><span>650000</span>个</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mls-table">
+                <table st-table="vm.items" st-safe-src="vm.items" class="table table-striped table-hover m-t">
+                    <thead>
+                    <tr>
+                        <!--<th ng-repeat="title in vm.titles">-->
+                        <!--{{title}}-->
+                        <!--</th>-->
+                        <th>云箱ID</th>
+                        <th>租赁起始日</th>
+                        <th>当前位置</th>
+                        <th>当前租赁房</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr >
+                        <td style="vertical-align: middle;">22937203474450</td>
+                        <td style="vertical-align: middle;">2017-03-09至2017-05-16</td>
+                        <td style="vertical-align: middle;">中国-上海</td>
+                        <td style="vertical-align: middle;">中集集团</td>
+                        <td><a class="btn-table-detail" ng-click="bool=!bool">查看详情</a></td>
+                    </tr>
+                    <tr >
+                        <td style="vertical-align: middle;">22937203474450</td>
+                        <td style="vertical-align: middle;">2017-03-09至2017-05-16</td>
+                        <td style="vertical-align: middle;">中国-上海</td>
+                        <td style="vertical-align: middle;">中集集团</td>
+                        <td><a href="#" class="btn-table-detail">查看详情</a></td>
+                    </tr>
+                    <tr >
+                        <td style="vertical-align: middle;">22937203474450</td>
+                        <td style="vertical-align: middle;">2017-03-09至2017-05-16</td>
+                        <td style="vertical-align: middle;">中国-上海</td>
+                        <td style="vertical-align: middle;">中集集团</td>
+                        <td><a href="#" class="btn-table-detail">查看详情</a></td>
+                    </tr>
+                    <tr >
+                        <td style="vertical-align: middle;">22937203474450</td>
+                        <td style="vertical-align: middle;">2017-03-09至2017-05-16</td>
+                        <td style="vertical-align: middle;">中国-上海</td>
+                        <td style="vertical-align: middle;">中集集团</td>
+                        <td><a href="#" class="btn-table-detail">查看详情</a></td>
+                    </tr>
+                    <tr >
+                        <td style="vertical-align: middle;">22937203474450</td>
+                        <td style="vertical-align: middle;">2017-03-09至2017-05-16</td>
+                        <td style="vertical-align: middle;">中国-上海</td>
+                        <td style="vertical-align: middle;">中集集团</td>
+                        <td><a href="#" class="btn-table-detail">查看详情</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div auto-pagination pageination="vm.pageination"></div>
+
+        </div>
+    </div>
+</div>

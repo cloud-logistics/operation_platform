@@ -129,7 +129,7 @@
                 "grid": {
                     "borderWidth": 0,
                     "top": 10,
-                    "bottom": 10,
+                    "bottom": 25,
                     textStyle: {
                         color: "#fff"
                     }
