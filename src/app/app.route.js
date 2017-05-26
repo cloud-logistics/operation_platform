@@ -107,28 +107,28 @@
             })
             //告警详情
             .state('app.alert',{
-                url: 'alert',
+                url: 'alert/:containerId/:alertLevel/:alertType/:alertCode',
                 templateUrl: 'app/components/monitor/alert.html'
             })
             //云箱状态汇总
             .state('app.boxstatus',{
-                url: 'boxstatus',
+                url: 'boxstatus/:containerId/:alertLevel/:alertType',
                 templateUrl: 'app/components/monitor/boxstatus.html'
             })
             //历史报文查询
             .state('app.history',{
-                url: 'history',
+                url: 'history/:containerId/:containerType/:startTime/:endTime',
                 templateUrl: 'app/components/monitor/history.html'
             })
             //基础信息查询
             .state('app.basicinfo',{
-                url: 'basicinfo',
+                url: 'basicinfo/:containerId/:containerType/:factory',
                 templateUrl: 'app/components/monitor/basicinfo.html'
             })
 
             //实时报文详情
             .state('app.realtime',{
-                url: 'realtime',
+                url: 'realtime/:containerId',
                 templateUrl: 'app/components/monitor/realtime.html'
             })
 
@@ -143,12 +143,12 @@
             })
 
             .state('app.historylocation',{
-                url: 'historylocation',
+                url: 'historylocation/:containerId/:startTime/:endTime',
                 templateUrl: 'app/components/monitor/historylocation.html'
             })
 
             .state('app.instantlocation',{
-                url: 'instantlocation',
+                url: 'instantlocation/:containerId',
                 templateUrl: 'app/components/monitor/instantlocation.html'
             })
 

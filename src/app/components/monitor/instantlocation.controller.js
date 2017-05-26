@@ -15,6 +15,10 @@
         var height = document.body.clientHeight;
         vm.mapSize = {"width":width + 'px',"height":height + 'px'};
 
+        vm.queryParams = {
+          containerId : $stateParams.containerId
+        };
+
         var map = MapService.map_init("instantlocation", "terrain", 4);
 
         // 鼠标绘图工具
@@ -28,12 +32,7 @@
         // },5000, 500);
 
         function getInstantlocationInfo() {
-            var queryParams = {
-              containerId: "123",
-              startTime:"111",
-              endTime: "321"
-            }
-            ApiServer.getInstantlocationInfo(queryParams, function (response) {
+            ApiServer.getInstantlocationInfo(vm.queryParams, function (response) {
                 var bounds = new google.maps.LatLngBounds();
                 var containerInfo = response.data.containerInfo
                 var startPosition = response.data.startPosition

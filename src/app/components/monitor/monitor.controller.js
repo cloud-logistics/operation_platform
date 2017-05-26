@@ -16,8 +16,29 @@
         var roleType = info.role;
         vm.title = '云箱监控';
         vm.containerlists = [];
+        vm.realtimeParams = {};
+        vm.instantlocationParams = {};
+        vm.historylocationParams = {};
+        vm.alertParams = {};
+        vm.basicinfoParams = {};
+        vm.boxstatusParams = {};
+        vm.historyParams = {};
 
 
+        var requiredOptions = [
+                    "containerType",
+                    "alertLevel",
+                    "alertType",
+                    "alertCode",
+                    "carrier",
+                    "factory",
+                    "currentStatus"
+                ]
+
+        ApiServer.getOptions(requiredOptions, function(options) {
+            vm.options = options
+            console.log(options);
+        })
 
         NetworkService.get(constdata.api.overview.alertLevel, {},
             function (reponse) {

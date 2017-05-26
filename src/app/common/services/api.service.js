@@ -32,6 +32,7 @@
             getBasicInfo: getBasicInfo,
             getBoxStatus: getBoxStatus,
             getRealtimeInfo: getRealtimeInfo,
+            getOptions: getOptions,
 
             isAuthed: isAuthed,
             roleType: roleType,
@@ -199,6 +200,22 @@
                                 params,
                                 successHandler,
                                 failedHandler);
+        }
+
+
+        function getOptions (requiredOptions, sucHandler) {
+            var queryParams = {
+                requiredOptions: requiredOptions
+            };
+
+            var options = undefined;
+
+            NetworkService.post(constdata.api.options, queryParams, function (response) {
+                options = R.pick(requiredOptions)(response.data)
+                sucHandler(options)
+            },function (err) {
+                console.log("Get ContainerOverview Info Failed", err);
+            });
         }
 
         function userLogin(param,successHandler,failedHandler) {

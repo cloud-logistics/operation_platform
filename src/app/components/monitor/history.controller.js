@@ -17,6 +17,17 @@
 
         getContainerReportHistory();
 
+
+        var requiredOptions = [
+                    "containerType",
+                    "reportType"
+                ]
+
+        ApiServer.getOptions(requiredOptions, function(options) {
+            vm.options = options
+            console.log(options);
+        })
+
         vm.getContainerReportHistory = getContainerReportHistory
         
         function getContainerReportHistory () {

@@ -25,9 +25,11 @@
         vm.title = '实时报文';
         vm.containerlists = [];
         vm.getRealtimeInfo = getRealtimeInfo
+        vm.containerId = $stateParams.containerId
         vm.realtimeInfo = {
             locationName: "未找到"
         }
+        vm.speedStatus = ""
 
         getRealtimeInfo()
 
@@ -39,10 +41,12 @@
                 var locationName = undefined;
 
                 vm.realtimeInfo = response.data
+                vm.speedStatus = "正常"
+                console.log(vm.realtimeInfo);
 
-                initTemp(vm.realtimeInfo.temperature)
-                initHumi(vm.realtimeInfo.humidity)
-                initBatt(vm.realtimeInfo.battery);
+                initTemp(vm.realtimeInfo.temperature.value)
+                initHumi(vm.realtimeInfo.humidity.value)
+                initBatt(vm.realtimeInfo.battery.value);
                 initSpeed(vm.realtimeInfo.speed);
 
                 MapService.geoCodePosition(vm.realtimeInfo.position)

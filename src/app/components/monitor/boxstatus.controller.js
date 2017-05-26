@@ -13,11 +13,24 @@
 
         vm.title = '云箱状态汇总';
         vm.containerlist = [];
-        vm.queryParams = {}
+        vm.queryParams = $stateParams
+        vm.getBoxStatus = getBoxStatus
 
         getBoxStatus();
 
-        vm.getBoxStatus = getBoxStatus
+        var requiredOptions = [
+                    "currentStatus",
+                    "location",
+                    "alertLevel",
+                    "alertType",
+                    "alertCode",
+                    "carrier"
+                ]
+
+        ApiServer.getOptions(requiredOptions, function(options) {
+            vm.options = options
+            console.log(options);
+        })
 
         function getBoxStatus () {
             console.log(vm.queryParams);

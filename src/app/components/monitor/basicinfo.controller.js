@@ -13,9 +13,21 @@
 
         vm.title = '报警监控';
         vm.containerlist = [];
-        vm.queryParams = {}
+        vm.queryParams = $stateParams
 
         getBasicInfo();
+
+        var requiredOptions = [
+                    "containerType",
+                    "carrier",
+                    "factory",
+                    "factoryLocation"
+                ]
+
+        ApiServer.getOptions(requiredOptions, function(options) {
+            vm.options = options
+            console.log(options);
+        })
 
         vm.getBasicInfo = getBasicInfo
         

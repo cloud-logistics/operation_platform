@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="../bower_components/animate.css/animate.css" />
     <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" href="../bower_components/simple-line-icons/css/simple-line-icons.css" />
+    <link rel="stylesheet" href="../bower_components/angular-datepicker/dist/angular-datepicker.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({tmp/serve,src}) styles/app.css -->
@@ -93,12 +94,24 @@
     <script src="../bower_components/underscore/underscore.js"></script>
     <script src="../bower_components/backbone/backbone.js"></script>
     <script src="../bower_components/w5c-validator/w5cValidator.js"></script>
+    <script src="../bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
+    <script src="../bower_components/angular-datepicker/dist/angular-datepicker.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js({tmp/serve,tmp/partials,src}) scripts/app.js -->
     <!-- inject:js -->
     <script src="app/app.module.js"></script>
-    <script src="app/main/blocks/aside.controller.js"></script>
+    <script src="app/components/monitor/order/user.order.controller.js"></script>
+    <script src="app/components/monitor/order/user.order.add.controller.js"></script>
+    <script src="app/components/monitor/order/ship.order.controller.js"></script>
+    <script src="app/components/monitor/order/ship.order.add.controller.js"></script>
+    <script src="app/components/monitor/order/good.order.space.controller.js"></script>
+    <script src="app/components/monitor/order/good.order.controller.js"></script>
+    <script src="app/components/monitor/order/good.order.car.controller.js"></script>
+    <script src="app/components/monitor/order/good.order.add.controller.js"></script>
+    <script src="app/components/monitor/order/car.order.packing.controller.js"></script>
+    <script src="app/components/monitor/order/car.order.controller.js"></script>
+    <script src="app/components/monitor/order/car.order.add.controller.js"></script>
     <script src="app/components/webdevtec/webdevtec.service.js"></script>
     <script src="app/components/vehicle/vehicles.controller.js"></script>
     <script src="app/components/vehicle/vehicle.controller.js"></script>
@@ -110,26 +123,17 @@
     <script src="app/components/shippingschedule/shippingschedule.controller.js"></script>
     <script src="app/components/shippingschedule/shippingschedule.add.controller.js"></script>
     <script src="app/components/satellite/satellite.controller.js"></script>
-    <script src="app/components/profile/profile.controller.js"></script>
     <script src="app/components/pipelineview/pipelineview.controller.js"></script>
+    <script src="app/components/profile/profile.controller.js"></script>
     <script src="app/components/overview/overview.controller.js"></script>
-    <script src="app/components/order/user.order.controller.js"></script>
-    <script src="app/components/order/user.order.add.controller.js"></script>
-    <script src="app/components/order/ship.order.controller.js"></script>
-    <script src="app/components/order/ship.order.add.controller.js"></script>
-    <script src="app/components/order/good.order.space.controller.js"></script>
-    <script src="app/components/order/good.order.controller.js"></script>
-    <script src="app/components/order/good.order.car.controller.js"></script>
-    <script src="app/components/order/good.order.add.controller.js"></script>
-    <script src="app/components/order/car.order.packing.controller.js"></script>
-    <script src="app/components/order/car.order.controller.js"></script>
-    <script src="app/components/order/car.order.add.controller.js"></script>
+    <script src="app/components/monitor/realtime.controller.js"></script>
     <script src="app/components/monitor/monitor.controller.js"></script>
+    <script src="app/components/monitor/instantlocation.controller.js"></script>
+    <script src="app/components/monitor/historylocation.controller.js"></script>
     <script src="app/components/monitor/history.controller.js"></script>
     <script src="app/components/monitor/boxstatus.controller.js"></script>
     <script src="app/components/monitor/basicinfo.controller.js"></script>
     <script src="app/components/monitor/alert.controller.js"></script>
-    <script src="app/components/historyview/historyview.controller.js"></script>
     <script src="app/components/dashboard/dashboard.controller.js"></script>
     <script src="app/components/core/modal.order4client.controller.js"></script>
     <script src="app/components/core/modal.instance.controller.js"></script>
@@ -137,6 +141,7 @@
     <script src="app/components/container/containers.controller.js"></script>
     <script src="app/components/container/container.controller.js"></script>
     <script src="app/components/company/company.controller.js"></script>
+    <script src="app/main/blocks/aside.controller.js"></script>
     <script src="app/common/services/ui-load.js"></script>
     <script src="app/common/services/rest.service.js"></script>
     <script src="app/common/services/map.service.js"></script>
@@ -170,11 +175,12 @@
 	<script type="text/javascript" src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
 	<link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
     -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlTpe56P1HR770Ym0R-nLePpsdaDshO14&libraries=drawing"
+    <script src="http://maps.google.cn/maps/api/js?region=cn&language=zh-CN&key=AIzaSyBlTpe56P1HR770Ym0R-nLePpsdaDshO14&libraries=drawing"
     async defer></script>
     <script type="text/javascript" src="//cdn.bootcss.com/ramda/0.23.0/ramda.min.js"></script>
-    <script type="text/javascript" src="js/echarts.min.js"></script>
-    <script type="text/javascript" src="js/world.js"></script>
+    <script type="text/javascript" src="js_components/echarts.min.js"></script>
+    <script type="text/javascript" src="js_components/echarts-liquidfill.min.js"></script>
+    <script type="text/javascript" src="js_components/world.js"></script>
 </body>
 
 </html>

@@ -34,7 +34,7 @@
                             <div class="rt-img">
                                 <img src="http://ol37p4zz4.bkt.clouddn.com/map1.png" class="">
                                 <div class="rt-status">
-                                    <span>在运</span>
+                                    <span>{{vm.realtimeInfo.currentStatus}}</span>
                                 </div>
                             </div>
 
@@ -45,7 +45,6 @@
                                 <p><span>当前所在地</span>{{vm.realtimeInfo.locationName}}</p>
                                 <p><span>当前位置</span>经度: {{vm.realtimeInfo.position.lat}} 纬度: {{vm.realtimeInfo.position.lng}}</p>
                             </div>
-
                         </div>
                     </div>
                     <div class="rt-speed">
@@ -56,7 +55,7 @@
 
                         </div>
                         <div class="rt-speed-status">
-                            <span>正常</span>
+                            <span>{{vm.speedStatus}}</span>
                         </div>
                     </div>
                 </div>
@@ -71,7 +70,7 @@
 
                             </div>
                             <div class="rt-temp-status">
-                                <span>偏高</span>
+                                <span>{{vm.realtimeInfo.temperature.status}}</span>
                             </div>
                         </div>
                     </div>
@@ -84,7 +83,7 @@
 
                             </div>
                             <div class="rt-humi-status">
-                                <span>正常</span>
+                                <span>{{vm.realtimeInfo.humidity.status}}</span>
                             </div>
                         </div>
 
@@ -98,7 +97,7 @@
 
                             </div>
                             <div class="rt-batt-status">
-                                <span>偏低</span>
+                                <span>{{vm.realtimeInfo.battery.status}}</span>
                             </div>
                         </div>
                     </div>
@@ -112,9 +111,9 @@
                                 <span class="rt-open">开门次数</span>
                             </div>
                             <div class="rt-info-sum">
-                                <span class="rt-coll-sum">23</span>
+                                <span class="rt-coll-sum">{{vm.realtimeInfo.boxStatus.num_of_collide}}</span>
                                 <i class="rt-sep"></i>
-                                <span class="rt-open-sum">54</span>
+                                <span class="rt-open-sum">{{vm.realtimeInfo.boxStatus.num_of_door_open}}</span>
                             </div>
                             <div class="rt-info-img">
                                 <img src="http://ol37p4zz4.bkt.clouddn.com/map1.png" alt="">

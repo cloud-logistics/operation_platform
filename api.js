@@ -21,7 +21,8 @@ server.use(jsonServer.rewriter({
   '/container/api/v1/cloudbox/realtimeInfo': '/realtimeInfo',
   "/container/api/v1/cloudbox/satellites": "/satelites",
   "/container/api/v1/cloudbox/containers": "/containers",
-  "/container/api/v1/cloudbox/alertLevel":"/alertLevel"
+  "/container/api/v1/cloudbox/alertLevel":"/alertLevel",
+  "/container/api/v1/cloudbox/options":"/options"
 }))
 
 server.post('/auth', function (req, res) {
@@ -308,21 +309,38 @@ server.post('/realtimeInfo', function (req, res) {
   res.json({
     "containerId": "111",
     "containerType": "标准云箱",
+    "currentStatus": "在运",
     "carrier": "中集智能",
     "position": {
       "lng": 118.78,
       "lat":32.04
     },
     "speed": 120,
-    "temperature": 39,
-    "humidity": 70,
-    "battery": 0.6,
+    "temperature": { value: 39, status: "正常"},
+    "humidity": { value: 70, status: "正常"},
+    "battery": { value: 0.6, status: "正常" },
     "boxStatus": {
       "num_of_collide": 24,
       "num_of_door_open": 54
     }
   });
 })
+
+server.post('/options', function (req, res) {
+  res.json({
+    "alertLevel": ["通知", "警告", "错误", "严重"],
+    "alertCode": ["option1", "option2", "option3"],
+    "alertType": ["option1", "option2", "option3"],
+    "containerType": ["option1", "option2", "option3"],
+    "reportType": ["option1", "option2", "option3"],
+    "currentStatus": ["在运", "到站"],
+    "location": ["上海", "option2", "option3"],
+    "carrier": ["option1", "option2", "option3"],
+    "factory": ["option1", "option2", "option3"],
+    "factoryLocation": ["option1", "option2", "option3"]
+  });
+})
+
 server.use(router)
 console.log('Listening at 4000')
 server.listen(4000)

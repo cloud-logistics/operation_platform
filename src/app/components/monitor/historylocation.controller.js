@@ -19,6 +19,12 @@
 
         var map = MapService.map_init("histotylocation", "terrain", 4);
 
+        vm.queryParams = {
+          containerId : $stateParams.containerId,
+          startTime : R.compose(R.toString, Date.parse)($stateParams.startTime),
+          endTime : R.compose(R.toString, Date.parse)($stateParams.endTime)
+        };
+
         // 鼠标绘图工具
         var overlay = undefined;
 
@@ -30,12 +36,7 @@
         // },5000, 500);
 
         function getHistorylocationInfo() {
-            var queryParams = {
-              containerId: "123",
-              startTime:"111",
-              endTime: "321"
-            }
-            ApiServer.getHistorylocationInfo(queryParams, function (response) {
+            ApiServer.getHistorylocationInfo(vm.queryParams, function (response) {
                 var bounds = new google.maps.LatLngBounds();
 
                 histories = response.data.containerhistory

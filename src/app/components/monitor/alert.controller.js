@@ -15,11 +15,22 @@
         vm.containerlists = [];
 
         vm.alerts = [];
-        vm.queryParams = {}
+        vm.queryParams = $stateParams
+        vm.options = {}
 
         getAlerts();
 
         vm.getAlerts = getAlerts
+
+        var requiredOptions = [
+                    "alertLevel",
+                    "alertCode",
+                    "alertType"
+                ]
+
+        ApiServer.getOptions(requiredOptions, function(options) {
+            vm.options = options
+        })
         
         function getAlerts () {
             console.log(vm.queryParams);

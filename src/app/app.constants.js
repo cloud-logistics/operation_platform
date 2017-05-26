@@ -38,6 +38,7 @@
                 basicInfo : "basicInfo",
                 boxStatus : "boxStatus",
                 realtimeInfo : "realtimeInfo",
+                options : "options",
                 user:'user',
                 message:'message'
             },
