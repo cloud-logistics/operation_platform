@@ -1,15 +1,17 @@
 <div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="basicManageController as vm">
     <div class="container-fluid">
+
         <div class="row">
+
             <div class="col-md-5">
                 <div class="manage-box">
                     <div class="manage-title clearfix">
                         <h4 class="pull-left">云箱基础信息管理</h4>
-                        <div class="pull-right inputBtn"><i>+</i>录入</div>
+                        <div class="pull-right inputBtn" ng-click='toggleModal()'><i>+</i>录入</div>
                     </div>
                     <div class="manage-list">
                         <ul>
-                            <li><span>修改</span>22937203474450</li>
+                            <li><span ng-click="toggleUpdate()">修改</span>22937203474450</li>
                             <li><span>修改</span>22937203474450</li>
                             <li><span>修改</span>22937203474450</li>
                             <li><span>修改</span>22937203474450</li>
@@ -122,7 +124,9 @@
                             <li><span>修改</span>陕西西安天谷八路</li>
                         </ul>
                     </div>
-                    <div class="alert-paging"><div auto-pagination pageination="vm.pageination"></div></div>
+                    <div class="alert-paging">
+                        <div auto-pagination pageination="vm.pageination"></div>
+                    </div>
                 </div>
             </div>
             <div class="col-md-7">
@@ -140,9 +144,203 @@
                             <li><span>修改</span><em>标准云箱</em><em>0X11</em><em>0X11</em><em>严重故障</em></li>
                         </ul>
                     </div>
-                    <div class="mal-paging"><div auto-pagination pageination="vm.pageination"></div></div>
+                    <div class="mal-paging">
+                        <div auto-pagination pageination="vm.pageination"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <modal-dialog show='modalInput' width='659px' height='40%'>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="bm-input-header">
+                    <span class="pull-left">录入云箱基础信息</span>
+                </div>
+            </div>
+            <div class="row bm-input m-b-md">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label form-control-static">湿度区间</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" placeholder="请输入">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label form-control-static">承运人</label>
+                        <div class="col-md-8">
+                            <select name="account" class="form-control">
+                                <option>标准云箱</option>
+                                <option>标准云箱</option>
+                                <option>标准云箱</option>
+                                <option>标准云箱</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row bm-input m-b-md">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label form-control-static">生产日期</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" placeholder="请输入">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label form-control-static">生产厂家</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" placeholder="请输入">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row bm-input m-b-md">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label form-control-static">生产地点</label>
+                        <div class="col-md-8">
+                            <select name="account" class="form-control">
+                                <option>请选择</option>
+                                <option>上海</option>
+                                <option>广州</option>
+                                <option>北京</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label form-control-static">电源信息</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" placeholder="请输入">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row bm-input m-b-md">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-6 control-label form-control-static">智能硬件信息</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="请输入">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="bm-input-bottom">
+                    <button class="pull-right bm-save">保存</button>
+                    <button class="pull-right bm-cancel">取消</button>
+                </div>
+            </div>
+        </div>
+    </modal-dialog>
+
+    <modal-dialog show='modalUpdate' width='659px' height='40%'>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="bm-update-header">
+                    <span class="pull-left">编辑云箱基础信息</span>
+                    <span class="pull-right">删除条目</span>
+                </div>
+            </div>
+            <div class="row bm-input m-b-md">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label form-control-static">湿度区间</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" placeholder="请输入">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label form-control-static">承运人</label>
+                        <div class="col-md-8">
+                            <select name="account" class="form-control">
+                                <option>标准云箱</option>
+                                <option>标准云箱</option>
+                                <option>标准云箱</option>
+                                <option>标准云箱</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row bm-input m-b-md">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label form-control-static">生产日期</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" placeholder="请输入">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label form-control-static">生产厂家</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" placeholder="请输入">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row bm-input m-b-md">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label form-control-static">生产地点</label>
+                        <div class="col-md-8">
+                            <select name="account" class="form-control">
+                                <option>请选择</option>
+                                <option>上海</option>
+                                <option>广州</option>
+                                <option>北京</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label form-control-static">电源信息</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" placeholder="请输入">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row bm-input m-b-md">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-6 control-label form-control-static">智能硬件信息</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="请输入">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="bm-input-bottom">
+                    <button class="pull-right bm-save">保存</button>
+                    <button class="pull-right bm-cancel">取消</button>
+                </div>
+            </div>
+        </div>
+    </modal-dialog>
 </div>
+
+
