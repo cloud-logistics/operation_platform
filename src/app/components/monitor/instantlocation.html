@@ -2,6 +2,25 @@
     <!-- main -->
     <div class="col">
         <div class="">
+            <div class="floating-panel">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-12 control-label form-control-static">实时位置</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label form-control-static">ID</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="请输入云箱ID" ng-model="vm.queryParams.containerId" >
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-sm btn-block btn-alert" ng-click="vm.getInstantlocationInfo()" >搜索位置</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="right-panel"></div>
             <div id="instantlocation" class="mapview"></div>
         </div>
     </div>

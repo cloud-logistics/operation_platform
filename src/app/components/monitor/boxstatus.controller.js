@@ -33,8 +33,15 @@
         })
 
         function getBoxStatus () {
-            console.log(vm.queryParams);
-            ApiServer.getBoxStatus(vm.queryParams, function (response) {
+            var transformations = {
+                alertCode: function(num) {
+                    return parseInt(num, 10)
+                }
+            };
+
+            var queryParams = R.evolve(transformations)(vm.queryParams)
+            console.log(queryParams);
+            ApiServer.getBoxStatus(queryParams, function (response) {
                 vm.containerlist = R.map(function(container){
                     var locationName = undefined;
 

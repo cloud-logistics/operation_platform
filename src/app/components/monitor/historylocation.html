@@ -2,6 +2,36 @@
     <!-- main -->
     <div class="col">
         <div class="">
+            <div class="floating-panel">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="col-md-12 control-label form-control-static">历史轨迹</label>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="form-group col-md-5">
+                        <label class="col-md-2 control-label form-control-static">ID</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" placeholder="请输入云箱ID" ng-model="vm.queryParams.containerId" >
+                        </div>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label class="col-md-2 control-label form-control-static">时间</label>
+                        <div class="col-md-10">
+                            <div class="col-md-6 track-line no-padding">
+                                <input date-time ng-model="vm.queryParams.startTime" class="form-control m-b" min-view="hours" format="YYYY-MM-DD HH:mm">
+                            </div>
+
+                            <div class="col-md-offset-1 col-md-5 no-padding">
+                                <input date-time ng-model="vm.queryParams.endTime" class="form-control m-b" min-view="hours" format="YYYY-MM-DD HH:mm">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <button type="submit" class="btn btn-sm btn-block btn-alert" ng-click="vm.getInstantlocationInfo()" >搜索轨迹</button>
+                    </div>
+                </div>
+            </div>
             <div id="histotylocation" class="mapview"></div>
         </div>
     </div>
