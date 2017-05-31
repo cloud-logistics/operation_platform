@@ -35,9 +35,9 @@
                                     <form class="form-inline">
                                         <div class="form-group">
                                             <label>GPS中断时间</label>
-                                                <select ng-model="vm.newSecurityConfig.intervalTime" name="account" class="form-control">
-                                                    <option ng-repeat="item in vm.options.intervalTime track by $index" >{{item}}</option>
-                                                </select>
+                                            <select ng-model="vm.newSecurityConfig.intervalTime" name="account" class="form-control">
+                                                <option ng-repeat="item in vm.options.intervalTime track by $index" >{{item}}</option>
+                                            </select>
                                         </div>
                                     </form>
                                 </div>
@@ -240,7 +240,7 @@
 
             <div class="row">
                 <div class="bm-input-bottom">
-                    <button class="pull-right bm-save">保存</button>
+                    <button class="pull-right bm-save"  ng-click="vm.newBasicInfoConfigPost()">保存</button>
                     <button class="pull-right bm-cancel">取消</button>
                 </div>
             </div>
