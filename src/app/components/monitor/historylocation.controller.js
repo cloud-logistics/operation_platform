@@ -19,16 +19,25 @@
 
         var map = MapService.map_init("histotylocation", "terrain", 4);
 
-        vm.queryParams = {
-          containerId : $stateParams.containerId,
-          startTime : R.compose(R.toString, Date.parse)($stateParams.startTime),
-          endTime : R.compose(R.toString, Date.parse)($stateParams.endTime)
-        };
+        console.log($stateParams);
+
+        vm.queryParams = R.compose(
+          R.when(
+            R.compose(R.equals(""), R.prop("startTime")),
+            R.omit(["startTime"])
+          ),
+          R.when(
+            R.compose(R.equals(""), R.prop("endTime")),
+            R.omit(["endTime"])
+          )
+        )($stateParams);
 
         // 鼠标绘图工具
         var overlay = undefined;
 
         var geocoder = new google.maps.Geocoder;
+
+        vm.getHistorylocationInfo = getHistorylocationInfo;
 
         getHistorylocationInfo();
         // var timer = $interval(function(){
@@ -36,7 +45,15 @@
         // },5000, 500);
 
         function getHistorylocationInfo() {
-            ApiServer.getHistorylocationInfo(vm.queryParams, function (response) {
+            var transformations = {
+                startTime: R.compose(R.toString, Date.parse),
+                endTime: R.compose(R.toString, Date.parse)
+            };
+            var queryParams = R.evolve(transformations)(vm.queryParams)
+
+            console.log(queryParams);
+
+            ApiServer.getHistorylocationInfo(queryParams, function (response) {
                 var bounds = new google.maps.LatLngBounds();
 
                 histories = response.data.containerhistory

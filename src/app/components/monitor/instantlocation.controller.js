@@ -26,6 +26,8 @@
 
         var geocoder = new google.maps.Geocoder;
 
+        vm.getInstantlocationInfo = getInstantlocationInfo
+
         getInstantlocationInfo();
         // var timer = $interval(function(){
         //     getInstantlocationInfo();
@@ -77,8 +79,14 @@
         function direction(startPointLatlng, endPointLatlng) {
           var directionsDisplay = new google.maps.DirectionsRenderer();
           var directionsService = new google.maps.DirectionsService();
+          var control = document.getElementById('floating-panel');
 
           directionsDisplay.setMap(map);
+          // directionsDisplay.setPanel(document.getElementById('right-panel'));
+
+          // control.style.display = 'block';
+          // map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
+
 
           var request = {
             origin: startPointLatlng,

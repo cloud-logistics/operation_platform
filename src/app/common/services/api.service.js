@@ -155,14 +155,14 @@
 
         function getHistorylocationInfo(params, successHandler,failedHandler) {
             NetworkService.post(constdata.api.containerhistory,
-                                null,
+                                params,
                                 successHandler,
                                 failedHandler);
         }
 
         function getInstantlocationInfo(params, successHandler,failedHandler) {
             NetworkService.post(constdata.api.containerInstantInfo,
-                                null,
+                                params,
                                 successHandler,
                                 failedHandler);
         }

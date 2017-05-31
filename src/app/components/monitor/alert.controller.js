@@ -33,8 +33,15 @@
         })
         
         function getAlerts () {
-            console.log(vm.queryParams);
-            ApiServer.getAlerts(vm.queryParams, function (response) {
+            var transformations = {
+                alertCode: function(num) {
+                    return parseInt(num, 10)
+                }
+            };
+            
+            var queryParams = R.evolve(transformations)(vm.queryParams)
+            console.log(queryParams);
+            ApiServer.getAlerts(queryParams, function (response) {
                 vm.alerts = response.data.alerts
                 console.log(vm.alerts);
             },function (err) {

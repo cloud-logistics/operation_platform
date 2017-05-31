@@ -329,7 +329,7 @@ server.post('/realtimeInfo', function (req, res) {
 server.post('/options', function (req, res) {
   res.json({
     "alertLevel": ["通知", "警告", "错误", "严重"],
-    "alertCode": ["option1", "option2", "option3"],
+    "alertCode": [10012, 20021, 30033],
     "alertType": ["option1", "option2", "option3"],
     "containerType": ["option1", "option2", "option3"],
     "reportType": ["option1", "option2", "option3"],
