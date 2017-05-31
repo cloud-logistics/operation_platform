@@ -33,6 +33,10 @@
             getBoxStatus: getBoxStatus,
             getRealtimeInfo: getRealtimeInfo,
             getOptions: getOptions,
+            newBasicInfoConfig: newBasicInfoConfig,
+            updateSecurityConfig: updateSecurityConfig,
+            newAlertConfig: newAlertConfig,
+            newIssueConfig: newIssueConfig,
             getBasicInfoManage: getBasicInfoManage,
 
             isAuthed: isAuthed,
@@ -198,6 +202,34 @@
 
         function getRealtimeInfo(params, successHandler,failedHandler) {
             NetworkService.post(constdata.api.realtimeInfo,
+                                params,
+                                successHandler,
+                                failedHandler);
+        }
+
+        function newBasicInfoConfig(params, successHandler,failedHandler) {
+            NetworkService.post(constdata.api.basicInfoConfig,
+                                params,
+                                successHandler,
+                                failedHandler);
+        }
+
+        function updateSecurityConfig(params, successHandler,failedHandler) {
+            NetworkService.post(constdata.api.securityConfig,
+                                params,
+                                successHandler,
+                                failedHandler);
+        }
+
+        function newAlertConfig(params, successHandler,failedHandler) {
+            NetworkService.post(constdata.api.alertConfig,
+                                params,
+                                successHandler,
+                                failedHandler);
+        }
+
+        function newIssueConfig(params, successHandler,failedHandler) {
+            NetworkService.post(constdata.api.issueConfig,
                                 params,
                                 successHandler,
                                 failedHandler);

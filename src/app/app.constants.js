@@ -36,7 +36,7 @@
                 containerReportHistory : "containerReportHistory",
                 basicInfoManage : "basicInfoManage",
                 basicInfoConfig : "basicInfoConfig",
-                // securityConfig : "securityConfig",
+                securityConfig : "securityConfig",
                 alertConfig : "alertConfig",
                 issueConfig : "issueConfig",
                 alerts : "alerts",

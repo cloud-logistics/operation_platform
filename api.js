@@ -22,7 +22,11 @@ server.use(jsonServer.rewriter({
   "/container/api/v1/cloudbox/satellites": "/satelites",
   "/container/api/v1/cloudbox/containers": "/containers",
   "/container/api/v1/cloudbox/alertLevel":"/alertLevel",
+  "/container/api/v1/cloudbox/basicInfoManage":"/basicInfoManage",
   "/container/api/v1/cloudbox/basicInfoConfig":"/basicInfoConfig",
+  "/container/api/v1/cloudbox/securityConfig":"/securityConfig",
+  "/container/api/v1/cloudbox/alertConfig":"/alertConfig",
+  "/container/api/v1/cloudbox/issueConfig":"/issueConfig",
   "/container/api/v1/cloudbox/issueConfig":"/issueConfig",
   "/container/api/v1/cloudbox/alertConfig":"/alertConfig",
   "/container/api/v1/cloudbox/options":"/options"
@@ -345,6 +349,12 @@ server.post('/options', function (req, res) {
     "hardwareInfo": ["option1", "option2", "option3"],
     "maintenanceLocation": ["option1", "option2", "option3"],
     "intervalTime": ["option1", "option2", "option3"]
+  });
+})
+
+server.post('/basicInfoConfig', function (req, res) {
+  res.json({
+    "code": "OK"
   });
 })
 

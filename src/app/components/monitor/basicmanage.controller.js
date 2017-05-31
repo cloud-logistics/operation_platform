@@ -33,6 +33,11 @@
             issueConfig: {}
         };
 
+        vm.newBasicInfoConfigPost = newBasicInfoConfigPost;
+        vm.updateSecurityConfigPost = updateSecurityConfigPost;
+        vm.newAlertConfigPost = newAlertConfigPost;
+        vm.newIssueConfigPost = newIssueConfigPost;
+
         var requiredOptions = [
                     "carrier",
                     "factory",
@@ -58,6 +63,39 @@
             ApiServer.getBasicInfoManage(function (response) {
                 vm.basicInfoManage = response.data
                 console.log(vm.basicInfoManage);
+            },function (err) {
+                console.log("Get ContainerOverview Info Failed", err);
+            });
+        }
+
+        function newBasicInfoConfigPost () {
+            console.log("new basicInfo params: ", vm.newBasicInfoConfig);
+            ApiServer.newBasicInfoConfig(vm.newBasicInfoConfig, function (response) {
+                console.log(response.data.code);
+            },function (err) {
+                console.log("Get ContainerOverview Info Failed", err);
+            });
+        }
+
+        function updateSecurityConfigPost () {
+            ApiServer.getAlerts(vm.updateSecurityConfig, function (response) {
+                console.log(response.data);
+            },function (err) {
+                console.log("Get ContainerOverview Info Failed", err);
+            });
+        }
+
+        function newAlertConfigPost () {
+            ApiServer.getAlerts(vm.newAlertConfig, function (response) {
+                console.log(response.data);
+            },function (err) {
+                console.log("Get ContainerOverview Info Failed", err);
+            });
+        }
+
+        function newIssueConfigPost () {
+            ApiServer.getAlerts(vm.newIssueConfig, function (response) {
+                console.log(response.data);
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);
             });
