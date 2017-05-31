@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('MyleaseController', MyleaseController);
 
     /** @ngInject */
-    function MyleaseController($stateParams, ApiServer, MapService, toastr, $state, $timeout, $interval) {
+    function MyleaseController($scope,$stateParams, ApiServer, MapService, toastr, $state, $timeout, $interval) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -32,6 +32,37 @@
                 console.log("Get Container Info Failed", err);
             });
         }
+
+        $scope.mineActive = true;
+        $scope.leaseActive = false;
+        $scope.refundActive = false;
+        $scope.leaseShow = false;
+        $scope.refundShow = false;
+
+        $scope.clickMine = function(){
+            $scope.mineActive = true;
+            $scope.leaseActive = false;
+            $scope.refundActive = false;
+            $scope.leaseShow = false;
+        };
+
+        $scope.clickLease = function(){
+            $scope.leaseActive = true;
+            $scope.mineActive = false;
+            $scope.refundActive = false;
+            $scope.leaseShow = true;
+            $scope.refundShow = false;
+        };
+
+        $scope.clickRefund = function(){
+            $scope.leaseActive = false;
+            $scope.mineActive = false;
+            $scope.refundActive = true;
+            $scope.leaseShow = false;
+            $scope.refundShow = true;
+        }
+
+
 
 
         getContainerInfo();
