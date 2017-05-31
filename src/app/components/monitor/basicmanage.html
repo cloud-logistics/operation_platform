@@ -11,11 +11,10 @@
                     </div>
                     <div class="manage-list">
                         <ul>
-                            <li><span ng-click="toggleUpdate()">修改</span>22937203474450</li>
-                            <li><span>修改</span>22937203474450</li>
-                            <li><span>修改</span>22937203474450</li>
-                            <li><span>修改</span>22937203474450</li>
-                            <li><span>修改</span>22937203474450</li>
+                            <li ng-repeat="item in vm.basicInfoManage.basicInfoConfig track by $index" >
+                                <span ng-click="toggleUpdate()">修改</span>
+                                {{item.containerId}}
+                            </li>
                         </ul>
                     </div>
                     <div class="basic-paging">
@@ -36,8 +35,9 @@
                                     <form class="form-inline">
                                         <div class="form-group">
                                             <label>GPS中断时间</label>
-                                            <input type="text" class="form-control" placeholder="yyyy-mm-dd"> -
-                                            <input type="text" class="form-control" placeholder="yyyy-mm-dd">
+                                                <select ng-model="vm.newSecurityConfig.intervalTime" name="account" class="form-control">
+                                                    <option ng-repeat="item in vm.options.intervalTime track by $index" >{{item}}</option>
+                                                </select>
                                         </div>
                                     </form>
                                 </div>
@@ -117,11 +117,10 @@
                     </div>
                     <div class="manage-list">
                         <ul>
-                            <li><span>修改</span>陕西西安天谷八路</li>
-                            <li><span>修改</span>陕西西安天谷八路</li>
-                            <li><span>修改</span>陕西西安天谷八路</li>
-                            <li><span>修改</span>陕西西安天谷八路</li>
-                            <li><span>修改</span>陕西西安天谷八路</li>
+                            <li ng-repeat="item in vm.basicInfoManage.alertConfig track by $index" >
+                                <span>修改</span>
+                                {{item.maintenanceLocation}}
+                            </li>
                         </ul>
                     </div>
                     <div class="alert-paging">
@@ -137,11 +136,13 @@
                     </div>
                     <div class="manage-list">
                         <ul>
-                            <li><span>修改</span><em>标准云箱</em><em>0X11</em><em>0X11</em><em>严重故障</em></li>
-                            <li><span>修改</span><em>标准云箱</em><em>0X11</em><em>0X11</em><em>严重故障</em></li>
-                            <li><span>修改</span><em>标准云箱</em><em>0X11</em><em>0X11</em><em>严重故障</em></li>
-                            <li><span>修改</span><em>标准云箱</em><em>0X11</em><em>0X11</em><em>严重故障</em></li>
-                            <li><span>修改</span><em>标准云箱</em><em>0X11</em><em>0X11</em><em>严重故障</em></li>
+                            <li ng-repeat="item in vm.basicInfoManage.issueConfig track by $index" >
+                                <span>修改</span>
+                                <em>{{item.containerType}}</em>
+                                <em>{{item.alertCode}}</em>
+                                <em>{{item.alertType}}</em>
+                                <em>{{item.alertLevel}}</em>
+                            </li>
                         </ul>
                     </div>
                     <div class="mal-paging">
@@ -161,9 +162,9 @@
             <div class="row bm-input m-b-md">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="col-md-4 control-label form-control-static">湿度区间</label>
+                        <label class="col-md-4 control-label form-control-static">云箱ID</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" placeholder="请输入">
+                            <input ng-model="vm.newBasicInfoConfig.containerId" type="text" class="form-control" placeholder="请输入">
                         </div>
                     </div>
                 </div>
@@ -171,11 +172,8 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label form-control-static">承运人</label>
                         <div class="col-md-8">
-                            <select name="account" class="form-control">
-                                <option>标准云箱</option>
-                                <option>标准云箱</option>
-                                <option>标准云箱</option>
-                                <option>标准云箱</option>
+                            <select ng-model="vm.newBasicInfoConfig.carrier" name="account" class="form-control">
+                                <option ng-repeat="item in vm.options.carrier track by $index" >{{item}}</option>
                             </select>
                         </div>
                     </div>
@@ -187,7 +185,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label form-control-static">生产日期</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" placeholder="请输入">
+                            <input date-time ng-model="vm.newBasicInfoConfig.manufactureTime" class="form-control m-b" min-view="hours" format="YYYY-MM-DD HH:mm">
                         </div>
                     </div>
                 </div>
@@ -195,7 +193,9 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label form-control-static">生产厂家</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" placeholder="请输入">
+                            <select  ng-model="vm.newBasicInfoConfig.factory" name="account" class="form-control">
+                                <option ng-repeat="item in vm.options.factory track by $index" >{{item}}</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -206,11 +206,8 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label form-control-static">生产地点</label>
                         <div class="col-md-8">
-                            <select name="account" class="form-control">
-                                <option>请选择</option>
-                                <option>上海</option>
-                                <option>广州</option>
-                                <option>北京</option>
+                            <select ng-model="vm.newBasicInfoConfig.factoryLocation" name="account" class="form-control">
+                                <option ng-repeat="item in vm.options.factoryLocation track by $index" >{{item}}</option>
                             </select>
                         </div>
                     </div>
@@ -219,7 +216,9 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label form-control-static">电源信息</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" placeholder="请输入">
+                            <select  ng-model="vm.newBasicInfoConfig.batteryInfo" name="account" class="form-control">
+                                <option ng-repeat="item in vm.options.batteryInfo track by $index" >{{item}}</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -231,7 +230,9 @@
                     <div class="form-group">
                         <label class="col-md-6 control-label form-control-static">智能硬件信息</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" placeholder="请输入">
+                            <select ng-model="vm.newBasicInfoConfig.hardwareInfo" name="account" class="form-control">
+                                <option ng-repeat="item in vm.options.hardwareInfo track by $index" >{{item}}</option>
+                            </select>
                         </div>
                     </div>
                 </div>

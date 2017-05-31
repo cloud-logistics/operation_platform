@@ -33,6 +33,7 @@
             getBoxStatus: getBoxStatus,
             getRealtimeInfo: getRealtimeInfo,
             getOptions: getOptions,
+            getBasicInfoManage: getBasicInfoManage,
 
             isAuthed: isAuthed,
             roleType: roleType,
@@ -198,6 +199,13 @@
         function getRealtimeInfo(params, successHandler,failedHandler) {
             NetworkService.post(constdata.api.realtimeInfo,
                                 params,
+                                successHandler,
+                                failedHandler);
+        }
+
+        function getBasicInfoManage(successHandler,failedHandler) {
+            NetworkService.get(constdata.api.basicInfoManage,
+                                null,
                                 successHandler,
                                 failedHandler);
         }
