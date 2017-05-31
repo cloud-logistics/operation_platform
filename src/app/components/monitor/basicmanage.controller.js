@@ -18,6 +18,46 @@
         $scope.toggleUpdate = function(){
             $scope.modalUpdate = !$scope.modalUpdate;
         }
+
+        vm.newBasicInfoConfig = {};
+        vm.newSecurityConfig = {};
+        vm.newAlertConfig = {};
+        vm.newIssueConfig = {};
+        vm.basicInfoManage = {
+            basicInfoConfig : {},
+            alertConfig: {},
+            issueConfig: {}
+        };
+
+        var requiredOptions = [
+                    "carrier",
+                    "factory",
+                    "factoryLocation",
+                    "batteryInfo",
+                    "hardwareInfo",
+                    "intervalTime",
+                    "maintenanceLocation",
+                    "containerType",
+                    "alertCode",
+                    "alertType",
+                    "alertLevel"
+                ];
+
+        ApiServer.getOptions(requiredOptions, function(options) {
+            vm.options = options
+            console.log(options);
+        })
+
+        getBasicInfoManage();
+
+        function getBasicInfoManage () {
+            ApiServer.getBasicInfoManage(function (response) {
+                vm.basicInfoManage = response.data
+                console.log(vm.basicInfoManage);
+            },function (err) {
+                console.log("Get ContainerOverview Info Failed", err);
+            });
+        }
     }
 
 

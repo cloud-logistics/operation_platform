@@ -22,6 +22,9 @@ server.use(jsonServer.rewriter({
   "/container/api/v1/cloudbox/satellites": "/satelites",
   "/container/api/v1/cloudbox/containers": "/containers",
   "/container/api/v1/cloudbox/alertLevel":"/alertLevel",
+  "/container/api/v1/cloudbox/basicInfoConfig":"/basicInfoConfig",
+  "/container/api/v1/cloudbox/issueConfig":"/issueConfig",
+  "/container/api/v1/cloudbox/alertConfig":"/alertConfig",
   "/container/api/v1/cloudbox/options":"/options"
 }))
 
@@ -337,9 +340,52 @@ server.post('/options', function (req, res) {
     "location": ["上海", "option2", "option3"],
     "carrier": ["option1", "option2", "option3"],
     "factory": ["option1", "option2", "option3"],
-    "factoryLocation": ["option1", "option2", "option3"]
+    "factoryLocation": ["option1", "option2", "option3"],
+    "batteryInfo": ["option1", "option2", "option3"],
+    "hardwareInfo": ["option1", "option2", "option3"],
+    "maintenanceLocation": ["option1", "option2", "option3"],
+    "intervalTime": ["option1", "option2", "option3"]
   });
 })
+
+// server.post('/basicInfoManage', function (req, res) {
+//   res.json({
+//     "basicInfoConfig": [
+//       {"containerId": "22937203474450"},
+//       {"containerId": "22937203474450"},
+//       {"containerId": "22937203474450"},
+//       {"containerId": "22937203474450"},
+//       {"containerId": "22937203474450"}
+//     ],
+//     "alertConfig": [
+//       {"maintenanceLocation" : "陕西西安天谷八路"},
+//       {"maintenanceLocation" : "陕西西安天谷八路"},
+//       {"maintenanceLocation" : "陕西西安天谷八路"},
+//       {"maintenanceLocation" : "陕西西安天谷八路"},
+//       {"maintenanceLocation" : "陕西西安天谷八路"}
+//     ],
+//     "issueConfig": [
+//       {
+//         "containerType": "标准云箱",
+//         "alertCode": "0x11",
+//         "alertType": "失联",
+//         "alertLevel": "严重故障"
+//       },
+//       {
+//         "containerType": "标准云箱",
+//         "alertCode": "0x11",
+//         "alertType": "失联",
+//         "alertLevel": "严重故障"
+//       },
+//       {
+//         "containerType": "标准云箱",
+//         "alertCode": "0x11",
+//         "alertType": "失联",
+//         "alertLevel": "严重故障"
+//       }
+//     ]
+//   });
+// })
 
 server.use(router)
 console.log('Listening at 4000')
