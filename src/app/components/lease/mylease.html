@@ -14,10 +14,27 @@
 
             <div class="row ds-map">
                 <div id="dashboard_map" class="embeded_mapview"></div>
-                <div class="mls-info-refund">
+                <div class="mls-info-refund" ng-show="refundShow">
+                    <ul>
+                        <li>
+                            <span>归还时间</span>
+                            <input type="text" placeholder="请输入...">
+                        </li>
+                        <li>
+                            <span>地点</span>
+                            <input type="text" placeholder="请输入...">
+                        </li>
+                        <li>
+                            <span>云箱ID</span>
+                            <input type="text" placeholder="请输入...">
+                        </li>
+                        <li>
+                            <button class="refund-btn">搜索</button>
+                        </li>
+                    </ul>
 
                 </div>
-                <div class="mls-info-ava" ng-show="false">
+                <div class="mls-info-ava" ng-show="leaseShow">
                     <div class="mls-ava-1">
                         <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
                         <span class="mls-ava-loc">中国-海南</span>
@@ -43,33 +60,34 @@
             </div>
             <div class="row mls-block">
                 <div class="col-md-4">
-                    <div class="mls-mine">
-                        <div class="mls-title">
+                    <div ng-class="{true:'mls-mine',false:'mls-mine-inactive'}[mineActive]" ng-click="clickMine()">
+                        <div ng-class="{true:'mls-title',false:'mls-title-mine'}[mineActive]">
                             <span>我的云箱</span>
                         </div>
-                        <div class="mls-num">
+                        <div ng-class="{true:'mls-num',false:'mls-num-mine'}[mineActive]">
                             <p><span>35</span>个</p>
                         </div>
 
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="mls-lease">
-                        <div class="mls-title">
+                    <div ng-class="{true:'mls-lease',false:'mls-lease-inactive'}[leaseActive]" ng-click="clickLease()">
+                        <div ng-class="{true:'mls-title',false:'mls-title-lease'}[leaseActive]">
                             <span>可租赁云箱</span>
                         </div>
-                        <div class="mls-num">
+                        <div ng-class="{true:'mls-num',false:'mls-num-lease'}[leaseActive]">
                             <p><span>21</span>个</p>
                         </div>
 
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="mls-refund">
-                        <div class="mls-title">
+                    <div ng-class="{true:'mls-refund',false:'mls-refund-inactive'}[refundActive]"
+                         ng-click="clickRefund()">
+                        <div ng-class="{true:'mls-title',false:'mls-title-refund'}[refundActive]">
                             <span>需退还云箱</span>
                         </div>
-                        <div class="mls-num">
+                        <div ng-class="{true:'mls-num',false:'mls-num-refund'}[refundActive]">
                             <p><span>14</span>个</p>
                         </div>
                     </div>
