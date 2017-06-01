@@ -17,7 +17,7 @@
         $scope.modalUpdate = false;
         $scope.toggleUpdate = function(){
             $scope.modalUpdate = !$scope.modalUpdate;
-        }
+        };
         $scope.alertInput = false;
         $scope.toggleAlertInput = function() {
             $scope.alertInput = !$scope.alertInput;
