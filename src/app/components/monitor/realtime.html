@@ -1,4 +1,3 @@
-
 <div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="RealtimeController as vm"
      ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
     <!-- main -->
@@ -12,7 +11,7 @@
         <!--</div>-->
         <!--</div>-->
 
-        <div id="content" style="height: 100vh;">
+        <div id="content">
             <div class="wrapper-md">
                 <div class="rt-head">
                     <div class="rt-head-left">
@@ -20,8 +19,9 @@
                     </div>
                     <div class="rt-head-right">
                         <span class="rt-id">ID</span>
-                        <input ng-model="vm.containerId" type="text" class="form-control rt-search" placeholder="please input...">
-                        <button type="submit" class="rt-btn" ng-click="vm.getRealtimeInfo()" >搜索报文</button>
+                        <input ng-model="vm.containerId" type="text" class="form-control rt-search"
+                               placeholder="please input...">
+                        <button type="submit" class="rt-btn" ng-click="vm.getRealtimeInfo()">搜索报文</button>
                     </div>
                 </div>
 
@@ -43,7 +43,8 @@
                                 <p><span>云箱型号</span>{{vm.realtimeInfo.containerType}}</p>
                                 <p><span>承运方</span>{{vm.realtimeInfo.carrier}}</p>
                                 <p><span>当前所在地</span>{{vm.realtimeInfo.locationName}}</p>
-                                <p><span>当前位置</span>经度: {{vm.realtimeInfo.position.lat}} 纬度: {{vm.realtimeInfo.position.lng}}</p>
+                                <p><span>当前位置</span>经度: {{vm.realtimeInfo.position.lat}} 纬度:
+                                    {{vm.realtimeInfo.position.lng}}</p>
                             </div>
                         </div>
                     </div>
