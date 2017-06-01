@@ -150,6 +150,12 @@
                 templateUrl: 'app/components/monitor/basicmanage.html'
             })
 
+            //云箱信息查询
+            .state('app.boxdetail',{
+                url: 'boxdetail',
+                templateUrl: 'app/components/monitor/boxDetail.html'
+            })
+
             .state('app.satellite',{
                 url: 'satellite',
                 templateUrl: 'app/components/satellite/satellite.html'
