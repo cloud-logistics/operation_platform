@@ -36,7 +36,7 @@
                                         <div class="form-group">
                                             <label>GPS中断时间</label>
                                             <select ng-model="vm.newSecurityConfig.intervalTime" name="account" class="form-control">
-                                                <option ng-repeat="item in vm.options.intervalTime track by $index" >{{item}}</option>
+                                                <option ng-repeat="item in vm.options.intervalTime track by $index" >{{item.value}}</option>
                                             </select>
                                         </div>
                                     </form>
@@ -47,8 +47,8 @@
                                             <form class="form-inline">
                                                 <div class="form-group">
                                                     <label>温度区间</label>
-                                                    <input type="text" class="form-control" placeholder="请输入..."> -
-                                                    <input type="text" class="form-control" placeholder="请输入...">
+                                                    <input ng-model="vm.newSecurityConfig.temperature.min" type="text" class="form-control" placeholder="请输入..."> -
+                                                    <input ng-model="vm.newSecurityConfig.temperature.max" type="text" class="form-control" placeholder="请输入...">
                                                 </div>
                                             </form>
                                         </div>
@@ -56,8 +56,8 @@
                                             <form class="form-inline">
                                                 <div class="form-group">
                                                     <label>湿度区间</label>
-                                                    <input type="text" class="form-control" placeholder="请输入..."> -
-                                                    <input type="text" class="form-control" placeholder="请输入...">
+                                                    <input ng-model="vm.newSecurityConfig.humidity.min" type="text" class="form-control" placeholder="请输入..."> -
+                                                    <input ng-model="vm.newSecurityConfig.humidity.max" type="text" class="form-control" placeholder="请输入...">
                                                 </div>
                                             </form>
                                         </div>
@@ -69,8 +69,8 @@
                                             <form class="form-inline">
                                                 <div class="form-group">
                                                     <label>碰撞次数</label>
-                                                    <input type="text" class="form-control" placeholder="请输入..."> -
-                                                    <input type="text" class="form-control" placeholder="请输入...">
+                                                    <input ng-model="vm.newSecurityConfig.collision.min" type="text" class="form-control" placeholder="请输入..."> -
+                                                    <input ng-model="vm.newSecurityConfig.collision.max" type="text" class="form-control" placeholder="请输入...">
                                                 </div>
                                             </form>
                                         </div>
@@ -78,8 +78,8 @@
                                             <form class="form-inline">
                                                 <div class="form-group">
                                                     <label>开关次数</label>
-                                                    <input type="text" class="form-control" placeholder="请输入..."> -
-                                                    <input type="text" class="form-control" placeholder="请输入...">
+                                                    <input ng-model="vm.newSecurityConfig.operation.min" type="text" class="form-control" placeholder="请输入..."> -
+                                                    <input ng-model="vm.newSecurityConfig.operation.max" type="text" class="form-control" placeholder="请输入...">
                                                 </div>
                                             </form>
                                         </div>
@@ -91,15 +91,15 @@
                                             <form class="form-inline">
                                                 <div class="form-group">
                                                     <label>电池余量</label>
-                                                    <input type="text" class="form-control" placeholder="请输入..."> -
-                                                    <input type="text" class="form-control" placeholder="请输入...">
+                                                    <input ng-model="vm.newSecurityConfig.batteryThresholdLow" type="text" class="form-control" placeholder="请输入..."> -
+                                                    <input ng-model="vm.newSecurityConfig.batteryThresholdHigh" type="text" class="form-control" placeholder="请输入...">
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="manage-item">
-                                    <button class="update-btn">更新设置</button>
+                                    <button class="update-btn" ng-click="vm.updateNormalContainerSecurityConfigPost()" >更新设置</button>
                                 </div>
                             </uib-tab>
                             <uib-tab index="1" heading="集装器云箱">Short Labeled Justified content</uib-tab>
@@ -173,7 +173,7 @@
                         <label class="col-md-4 control-label form-control-static">承运人</label>
                         <div class="col-md-8">
                             <select ng-model="vm.newBasicInfoConfig.carrier" name="account" class="form-control">
-                                <option ng-repeat="item in vm.options.carrier track by $index" >{{item}}</option>
+                                <option ng-repeat="item in vm.options.carrier track by $index" >{{item.value}}</option>
                             </select>
                         </div>
                     </div>
@@ -194,7 +194,7 @@
                         <label class="col-md-4 control-label form-control-static">生产厂家</label>
                         <div class="col-md-8">
                             <select  ng-model="vm.newBasicInfoConfig.factory" name="account" class="form-control">
-                                <option ng-repeat="item in vm.options.factory track by $index" >{{item}}</option>
+                                <option ng-repeat="item in vm.options.factory track by $index" >{{item.value}}</option>
                             </select>
                         </div>
                     </div>
@@ -207,7 +207,7 @@
                         <label class="col-md-4 control-label form-control-static">生产地点</label>
                         <div class="col-md-8">
                             <select ng-model="vm.newBasicInfoConfig.factoryLocation" name="account" class="form-control">
-                                <option ng-repeat="item in vm.options.factoryLocation track by $index" >{{item}}</option>
+                                <option ng-repeat="item in vm.options.factoryLocation track by $index" >{{item.value}}</option>
                             </select>
                         </div>
                     </div>
@@ -217,7 +217,7 @@
                         <label class="col-md-4 control-label form-control-static">电源信息</label>
                         <div class="col-md-8">
                             <select  ng-model="vm.newBasicInfoConfig.batteryInfo" name="account" class="form-control">
-                                <option ng-repeat="item in vm.options.batteryInfo track by $index" >{{item}}</option>
+                                <option ng-repeat="item in vm.options.batteryInfo track by $index" >{{item.value}}</option>
                             </select>
                         </div>
                     </div>
@@ -231,7 +231,7 @@
                         <label class="col-md-6 control-label form-control-static">智能硬件信息</label>
                         <div class="col-md-6">
                             <select ng-model="vm.newBasicInfoConfig.hardwareInfo" name="account" class="form-control">
-                                <option ng-repeat="item in vm.options.hardwareInfo track by $index" >{{item}}</option>
+                                <option ng-repeat="item in vm.options.hardwareInfo track by $index" >{{item.value}}</option>
                             </select>
                         </div>
                     </div>

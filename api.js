@@ -327,32 +327,232 @@ server.post('/realtimeInfo', function (req, res) {
     "humidity": { value: 70, status: "正常"},
     "battery": { value: 0.6, status: "正常" },
     "boxStatus": {
-      "num_of_collide": 24,
-      "num_of_door_open": 54
+      "num_of_collide": { value: 39, status: "正常"},
+      "num_of_door_open": { value: 39, status: "正常"}
     }
   });
 })
 
 server.post('/options', function (req, res) {
   res.json({
-    "alertLevel": ["通知", "警告", "错误", "严重"],
-    "alertCode": [10012, 20021, 30033],
-    "alertType": ["option1", "option2", "option3"],
-    "containerType": ["option1", "option2", "option3"],
-    "reportType": ["option1", "option2", "option3"],
-    "currentStatus": ["在运", "到站"],
-    "location": ["上海", "option2", "option3"],
-    "carrier": ["option1", "option2", "option3"],
-    "factory": ["option1", "option2", "option3"],
-    "factoryLocation": ["option1", "option2", "option3"],
-    "batteryInfo": ["option1", "option2", "option3"],
-    "hardwareInfo": ["option1", "option2", "option3"],
-    "maintenanceLocation": ["option1", "option2", "option3"],
-    "intervalTime": ["option1", "option2", "option3"]
+    "alertLevel": [
+      {
+        "value":"option1",
+        "id": 1
+      },
+      {
+        "value":"option2",
+        "id": 2
+      },
+      {
+        "value":"option3",
+        "id": 3
+      }
+    ],
+    "alertCode": [
+      {
+        "value":"option1",
+        "id": 1
+      },
+      {
+        "value":"option2",
+        "id": 2
+      },
+      {
+        "value":"option3",
+        "id": 3
+      }
+    ],
+    "alertType": [
+      {
+        "value":"option1",
+        "id": 1
+      },
+      {
+        "value":"option2",
+        "id": 2
+      },
+      {
+        "value":"option3",
+        "id": 3
+      }
+    ],
+    "containerType": [
+      {
+        "value":"option1",
+        "id": 1
+      },
+      {
+        "value":"option2",
+        "id": 2
+      },
+      {
+        "value":"option3",
+        "id": 3
+      }
+    ],
+    "reportType": [
+      {
+        "value":"option1",
+        "id": 1
+      },
+      {
+        "value":"option2",
+        "id": 2
+      },
+      {
+        "value":"option3",
+        "id": 3
+      }
+    ],
+    "currentStatus": [
+      {
+        "value":"option1",
+        "id": 1
+      },
+      {
+        "value":"option2",
+        "id": 2
+      },
+      {
+        "value":"option3",
+        "id": 3
+      }
+    ],
+    "location": [
+      {
+        "value":"option1",
+        "id": 1
+      },
+      {
+        "value":"option2",
+        "id": 2
+      },
+      {
+        "value":"option3",
+        "id": 3
+      }
+    ],
+    "carrier": [
+      {
+        "value":"option1",
+        "id": 1
+      },
+      {
+        "value":"option2",
+        "id": 2
+      },
+      {
+        "value":"option3",
+        "id": 3
+      }
+    ],
+    "factory": [
+      {
+        "value":"option1",
+        "id": 1
+      },
+      {
+        "value":"option2",
+        "id": 2
+      },
+      {
+        "value":"option3",
+        "id": 3
+      }
+    ],
+    "factoryLocation": [
+      {
+        "value":"option1",
+        "id": 1
+      },
+      {
+        "value":"option2",
+        "id": 2
+      },
+      {
+        "value":"option3",
+        "id": 3
+      }
+    ],
+    "batteryInfo": [
+      {
+        "value":"option1",
+        "id": 1
+      },
+      {
+        "value":"option2",
+        "id": 2
+      },
+      {
+        "value":"option3",
+        "id": 3
+      }
+    ],
+    "hardwareInfo": [
+      {
+        "value":"option1",
+        "id": 1
+      },
+      {
+        "value":"option2",
+        "id": 2
+      },
+      {
+        "value":"option3",
+        "id": 3
+      }
+    ],
+    "maintenanceLocation": [
+      {
+        "value":"option1",
+        "id": 1
+      },
+      {
+        "value":"option2",
+        "id": 2
+      },
+      {
+        "value":"option3",
+        "id": 3
+      }
+    ],
+    "intervalTime": [
+      {
+        "value":"option1",
+        "id": 1
+      },
+      {
+        "value":"option2",
+        "id": 2
+      },
+      {
+        "value":"option3",
+        "id": 3
+      }
+    ]
   });
 })
 
 server.post('/basicInfoConfig', function (req, res) {
+  res.json({
+    "code": "OK"
+  });
+})
+
+server.post('/securityConfig', function (req, res) {
+  res.json({
+    "code": "OK"
+  });
+})
+
+server.post('/alertConfig', function (req, res) {
+  res.json({
+    "code": "OK"
+  });
+})
+
+server.post('/issueConfig', function (req, res) {
   res.json({
     "code": "OK"
   });

@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('MonitorController', MonitorController);
 
     /** @ngInject */
-    function MonitorController(constdata, NetworkService, $stateParams, ApiServer, toastr, $state, $timeout, $interval,$scope) {
+    function MonitorController(constdata, NetworkService, $stateParams, ApiServer, toastr, $state, $timeout, $interval,$scope, optionsTransFunc) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -39,16 +39,6 @@
             vm.options = options
             console.log(options);
         })
-
-        NetworkService.get(constdata.api.overview.alertLevel, {},
-            function (reponse) {
-                $scope.alertlevel = reponse.data;
-            },
-            function (err) {
-                console.log("the error is " + err);
-            });
-
-
 
     }
 

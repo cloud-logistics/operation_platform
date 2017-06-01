@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('ContainerOverviewController', ContainerOverviewController);
 
     /** @ngInject */
-    function ContainerOverviewController($stateParams,ApiServer,MapService,toastr,$state,$timeout,$interval) {
+    function ContainerOverviewController($stateParams,ApiServer,MapService,toastr,$state,$timeout,$interval,$scope) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -26,10 +26,13 @@
 
 
         getContainerOverviewInfo();
-        // var timer = $interval(function(){
-        //     getContainerOverviewInfo();
-        // },5000, 500);
+        var timer = $interval(function(){
+            getContainerOverviewInfo();
+        },5000, 500);
 
+        $scope.$on("$destroy", function(){
+            $interval.cancel(timer);
+        });
 
         function drawingManagerInit (map) {
             var styleOptions = {

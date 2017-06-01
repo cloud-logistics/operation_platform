@@ -32,6 +32,13 @@
         vm.speedStatus = ""
 
         getRealtimeInfo()
+        var timer = $interval(function(){
+            getRealtimeInfo();
+        },5000, 500);
+
+        $scope.$on("$destroy", function(){
+            $interval.cancel(timer);
+        });
 
         function getRealtimeInfo () {
             var queryParams = {
