@@ -79,7 +79,7 @@
 
         </li>
         <li>
-            <a href class="auto" ui-sref="app.basicmanage">
+            <a href class="auto">
                   <span class="pull-right text-muted">
                     <i class="fa fa-fw fa-angle-right text"></i>
                     <i class="fa fa-fw fa-angle-down text-active"></i>
@@ -88,6 +88,29 @@
                 <img src="assets/images/icon_basic.svg" width="20px" height="20px" style="margin-right: 10px"/>
                 <span class="font-bold">基础信息管理</span>
             </a>
+            <ul class="nav nav-sub dk">
+                <li ui-sref-active="active">
+                    <a ui-sref="app.boxbasic">
+                        <span>云箱基础信息管理</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="app.boxparam">
+                        <span>云箱安全参数设置</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="app.boxalert">
+                        <span>报警处理设置</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="app.boxmalfun">
+                        <span>故障库设置</span>
+                    </a>
+                </li>
+
+            </ul>
         </li>
         <!--<li class="line dk"></li>-->
         <!--<li class="hidden-folded padder m-t m-b-sm text-muted text-xs">

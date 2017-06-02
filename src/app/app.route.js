@@ -156,6 +156,30 @@
                 templateUrl: 'app/components/monitor/boxDetail.html'
             })
 
+            //云箱参数设置
+            .state('app.boxparam',{
+                url: 'boxparam',
+                templateUrl: 'app/components/basic/boxparam.html'
+            })
+
+            //云箱基础信息管理
+            .state('app.boxbasic',{
+                url: 'boxbasic',
+                templateUrl: 'app/components/basic/boxbasic.html'
+            })
+
+            //云箱报警处理设置
+            .state('app.boxalert',{
+                url: 'boxalert',
+                templateUrl: 'app/components/basic/boxalert.html'
+            })
+
+            //云箱故障库设置
+            .state('app.boxmalfun',{
+                url: 'boxmalfun',
+                templateUrl: 'app/components/basic/boxmalfun.html'
+            })
+
             .state('app.satellite',{
                 url: 'satellite',
                 templateUrl: 'app/components/satellite/satellite.html'

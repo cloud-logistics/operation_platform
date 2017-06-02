@@ -1,0 +1,161 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="BoxBasicController as vm"
+     ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
+    <!-- main -->
+    <div class="col">
+        <!-- main header -->
+        <!--<div class="bg-light lter b-b wrapper-xs">-->
+        <!--<div class="row">-->
+        <!--<div class="col-md-6 col-sm-6 col-xs-12">-->
+        <!--<h1 class="font-thin h3 text-black m-l m-t-sm">{{vm.title}}</h1>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <div id="content" style="height: 100vh;">
+            <div class="wrapper-md">
+                <div class="row" style="background-color: #fff">
+                    <div class="bb-title"><span>录入云箱基础信息</span></div>
+                    <div class="bb-content">
+                        <div class="row m-b">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label form-control-static">ID</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" placeholder="请输入云箱ID">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label form-control-static">云箱型号</label>
+                                    <div class="col-md-8">
+                                        <select name="account" class="form-control">
+                                            <option>标准云箱</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label form-control-static">出厂日期</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" placeholder="请输入出厂日期">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- line2 -->
+                        <div class="row m-b">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label form-control-static">生产厂家</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" placeholder="请输入出厂日期">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label form-control-static">生产场地</label>
+                                    <div class="col-md-8">
+                                        <select name="account" class="form-control">
+                                            <option>中国-上海</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label form-control-static">电源信息</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" placeholder="请输入....">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- line3 -->
+                        <div class="row m-b">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label form-control-static">智能硬件信息</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" placeholder="请输入....">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-offset-4 col-md-4">
+                                <div class="pull-right bb-btn">
+                                    <span>取消</span>
+                                    <span>保存</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row bb-table" style="background-color: #fff;margin-top: 30px">
+                    <table st-table="vm.items" st-safe-src="vm.items" class="table table-striped table-hover m-t">
+                        <thead>
+                        <tr>
+                            <!--<th ng-repeat="title in vm.titles">-->
+                            <!--{{title}}-->
+                            <!--</th>-->
+                            <th>云箱ID</th>
+                            <th>云箱型号</th>
+                            <th>生产地</th>
+                            <th>生产厂家</th>
+                            <th>生产日期</th>
+                            <th>电源信息</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr >
+                            <td style="vertical-align: middle;">229378928811</td>
+                            <td style="vertical-align: middle;">标准云箱</td>
+                            <td style="vertical-align: middle;">中国-上海</td>
+                            <td style="vertical-align: middle;">中集集团</td>
+                            <td style="vertical-align: middle;">2017-05-31</td>
+                            <td style="vertical-align: middle;">xx83740y3</td>
+                            <td style="vertical-align: middle;">
+                                <span class="bb-edit-btn" ng-click="basicUpdate()">编辑</span>
+                                <span class="bb-del-btn">删除</span>
+                            </td>
+
+                        </tr>
+                        <tr >
+                            <td style="vertical-align: middle;">229378928811</td>
+                            <td style="vertical-align: middle;">标准云箱</td>
+                            <td style="vertical-align: middle;">中国-上海</td>
+                            <td style="vertical-align: middle;">中集集团</td>
+                            <td style="vertical-align: middle;">2017-05-31</td>
+                            <td style="vertical-align: middle;">xx83740y3</td>
+                            <td style="vertical-align: middle;">
+                                <span class="bb-edit-btn" ng-click="basicUpdate()">编辑</span>
+                                <span class="bb-del-btn">删除</span>
+                            </td>
+
+                        </tr>
+                        <tr >
+                            <td style="vertical-align: middle;">229378928811</td>
+                            <td style="vertical-align: middle;">标准云箱</td>
+                            <td style="vertical-align: middle;">中国-上海</td>
+                            <td style="vertical-align: middle;">中集集团</td>
+                            <td style="vertical-align: middle;">2017-05-31</td>
+                            <td style="vertical-align: middle;">xx83740y3</td>
+                            <td style="vertical-align: middle;">
+                                <span class="bb-edit-btn" ng-click="basicUpdate()">编辑</span>
+                                <span class="bb-del-btn">删除</span>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div auto-pagination pageination="vm.pageination"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
