@@ -109,6 +109,7 @@
                 factoryLocation : R.compose(R.prop("value"),R.head)(vm.options.factoryLocation),
                 batteryInfo : R.compose(R.prop("value"),R.head)(vm.options.batteryInfo),
                 hardwareInfo : R.compose(R.prop("value"),R.head)(vm.options.hardwareInfo),
+                manufactureTime: moment(new Date())
             };
             vm.newSecurityConfig = {
                 intervalTime : R.compose(R.prop("value"),R.head)(vm.options.intervalTime)

@@ -157,7 +157,7 @@
             <div class="row">
                 <div class="bm-update-header">
                     <span class="pull-left">{{vm.options.title}}</span>
-                    <span ng-class="{true: 'pull-right', false:'pull-right hide'}[vm.options.is_insert]">删除条目</span>
+                    <span ng-class="{true: 'pull-right hide', false:'pull-right'}[vm.options.is_insert]">删除条目</span>
                 </div>
             </div>
             <div class="row bm-input m-b-md">
@@ -186,12 +186,11 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label form-control-static">生产日期</label>
                         <div class="col-md-8">
-                            <input ng-model="vm.newBasicInfoConfig.manufactureTime" 
+                            <!--<input ng-model="vm.newBasicInfoConfig.manufactureTime" 
                                     class="form-control m-b" 
-                                    min-view="hours"
-                                    placeholder="Select date"
                                     moment-picker
-                                    format="YYYY-MM-DD">
+                                    format="YYYY-MM-DD">-->
+                            <input date-time ng-model="vm.newBasicInfoConfig.manufactureTime" class="form-control m-b" min-view="hours" format="YYYY-MM-DD HH:mm">
                         </div>
                     </div>
                 </div>
