@@ -26,9 +26,7 @@
         vm.containerlists = [];
         vm.getRealtimeInfo = getRealtimeInfo
         vm.containerId = $stateParams.containerId
-        vm.realtimeInfo = {
-            locationName: "未找到"
-        }
+        vm.realtimeInfo = {}
         vm.speedStatus = ""
 
         getRealtimeInfo()
@@ -59,12 +57,18 @@
                 MapService.geoCodePosition(vm.realtimeInfo.position)
                 .then(function(results){
                     if(!R.isNil(results)){
-                        locationName = R.head(results).formatted_address
+                        locationName = R.compose(
+                            R.head,
+                            R.split(" "),
+                            R.prop("formatted_address"),
+                            R.head
+                        )(results)
                     } else {
                         locationName = "未找到地名"
                     }
 
-                    // vm.realtimeInfo.locationName = locationName
+                    vm.realtimeInfo.locationName = locationName
+                    console.log(locationName);
                 })
                 .catch(function(status){
                     alert(status)

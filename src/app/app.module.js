@@ -30,6 +30,7 @@
             'base64',
             'w5c.validator',
             'datePicker',
+            'moment-picker'
     ]);
 
 })();

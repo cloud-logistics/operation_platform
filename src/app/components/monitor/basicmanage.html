@@ -186,7 +186,12 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label form-control-static">生产日期</label>
                         <div class="col-md-8">
-                            <input date-time ng-model="vm.newBasicInfoConfig.manufactureTime" class="form-control m-b" min-view="hours" format="YYYY-MM-DD HH:mm">
+                            <input ng-model="vm.newBasicInfoConfig.manufactureTime" 
+                                    class="form-control m-b" 
+                                    min-view="hours"
+                                    placeholder="Select date"
+                                    moment-picker
+                                    format="YYYY-MM-DD">
                         </div>
                     </div>
                 </div>
