@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('LeaseController', LeaseController);
 
     /** @ngInject */
-    function LeaseController($stateParams, ApiServer, MapService, toastr, $state, $timeout, $interval) {
+    function LeaseController($stateParams, ApiServer, MapService, toastr, $state, $timeout, $interval, $scope) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -35,10 +35,13 @@
 
 
         getContainerInfo();
-        // var timer = $interval(function(){
-        //     getContainerInfo();
-        // },5000, 500);
+        var timer = $interval(function(){
+            getContainerInfo();
+        },5000, 500);
 
+        $scope.$on("$destroy", function(){
+            $interval.cancel(timer);
+        });
     }
 
 })();

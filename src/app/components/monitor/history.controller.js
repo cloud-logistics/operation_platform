@@ -43,12 +43,14 @@
 
             vm.queryParams = {
                 containerType : R.compose(R.prop("value"),R.head)(vm.options.containerType),
-                reportType : R.compose(R.prop("value"),R.head)(vm.options.reportType)
+                reportType : R.compose(R.prop("value"),R.head)(vm.options.reportType),
+                startTime: moment(new Date()),
+                endTime: moment(new Date())
             }
         })
 
         vm.getContainerReportHistory = getContainerReportHistory
-        
+
         function getContainerReportHistory () {
             var queryParams = R.evolve(transformations)(vm.queryParams)
 

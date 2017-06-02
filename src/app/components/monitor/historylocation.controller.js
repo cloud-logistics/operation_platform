@@ -21,16 +21,10 @@
 
         console.log($stateParams);
 
-        vm.queryParams = R.compose(
-          R.when(
-            R.compose(R.equals(""), R.prop("startTime")),
-            R.omit(["startTime"])
-          ),
-          R.when(
-            R.compose(R.equals(""), R.prop("endTime")),
-            R.omit(["endTime"])
-          )
-        )($stateParams);
+        vm.queryParams = {
+            startTime: moment(new Date()),
+            endTime: moment(new Date())
+        };
 
         // 鼠标绘图工具
         var overlay = undefined;

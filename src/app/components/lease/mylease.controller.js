@@ -66,10 +66,13 @@
 
 
         getContainerInfo();
-        // var timer = $interval(function(){
-        //     getContainerInfo();
-        // },5000, 500);
+        var timer = $interval(function(){
+            getContainerInfo();
+        },5000, 500);
 
+        $scope.$on("$destroy", function(){
+            $interval.cancel(timer);
+        });
     }
 
 })();

@@ -81,7 +81,7 @@
                         <tbody>
                             <tr ng-repeat="item in vm.alerts track by $index">
                                 <td style="vertical-align: middle;">{{item.containerId}}</td>
-                                <td style="vertical-align: middle;">{{item.alertTime}}</td>
+                                <td style="vertical-align: middle;">{{item.alertTime | date:"yyyy-MM-dd"}}</td>
                                 <td style="vertical-align: middle;">{{item.alertType}}</td>
                                 <td style="vertical-align: middle;">{{item.carrier}}</td>
                                 <td><a href="#" class="btn-table-detail">查看详情</a></td>

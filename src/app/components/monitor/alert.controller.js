@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('AlertController', AlertController);
 
     /** @ngInject */
-    function AlertController(constdata, NetworkService, $stateParams, ApiServer, toastr, $state, $timeout, $interval,$scope, optionsTransFunc) {
+    function AlertController(constdata, NetworkService, MapService, $stateParams, ApiServer, toastr, $state, $timeout, $interval,$scope, optionsTransFunc) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -57,7 +57,28 @@
             var queryParams = R.evolve(transformations)(vm.queryParams)
             console.log(queryParams);
             ApiServer.getAlerts(queryParams, function (response) {
-                vm.alerts = response.data.alerts
+                vm.alerts = R.map(function(alert){
+                    var locationName = undefined
+
+                    MapService.geoCodePosition(alert.position)
+                    .then(function(results){
+                        if(!R.isNil(results)){
+                            locationName = R.compose(
+                                R.head,
+                                R.split(" "),
+                                R.prop("formatted_address"),
+                                R.head
+                            )(results)
+                        }else{
+                            locationName = "未找到地名"
+                        }
+
+                        alert.locationName = locationName
+                    })
+
+                    return alert
+                })(response.data.alerts)
+
                 console.log(vm.alerts);
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);

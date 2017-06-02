@@ -49,7 +49,9 @@
                 containerType : R.compose(R.prop("value"),R.head)(vm.options.containerType),
                 carrier : R.compose(R.prop("value"),R.head)(vm.options.carrier),
                 factory : R.compose(R.prop("value"),R.head)(vm.options.factory),
-                factoryLocation : R.compose(R.prop("value"),R.head)(vm.options.factoryLocation)
+                factoryLocation : R.compose(R.prop("value"),R.head)(vm.options.factoryLocation),
+                startTime: moment(new Date()),
+                endTime: moment(new Date())
             }
 
             getBasicInfo();
