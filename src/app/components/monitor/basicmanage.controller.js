@@ -48,6 +48,8 @@
 
         vm.saveBasicInfoConfig = saveBasicInfoConfig;
         vm.cancelBasicInfoConfig = cancelBasicInfoConfig;
+        vm.saveAlertInfoConfig = saveAlertInfoConfig;
+        vm.cancelAlertInfoConfig = cancelAlertInfoConfig;
         vm.updateNormalContainerSecurityConfigPost = updateNormalContainerSecurityConfigPost;
         vm.updateUldSecurityConfigPost = updateUldSecurityConfigPost;
         vm.newAlertConfigPost = newAlertConfigPost;
@@ -152,6 +154,25 @@
             var config = R.evolve(transformations)(vm.newBasicInfoConfig)
             console.log("new basicInfo params: ", config);
             ApiServer.newBasicInfoConfig(config, function (response) {
+                console.log(response.data.code);
+            },function (err) {
+                console.log("Get ContainerOverview Info Failed", err);
+            });
+        }
+
+        function saveAlertInfoConfig() {
+            newAlertInfoConfigPost();
+
+            $scope.alertInputModal = !$scope.alertInputModal;
+        }
+
+        function cancelAlertInfoConfig() {
+            $scope.alertInputModal = !$scope.alertInputModal;
+        }
+
+        function newAlertInfoConfigPost () {
+            console.log("new alertInfo params: ", vm.newAlertInfoConfig);
+            ApiServer.newAlertInfoConfig(vm.newAlertInfoConfig, function (response) {
                 console.log(response.data.code);
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);

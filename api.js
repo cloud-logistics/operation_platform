@@ -9,8 +9,8 @@ server.use(jsonServer.defaults())
 var router = jsonServer.router('db.json')
 
 server.use(jsonServer.rewriter({
-  '/container/api/v1/cloudbox/auth': '/auth',
   // '/user/111': '/user',
+  '/container/api/v1/cloudbox/auth': '/auth',
   '/container/api/v1/cloudbox/message': '/messageByUserId',
   '/container/api/v1/cloudbox/containerhistory': '/containerhistory',
   '/container/api/v1/cloudbox/containerInstantInfo': '/containerInstantInfo',
@@ -124,32 +124,102 @@ server.post('/alerts', function (req, res) {
       {
         "containerId": "22932214122313",
         "alertTime": "1495597347299",
-        "alertType": "实时报文",
-        "carrier": "中集集团"
+        "alertLevel": "高",
+        "alertType": "失联",
+        "alertCode": "0x1101",
+        "status": "在运",
+        "carrier": "中集集团",
+        "position": {
+          "lng": 121.557348,
+          "lat": 31.179784
+        },
+        "speed": 100,
+        "temperature": 39,
+        "humidity": 0.7,
+        "num_of_collide": 30,
+        "num_of_door_open": 20,
+        "battery": 0.5,
+        "robertOperationStatus": "卸货"
       },
-      {
+       {
         "containerId": "22932214122313",
         "alertTime": "1495597347299",
-        "alertType": "实时报文",
-        "carrier": "中集集团"
+        "alertLevel": "高",
+        "alertType": "失联",
+        "alertCode": "0x1101",
+        "status": "在运",
+        "carrier": "中集集团",
+        "position": {
+          "lng": 121.557348,
+          "lat": 31.179784
+        },
+        "speed": 100,
+        "temperature": 39,
+        "humidity": 0.7,
+        "num_of_collide": 30,
+        "num_of_door_open": 20,
+        "battery": 0.5,
+        "robertOperationStatus": "卸货"
       },
-      {
+            {
         "containerId": "22932214122313",
         "alertTime": "1495597347299",
-        "alertType": "实时报文",
-        "carrier": "中集集团"
+        "alertLevel": "高",
+        "alertType": "失联",
+        "alertCode": "0x1101",
+        "status": "在运",
+        "carrier": "中集集团",
+        "position": {
+          "lng": 121.557348,
+          "lat": 31.179784
+        },
+        "speed": 100,
+        "temperature": 39,
+        "humidity": 0.7,
+        "num_of_collide": 30,
+        "num_of_door_open": 20,
+        "battery": 0.5,
+        "robertOperationStatus": "卸货"
       },
-      {
+            {
         "containerId": "22932214122313",
         "alertTime": "1495597347299",
-        "alertType": "实时报文",
-        "carrier": "中集集团"
+        "alertLevel": "高",
+        "alertType": "失联",
+        "alertCode": "0x1101",
+        "status": "在运",
+        "carrier": "中集集团",
+        "position": {
+          "lng": 121.557348,
+          "lat": 31.179784
+        },
+        "speed": 100,
+        "temperature": 39,
+        "humidity": 0.7,
+        "num_of_collide": 30,
+        "num_of_door_open": 20,
+        "battery": 0.5,
+        "robertOperationStatus": "卸货"
       },
-      {
+            {
         "containerId": "22932214122313",
         "alertTime": "1495597347299",
-        "alertType": "实时报文",
-        "carrier": "中集集团"
+        "alertLevel": "高",
+        "alertType": "失联",
+        "alertCode": "0x1101",
+        "status": "在运",
+        "carrier": "中集集团",
+        "position": {
+          "lng": 121.557348,
+          "lat": 31.179784
+        },
+        "speed": 100,
+        "temperature": 39,
+        "humidity": 0.7,
+        "num_of_collide": 30,
+        "num_of_door_open": 20,
+        "battery": 0.5,
+        "robertOperationStatus": "卸货"
       }
     ]
   });

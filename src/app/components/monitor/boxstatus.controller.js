@@ -81,9 +81,11 @@
 
                             return item
                         })(vm.containerlist)
+
+                        container.locationName = locationName
                     })
                     .catch(function(status){
-                        alert(status)
+                        // alert(status)
                     })
                     return container
                 })(response.data.boxStatus)
