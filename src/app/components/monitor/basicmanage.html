@@ -155,8 +155,9 @@
     <modal-dialog show='modalInput' width='659px' height='40%'>
         <div class="container-fluid">
             <div class="row">
-                <div class="bm-input-header">
-                    <span class="pull-left">录入云箱基础信息</span>
+                <div class="bm-update-header">
+                    <span class="pull-left">{{vm.options.title}}</span>
+                    <span ng-class="{true: 'pull-right', false:'pull-right hide'}[vm.options.is_insert]">删除条目</span>
                 </div>
             </div>
             <div class="row bm-input m-b-md">
@@ -240,8 +241,8 @@
 
             <div class="row">
                 <div class="bm-input-bottom">
-                    <button class="pull-right bm-save"  ng-click="vm.newBasicInfoConfigPost()">保存</button>
-                    <button class="pull-right bm-cancel">取消</button>
+                    <button class="pull-right bm-save"  ng-click="vm.saveBasicInfoConfig()">保存</button>
+                    <button class="pull-right bm-cancel" ng-click="vm.cancelBasicInfoConfig()" >取消</button>
                 </div>
             </div>
         </div>

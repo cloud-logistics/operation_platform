@@ -12,11 +12,24 @@
         var vm = this;
         $scope.modalInput = false;
         $scope.toggleModal = function() {
+            vm.options = R.merge(vm.options, {
+                title: "录入云箱基础信息",
+                is_insert: true
+            })
+
+            console.log(vm.options.title);
+
             $scope.modalInput = !$scope.modalInput;
         };
         $scope.modalUpdate = false;
         $scope.toggleUpdate = function(){
-            $scope.modalUpdate = !$scope.modalUpdate;
+            vm.options = R.merge(vm.options, {
+                title: "编辑云箱基础信息",
+                is_insert: false
+            })
+
+            $scope.modalInput = !$scope.modalInput;
+            // $scope.modalUpdate = !$scope.modalUpdate;
         };
         $scope.alertInput = false;
         $scope.toggleAlertInput = function() {
@@ -33,7 +46,8 @@
             issueConfig: {}
         };
 
-        vm.newBasicInfoConfigPost = newBasicInfoConfigPost;
+        vm.saveBasicInfoConfig = saveBasicInfoConfig;
+        vm.cancelBasicInfoConfig = cancelBasicInfoConfig;
         vm.updateNormalContainerSecurityConfigPost = updateNormalContainerSecurityConfigPost;
         vm.updateUldSecurityConfigPost = updateUldSecurityConfigPost;
         vm.newAlertConfigPost = newAlertConfigPost;
@@ -121,6 +135,16 @@
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);
             });
+        }
+
+        function saveBasicInfoConfig() {
+            newBasicInfoConfigPost();
+
+            $scope.modalInput = !$scope.modalInput;
+        }
+
+        function cancelBasicInfoConfig() {
+            $scope.modalInput = !$scope.modalInput;
         }
 
         function newBasicInfoConfigPost () {
