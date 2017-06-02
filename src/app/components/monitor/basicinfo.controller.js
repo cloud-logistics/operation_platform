@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('BasicinfoController', BasicinfoController);
 
     /** @ngInject */
-    function BasicinfoController(constdata, NetworkService, $stateParams, ApiServer, toastr, $state, $timeout, $interval,$scope) {
+    function BasicinfoController(constdata, NetworkService, $stateParams, ApiServer, toastr, $state, $timeout, $interval,$scope, optionsTransFunc) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -15,7 +15,16 @@
         vm.containerlist = [];
         vm.queryParams = $stateParams
 
-        getBasicInfo();
+        var transformations = undefined;
+
+
+        var timer = $interval(function(){
+            getBasicInfo();
+        },5000, 500);
+
+        $scope.$on("$destroy", function(){
+            $interval.cancel(timer);
+        });
 
         var requiredOptions = [
                     "containerType",
@@ -26,16 +35,29 @@
 
         ApiServer.getOptions(requiredOptions, function(options) {
             vm.options = options
-            console.log(options);
+
+            transformations = {
+                containerType: optionsTransFunc(vm.options.containerType),
+                carrier: optionsTransFunc(vm.options.carrier),
+                factory: optionsTransFunc(vm.options.factory),
+                factoryLocation: optionsTransFunc(vm.options.factoryLocation),
+                startTime: R.compose(R.toString, Date.parse),
+                endTime: R.compose(R.toString, Date.parse)
+            }
+
+            vm.queryParams = {
+                containerType : R.compose(R.prop("value"),R.head)(vm.options.containerType),
+                carrier : R.compose(R.prop("value"),R.head)(vm.options.carrier),
+                factory : R.compose(R.prop("value"),R.head)(vm.options.factory),
+                factoryLocation : R.compose(R.prop("value"),R.head)(vm.options.factoryLocation)
+            }
+
+            getBasicInfo();
         })
 
         vm.getBasicInfo = getBasicInfo
         
         function getBasicInfo () {
-            var transformations = {
-                startTime: R.compose(R.toString, Date.parse),
-                endTime: R.compose(R.toString, Date.parse)
-            };
             var queryParams = R.evolve(transformations)(vm.queryParams)
 
             console.log(queryParams);

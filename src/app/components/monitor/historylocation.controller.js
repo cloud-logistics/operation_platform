@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('HistorylocationController', HistorylocationController);
 
     /** @ngInject */
-    function HistorylocationController($stateParams,ApiServer,MapService,toastr,$state,$timeout,$interval) {
+    function HistorylocationController($stateParams,ApiServer,MapService,toastr,$state,$timeout,$interval,$scope) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -40,9 +40,13 @@
         vm.getHistorylocationInfo = getHistorylocationInfo;
 
         getHistorylocationInfo();
-        // var timer = $interval(function(){
-        //     getHistorylocationInfo();
-        // },5000, 500);
+        var timer = $interval(function(){
+            getHistorylocationInfo();
+        },5000, 500);
+
+        $scope.$on("$destroy", function(){
+            $interval.cancel(timer);
+        });
 
         function getHistorylocationInfo() {
             var transformations = {

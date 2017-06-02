@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('SatelliteController', SatelliteController);
 
     /** @ngInject */
-    function SatelliteController($stateParams,ApiServer,MapService,toastr,$state,$timeout,$interval) {
+    function SatelliteController($stateParams,ApiServer,MapService,toastr,$state,$timeout,$interval,$scope) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -41,10 +41,13 @@
         }
 
         getSateliteInfo();
-        // var timer = $interval(function(){
-        //     getSateliteInfo();
-        // },5000, 500);
+        var timer = $interval(function(){
+            getSateliteInfo();
+        },5000, 500);
 
+        $scope.$on("$destroy", function(){
+            $interval.cancel(timer);
+        });
     }
 
 })();

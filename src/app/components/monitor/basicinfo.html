@@ -29,7 +29,7 @@
                             <label class="col-md-4 control-label form-control-static">云箱型号</label>
                             <div class="col-md-8">
                                 <select name="account" class="form-control m-b" ng-model="vm.queryParams.containerType" >
-                                    <option ng-repeat="item in vm.options.containerType track by $index" >{{item}}</option>
+                                    <option ng-repeat="item in vm.options.containerType track by $index" >{{item.value}}</option>
                                 </select>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                             <label class="col-md-4 control-label form-control-static">承运人</label>
                             <div class="col-md-8">
                                 <select name="account" class="form-control m-b" ng-model="vm.queryParams.carrier" >
-                                    <option ng-repeat="item in vm.options.carrier track by $index" >{{item}}</option>
+                                    <option ng-repeat="item in vm.options.carrier track by $index" >{{item.value}}</option>
                                 </select>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                             <label class="col-md-4 control-label form-control-static">生产厂家</label>
                             <div class="col-md-8">
                                 <select name="account" class="form-control m-b" ng-model="vm.queryParams.factory" >
-                                    <option ng-repeat="item in vm.options.factory track by $index" >{{item}}</option>
+                                    <option ng-repeat="item in vm.options.factory track by $index" >{{item.value}}</option>
                                 </select>
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                             <label class="col-md-4 control-label form-control-static">生产地点</label>
                             <div class="col-md-8">
                                 <select name="account" class="form-control m-b" ng-model="vm.queryParams.factoryLocation" >
-                                    <option ng-repeat="item in vm.options.factoryLocation track by $index" >{{item}}</option>
+                                    <option ng-repeat="item in vm.options.factoryLocation track by $index" >{{item.value}}</option>
                                 </select>
                             </div>
                         </div>

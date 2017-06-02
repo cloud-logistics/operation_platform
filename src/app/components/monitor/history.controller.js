@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('HistoryController', HistoryController);
 
     /** @ngInject */
-    function HistoryController(constdata, NetworkService, $stateParams, ApiServer, toastr, $state, $timeout, $interval,$scope) {
+    function HistoryController(constdata, NetworkService, $stateParams, ApiServer, toastr, $state, $timeout, $interval,$scope, optionsTransFunc) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -15,8 +15,16 @@
         vm.reports = [];
         vm.queryParams = {}
 
-        getContainerReportHistory();
+        var transformations = undefined;
 
+        getContainerReportHistory();
+        var timer = $interval(function(){
+            getContainerReportHistory();
+        },5000, 500);
+
+        $scope.$on("$destroy", function(){
+            $interval.cancel(timer);
+        });
 
         var requiredOptions = [
                     "containerType",
@@ -25,16 +33,23 @@
 
         ApiServer.getOptions(requiredOptions, function(options) {
             vm.options = options
-            console.log(options);
+
+            transformations = {
+                containerType: optionsTransFunc(vm.options.containerType),
+                reportType: optionsTransFunc(vm.options.reportType),
+                startTime: R.compose(R.toString, Date.parse),
+                endTime: R.compose(R.toString, Date.parse)
+            }
+
+            vm.queryParams = {
+                containerType : R.compose(R.prop("value"),R.head)(vm.options.containerType),
+                reportType : R.compose(R.prop("value"),R.head)(vm.options.reportType)
+            }
         })
 
         vm.getContainerReportHistory = getContainerReportHistory
         
         function getContainerReportHistory () {
-            var transformations = {
-                startTime: R.compose(R.toString, Date.parse),
-                endTime: R.compose(R.toString, Date.parse)
-            };
             var queryParams = R.evolve(transformations)(vm.queryParams)
 
             ApiServer.getContainerReportHistory(queryParams, function (response) {

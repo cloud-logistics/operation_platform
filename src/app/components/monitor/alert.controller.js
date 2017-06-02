@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('AlertController', AlertController);
 
     /** @ngInject */
-    function AlertController(constdata, NetworkService, $stateParams, ApiServer, toastr, $state, $timeout, $interval,$scope) {
+    function AlertController(constdata, NetworkService, $stateParams, ApiServer, toastr, $state, $timeout, $interval,$scope, optionsTransFunc) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -18,9 +18,17 @@
         vm.queryParams = $stateParams
         vm.options = {}
 
-        getAlerts();
+
+        var timer = $interval(function(){
+            getAlerts();
+        },5000, 500);
+
+        $scope.$on("$destroy", function(){
+            $interval.cancel(timer);
+        });
 
         vm.getAlerts = getAlerts
+        var transformations = undefined;
 
         var requiredOptions = [
                     "alertLevel",
@@ -29,16 +37,23 @@
                 ]
 
         ApiServer.getOptions(requiredOptions, function(options) {
-            vm.options = options
+            vm.options = options;
+
+            transformations = {
+                alertCode: optionsTransFunc(vm.options.alertCode),
+                alertType: optionsTransFunc(vm.options.alertType),
+                alertLevel: optionsTransFunc(vm.options.alertLevel)
+            }
+
+            vm.queryParams = {
+                alertCode : R.compose(R.prop("value"),R.head)(vm.options.alertCode),
+                alertLevel : R.compose(R.prop("value"),R.head)(vm.options.alertLevel),
+                alertType : R.compose(R.prop("value"),R.head)(vm.options.alertType)
+            }
+            getAlerts();
         })
         
         function getAlerts () {
-            var transformations = {
-                alertCode: function(num) {
-                    return parseInt(num, 10)
-                }
-            };
-            
             var queryParams = R.evolve(transformations)(vm.queryParams)
             console.log(queryParams);
             ApiServer.getAlerts(queryParams, function (response) {

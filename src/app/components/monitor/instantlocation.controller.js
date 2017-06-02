@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('InstantlocationController', InstantlocationController);
 
     /** @ngInject */
-    function InstantlocationController($stateParams,ApiServer,MapService,toastr,$state,$timeout,$interval) {
+    function InstantlocationController($stateParams,ApiServer,MapService,toastr,$state,$timeout,$interval,$scope) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -29,9 +29,13 @@
         vm.getInstantlocationInfo = getInstantlocationInfo
 
         getInstantlocationInfo();
-        // var timer = $interval(function(){
-        //     getInstantlocationInfo();
-        // },5000, 500);
+        var timer = $interval(function(){
+            getInstantlocationInfo();
+        },5000, 500);
+
+        $scope.$on("$destroy", function(){
+            $interval.cancel(timer);
+        });
 
         function getInstantlocationInfo() {
             ApiServer.getInstantlocationInfo(vm.queryParams, function (response) {

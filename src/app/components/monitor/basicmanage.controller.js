@@ -7,16 +7,29 @@
     angular.module('smart_container').controller('basicManageController', basicManageController);
 
     /** @ngInject */
-    function basicManageController(constdata, NetworkService, MapService, $stateParams, ApiServer, toastr, $state, $timeout, $interval,$scope) {
+    function basicManageController(constdata, NetworkService, MapService, $stateParams, ApiServer, toastr, $state, $timeout, $interval,$scope, optionsTransFunc) {
         /* jshint validthis: true */
         var vm = this;
         $scope.modalInput = false;
         $scope.toggleModal = function() {
+            vm.options = R.merge(vm.options, {
+                title: "录入云箱基础信息",
+                is_insert: true
+            })
+
+            console.log(vm.options.title);
+
             $scope.modalInput = !$scope.modalInput;
         };
         $scope.modalUpdate = false;
         $scope.toggleUpdate = function(){
-            $scope.modalUpdate = !$scope.modalUpdate;
+            vm.options = R.merge(vm.options, {
+                title: "编辑云箱基础信息",
+                is_insert: false
+            })
+
+            $scope.modalInput = !$scope.modalInput;
+            // $scope.modalUpdate = !$scope.modalUpdate;
         };
         $scope.alertInput = false;
         $scope.toggleAlertInput = function() {
@@ -33,10 +46,15 @@
             issueConfig: {}
         };
 
-        vm.newBasicInfoConfigPost = newBasicInfoConfigPost;
-        vm.updateSecurityConfigPost = updateSecurityConfigPost;
+        vm.saveBasicInfoConfig = saveBasicInfoConfig;
+        vm.cancelBasicInfoConfig = cancelBasicInfoConfig;
+        vm.updateNormalContainerSecurityConfigPost = updateNormalContainerSecurityConfigPost;
+        vm.updateUldSecurityConfigPost = updateUldSecurityConfigPost;
         vm.newAlertConfigPost = newAlertConfigPost;
         vm.newIssueConfigPost = newIssueConfigPost;
+
+        vm.options = {};
+        var transformations = undefined;
 
         var requiredOptions = [
                     "carrier",
@@ -54,10 +72,61 @@
 
         ApiServer.getOptions(requiredOptions, function(options) {
             vm.options = options
+
+            transformations = {
+                intervalTime: optionsTransFunc(vm.options.intervalTime),
+                carrier: optionsTransFunc(vm.options.carrier),
+                factory: optionsTransFunc(vm.options.factory),
+                factoryLocation: optionsTransFunc(vm.options.factoryLocation),
+                batteryInfo: optionsTransFunc(vm.options.batteryInfo),
+                hardwareInfo: optionsTransFunc(vm.options.hardwareInfo),
+                manufactureTime: R.compose(R.toString, Date.parse),
+                temperature : {
+                    min: inputTransFunc,
+                    max: inputTransFunc
+                },
+                humidity : {
+                    min: inputTransFunc,
+                    max: inputTransFunc
+                },
+                collision : {
+                    min: inputTransFunc,
+                    max: inputTransFunc
+                },
+                battery : {
+                    min: inputTransFunc,
+                    max: inputTransFunc
+                },
+                operation : {
+                    min: inputTransFunc,
+                    max: inputTransFunc
+                }
+            };
+
+            vm.newBasicInfoConfig = {
+                carrier : R.compose(R.prop("value"),R.head)(vm.options.carrier),
+                factory : R.compose(R.prop("value"),R.head)(vm.options.factory),
+                factoryLocation : R.compose(R.prop("value"),R.head)(vm.options.factoryLocation),
+                batteryInfo : R.compose(R.prop("value"),R.head)(vm.options.batteryInfo),
+                hardwareInfo : R.compose(R.prop("value"),R.head)(vm.options.hardwareInfo),
+            };
+            vm.newSecurityConfig = {
+                intervalTime : R.compose(R.prop("value"),R.head)(vm.options.intervalTime)
+            };
+            vm.newAlertConfig = {};
+            vm.newIssueConfig = {};
+
             console.log(options);
         })
 
         getBasicInfoManage();
+        var timer = $interval(function(){
+            getBasicInfoManage();
+        },5000, 500);
+
+        $scope.$on("$destroy", function(){
+            $interval.cancel(timer);
+        });
 
         function getBasicInfoManage () {
             ApiServer.getBasicInfoManage(function (response) {
@@ -68,17 +137,56 @@
             });
         }
 
+        function saveBasicInfoConfig() {
+            newBasicInfoConfigPost();
+
+            $scope.modalInput = !$scope.modalInput;
+        }
+
+        function cancelBasicInfoConfig() {
+            $scope.modalInput = !$scope.modalInput;
+        }
+
         function newBasicInfoConfigPost () {
-            console.log("new basicInfo params: ", vm.newBasicInfoConfig);
-            ApiServer.newBasicInfoConfig(vm.newBasicInfoConfig, function (response) {
+            var config = R.evolve(transformations)(vm.newBasicInfoConfig)
+            console.log("new basicInfo params: ", config);
+            ApiServer.newBasicInfoConfig(config, function (response) {
                 console.log(response.data.code);
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);
             });
         }
 
-        function updateSecurityConfigPost () {
-            ApiServer.getAlerts(vm.updateSecurityConfig, function (response) {
+        function inputTransFunc (num) {
+            return parseInt(num, 10)
+        }
+
+        function updateNormalContainerSecurityConfigPost () {
+            var config = R.merge(vm.newSecurityConfig, {
+                containerType: 1
+            })
+
+            config = R.evolve(transformations)(config)
+
+            console.log(config);
+
+            ApiServer.updateSecurityConfig(config, function (response) {
+                console.log(response.data);
+            },function (err) {
+                console.log("Get ContainerOverview Info Failed", err);
+            });
+        }
+
+        function updateUldSecurityConfigPost () {
+            var config = R.merge(vm.newSecurityConfig, {
+                containerType: 2
+            })
+
+            config = R.evolve(transformations)(config)
+
+            console.log(config);
+
+            ApiServer.updateSecurityConfig(config, function (response) {
                 console.log(response.data);
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);
@@ -86,7 +194,10 @@
         }
 
         function newAlertConfigPost () {
-            ApiServer.getAlerts(vm.newAlertConfig, function (response) {
+            var config = R.evolve(transformations)(vm.newAlertConfig)
+            console.log("new basicInfo params: ", config);
+
+            ApiServer.newAlertConfig(config, function (response) {
                 console.log(response.data);
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);
@@ -94,13 +205,15 @@
         }
 
         function newIssueConfigPost () {
-            ApiServer.getAlerts(vm.newIssueConfig, function (response) {
+            var config = R.evolve(transformations)(vm.newIssueConfig)
+            console.log("new basicInfo params: ", config);
+
+            ApiServer.newIssueConfig(config, function (response) {
                 console.log(response.data);
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);
             });
         }
     }
-
 
 })();

@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('BoxstatusController', BoxstatusController);
 
     /** @ngInject */
-    function BoxstatusController(constdata, NetworkService, MapService, $stateParams, ApiServer, toastr, $state, $timeout, $interval,$scope) {
+    function BoxstatusController(constdata, NetworkService, MapService, $stateParams, ApiServer, toastr, $state, $timeout, $interval,$scope, optionsTransFunc) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -16,7 +16,15 @@
         vm.queryParams = $stateParams
         vm.getBoxStatus = getBoxStatus
 
-        getBoxStatus();
+        var transformations = undefined;
+
+        var timer = $interval(function(){
+            getBoxStatus();
+        },5000, 500);
+
+        $scope.$on("$destroy", function(){
+            $interval.cancel(timer);
+        });
 
         var requiredOptions = [
                     "currentStatus",
@@ -29,16 +37,29 @@
 
         ApiServer.getOptions(requiredOptions, function(options) {
             vm.options = options
-            console.log(options);
+
+            transformations = {
+                currentStatus: optionsTransFunc(vm.options.currentStatus),
+                location: optionsTransFunc(vm.options.location),
+                alertLevel: optionsTransFunc(vm.options.alertLevel),
+                alertType: optionsTransFunc(vm.options.alertType),
+                alertCode: optionsTransFunc(vm.options.alertCode),
+                carrier: optionsTransFunc(vm.options.carrier),
+            }
+
+            vm.queryParams = {
+                currentStatus : R.compose(R.prop("value"),R.head)(vm.options.currentStatus),
+                location : R.compose(R.prop("value"),R.head)(vm.options.location),
+                alertLevel : R.compose(R.prop("value"),R.head)(vm.options.alertLevel),
+                alertType : R.compose(R.prop("value"),R.head)(vm.options.alertType),
+                alertCode : R.compose(R.prop("value"),R.head)(vm.options.alertCode),
+                carrier : R.compose(R.prop("value"),R.head)(vm.options.carrier),
+            }
+
+            getBoxStatus();
         })
 
         function getBoxStatus () {
-            var transformations = {
-                alertCode: function(num) {
-                    return parseInt(num, 10)
-                }
-            };
-
             var queryParams = R.evolve(transformations)(vm.queryParams)
             console.log(queryParams);
             ApiServer.getBoxStatus(queryParams, function (response) {

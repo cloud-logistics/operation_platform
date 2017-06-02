@@ -29,7 +29,7 @@
                             <label class="col-md-4 control-label form-control-static" >最高报警级别</label>
                             <div class="col-md-8">
                                 <select name="account" class="form-control m-b" ng-model="vm.queryParams.alertLevel" >
-                                    <option ng-repeat="item in vm.options.alertLevel track by $index" >{{item}}</option>
+                                    <option ng-repeat="item in vm.options.alertLevel track by $index" >{{item.value}}</option>
                                 </select>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                             <label class="col-md-4 control-label form-control-static">故障代码</label>
                             <div class="col-md-8">
                                 <select name="account" class="form-control m-b" ng-model="vm.queryParams.alertCode" >
-                                    <option ng-repeat="item in vm.options.alertCode track by $index" >{{item}}</option>
+                                    <option ng-repeat="item in vm.options.alertCode track by $index" >{{item.value}}</option>
                                 </select>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                             <label class="col-md-4 control-label form-control-static">故障类型</label>
                             <div class="col-md-8">
                                 <select name="account" class="form-control m-b" ng-model="vm.queryParams.alertType" >
-                                    <option ng-repeat="item in vm.options.alertType track by $index" >{{item}}</option>
+                                    <option ng-repeat="item in vm.options.alertType track by $index" >{{item.value}}</option>
                                 </select>
                             </div>
                         </div>

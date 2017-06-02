@@ -21,7 +21,27 @@
         };
     };
 
+    angular
+        .module('smart_container')
+        .factory('optionsTransFunc', optionsTransFunc);
 
+    /** @ngInject */
+    function optionsTransFunc() {
+        return function (options) {
+            return function(optionValue) {
+                var optionId =
+                    R.compose(
+                        R.prop("id"),
+                        R.head,
+                        R.filter(function(item) {
+                            return item.value === optionValue
+                        })
+                    )(options)
+                return optionId
+            }
+        };
+    };
+    
     angular
         .module('smart_container')
         .filter('orderdesc', orderdesc);

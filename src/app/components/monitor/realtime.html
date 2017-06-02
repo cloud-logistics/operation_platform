@@ -112,16 +112,16 @@
                                 <span class="rt-open">开门次数</span>
                             </div>
                             <div class="rt-info-sum">
-                                <span class="rt-coll-sum">{{vm.realtimeInfo.boxStatus.num_of_collide}}</span>
+                                <span class="rt-coll-sum">{{vm.realtimeInfo.boxStatus.num_of_collide.value}}</span>
                                 <i class="rt-sep"></i>
-                                <span class="rt-open-sum">{{vm.realtimeInfo.boxStatus.num_of_door_open}}</span>
+                                <span class="rt-open-sum">{{vm.realtimeInfo.boxStatus.num_of_door_open.value}}</span>
                             </div>
                             <div class="rt-info-img">
                                 <img src="http://ol37p4zz4.bkt.clouddn.com/map1.png" alt="">
                             </div>
                             <div class="rt-info-status">
-                                <span class="rt-coll-status">安全</span>
-                                <span class="rt-open-status">正常</span>
+                                <span class="rt-coll-status">{{vm.realtimeInfo.boxStatus.num_of_collide.status}}</span>
+                                <span class="rt-open-status">{{vm.realtimeInfo.boxStatus.num_of_door_open.status}}</span>
                             </div>
 
                         </div>
