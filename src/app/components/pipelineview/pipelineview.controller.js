@@ -298,7 +298,7 @@
             backgroundColor: '#B5C4D4',
             // color: '#E4E8E4',
             title : {
-                text: '智能集装箱',
+                text: '智能云箱',
                 subtext: '云箱全景平台',
                 left: 'center',
                 textStyle : {
