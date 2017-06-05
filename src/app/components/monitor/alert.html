@@ -13,53 +13,89 @@
 
         <div id="content" style="height: 100vh;">
             <div class="wrapper-md">
-                <div class="row m-l m-r" style="background-color: #fff">
+                <div class="row m-l m-r al-contents" style="background-color: #fff">
                     <div class="alert-title-posi"><h3 class="alert-title">报警监控</h3></div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="col-md-4 control-label form-control-static">ID</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" placeholder="请输入云箱ID" ng-model="vm.queryParams.containerId" >
+                    <div class="col-md-4 m-b">
+                        <!--<div class="form-group">-->
+                        <!--<label class="col-md-4 control-label form-control-static">ID</label>-->
+                        <!--<div class="col-md-8">-->
+                        <!--<input type="text" class="form-control" placeholder="请输入云箱ID" ng-model="vm.queryParams.containerId" >-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <label>ID</label>
+                                <input type="text" class="form-control" placeholder="请输入云箱ID"
+                                       ng-model="vm.queryParams.containerId">
                             </div>
-                        </div>
+                        </form>
                     </div>
 
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="col-md-4 control-label form-control-static" >最高报警级别</label>
-                            <div class="col-md-8">
-                                <select name="account" class="form-control m-b" ng-model="vm.queryParams.alertLevel" >
-                                    <option ng-repeat="item in vm.options.alertLevel track by $index" >{{item.value}}</option>
+                    <div class="col-md-4 m-b">
+                        <!--<div class="form-group">-->
+                        <!--<label class="col-md-4 control-label form-control-static" >最高报警级别</label>-->
+                        <!--<div class="col-md-8">-->
+                        <!--<select name="account" class="form-control m-b" ng-model="vm.queryParams.alertLevel" >-->
+                        <!--<option ng-repeat="item in vm.options.alertLevel track by $index" >{{item.value}}</option>-->
+                        <!--</select>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <label>最高报警级别</label>
+                                <select class="form-control" ng-model="vm.queryParams.alertLevel">
+                                    <option ng-repeat="item in vm.options.alertLevel track by $index">{{item.value}}
+                                    </option>
                                 </select>
                             </div>
-                        </div>
+                        </form>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="col-md-4 control-label form-control-static">故障代码</label>
-                            <div class="col-md-8">
-                                <select name="account" class="form-control m-b" ng-model="vm.queryParams.alertCode" >
-                                    <option ng-repeat="item in vm.options.alertCode track by $index" >{{item.value}}</option>
+                    <div class="col-md-4 m-b">
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-md-4 control-label form-control-static">故障代码</label>-->
+                            <!--<div class="col-md-8">-->
+                                <!--<select name="account" class="form-control m-b" ng-model="vm.queryParams.alertCode">-->
+                                    <!--<option ng-repeat="item in vm.options.alertCode track by $index">{{item.value}}-->
+                                    <!--</option>-->
+                                <!--</select>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <label>故障代码</label>
+                                <select class="form-control" ng-model="vm.queryParams.alertCode">
+                                    <option ng-repeat="item in vm.options.alertCode track by $index">{{item.value}}
+                                    </option>
                                 </select>
                             </div>
-                        </div>
+                        </form>
                     </div>
                     <!-- line2 -->
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="col-md-4 control-label form-control-static">故障类型</label>
-                            <div class="col-md-8">
-                                <select name="account" class="form-control m-b" ng-model="vm.queryParams.alertType" >
-                                    <option ng-repeat="item in vm.options.alertType track by $index" >{{item.value}}</option>
+                    <div class="col-md-4 m-b">
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-md-4 control-label form-control-static">故障类型</label>-->
+                            <!--<div class="col-md-8">-->
+                                <!--<select name="account" class="form-control m-b" ng-model="vm.queryParams.alertType">-->
+                                    <!--<option ng-repeat="item in vm.options.alertType track by $index">{{item.value}}-->
+                                    <!--</option>-->
+                                <!--</select>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <label>故障类型</label>
+                                <select class="form-control" ng-model="vm.queryParams.alertType">
+                                    <option ng-repeat="item in vm.options.alertType track by $index">{{item.value}}
+                                    </option>
                                 </select>
                             </div>
-                        </div>
+                        </form>
                     </div>
-                    <div class="col-md-offset-4 col-md-4">
+                    <div class="col-md-offset-4 col-md-4 m-b">
                         <div class="form-group">
-                            <div class="col-md-offset-4 col-md-8">
-                                <button type="submit" class="btn btn-sm btn-block btn-alert" ng-click="vm.getAlerts()" >查 询</button>
-                            </div>
+                                <span type="submit" class="btn btn-sm btn-alert" ng-click="vm.getAlerts()">查
+                                    询
+                                </span>
                         </div>
                     </div>
                 </div>
@@ -69,7 +105,7 @@
                         <thead>
                         <tr>
                             <!--<th ng-repeat="title in vm.titles">-->
-                                <!--{{title}}-->
+                            <!--{{title}}-->
                             <!--</th>-->
                             <th>云箱ID</th>
                             <th>报警时间</th>
@@ -79,13 +115,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="item in vm.alerts track by $index">
-                                <td style="vertical-align: middle;">{{item.containerId}}</td>
-                                <td style="vertical-align: middle;">{{item.alertTime | date:"yyyy-MM-dd"}}</td>
-                                <td style="vertical-align: middle;">{{item.alertType}}</td>
-                                <td style="vertical-align: middle;">{{item.carrier}}</td>
-                                <td><a href="#" class="btn-table-detail">查看详情</a></td>
-                            </tr>
+                        <tr ng-repeat="item in vm.alerts track by $index">
+                            <td style="vertical-align: middle;">{{item.containerId}}</td>
+                            <td style="vertical-align: middle;">{{item.alertTime | date:"yyyy-MM-dd"}}</td>
+                            <td style="vertical-align: middle;">{{item.alertType}}</td>
+                            <td style="vertical-align: middle;">{{item.carrier}}</td>
+                            <td><a href="#" class="btn-table-detail">查看详情</a></td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
