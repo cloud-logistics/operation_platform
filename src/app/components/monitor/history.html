@@ -19,7 +19,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">ID</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" placeholder="请输入云箱ID" ng-model="vm.queryParams.containerId">
+                                <input type="text" class="form-control" style="border-radius: 8px" placeholder="请输入云箱ID" ng-model="vm.queryParams.containerId">
                             </div>
                         </div>
                     </div>
@@ -45,28 +45,46 @@
                         </div>
                     </div>
                     <!-- line2 -->
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="col-md-4 control-label form-control-static">时间段</label>
-                            <div class="col-md-4 dash-line">
-                                <input ng-model="vm.queryParams.startTime" 
-                                        class="form-control m-b" 
-                                        min-view="hours"
-                                        placeholder="Select date"
-                                        moment-picker
-                                        format="YYYY-MM-DD">
+                    <div class="col-md-4 m-b">
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-md-4 control-label form-control-static">时间段</label>-->
+                            <!--<div class="col-md-4 dash-line">-->
+                                <!--<input ng-model="vm.queryParams.startTime" -->
+                                        <!--class="form-control m-b" -->
+                                        <!--min-view="hours"-->
+                                        <!--placeholder="Select date"-->
+                                        <!--moment-picker-->
+                                        <!--format="YYYY-MM-DD">-->
+                            <!--</div>-->
+                            <!--<div class="col-md-4 ">-->
+                                <!--<input ng-model="vm.queryParams.endTime" -->
+                                        <!--class="form-control m-b" -->
+                                        <!--min-view="hours"-->
+                                        <!--placeholder="Select date"-->
+                                        <!--moment-picker-->
+                                        <!--format="YYYY-MM-DD">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <form class="form-inline ls-sjd">
+                            <div class="form-group">
+                                <label>时间段</label>
+                                <input ng-model="vm.queryParams.startTime"
+                                       class="form-control"
+                                       min-view="hours"
+                                       placeholder="Select date"
+                                       moment-picker
+                                       format="YYYY-MM-DD">
+                                -
+                                <input ng-model="vm.queryParams.endTime"
+                                       class="form-control"
+                                       min-view="hours"
+                                       placeholder="Select date"
+                                       moment-picker
+                                       format="YYYY-MM-DD">
                             </div>
-                            <div class="col-md-4 ">
-                                <input ng-model="vm.queryParams.endTime" 
-                                        class="form-control m-b" 
-                                        min-view="hours"
-                                        placeholder="Select date"
-                                        moment-picker
-                                        format="YYYY-MM-DD">
-                            </div>
-                        </div>
+                        </form>
                     </div>
-                    <div class="col-md-offset-4 col-md-4">
+                    <div class="col-md-offset-4 col-md-4 m-b">
                         <div class="form-group">
                             <div class="col-md-offset-4 col-md-8">
                                 <button type="submit" class="btn btn-sm btn-block btn-history" ng-click="vm.getContainerReportHistory()">查询监控</button>
