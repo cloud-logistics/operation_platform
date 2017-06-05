@@ -120,7 +120,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">ID</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" placeholder="请输入云箱ID">
+                                        <input ng-model="vm.newBasicInfoConfig.containerId" type="text" class="form-control" placeholder="请输入云箱ID">
                                     </div>
                                 </div>
                             </div>
@@ -129,8 +129,8 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">云箱型号</label>
                                     <div class="col-md-8">
-                                        <select name="account" class="form-control">
-                                            <option>标准云箱</option>
+                                        <select ng-model="vm.newBasicInfoConfig.containerType" name="account" class="form-control">
+                                            <option ng-repeat="item in vm.options.containerType track by $index">{{item.value}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -139,7 +139,11 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">出厂日期</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" placeholder="请输入出厂日期">
+                                                                    <!--<input ng-model="vm.newBasicInfoConfig.manufactureTime" 
+                                    class="form-control m-b" 
+                                    moment-picker
+                                    format="YYYY-MM-DD">-->
+                                        <input date-time ng-model="vm.newBasicInfoConfig.manufactureTime" class="form-control m-b" min-view="hours" format="YYYY-MM-DD HH:mm">
                                     </div>
                                 </div>
                             </div>
@@ -150,7 +154,9 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">生产厂家</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" placeholder="请输入出厂日期">
+                                        <select  ng-model="vm.newBasicInfoConfig.factory" name="account" class="form-control">
+                                            <option ng-repeat="item in vm.options.factory track by $index" >{{item.value}}</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -158,8 +164,8 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">生产场地</label>
                                     <div class="col-md-8">
-                                        <select name="account" class="form-control">
-                                            <option>中国-上海</option>
+                                        <select ng-model="vm.newBasicInfoConfig.factoryLocation" name="account" class="form-control">
+                                            <option ng-repeat="item in vm.options.factoryLocation track by $index" >{{item.value}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -168,7 +174,9 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">电源信息</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" placeholder="请输入....">
+                                        <select  ng-model="vm.newBasicInfoConfig.batteryInfo" name="account" class="form-control">
+                                            <option ng-repeat="item in vm.options.batteryInfo track by $index" >{{item.value}}</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -179,14 +187,18 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">智能硬件信息</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" placeholder="请输入....">
+                                        <select ng-model="vm.newBasicInfoConfig.hardwareInfo" name="account" class="form-control">
+                                            <option ng-repeat="item in vm.options.hardwareInfo track by $index" >{{item.value}}</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-offset-4 col-md-4">
                                 <div class="pull-right bb-btn">
-                                    <span>取消</span>
-                                    <span>保存</span>
+                                    <div class="bm-input-bottom">
+                                        <button class="pull-right bm-save"  ng-click="vm.saveBasicInfoConfig()">保存</button>
+                                        <button class="pull-right bm-cancel" ng-click="vm.cancelBasicInfoConfig()" >取消</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -210,39 +222,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr >
-                            <td style="vertical-align: middle;">229378928811</td>
-                            <td style="vertical-align: middle;">标准云箱</td>
-                            <td style="vertical-align: middle;">中国-上海</td>
-                            <td style="vertical-align: middle;">中集集团</td>
-                            <td style="vertical-align: middle;">2017-05-31</td>
-                            <td style="vertical-align: middle;">xx83740y3</td>
-                            <td style="vertical-align: middle;">
-                                <span class="bb-edit-btn" ng-click="basicUpdate()">编辑</span>
-                                <span class="bb-del-btn">删除</span>
-                            </td>
-
-                        </tr>
-                        <tr >
-                            <td style="vertical-align: middle;">229378928811</td>
-                            <td style="vertical-align: middle;">标准云箱</td>
-                            <td style="vertical-align: middle;">中国-上海</td>
-                            <td style="vertical-align: middle;">中集集团</td>
-                            <td style="vertical-align: middle;">2017-05-31</td>
-                            <td style="vertical-align: middle;">xx83740y3</td>
-                            <td style="vertical-align: middle;">
-                                <span class="bb-edit-btn" ng-click="basicUpdate()">编辑</span>
-                                <span class="bb-del-btn">删除</span>
-                            </td>
-
-                        </tr>
-                        <tr >
-                            <td style="vertical-align: middle;">229378928811</td>
-                            <td style="vertical-align: middle;">标准云箱</td>
-                            <td style="vertical-align: middle;">中国-上海</td>
-                            <td style="vertical-align: middle;">中集集团</td>
-                            <td style="vertical-align: middle;">2017-05-31</td>
-                            <td style="vertical-align: middle;">xx83740y3</td>
+                        <tr ng-repeat="item in vm.basicInfoManage track by $index">
+                            <td style="vertical-align: middle;">{{item.containerId}}</td>
+                            <td style="vertical-align: middle;">{{item.containerType}}</td>
+                            <td style="vertical-align: middle;">{{item.factoryLocation}}</td>
+                            <td style="vertical-align: middle;">{{item.factory}}</td>
+                            <td style="vertical-align: middle;">{{item.factoryDate | date:"yyyy-MM-dd"}}</td>
+                            <td style="vertical-align: middle;">{{item.batteryInfo}}</td>
                             <td style="vertical-align: middle;">
                                 <span class="bb-edit-btn" ng-click="basicUpdate()">编辑</span>
                                 <span class="bb-del-btn">删除</span>
