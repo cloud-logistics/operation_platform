@@ -18,7 +18,7 @@
           navbarCollapseColor: 'bg-white',
           asideColor: 'bg-dark b-r',
           headerFixed: true,
-          asideFixed: false,
+          asideFixed: true,
           asideFolded: false,
           asideDock: false,
           container: false
