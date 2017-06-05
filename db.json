@@ -35,6 +35,28 @@
       }
     ]
   },
+  "issueInfo": {
+    "issueInfo": [
+      {
+        "containerType": "标准云箱",
+        "alertCode": "0x11",
+        "alertType": "失联",
+        "alertLevel": "严重故障"
+      },
+      {
+        "containerType": "标准云箱",
+        "alertCode": "0x11",
+        "alertType": "失联",
+        "alertLevel": "严重故障"
+      },
+      {
+        "containerType": "标准云箱",
+        "alertCode": "0x11",
+        "alertType": "失联",
+        "alertLevel": "严重故障"
+      }
+    ]
+  },
   "login": {
     "userid": "111",
     "sessionid": "111",
