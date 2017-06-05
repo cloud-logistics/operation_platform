@@ -14,7 +14,7 @@
        var url = $location.absUrl();
        var theme_11 = {
           themeID: 11,
-          navbarHeaderColor: 'bg-info',
+          navbarHeaderColor: 'bg-dark b-r',
           navbarCollapseColor: 'bg-white',
           asideColor: 'bg-dark b-r',
           headerFixed: true,
