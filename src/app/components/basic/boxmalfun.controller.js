@@ -48,11 +48,11 @@
         function saveIssueInfoConfig() {
             newIssueConfigPost();
 
-            $scope.modalInput = false;
+            $scope.modalShow = false;
         }
 
         function cancelIssueInfoConfig() {
-            $scope.modalInput = false;
+            $scope.modalShow = false;
         }
 
         function newIssueConfigPost () {
@@ -65,6 +65,11 @@
                 console.log("Get ContainerOverview Info Failed", err);
             });
         }
+
+
+        $scope.modalUpdate = function(){
+            $scope.modalShow = !$scope.modalShow;
+        };
 
     }
 

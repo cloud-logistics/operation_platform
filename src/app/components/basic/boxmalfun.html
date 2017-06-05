@@ -10,12 +10,11 @@
         <!--</div>-->
         <!--</div>-->
         <!--</div>-->
-        <modal-dialog show='bbUpdate' width='659px' height='400px'>
+        <modal-dialog show='modalShow' width='659px' height='400px'>
             <div class="container-fluid">
                 <div class="row">
                     <div class="bm-update-header">
                         <span class="pull-left">故障库管理</span>
-                        <span ng-class="{true: 'pull-right hide', false:'pull-right'}[vm.options.is_insert]">删除条目</span>
                     </div>
                 </div>
                 <div class="row bm-input m-b-md">
@@ -140,7 +139,7 @@
                             <td style="vertical-align: middle;">{{item.alertType}}</td>
                             <td style="vertical-align: middle;">{{item.alertLevel}}</td>
                             <td style="vertical-align: middle;">
-                                <span class="bb-edit-btn" ng-click="basicUpdate()">编辑</span>
+                                <span class="bb-edit-btn" ng-click="modalUpdate()">编辑</span>
                                 <span class="bb-del-btn">删除</span>
                             </td>
 
