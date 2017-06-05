@@ -38,6 +38,7 @@
             newAlertConfig: newAlertConfig,
             newIssueConfig: newIssueConfig,
             getBasicInfoManage: getBasicInfoManage,
+            getIssueInfoManage: getIssueInfoManage,
 
             isAuthed: isAuthed,
             roleType: roleType,
@@ -237,6 +238,13 @@
 
         function getBasicInfoManage(successHandler,failedHandler) {
             NetworkService.get(constdata.api.basicInfoManage,
+                                null,
+                                successHandler,
+                                failedHandler);
+        }
+
+        function getIssueInfoManage(successHandler,failedHandler) {
+            NetworkService.get(constdata.api.issueInfo,
                                 null,
                                 successHandler,
                                 failedHandler);

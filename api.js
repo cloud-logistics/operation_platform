@@ -23,6 +23,8 @@ server.use(jsonServer.rewriter({
   "/container/api/v1/cloudbox/containers": "/containers",
   "/container/api/v1/cloudbox/alertLevel":"/alertLevel",
   "/container/api/v1/cloudbox/basicInfoManage":"/basicInfoManage",
+  "/container/api/v1/cloudbox/issueInfo":"/issueInfo",
+  "/container/api/v1/cloudbox/alertInfo":"/alertInfo",
   "/container/api/v1/cloudbox/basicInfoConfig":"/basicInfoConfig",
   "/container/api/v1/cloudbox/securityConfig":"/securityConfig",
   "/container/api/v1/cloudbox/alertConfig":"/alertConfig",

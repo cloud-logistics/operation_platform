@@ -36,6 +36,8 @@
                 containerInstantInfo : "containerInstantInfo",
                 containerReportHistory : "containerReportHistory",
                 basicInfoManage : "basicInfoManage",
+                issueInfo : "issueInfo",
+                alertInfo : "alertInfo",
                 basicInfoConfig : "basicInfoConfig",
                 securityConfig : "securityConfig",
                 alertConfig : "alertConfig",
