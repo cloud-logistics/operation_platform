@@ -57,6 +57,15 @@
       }
     ]
   },
+  "alertInfo": {
+    "alertInfo" :[
+      {"maintenanceLocation" : "陕西西安天谷八路"},
+      {"maintenanceLocation" : "陕西西安天谷八路"},
+      {"maintenanceLocation" : "陕西西安天谷八路"},
+      {"maintenanceLocation" : "陕西西安天谷八路"},
+      {"maintenanceLocation" : "陕西西安天谷八路"}
+    ]
+  },
   "login": {
     "userid": "111",
     "sessionid": "111",
