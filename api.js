@@ -67,54 +67,41 @@ server.post('/containerInstantInfo', function (req, res) {
 
 server.post('/containerReportHistory', function (req, res) {
   res.json({
-    "containerReportHistory": [
+    "result": [
       {
         "containerId": "22932214122313",
         "containerType": "标准云箱",
-        "reportType": "实时报文",
-        "reportLength": 60,
-        "originalReport": "23-3030202",
-        "factoryDate": "1495597347299"
+        "messageType": "实时报文",
+        "record": "11111111111",
+        "time": 1495597347299
       },
       {
         "containerId": "22932214122313",
         "containerType": "标准云箱",
-        "reportType": "实时报文",
-        "reportLength": 60,
-        "originalReport": "23-3030202",
-        "factoryDate": "1495597347299"
+        "messageType": "实时报文",
+        "record": "2222222222",
+        "time": 1495597347299
       },
       {
         "containerId": "22932214122313",
         "containerType": "标准云箱",
-        "reportType": "实时报文",
-        "reportLength": 60,
-        "originalReport": "23-3030202",
-        "factoryDate": "1495597347299"
+        "messageType": "实时报文",
+        "record": "33333333333",
+        "time": 1495597347299
       },
       {
         "containerId": "22932214122313",
         "containerType": "标准云箱",
-        "reportType": "实时报文",
-        "reportLength": 60,
-        "originalReport": "23-3030202",
-        "factoryDate": "1495597347299"
+        "messageType": "实时报文",
+        "record": "4444444444",
+        "time": 1495597347299
       },
       {
         "containerId": "22932214122313",
         "containerType": "标准云箱",
-        "reportType": "实时报文",
-        "reportLength": 60,
-        "originalReport": "23-3030202",
-        "factoryDate": "1495597347299"
-      },
-      {
-        "containerId": "22932214122313",
-        "containerType": "标准云箱",
-        "reportType": "实时报文",
-        "reportLength": 60,
-        "originalReport": "23-3030202",
-        "factoryDate": "1495597347299"
+        "messageType": "实时报文",
+        "record": "23-3030202",
+        "time": 1495597347299
       }
     ]
   });
