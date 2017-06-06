@@ -92,7 +92,8 @@
                     console.log(locationName);
                 })
                 .catch(function(status){
-                    alert(status)
+                    console.log(status);
+                    // alert(status)
                 })
             },function (err) {
                 console.log("Get RealtimeInfo Info Failed", err);

@@ -104,7 +104,7 @@
                 containers = response.data
                 console.log(containers);
                 markers = R.compose(
-                    R.map(MapService.addMarker(map)),
+                    R.map(MapService.addMarker(map, "container")),
                     R.map(R.prop("position"))
                 )(containers)
             },function (err) {

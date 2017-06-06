@@ -15,7 +15,7 @@
         var height = document.body.clientHeight;
         vm.mapSize = {"width":width + 'px',"height":height + 'px'};
 
-        var map = MapService.map_init("satellite_overview", "satellite");
+        var map = MapService.map_init("satellite_overview", "satellite", 2);
         var markers = []
         var circles = []
 
