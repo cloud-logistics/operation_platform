@@ -18,15 +18,6 @@
         vm.queryParams = $stateParams
         vm.options = {}
 
-
-        var timer = $interval(function(){
-            getAlerts();
-        },5000, 500);
-
-        $scope.$on("$destroy", function(){
-            $interval.cancel(timer);
-        });
-
         vm.getAlerts = getAlerts
         var transformations = undefined;
 

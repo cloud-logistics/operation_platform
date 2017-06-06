@@ -33,14 +33,7 @@
 
         vm.getHistorylocationInfo = getHistorylocationInfo;
 
-        getHistorylocationInfo();
-        var timer = $interval(function(){
-            getHistorylocationInfo();
-        },5000, 500);
-
-        $scope.$on("$destroy", function(){
-            $interval.cancel(timer);
-        });
+        getHistorylocationInfo()
 
         function getHistorylocationInfo() {
             var transformations = {

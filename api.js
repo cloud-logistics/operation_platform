@@ -112,7 +112,7 @@ server.post('/alerts', function (req, res) {
     "alerts": [
       {
         "containerId": "22932214122313",
-        "alertTime": "1495597347299",
+        "alertTime": 1495597347299,
         "alertLevel": "高",
         "alertType": "失联",
         "alertCode": "0x1101",
