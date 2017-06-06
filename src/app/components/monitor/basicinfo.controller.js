@@ -17,15 +17,6 @@
 
         var transformations = undefined;
 
-
-        var timer = $interval(function(){
-            getBasicInfo();
-        },5000, 500);
-
-        $scope.$on("$destroy", function(){
-            $interval.cancel(timer);
-        });
-
         var requiredOptions = [
                     "containerType",
                     "carrier",

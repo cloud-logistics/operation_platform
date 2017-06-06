@@ -36,7 +36,7 @@
                 alertLevel: optionsTransFunc(vm.options.alertLevel),
                 alertType: optionsTransFunc(vm.options.alertType),
                 alertCode: optionsTransFunc(vm.options.alertCode),
-                carrier: optionsTransFunc(vm.options.carrier),
+                carrier: optionsTransFunc(vm.options.carrier)
             }
 
             vm.queryParams = {
