@@ -18,14 +18,6 @@
 
         var transformations = undefined;
 
-        var timer = $interval(function(){
-            getBoxStatus();
-        },5000, 500);
-
-        $scope.$on("$destroy", function(){
-            $interval.cancel(timer);
-        });
-
         var requiredOptions = [
                     "currentStatus",
                     "location",
@@ -44,7 +36,7 @@
                 alertLevel: optionsTransFunc(vm.options.alertLevel),
                 alertType: optionsTransFunc(vm.options.alertType),
                 alertCode: optionsTransFunc(vm.options.alertCode),
-                carrier: optionsTransFunc(vm.options.carrier),
+                carrier: optionsTransFunc(vm.options.carrier)
             }
 
             vm.queryParams = {
@@ -55,6 +47,8 @@
                 alertCode : R.compose(R.prop("value"),R.head)(vm.options.alertCode),
                 carrier : R.compose(R.prop("value"),R.head)(vm.options.carrier),
             }
+
+            console.log(vm.queryParams);
 
             getBoxStatus();
         })

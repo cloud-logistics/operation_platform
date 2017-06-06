@@ -17,19 +17,13 @@
 
         var transformations = undefined;
 
-        getContainerReportHistory();
-        var timer = $interval(function(){
-            getContainerReportHistory();
-        },5000, 500);
-
-        $scope.$on("$destroy", function(){
-            $interval.cancel(timer);
-        });
 
         var requiredOptions = [
                     "containerType",
                     "reportType"
                 ]
+
+        getContainerReportHistory()
 
         ApiServer.getOptions(requiredOptions, function(options) {
             vm.options = options
@@ -56,7 +50,9 @@
 
             ApiServer.getContainerReportHistory(queryParams, function (response) {
                 console.log(queryParams);
-                vm.reports = response.data.containerReportHistory
+                vm.reports = R.merge(response.data.result)({
+                    reportLength: R.length(response.data.result.record)
+                })
                 console.log(vm.reports);
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);

@@ -111,9 +111,9 @@
                             <tr ng-repeat="item in vm.reports track by $index">
                                 <td style="vertical-align: middle;">{{item.containerId}}</td>
                                 <td style="vertical-align: middle;">{{item.containerType}}</td>
-                                <td style="vertical-align: middle;">{{item.reportType}}</td>
-                                <td style="vertical-align: middle;">{{item.originalReport}}</td>
-                                <td style="vertical-align: middle;">{{item.factoryDate | date:"yyyy-MM-dd"}}</td>
+                                <td style="vertical-align: middle;">{{item.messageType}}</td>
+                                <td style="vertical-align: middle;">{{item.record}}</td>
+                                <td style="vertical-align: middle;">{{item.time | date:"yyyy-MM-dd"}}</td>
                             </tr>
                         </tbody>
                     </table>
