@@ -22,7 +22,8 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">云箱类型</label>
                             <div class="col-md-8">
-                                <input ng-model="vm.newIssueConfig.containerId" type="text" class="form-control" placeholder="请输入">
+                                <input ng-model="vm.newIssueConfig.containerId" type="text" class="form-control"
+                                       placeholder="请输入">
                             </div>
                         </div>
                     </div>
@@ -32,7 +33,8 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">故障代码</label>
                             <div class="col-md-8">
-                                <input ng-model="vm.newIssueConfig.alertCode" type="text" class="form-control" placeholder="请输入">
+                                <input ng-model="vm.newIssueConfig.alertCode" type="text" class="form-control"
+                                       placeholder="请输入">
                             </div>
                         </div>
                     </div>
@@ -42,7 +44,8 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">故障类型</label>
                             <div class="col-md-8">
-                                <input ng-model="vm.newIssueConfig.alertType" type="text" class="form-control" placeholder="请输入">
+                                <input ng-model="vm.newIssueConfig.alertType" type="text" class="form-control"
+                                       placeholder="请输入">
                             </div>
                         </div>
                     </div>
@@ -52,15 +55,16 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">故障级别</label>
                             <div class="col-md-8">
-                                <input ng-model="vm.newIssueConfig.alertLevel" type="text" class="form-control" placeholder="请输入">
+                                <input ng-model="vm.newIssueConfig.alertLevel" type="text" class="form-control"
+                                       placeholder="请输入">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="bm-input-bottom">
-                        <button class="pull-right bm-save"  ng-click="vm.saveIssueInfoConfig()">保存</button>
-                        <button class="pull-right bm-cancel" ng-click="vm.cancelIssueInfoConfig()" >取消</button>
+                        <button class="pull-right bm-save" ng-click="vm.saveIssueInfoConfig()">保存</button>
+                        <button class="pull-right bm-cancel" ng-click="vm.cancelIssueInfoConfig()">取消</button>
                     </div>
                 </div>
             </div>
@@ -74,44 +78,50 @@
                         <div class="row m-b">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="col-md-6 control-label form-control-static">云箱类型</label>
+                                    <label class="col-md-4 control-label form-control-static">云箱类型</label>
                                     <div class="col-md-8">
-                                        <input ng-model="vm.newIssueConfig.containerType" type="text" class="form-control" placeholder="请输入云箱">
-                                    </div>
-                                </div>
-                            </div>
-                           <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="col-md-6 control-label form-control-static">故障代码</label>
-                                    <div class="col-md-8">
-                                        <input ng-model="vm.newIssueConfig.alertCode" type="text" class="form-control" placeholder="请输入云箱ID">
+                                        <input ng-model="vm.newIssueConfig.containerType" type="text"
+                                               class="form-control" placeholder="请输入云箱">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="col-md-6 control-label form-control-static">故障类型</label>
+                                    <label class="col-md-4 control-label form-control-static">故障代码</label>
                                     <div class="col-md-8">
-                                        <input ng-model="vm.newIssueConfig.alertType" type="text" class="form-control" placeholder="请输入云箱">
+                                        <input ng-model="vm.newIssueConfig.alertCode" type="text" class="form-control"
+                                               placeholder="请输入云箱ID">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label form-control-static">故障类型</label>
+                                    <div class="col-md-8">
+                                        <input ng-model="vm.newIssueConfig.alertType" type="text" class="form-control"
+                                               placeholder="请输入云箱">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- line2 -->
                         <div class="row m-b">
-                           <div class="col-md-4">
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="col-md-6 control-label form-control-static">故障级别</label>
+                                    <label class="col-md-4 control-label form-control-static">故障级别</label>
                                     <div class="col-md-8">
-                                        <input ng-model="vm.newIssueConfig.alertCode" type="text" class="form-control" placeholder="请输入云箱ID">
+                                        <input ng-model="vm.newIssueConfig.alertCode" type="text" class="form-control"
+                                               placeholder="请输入云箱ID">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-offset-4 col-md-4">
                                 <div class="pull-right bb-btn">
                                     <div class="bm-input-bottom">
-                                        <button class="pull-right bm-save"  ng-click="vm.saveIssueInfoConfig()">保存</button>
-                                        <button class="pull-right bm-cancel" ng-click="vm.cancelIssueInfoConfig()" >取消</button>
+                                        <button class="pull-right bm-save" ng-click="vm.saveIssueInfoConfig()">保存
+                                        </button>
+                                        <button class="pull-right bm-cancel" ng-click="vm.cancelIssueInfoConfig()">取消
+                                        </button>
                                     </div>
                                 </div>
                             </div>
