@@ -31,7 +31,9 @@ server.use(jsonServer.rewriter({
   "/container/api/v1/cloudbox/issueConfig":"/issueConfig",
   "/container/api/v1/cloudbox/issueConfig":"/issueConfig",
   "/container/api/v1/cloudbox/alertConfig":"/alertConfig",
-  "/container/api/v1/cloudbox/options":"/options"
+  "/container/api/v1/cloudbox/options":"/options",
+  "/container/api/v1/cloudbox/carriers":"/carriers",
+  "/container/api/v1/cloudbox/newcarrier":"/newcarrier"
 }))
 
 server.post('/auth', function (req, res) {
@@ -392,6 +394,12 @@ server.post('/realtimeInfo', function (req, res) {
   });
 })
 
+server.post('/newcarrier', function (req, res) {
+  res.json({
+    "code":"200"
+  });
+})
+
 server.post('/options', function (req, res) {
   res.json({
     "alertLevel": [
@@ -588,6 +596,16 @@ server.post('/options', function (req, res) {
       {
         "value":"option3",
         "id": 3
+      }
+    ],
+    "leaseType": [
+      {
+        "value":"长期租赁",
+        "id": 1
+      },
+      {
+        "value":"短期租赁",
+        "id": 2
       }
     ]
   });

@@ -33,6 +33,8 @@
             getBoxStatus: getBoxStatus,
             getRealtimeInfo: getRealtimeInfo,
             getOptions: getOptions,
+            getCarriers: getCarriers,
+            newCarrier: newCarrier,
             newBasicInfoConfig: newBasicInfoConfig,
             updateSecurityConfig: updateSecurityConfig,
             newAlertConfig: newAlertConfig,
@@ -216,6 +218,14 @@
                                 failedHandler);
         }
 
+        function newCarrier(params, successHandler,failedHandler) {
+            console.log(params);
+            NetworkService.post(constdata.api.newcarrier,
+                                params,
+                                successHandler,
+                                failedHandler);
+        }
+
         function updateSecurityConfig(params, successHandler,failedHandler) {
             NetworkService.post(constdata.api.securityConfig,
                                 params,
@@ -253,6 +263,13 @@
 
         function getAlertInfoManage(successHandler,failedHandler) {
             NetworkService.get(constdata.api.alertInfo,
+                                null,
+                                successHandler,
+                                failedHandler);
+        }
+
+        function getCarriers(successHandler,failedHandler) {
+            NetworkService.get(constdata.api.carriers,
                                 null,
                                 successHandler,
                                 failedHandler);

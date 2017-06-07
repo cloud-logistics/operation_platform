@@ -1,4 +1,36 @@
 {
+  "carriers": {
+    "carriers":[
+      {
+        "name": "中能",
+        "contact":"028-999999999",
+        "leaseType":"标准租赁",
+        "contractEndTime":1495597347299,
+        "address":"上海市徐家汇中山路33号"
+      },
+      {
+        "name": "中能",
+        "contact":"028-999999999",
+        "leaseType":"标准租赁",
+        "contractEndTime":1495597347299,
+        "address":"上海市徐家汇中山路33号"
+      },
+      {
+        "name": "中能",
+        "contact":"028-999999999",
+        "leaseType":"标准租赁",
+        "contractEndTime":1495597347299,
+        "address":"上海市徐家汇中山路33号"
+      },
+      {
+        "name": "中能",
+        "contact":"028-999999999",
+        "leaseType":"标准租赁",
+        "contractEndTime":1495597347299,
+        "address":"上海市徐家汇中山路33号"
+      }
+    ]
+  },
   "basicInfoManage": {
     "basicInfoConfig": [
       {"containerId": "22937203474450"},

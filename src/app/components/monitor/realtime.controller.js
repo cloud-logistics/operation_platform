@@ -48,7 +48,7 @@
         getRealtimeInfo()
         var timer = $interval(function(){
             getRealtimeInfo();
-        },5000, 500);
+        },50000, 500);
 
         $scope.$on("$destroy", function(){
             $interval.cancel(timer);
