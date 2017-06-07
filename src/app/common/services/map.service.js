@@ -31,7 +31,7 @@
 
         var mapIcons = {
             container: "images/box.svg",
-            satellite: "images/satellite2.svg"
+            satellite: "images/satellite3.svg"
         }
 
         return service;
