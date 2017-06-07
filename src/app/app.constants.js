@@ -47,6 +47,8 @@
                 boxStatus : "boxStatus",
                 realtimeInfo : "realtimeInfo",
                 options : "options",
+                carriers : "carriers",
+                newcarrier : "newcarrier",
                 user:'user',
                 message:'message'
             },

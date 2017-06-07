@@ -10,7 +10,7 @@
         <!--</div>-->
         <!--</div>-->
         <!--</div>-->
-        <modal-dialog show='leaseShow' width='659px' height='330px'>
+        <!--<modal-dialog show='leaseShow' width='659px' height='330px'>
             <div class="container-fluid">
                 <div class="row">
                     <div class="bm-update-header">
@@ -42,11 +42,7 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label form-control-static">公司地址</label>
                             <div class="col-md-10">
-                                <!--<input ng-model="vm.newBasicInfoConfig.manufactureTime"
-                                        class="form-control m-b"
-                                        moment-picker
-                                        format="YYYY-MM-DD">-->
-                                <input date-time class="form-control" min-view="hours" format="YYYY-MM-DD HH:mm">
+                                <input class="form-control" min-view="hours" format="YYYY-MM-DD HH:mm">
                             </div>
                         </div>
                     </div>
@@ -82,7 +78,7 @@
                     </div>
                 </div>
             </div>
-        </modal-dialog>
+        </modal-dialog>-->
 
         <div id="content" style="height: 100vh;">
             <div class="wrapper-md">
@@ -94,7 +90,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">公司名称</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" placeholder="请输入公司名称">
+                                        <input ng-model="vm.newCarrier.name" type="text" class="form-control" placeholder="请输入公司名称">
                                     </div>
                                 </div>
                             </div>
@@ -103,7 +99,7 @@
                                 <div class="form-group">
                                     <label class="col-md-2 control-label form-control-static">公司地址</label>
                                     <div class="col-md-10">
-                                        <input type="text" class="form-control" placeholder="请输入公司地址">
+                                        <input  ng-model="vm.newCarrier.address" type="text" class="form-control" placeholder="请输入公司地址">
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +111,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">联系方式</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" placeholder="请输入联系方式">
+                                        <input  ng-model="vm.newCarrier.contact" type="text" class="form-control" placeholder="请输入联系方式">
                                     </div>
                                 </div>
                             </div>
@@ -123,8 +119,9 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">租赁类型</label>
                                     <div class="col-md-8">
-                                        <select name="account" class="form-control">
-                                            <option>标准租赁</option>
+                                        <select ng-model="vm.newCarrier.leaseType" name="account" class="form-control">
+                                            <option ng-repeat="item in vm.options.leaseType track by $index" >{{item.value}}</option>
+                                            
                                         </select>
                                     </div>
                                 </div>
@@ -133,19 +130,22 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">合约截止</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" placeholder="YYYY-MM-DD">
+                                        <input ng-model="vm.newCarrier.contractEndTime"
+                                            min-view="hours"
+                                            placeholder="Select date"
+                                            moment-picker
+                                            format="YYYY-MM-DD">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- line3 -->
                         <div class="row m-b">
-
                             <div class="col-md-offset-8 col-md-4">
                                 <div class="pull-right bb-btn">
                                     <div class="bm-input-bottom">
-                                        <span class="pull-right bm-save"  ng-click="vm.saveBasicInfoConfig()">保存</span>
-                                        <span class="pull-right bm-cancel" ng-click="vm.cancelBasicInfoConfig()">取消</span>
+                                        <button class="pull-right bm-save"  ng-click="vm.saveNewCarrier()">保存</span>
+                                        <button class="pull-right bm-cancel" ng-click="vm.cancelBasicInfoConfig()">取消</span>
                                     </div>
                                 </div>
                             </div>
@@ -169,38 +169,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td style="vertical-align: middle;">海南乐游</td>
-                            <td style="vertical-align: middle;">010-99999999</td>
-                            <td style="vertical-align: middle;">中国-上海</td>
-                            <td style="vertical-align: middle;">2017-05-31</td>
-                            <td style="vertical-align: middle;">上海市徐家汇中山路33号</td>
+                        <tr ng-repeat="item in vm.carriers track by $index" >
+                            <td style="vertical-align: middle;">{{item.name}}</td>
+                            <td style="vertical-align: middle;">{{item.contact}}</td>
+                            <td style="vertical-align: middle;">{{item.leaseType}}</td>
+                            <td style="vertical-align: middle;">{{item.contractEndTime | date:"yyyy-MM-dd"}}</td>
+                            <td style="vertical-align: middle;">{{item.address}}</td>
                             <td style="vertical-align: middle;">
                                 <span class="bb-edit-btn" ng-click="lmUpdate()">编辑</span>
-                                <span class="bb-del-btn">删除</span>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">海南乐游</td>
-                            <td style="vertical-align: middle;">010-99999999</td>
-                            <td style="vertical-align: middle;">中国-上海</td>
-                            <td style="vertical-align: middle;">2017-05-31</td>
-                            <td style="vertical-align: middle;">上海市徐家汇中山路33号</td>
-                            <td style="vertical-align: middle;">
-                                <span class="bb-edit-btn" ng-click="basicUpdate()">编辑</span>
-                                <span class="bb-del-btn">删除</span>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">海南乐游</td>
-                            <td style="vertical-align: middle;">010-99999999</td>
-                            <td style="vertical-align: middle;">中国-上海</td>
-                            <td style="vertical-align: middle;">2017-05-31</td>
-                            <td style="vertical-align: middle;">上海市徐家汇中山路33号</td>
-                            <td style="vertical-align: middle;">
-                                <span class="bb-edit-btn" ng-click="basicUpdate()">编辑</span>
                                 <span class="bb-del-btn">删除</span>
                             </td>
 
