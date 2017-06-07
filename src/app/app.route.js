@@ -137,6 +137,11 @@
                 url: 'lease',
                 templateUrl: 'app/components/lease/lease.html'
             })
+            //租赁管理
+            .state('app.leasemanage',{
+                url: 'leasemanage',
+                templateUrl: 'app/components/lease/leaseManage.html'
+            })
 
             //租赁承运商
             .state('app.mylease',{

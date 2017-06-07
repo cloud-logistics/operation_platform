@@ -1,0 +1,218 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="LeaseManageController as vm"
+     ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
+    <!-- main -->
+    <div class="col">
+        <!-- main header -->
+        <!--<div class="bg-light lter b-b wrapper-xs">-->
+        <!--<div class="row">-->
+        <!--<div class="col-md-6 col-sm-6 col-xs-12">-->
+        <!--<h1 class="font-thin h3 text-black m-l m-t-sm">{{vm.title}}</h1>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <modal-dialog show='leaseShow' width='659px' height='330px'>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="bm-update-header">
+                        <span class="pull-left">编辑管理方信息</span>
+                        <span class="pull-right">删除条目</span>
+                    </div>
+                </div>
+                <div class="row bm-input m-b-md">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label form-control-static">公司名称</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="请输入">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label form-control-static">联系方式</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="请输入">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row bm-input m-b-md">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label form-control-static">公司地址</label>
+                            <div class="col-md-10">
+                                <!--<input ng-model="vm.newBasicInfoConfig.manufactureTime"
+                                        class="form-control m-b"
+                                        moment-picker
+                                        format="YYYY-MM-DD">-->
+                                <input date-time class="form-control" min-view="hours" format="YYYY-MM-DD HH:mm">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row bm-input m-b-md">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label form-control-static">租赁类型</label>
+                            <div class="col-md-8">
+                                <select name="account" class="form-control">
+                                    <option>普通租赁</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label form-control-static">合约截止</label>
+                            <div class="col-md-8">
+                                <input date-time class="form-control" min-view="hours" format="YYYY-MM-DD HH:mm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="bm-input-bottom">
+                        <button class="pull-right bm-save"  ng-click="vm.saveBasicInfoConfig()">保存</button>
+                        <button class="pull-right bm-cancel" ng-click="vm.cancelBasicInfoConfig()" >取消</button>
+                    </div>
+                </div>
+            </div>
+        </modal-dialog>
+
+        <div id="content" style="height: 100vh;">
+            <div class="wrapper-md">
+                <div class="row" style="background-color: #fff">
+                    <div class="bb-title"><span>新增管理方信息</span></div>
+                    <div class="bb-content">
+                        <div class="row m-b">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label form-control-static">公司名称</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" placeholder="请输入公司名称">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label form-control-static">公司地址</label>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" placeholder="请输入公司地址">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- line2 -->
+                        <div class="row m-b">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label form-control-static">联系方式</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" placeholder="请输入联系方式">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label form-control-static">租赁类型</label>
+                                    <div class="col-md-8">
+                                        <select name="account" class="form-control">
+                                            <option>标准租赁</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label form-control-static">合约截止</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" placeholder="YYYY-MM-DD">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- line3 -->
+                        <div class="row m-b">
+
+                            <div class="col-md-offset-8 col-md-4">
+                                <div class="pull-right bb-btn">
+                                    <div class="bm-input-bottom">
+                                        <span class="pull-right bm-save"  ng-click="vm.saveBasicInfoConfig()">保存</span>
+                                        <span class="pull-right bm-cancel" ng-click="vm.cancelBasicInfoConfig()">取消</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row bb-table" style="background-color: #fff;margin-top: 30px">
+                    <table st-table="vm.items" st-safe-src="vm.items" class="table table-striped table-hover m-t">
+                        <thead>
+                        <tr>
+                            <!--<th ng-repeat="title in vm.titles">-->
+                            <!--{{title}}-->
+                            <!--</th>-->
+                            <th>公司名称</th>
+                            <th>联系方式</th>
+                            <th>租赁方式</th>
+                            <th>合约截止</th>
+                            <th>公司地址</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td style="vertical-align: middle;">海南乐游</td>
+                            <td style="vertical-align: middle;">010-99999999</td>
+                            <td style="vertical-align: middle;">中国-上海</td>
+                            <td style="vertical-align: middle;">2017-05-31</td>
+                            <td style="vertical-align: middle;">上海市徐家汇中山路33号</td>
+                            <td style="vertical-align: middle;">
+                                <span class="bb-edit-btn" ng-click="lmUpdate()">编辑</span>
+                                <span class="bb-del-btn">删除</span>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle;">海南乐游</td>
+                            <td style="vertical-align: middle;">010-99999999</td>
+                            <td style="vertical-align: middle;">中国-上海</td>
+                            <td style="vertical-align: middle;">2017-05-31</td>
+                            <td style="vertical-align: middle;">上海市徐家汇中山路33号</td>
+                            <td style="vertical-align: middle;">
+                                <span class="bb-edit-btn" ng-click="basicUpdate()">编辑</span>
+                                <span class="bb-del-btn">删除</span>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle;">海南乐游</td>
+                            <td style="vertical-align: middle;">010-99999999</td>
+                            <td style="vertical-align: middle;">中国-上海</td>
+                            <td style="vertical-align: middle;">2017-05-31</td>
+                            <td style="vertical-align: middle;">上海市徐家汇中山路33号</td>
+                            <td style="vertical-align: middle;">
+                                <span class="bb-edit-btn" ng-click="basicUpdate()">编辑</span>
+                                <span class="bb-del-btn">删除</span>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div auto-pagination pageination="vm.pageination"></div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
