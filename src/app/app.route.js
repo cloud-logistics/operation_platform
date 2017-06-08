@@ -131,6 +131,11 @@
                 url: 'realtime/:containerId',
                 templateUrl: 'app/components/monitor/realtime.html'
             })
+            //机器人监控
+            .state('app.robots',{
+                url: 'robots',
+                templateUrl: 'app/components/monitor/robots.html'
+            })
 
             //租赁admin
             .state('app.lease',{
