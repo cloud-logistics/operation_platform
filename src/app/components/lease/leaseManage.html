@@ -10,7 +10,7 @@
         <!--</div>-->
         <!--</div>-->
         <!--</div>-->
-        <!--<modal-dialog show='leaseShow' width='659px' height='330px'>
+        <modal-dialog show='leaseShow' width='659px' height='330px'>
             <div class="container-fluid">
                 <div class="row">
                     <div class="bm-update-header">
@@ -23,7 +23,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">公司名称</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" placeholder="请输入">
+                                <input ng-model="vm.newCarrier.name" type="text" class="form-control" placeholder="请输入">
                             </div>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">联系方式</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" placeholder="请输入">
+                                <input ng-model="vm.newCarrier.contact" type="text" class="form-control" placeholder="请输入">
                             </div>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label form-control-static">公司地址</label>
                             <div class="col-md-10">
-                                <input class="form-control" min-view="hours" format="YYYY-MM-DD HH:mm">
+                                <input ng-model="vm.newCarrier.address"  class="form-control" min-view="hours" format="YYYY-MM-DD HH:mm">
                             </div>
                         </div>
                     </div>
@@ -54,8 +54,8 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">租赁类型</label>
                             <div class="col-md-8">
-                                <select name="account" class="form-control">
-                                    <option>普通租赁</option>
+                                <select ng-model="vm.newCarrier.leaseType" name="account" class="form-control">
+                                    <option ng-repeat="item in vm.options.leaseType track by $index" >普通租赁</option>
                                 </select>
                             </div>
                         </div>
@@ -64,21 +64,24 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">合约截止</label>
                             <div class="col-md-8">
-                                <input date-time class="form-control" min-view="hours" format="YYYY-MM-DD HH:mm">
+                                <input ng-model="vm.newCarrier.contractEndTime"
+                                    min-view="hours"
+                                    placeholder="Select date"
+                                    moment-picker
+                                    format="YYYY-MM-DD">
                             </div>
                         </div>
                     </div>
                 </div>
 
-
                 <div class="row">
                     <div class="bm-input-bottom">
-                        <button class="pull-right bm-save"  ng-click="vm.saveBasicInfoConfig()">保存</button>
-                        <button class="pull-right bm-cancel" ng-click="vm.cancelBasicInfoConfig()" >取消</button>
+                        <button class="pull-right bm-save"  ng-click="vm.saveNewCarrier()">保存</button>
+                        <button class="pull-right bm-cancel" ng-click="vm.cancelNewCarrier()" >取消</button>
                     </div>
                 </div>
             </div>
-        </modal-dialog>-->
+        </modal-dialog>
 
         <div id="content" style="height: 100vh;">
             <div class="wrapper-md">
@@ -121,7 +124,6 @@
                                     <div class="col-md-8">
                                         <select ng-model="vm.newCarrier.leaseType" name="account" class="form-control">
                                             <option ng-repeat="item in vm.options.leaseType track by $index" >{{item.value}}</option>
-                                            
                                         </select>
                                     </div>
                                 </div>
@@ -145,7 +147,7 @@
                                 <div class="pull-right bb-btn">
                                     <div class="bm-input-bottom">
                                         <button class="pull-right bm-save"  ng-click="vm.saveNewCarrier()">保存</span>
-                                        <button class="pull-right bm-cancel" ng-click="vm.cancelBasicInfoConfig()">取消</span>
+                                        <button class="pull-right bm-cancel" ng-click="vm.cancelNewCarrier()">取消</span>
                                     </div>
                                 </div>
                             </div>

@@ -33,7 +33,9 @@ server.use(jsonServer.rewriter({
   "/container/api/v1/cloudbox/alertConfig":"/alertConfig",
   "/container/api/v1/cloudbox/options":"/options",
   "/container/api/v1/cloudbox/carriers":"/carriers",
-  "/container/api/v1/cloudbox/newcarrier":"/newcarrier"
+  "/container/api/v1/cloudbox/newcarrier":"/newcarrier",
+  "/container/api/v1/cloudbox/mycontainers":"/mycontainers",
+  "/container/api/v1/cloudbox/availablecontainers":"/availablecontainers"
 }))
 
 server.post('/auth', function (req, res) {

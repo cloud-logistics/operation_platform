@@ -34,6 +34,8 @@
             getRealtimeInfo: getRealtimeInfo,
             getOptions: getOptions,
             getCarriers: getCarriers,
+            getMyContainers: getMyContainers,
+            getAvailableContainers: getAvailableContainers,
             newCarrier: newCarrier,
             newBasicInfoConfig: newBasicInfoConfig,
             updateSecurityConfig: updateSecurityConfig,
@@ -270,6 +272,20 @@
 
         function getCarriers(successHandler,failedHandler) {
             NetworkService.get(constdata.api.carriers,
+                                null,
+                                successHandler,
+                                failedHandler);
+        }
+
+        function getMyContainers(successHandler,failedHandler) {
+            NetworkService.get(constdata.api.mycontainers,
+                                null,
+                                successHandler,
+                                failedHandler);
+        }
+
+        function getAvailableContainers(successHandler,failedHandler) {
+            NetworkService.get(constdata.api.availablecontainers,
                                 null,
                                 successHandler,
                                 failedHandler);

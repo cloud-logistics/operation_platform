@@ -11,26 +11,23 @@
         /* jshint validthis: true */
         var vm = this;
 
-        var width = document.body.clientWidth;
-        var height = document.body.clientHeight;
-        vm.mapSize = {"width": width + 'px', "height": height + 'px'};
-
-        var map = MapService.map_init("dashboard_map", "terrain");
-        var markers = []
-        var circles = []
+        var map = MapService.map_init("mylease_map", "terrain");
+        var markers = [];
+        vm.containersInfo = {
+            mycontainers:{
+                detail:[],
+                count: 0
+            },
+            availablecontainers: {
+                detail: [],
+                count: 0
+            }
+        }
 
         function getContainerInfo() {
-            ApiServer.getContainerOverviewInfo(function (response) {
-                var containers = response.data
+            ApiServer.getMyContainers(successHandler("mycontainers", myContainersPostProc), failureHandler);
 
-                markers = R.compose(
-                    R.map(MapService.addMarker(map, "container")),
-                    R.map(R.prop("position"))
-                )(containers)
-
-            }, function (err) {
-                console.log("Get Container Info Failed", err);
-            });
+            ApiServer.getAvailableContainers(successHandler("availablecontainers"), failureHandler);
         }
 
         $scope.mineActive = true;
@@ -44,6 +41,8 @@
             $scope.leaseActive = false;
             $scope.refundActive = false;
             $scope.leaseShow = false;
+
+            refreshMarkers(vm.containersInfo.mycontainers.detail);
         };
 
         $scope.clickLease = function(){
@@ -52,6 +51,8 @@
             $scope.refundActive = false;
             $scope.leaseShow = true;
             $scope.refundShow = false;
+
+            refreshMarkers(vm.containersInfo.availablecontainers.detail);
         };
 
         $scope.clickRefund = function(){
@@ -62,13 +63,68 @@
             $scope.refundShow = true;
         }
 
+        function successHandler(key, callback) {
+            return function (response) {
+                vm.containersInfo[key].detail = R.prop(key)(response.data)
+                vm.containersInfo[key].count = vm.containersInfo[key].detail.length
+                if(callback !== undefined) {
+                    callback()
+                }
+            }
+        }
 
+        function failureHandler(err) {
+            console.log("Get Container Info Failed", err);
+        }
 
+        function myContainersPostProc() {
+            refreshMarkers(vm.containersInfo.mycontainers.detail);
+
+            vm.containersInfo.mycontainers.detail = R.map(function(container){
+                var locationName = undefined;
+
+                MapService.geoCodePosition(container.position)
+                .then(function(results){
+                    if(!R.isNil(results)){
+                        locationName = R.head(results).formatted_address
+                    } else {
+                        locationName = "未找到地名"
+                    }
+
+                    vm.containersInfo.mycontainers.detail = R.map(function(item) {
+                        if(item.containerId === container.containerId){
+                            item.locationName = locationName
+                        }
+
+                        return item
+                    })(vm.containersInfo.mycontainers.detail)
+
+                    container.locationName = locationName
+                })
+                .catch(function(status){
+                    // alert(status)
+                })
+                return container
+            })(vm.containersInfo.mycontainers.detail)
+        }
+
+        function refreshMarkers(containers) {
+            console.log(containers);
+            markers.map(function (marker){
+                marker.setMap(null)
+            })
+            markers = []
+
+            markers = R.compose(
+                R.map(MapService.addMarker(map, "container")),
+                R.map(R.prop("position"))
+            )(containers)
+        }
 
         getContainerInfo();
         var timer = $interval(function(){
             getContainerInfo();
-        },5000, 500);
+        },50000, 500);
 
         $scope.$on("$destroy", function(){
             $interval.cancel(timer);
