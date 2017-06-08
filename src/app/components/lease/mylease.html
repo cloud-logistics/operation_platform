@@ -13,7 +13,7 @@
         <div class="wrapper-md">
 
             <div class="row ds-map">
-                <div id="dashboard_map" class="embeded_mapview"></div>
+                <div id="mylease_map" class="embeded_mapview"></div>
                 <div class="mls-info-refund" ng-show="refundShow">
                     <ul>
                         <li>
@@ -65,7 +65,7 @@
                             <span>我的云箱</span>
                         </div>
                         <div ng-class="{true:'mls-num',false:'mls-num-mine'}[mineActive]">
-                            <p><span>35</span>个</p>
+                            <p><span>{{vm.containersInfo.mycontainers.count}}</span>个</p>
                         </div>
 
                     </div>
@@ -76,7 +76,7 @@
                             <span>可租赁云箱</span>
                         </div>
                         <div ng-class="{true:'mls-num',false:'mls-num-lease'}[leaseActive]">
-                            <p><span>21</span>个</p>
+                            <p><span>{{vm.containersInfo.availablecontainers.count}}</span>个</p>
                         </div>
 
                     </div>
@@ -109,40 +109,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td style="vertical-align: middle;">22937203474450</td>
-                        <td style="vertical-align: middle;">2017-03-09至2017-05-16</td>
-                        <td style="vertical-align: middle;">中国-上海</td>
-                        <td style="vertical-align: middle;">中集集团</td>
+                    <tr ng-repeat="item in vm.containersInfo.mycontainers.detail track by $index">
+                        <td style="vertical-align: middle;">{{item.containerId}}</td>
+                        <td style="vertical-align: middle;">{{item.leaseStartTime | date:"yyyy-MM-dd"}}至{{item.leaseEndTime | date:"yyyy-MM-dd"}}</td>
+                        <td style="vertical-align: middle;">{{item.locationName}}</td>
+                        <td style="vertical-align: middle;">{{item.carrier}}</td>
                         <td><a class="btn-table-detail" ng-click="bool=!bool">查看详情</a></td>
-                    </tr>
-                    <tr>
-                        <td style="vertical-align: middle;">22937203474450</td>
-                        <td style="vertical-align: middle;">2017-03-09至2017-05-16</td>
-                        <td style="vertical-align: middle;">中国-上海</td>
-                        <td style="vertical-align: middle;">中集集团</td>
-                        <td><a href="#" class="btn-table-detail">查看详情</a></td>
-                    </tr>
-                    <tr>
-                        <td style="vertical-align: middle;">22937203474450</td>
-                        <td style="vertical-align: middle;">2017-03-09至2017-05-16</td>
-                        <td style="vertical-align: middle;">中国-上海</td>
-                        <td style="vertical-align: middle;">中集集团</td>
-                        <td><a href="#" class="btn-table-detail">查看详情</a></td>
-                    </tr>
-                    <tr>
-                        <td style="vertical-align: middle;">22937203474450</td>
-                        <td style="vertical-align: middle;">2017-03-09至2017-05-16</td>
-                        <td style="vertical-align: middle;">中国-上海</td>
-                        <td style="vertical-align: middle;">中集集团</td>
-                        <td><a href="#" class="btn-table-detail">查看详情</a></td>
-                    </tr>
-                    <tr>
-                        <td style="vertical-align: middle;">22937203474450</td>
-                        <td style="vertical-align: middle;">2017-03-09至2017-05-16</td>
-                        <td style="vertical-align: middle;">中国-上海</td>
-                        <td style="vertical-align: middle;">中集集团</td>
-                        <td><a href="#" class="btn-table-detail">查看详情</a></td>
                     </tr>
                     </tbody>
                 </table>

@@ -49,6 +49,8 @@
                 options : "options",
                 carriers : "carriers",
                 newcarrier : "newcarrier",
+                mycontainers : "mycontainers",
+                availablecontainers : "availablecontainers",
                 user:'user',
                 message:'message'
             },
