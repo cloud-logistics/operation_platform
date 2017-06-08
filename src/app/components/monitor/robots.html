@@ -4,7 +4,7 @@
     <div class="col">
         <div class="row">
             <div class="row robot-img">
-                <div class="zjzb" ng-show="true">
+                <div class="zjzb" ng-show="show[2]">
                     <div class="robot-show-zhijiao">
                             <div class="robot-title">
                                 <p><span>ID</span>86920-3994392</p>
@@ -23,7 +23,7 @@
                     <div class="zjzb-right"></div>
                 </div>
 
-                <div class="wrcys" ng-show="false">
+                <div class="wrcys" ng-show="show[5]">
                     <div class="wrcys-left"></div>
                     <div class="robot-show-wrcys">
                         <div class="robot-title">
@@ -42,7 +42,7 @@
                     </div>
                 </div>
 
-                <div class="xxagvyz" ng-show="false">
+                <div class="xxagvyz" ng-show="show[4]">
                     <div class="xxagvyz-left"></div>
                     <div class="robot-show-xxagvyz">
                         <div class="robot-title">
@@ -61,10 +61,67 @@
                     </div>
                 </div>
 
+                <div class="jxbcz" ng-show="show[3]">
+                    <div class="robot-show-jxbcz">
+                        <div class="robot-title">
+                            <p><span>ID</span>86920-3994392</p>
+                        </div>
+                        <div class="robot-content">
+                            <div class="robot-img-thumb"></div>
+                            <span class="robot-name">机械臂操作</span>
+
+                            <div class="robot-detail">
+                                <p><span>地点</span> 中国-上海-993码头</p>
+                                <p><span>时间</span> 2017-06-02 15:39</p>
+                                <p><span>重量</span> 3800kg</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="jxbcz-right"></div>
+                </div>
+
+                <div class="wrccyz" ng-show="show[1]">
+                    <div class="robot-show-wrccyz">
+                        <div class="robot-title">
+                            <p><span>ID</span>86920-3994392</p>
+                        </div>
+                        <div class="robot-content">
+                            <div class="robot-img-thumb"></div>
+                            <span class="robot-name">无人叉车运载</span>
+
+                            <div class="robot-detail">
+                                <p><span>地点</span> 中国-上海-993码头</p>
+                                <p><span>时间</span> 2017-06-02 15:39</p>
+                                <p><span>重量</span> 3800kg</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrccyz-right"></div>
+                </div>
+
+                <div class="zzagvyz" ng-show="show[0]">
+                    <div class="robot-show-zzagvyz">
+                        <div class="robot-title">
+                            <p><span>ID</span>86920-3994392</p>
+                        </div>
+                        <div class="robot-content">
+                            <div class="robot-img-thumb"></div>
+                            <span class="robot-name">载重AGV运载</span>
+
+                            <div class="robot-detail">
+                                <p><span>地点</span> 中国-上海-993码头</p>
+                                <p><span>时间</span> 2017-06-02 15:39</p>
+                                <p><span>重量</span> 3800kg</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="zzagvyz-right"></div>
+                </div>
+
             </div>
             <div class="row robot-line">
                 <div class="container">
-                    <ul>
+                    <ul id="robotUl">
                         <li class="actived"><p>重载AGV运载</p></li>
                         <li class="actived"><p>无人叉车运载</p></li>
                         <li><p></p></li>
