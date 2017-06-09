@@ -1376,3 +1376,29 @@
   }
 }
 
+.bd-tab .nav-tabs:after{
+  content: "";
+  display: table-cell;
+  background-color: #EFF3F6;
+  width: 1.5%;
+  height: 60px;
+}
+
+.bd-tab .nav-tabs li a {
+  position: relative;
+  &:after{
+    content: "";
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 10px;
+    height: 40px;
+    width: 1px;
+    background-color: #B9B9B9;
+  }
+}
+
+.nav-tabs.nav-justified > li > a {
+  border-radius: 0;
+}
+

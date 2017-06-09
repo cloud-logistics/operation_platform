@@ -210,6 +210,11 @@
                 templateUrl: 'app/components/monitor/instantlocation.html'
             })
 
+            .state('app.command',{
+                url: 'command',
+                templateUrl: 'app/components/monitor/command.html'
+            })
+
             /** LOGIN **/
             .state('access', {
                 url: '/access',

@@ -1,0 +1,44 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="CommandController as vm"
+     ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
+    <!-- main -->
+
+    <div class="col">
+        <div class="" style="position: relative">
+            <div class="floating-panel-comm">
+                <span class="comm-title">云箱监控</span>
+                <span class="bread-1">报警监控</span>
+                <span class="bread-symbol">></span>
+                <span class="bread-2">报警处理</span>
+                <div class="comm-right">
+                    <span class="comm-detail">云箱详情</span>
+                    <span class="comm-reset" ng-click="resetClick()"><i class="glyphicon glyphicon-repeat"></i>重置</span>
+                    <span class="comm-shutdown" ng-click="shutClick()"><i class="glyphicon glyphicon-off"></i>关机</span>
+                </div>
+            </div>
+            <div id="commandLocation" class="mapview"></div>
+        </div>
+        <modal-dialog show='resetShow' width='400px' height='130px'>
+            <div class="container-fluid">
+                <div class="row confirm-header">
+                    <span class="pull-left">您是否确认重置该云箱?</span>
+                </div>
+                <div class="row confirm-bottom">
+                    <span class="pull-right confirm-ok" >确认</span>
+                    <span class="pull-right confirm-cancel" >取消</span>
+                </div>
+            </div>
+        </modal-dialog>
+        <modal-dialog show='shutShow' width='400px' height='130px'>
+            <div class="container-fluid">
+                <div class="row confirm-header">
+                    <span class="pull-left">您是否确认关闭该云箱?</span>
+                </div>
+                <div class="row confirm-bottom">
+                    <span class="pull-right confirm-ok" >确认</span>
+                    <span class="pull-right confirm-cancel">取消</span>
+                </div>
+            </div>
+        </modal-dialog>
+    </div>
+
+</div>
