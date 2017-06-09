@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('MyleaseController', MyleaseController);
 
     /** @ngInject */
-    function MyleaseController($scope,$stateParams, ApiServer, MapService, toastr, $state, $timeout, $interval) {
+    function MyleaseController($scope,$stateParams, ApiServer, MapService, toastr, $state, $timeout, $interval, parseLocation) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -80,32 +80,7 @@
         function myContainersPostProc() {
             refreshMarkers(vm.containersInfo.mycontainers.detail);
 
-            vm.containersInfo.mycontainers.detail = R.map(function(container){
-                var locationName = undefined;
-
-                MapService.geoCodePosition(container.position)
-                .then(function(results){
-                    if(!R.isNil(results)){
-                        locationName = R.head(results).formatted_address
-                    } else {
-                        locationName = "未找到地名"
-                    }
-
-                    vm.containersInfo.mycontainers.detail = R.map(function(item) {
-                        if(item.containerId === container.containerId){
-                            item.locationName = locationName
-                        }
-
-                        return item
-                    })(vm.containersInfo.mycontainers.detail)
-
-                    container.locationName = locationName
-                })
-                .catch(function(status){
-                    // alert(status)
-                })
-                return container
-            })(vm.containersInfo.mycontainers.detail)
+            vm.containersInfo.mycontainers.detail = parseLocation(vm.containersInfo.mycontainers.detail)
         }
 
         function refreshMarkers(containers) {

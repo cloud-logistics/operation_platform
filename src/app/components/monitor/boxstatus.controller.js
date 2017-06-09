@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('BoxstatusController', BoxstatusController);
 
     /** @ngInject */
-    function BoxstatusController(constdata, NetworkService, MapService, $stateParams, ApiServer, toastr, $state, $timeout, $interval,$scope, optionsTransFunc) {
+    function BoxstatusController(constdata, NetworkService, MapService, $stateParams, ApiServer, toastr, $state, $timeout, $interval,$scope, optionsTransFunc, parseLocation) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -57,38 +57,11 @@
             var queryParams = R.evolve(transformations)(vm.queryParams)
             console.log(queryParams);
             ApiServer.getBoxStatus(queryParams, function (response) {
-                vm.containerlist = R.map(function(container){
-                    var locationName = undefined;
-
-                    MapService.geoCodePosition(container.position)
-                    .then(function(results){
-                        if(!R.isNil(results)){
-                            locationName = R.head(results).formatted_address
-                        } else {
-                            locationName = "未找到地名"
-                        }
-
-                        vm.containerlist = R.map(function(item) {
-                            if(item.containerId === container.containerId){
-                                item.position = locationName
-                            }
-
-                            return item
-                        })(vm.containerlist)
-
-                        container.locationName = locationName
-                    })
-                    .catch(function(status){
-                        // alert(status)
-                    })
-                    return container
-                })(response.data.boxStatus)
-                console.log(vm.containerlist);
+                vm.containerlist = parseLocation(response.data.boxStatus)
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);
             });
         }
     }
-
 
 })();

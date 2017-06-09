@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('LeaseController', LeaseController);
 
     /** @ngInject */
-    function LeaseController($stateParams, ApiServer, MapService, toastr, $state, $timeout, $interval, $scope) {
+    function LeaseController($stateParams, ApiServer, MapService, toastr, $state, $timeout, $interval, $scope, parseLocation) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -38,32 +38,6 @@
             }, function (err) {
                 console.log("Get Container Info Failed", err);
             });
-        }
-
-        function parseLocation(initialContainers) {
-            var containersAfterParse = R.map(function(container){
-                var locationName = undefined;
-
-                MapService.geoCodePosition(container.position)
-                .then(function(results){
-                    if(!R.isNil(results)){
-                        locationName = R.head(results).formatted_address
-                        console.log(locationName);
-                    } else {
-                        locationName = "未找到地名"
-                        console.log(locationName);
-                    }
-
-                    container.locationName = locationName
-                })
-                .catch(function(status){
-                    // alert(status)
-                    console.log(status);
-                })
-                return container
-            })(initialContainers)
-
-            return containersAfterParse;
         }
 
         function checkDetail(idx) {

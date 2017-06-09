@@ -41,6 +41,40 @@
             }
         };
     };
+
+    angular
+        .module('smart_container')
+        .factory('parseLocation', parseLocation);
+
+    /** @ngInject */
+
+    function parseLocation(MapService) {
+        return function(initialContainers) {
+            var containersAfterParse = R.map(function(container){
+                var locationName = undefined;
+
+                MapService.geoCodePosition(container.position)
+                .then(function(results){
+                    if(!R.isNil(results)){
+                        locationName = R.head(results).formatted_address
+                        console.log(locationName);
+                    } else {
+                        locationName = "未找到地名"
+                        console.log(locationName);
+                    }
+
+                    container.locationName = locationName
+                })
+                .catch(function(status){
+                    // alert(status)
+                    console.log(status);
+                })
+                return container
+            })(initialContainers)
+
+            return containersAfterParse;
+        }
+    };
     
     angular
         .module('smart_container')
