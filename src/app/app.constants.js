@@ -51,6 +51,7 @@
                 newcarrier : "newcarrier",
                 mycontainers : "mycontainers",
                 availablecontainers : "availablecontainers",
+                containersonlease : "containersonlease",
                 user:'user',
                 message:'message'
             },

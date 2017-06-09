@@ -135,11 +135,11 @@
         function saveBasicInfoConfig() {
             newBasicInfoConfigPost();
 
-            $scope.modalInput = !$scope.modalInput;
+            $scope.bbUpdate = false;
         }
 
         function cancelBasicInfoConfig() {
-            $scope.modalInput = !$scope.modalInput;
+            $scope.bbUpdate = false;
         }
 
         function newBasicInfoConfigPost () {
