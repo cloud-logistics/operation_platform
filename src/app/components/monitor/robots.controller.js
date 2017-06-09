@@ -15,11 +15,14 @@
         $scope.show = [];
         var vm = this;
         arrowSet('wrcys');
-        // $interval(function () {
-        //     arrowSet(phase[Math.floor(Math.random()*5 + 1)]);
-        // },2000);
 
+        var timer = $interval(function () {
+            arrowSet(phase[Math.floor(Math.random()*5 + 1)]);
+        },2000);
 
+        $scope.$on("$destroy", function(){
+            $interval.cancel(timer);
+        });
 
         function arrowInit() {
             $("#robotUl li").each(function (index) {
