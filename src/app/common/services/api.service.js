@@ -36,6 +36,7 @@
             getCarriers: getCarriers,
             getMyContainers: getMyContainers,
             getAvailableContainers: getAvailableContainers,
+            getOnLeaseContainers: getOnLeaseContainers,
             newCarrier: newCarrier,
             newBasicInfoConfig: newBasicInfoConfig,
             updateSecurityConfig: updateSecurityConfig,
@@ -286,6 +287,13 @@
 
         function getAvailableContainers(successHandler,failedHandler) {
             NetworkService.get(constdata.api.availablecontainers,
+                                null,
+                                successHandler,
+                                failedHandler);
+        }
+
+        function getOnLeaseContainers(successHandler,failedHandler) {
+            NetworkService.get(constdata.api.containersonlease,
                                 null,
                                 successHandler,
                                 failedHandler);

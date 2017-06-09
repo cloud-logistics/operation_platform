@@ -14,30 +14,27 @@
 
             <div class="row ds-map">
                 <div id="dashboard_map" class="embeded_mapview"></div>
-                <div class="ls-info ls-fade" ng-show="bool">
+                <div class="ls-info ls-fade" ng-show="showDetail">
                     <ul class="ls-content">
                         <li>
-
-                            <p><span>云箱ID</span><i>49373812838471827</i></p>
+                            <p><span>云箱ID</span><i>{{vm.containers[detailIdx].containerId}}</i></p>
                         </li>
                         <li>
-
-                            <p><span>云箱型号</span><i>标准云箱</i></p>
+                            <p><span>云箱型号</span><i>{{vm.containers[detailIdx].containerType}}</i></p>
                         </li>
                         <li>
-
-                            <p><span>承运方</span><i>中集集团</i></p>
+                            <p><span>承运方</span><i>{{vm.containers[detailIdx].carrier}}</i></p>
                         </li>
                         <li>
-
-                            <p><span>当前所在地</span><i>中国-上海</i></p>
+                            <p><span>当前所在地</span><i>{{vm.containers[detailIdx].locationName}}</i></p>
                         </li>
                         <li>
-
-                            <p><span>当前位置</span><i>北纬N30°56′31.99″ 东经E121°55′19.61″</i></p>
+                            <p><span>当前位置</span><i>纬度{{vm.containers[detailIdx].position.lat}} - 经度{{vm.containers[detailIdx].position.lng}}</i></p>
                         </li>
                     </ul>
-                    <button class="ls-query">查看详情</button>
+                    <button class="ls-query" ui-sref="app.realtime({
+                            containerId: vm.containers[detailIdx].containerId
+                        })">查看详情</button>
                 </div>
             </div>
 
@@ -66,40 +63,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td style="vertical-align: middle;">22937203474450</td>
-                        <td style="vertical-align: middle;">2017-03-09至2017-05-16</td>
-                        <td style="vertical-align: middle;">中国-上海</td>
-                        <td style="vertical-align: middle;">中集集团</td>
-                        <td><a class="btn-table-detail" ng-click="bool=!bool">查看详情</a></td>
-                    </tr>
-                    <tr>
-                        <td style="vertical-align: middle;">22937203474450</td>
-                        <td style="vertical-align: middle;">2017-03-09至2017-05-16</td>
-                        <td style="vertical-align: middle;">中国-上海</td>
-                        <td style="vertical-align: middle;">中集集团</td>
-                        <td><a href="#" class="btn-table-detail">查看详情</a></td>
-                    </tr>
-                    <tr>
-                        <td style="vertical-align: middle;">22937203474450</td>
-                        <td style="vertical-align: middle;">2017-03-09至2017-05-16</td>
-                        <td style="vertical-align: middle;">中国-上海</td>
-                        <td style="vertical-align: middle;">中集集团</td>
-                        <td><a href="#" class="btn-table-detail">查看详情</a></td>
-                    </tr>
-                    <tr>
-                        <td style="vertical-align: middle;">22937203474450</td>
-                        <td style="vertical-align: middle;">2017-03-09至2017-05-16</td>
-                        <td style="vertical-align: middle;">中国-上海</td>
-                        <td style="vertical-align: middle;">中集集团</td>
-                        <td><a href="#" class="btn-table-detail">查看详情</a></td>
-                    </tr>
-                    <tr>
-                        <td style="vertical-align: middle;">22937203474450</td>
-                        <td style="vertical-align: middle;">2017-03-09至2017-05-16</td>
-                        <td style="vertical-align: middle;">中国-上海</td>
-                        <td style="vertical-align: middle;">中集集团</td>
-                        <td><a href="#" class="btn-table-detail">查看详情</a></td>
+                    <tr ng-repeat="item in vm.containers track by $index" ng-click="checkDetail($index)">
+                        <td style="vertical-align: middle;">{{item.containerId}}</td>
+                        <td style="vertical-align: middle;">{{item.leaseStartTime | date:"yyyy-MM-dd"}}至{{item.leaseEndTime | date:"yyyy-MM-dd"}}</td>
+                        <td style="vertical-align: middle;">{{item.locationName}}</td>
+                        <td style="vertical-align: middle;">{{item.carrier}}</td>
+                        <td><a class="btn-table-detail" ui-sref="app.realtime({
+                            containerId: vm.containers[$index].containerId
+                        })">查看详情</a></td>
                     </tr>
                     </tbody>
                 </table>
