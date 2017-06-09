@@ -19,7 +19,8 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">ID</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" style="border-radius: 8px" placeholder="请输入云箱ID" ng-model="vm.queryParams.containerId">
+                                <input type="text" class="form-control" style="border-radius: 8px" placeholder="请输入云箱ID"
+                                       ng-model="vm.queryParams.containerId">
                             </div>
                         </div>
                     </div>
@@ -28,8 +29,10 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">云箱型号</label>
                             <div class="col-md-8">
-                                <select name="account" class="form-control m-b" ng-model="vm.queryParams.containerType" >
-                                    <option ng-repeat="item in vm.options.containerType track by $index" >{{item.value}}</option>
+                                <select name="account" class="form-control m-b" ng-model="vm.queryParams.containerType">
+                                    <option ng-repeat="item in vm.options.containerType track by $index">
+                                        {{item.value}}
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -38,8 +41,9 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">报文类型</label>
                             <div class="col-md-8">
-                                <select name="account" class="form-control m-b" ng-model="vm.queryParams.reportType" >
-                                    <option ng-repeat="item in vm.options.reportType track by $index" >{{item.value}}</option>
+                                <select name="account" class="form-control m-b" ng-model="vm.queryParams.reportType">
+                                    <option ng-repeat="item in vm.options.reportType track by $index">{{item.value}}
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -47,23 +51,23 @@
                     <!-- line2 -->
                     <div class="col-md-4 m-b">
                         <!--<div class="form-group">-->
-                            <!--<label class="col-md-4 control-label form-control-static">时间段</label>-->
-                            <!--<div class="col-md-4 dash-line">-->
-                                <!--<input ng-model="vm.queryParams.startTime" -->
-                                        <!--class="form-control m-b" -->
-                                        <!--min-view="hours"-->
-                                        <!--placeholder="Select date"-->
-                                        <!--moment-picker-->
-                                        <!--format="YYYY-MM-DD">-->
-                            <!--</div>-->
-                            <!--<div class="col-md-4 ">-->
-                                <!--<input ng-model="vm.queryParams.endTime" -->
-                                        <!--class="form-control m-b" -->
-                                        <!--min-view="hours"-->
-                                        <!--placeholder="Select date"-->
-                                        <!--moment-picker-->
-                                        <!--format="YYYY-MM-DD">-->
-                            <!--</div>-->
+                        <!--<label class="col-md-4 control-label form-control-static">时间段</label>-->
+                        <!--<div class="col-md-4 dash-line">-->
+                        <!--<input ng-model="vm.queryParams.startTime" -->
+                        <!--class="form-control m-b" -->
+                        <!--min-view="hours"-->
+                        <!--placeholder="Select date"-->
+                        <!--moment-picker-->
+                        <!--format="YYYY-MM-DD">-->
+                        <!--</div>-->
+                        <!--<div class="col-md-4 ">-->
+                        <!--<input ng-model="vm.queryParams.endTime" -->
+                        <!--class="form-control m-b" -->
+                        <!--min-view="hours"-->
+                        <!--placeholder="Select date"-->
+                        <!--moment-picker-->
+                        <!--format="YYYY-MM-DD">-->
+                        <!--</div>-->
                         <!--</div>-->
                         <form class="form-inline ls-sjd">
                             <div class="form-group">
@@ -73,21 +77,25 @@
                                        min-view="hours"
                                        placeholder="Select date"
                                        moment-picker
-                                       format="YYYY-MM-DD">
+                                       format="YYYY-MM-DD"
+                                       style="width:120px">
                                 -
                                 <input ng-model="vm.queryParams.endTime"
                                        class="form-control"
                                        min-view="hours"
                                        placeholder="Select date"
                                        moment-picker
-                                       format="YYYY-MM-DD">
+                                       format="YYYY-MM-DD"
+                                       style="width:120px">
                             </div>
                         </form>
                     </div>
                     <div class="col-md-offset-4 col-md-4 m-b">
                         <div class="form-group">
                             <div class="col-md-offset-4 col-md-8">
-                                <button type="submit" class="btn btn-sm btn-block btn-history" ng-click="vm.getContainerReportHistory()">查询监控</button>
+                                <button type="submit" class="btn btn-sm btn-block btn-history"
+                                        ng-click="vm.getContainerReportHistory()">查询监控
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -108,13 +116,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="item in vm.reports track by $index">
-                                <td style="vertical-align: middle;">{{item.containerId}}</td>
-                                <td style="vertical-align: middle;">{{item.containerType}}</td>
-                                <td style="vertical-align: middle;">{{item.messageType}}</td>
-                                <td style="vertical-align: middle;">{{item.record}}</td>
-                                <td style="vertical-align: middle;">{{item.time | date:"yyyy-MM-dd"}}</td>
-                            </tr>
+                        <tr ng-repeat="item in vm.reports track by $index">
+                            <td style="vertical-align: middle;">{{item.containerId}}</td>
+                            <td style="vertical-align: middle;">{{item.containerType}}</td>
+                            <td style="vertical-align: middle;">{{item.messageType}}</td>
+                            <td style="vertical-align: middle;">{{item.record}}</td>
+                            <td style="vertical-align: middle;">{{item.time | date:"yyyy-MM-dd"}}</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
