@@ -22,10 +22,53 @@
             containerId : $stateParams.containerId
         };
 
+        vm.commandParams = {
+            containerId : $stateParams.containerId,
+            action: "reset"
+        };
+
+        vm.reset = reset
+        vm.poweroff = poweroff
+        vm.cancelcmd = cancelcmd
+
         var map = MapService.map_init("commandLocation", "terrain", 4);
         var geocoder = new google.maps.Geocoder;
 
         getInstantlocationInfo()
+
+        function reset() {
+            vm.commandParams = R.merge(vm.commandParams, {
+                action: "reset"
+            })
+
+            deliverCmd()
+
+            cancelcmd()
+        }
+
+
+        function cancelcmd () {
+            $scope.resetShow = false;
+            $scope.shutShow = false;
+        }
+
+        function poweroff() {
+            vm.commandParams = R.merge(vm.commandParams, {
+                action: "poweroff"
+            })
+
+            deliverCmd()
+
+            cancelcmd()
+        }
+
+        function deliverCmd() {
+            ApiServer.command(vm.commandParams, function(response){
+                console.log(response.data);
+            },function (err) {
+                console.log("Get Historyview Info Failed", err);
+            })
+        }
 
 
         function getInstantlocationInfo() {

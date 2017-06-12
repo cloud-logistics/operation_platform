@@ -120,9 +120,12 @@
                             <td style="vertical-align: middle;">{{item.alertTime | date:"yyyy-MM-dd"}}</td>
                             <td style="vertical-align: middle;">{{item.alertType}}</td>
                             <td style="vertical-align: middle;">{{item.carrier}}</td>
-                            <td><a ui-sref="app.realtime" class="btn-table-detail">查看详情</a> <a ui-sref="app.command"
-                                                                                               class="btn-table-detail"
-                                                                                               style="background-color: #c26b6b">报警处理</a>
+                            <td><a ui-sref="app.realtime" class="btn-table-detail">查看详情</a> 
+                                <a ui-sref="app.command({
+                                                containerId: item.containerId
+                                            })"
+                                    class="btn-table-detail"
+                                    style="background-color: #c26b6b">报警处理</a>
                             </td>
                         </tr>
                         </tbody>

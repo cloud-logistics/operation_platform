@@ -38,6 +38,7 @@
             getAvailableContainers: getAvailableContainers,
             getOnLeaseContainers: getOnLeaseContainers,
             newCarrier: newCarrier,
+            command: command,
             newBasicInfoConfig: newBasicInfoConfig,
             updateSecurityConfig: updateSecurityConfig,
             newAlertConfig: newAlertConfig,
@@ -224,6 +225,14 @@
         function newCarrier(params, successHandler,failedHandler) {
             console.log(params);
             NetworkService.post(constdata.api.newcarrier,
+                                params,
+                                successHandler,
+                                failedHandler);
+        }
+
+        function command(params, successHandler,failedHandler) {
+            console.log(params);
+            NetworkService.post(constdata.api.command,
                                 params,
                                 successHandler,
                                 failedHandler);

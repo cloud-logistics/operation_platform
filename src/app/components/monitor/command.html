@@ -48,8 +48,8 @@
                     <span class="pull-left">您是否确认重置该云箱?</span>
                 </div>
                 <div class="row confirm-bottom">
-                    <span class="pull-right confirm-ok">确认</span>
-                    <span class="pull-right confirm-cancel">取消</span>
+                    <span class="pull-right confirm-ok"  ng-click="vm.reset()">确认</span>
+                    <span class="pull-right confirm-cancel" ng-click="vm.cancelcmd()">取消</span>
                 </div>
             </div>
         </modal-dialog>
@@ -59,8 +59,8 @@
                     <span class="pull-left">您是否确认关闭该云箱?</span>
                 </div>
                 <div class="row confirm-bottom">
-                    <span class="pull-right confirm-ok">确认</span>
-                    <span class="pull-right confirm-cancel">取消</span>
+                    <span class="pull-right confirm-ok" ng-click="vm.poweroff()">确认</span>
+                    <span class="pull-right confirm-cancel" ng-click="vm.cancelcmd()">取消</span>
                 </div>
             </div>
         </modal-dialog>

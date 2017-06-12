@@ -36,7 +36,8 @@ server.use(jsonServer.rewriter({
   "/container/api/v1/cloudbox/newcarrier":"/newcarrier",
   "/container/api/v1/cloudbox/mycontainers":"/mycontainers",
   "/container/api/v1/cloudbox/containersonlease":"/containersonlease",
-  "/container/api/v1/cloudbox/availablecontainers":"/availablecontainers"
+  "/container/api/v1/cloudbox/availablecontainers":"/availablecontainers",
+  "/container/api/v1/cloudbox/command":"/command"
 }))
 
 server.post('/auth', function (req, res) {
@@ -634,6 +635,12 @@ server.post('/alertConfig', function (req, res) {
 })
 
 server.post('/issueConfig', function (req, res) {
+  res.json({
+    "code": "OK"
+  });
+})
+
+server.post('/command', function (req, res) {
   res.json({
     "code": "OK"
   });

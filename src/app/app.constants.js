@@ -52,6 +52,7 @@
                 mycontainers : "mycontainers",
                 availablecontainers : "availablecontainers",
                 containersonlease : "containersonlease",
+                command : "command",
                 user:'user',
                 message:'message'
             },

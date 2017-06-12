@@ -211,7 +211,7 @@
             })
 
             .state('app.command',{
-                url: 'command',
+                url: 'command/:containerId',
                 templateUrl: 'app/components/monitor/command.html'
             })
 
