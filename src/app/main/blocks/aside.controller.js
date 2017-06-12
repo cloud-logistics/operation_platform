@@ -8,20 +8,21 @@
     angular.module('smart_container').controller('AsideController', AsideController);
 
     /** @ngInject */
-    function AsideController(ApiServer,$state) {
+    function AsideController(ApiServer,$state, StorageService, constdata) {
         /* jshint validthis: true */
         var vm = this;
         var info = ApiServer.info();
 
         var height = document.body.clientHeight + 'px';
         vm.navStyle = {'height':height};
-        
+
         vm.clearAllMessageAction = clearAllMessageAction;
         vm.logoutAction = logoutAction;
 
         vm.messages = [];
-        vm.roleType = "regularclient";
         vm.title = '智能云箱';
+
+        vm.role = StorageService.get(constdata.informationKey).role;
 
         function clearAllMessageAction() {
             vm.messages = [];

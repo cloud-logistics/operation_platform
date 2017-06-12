@@ -23,6 +23,71 @@
         };
 
         var map = MapService.map_init("commandLocation", "terrain", 4);
+        var geocoder = new google.maps.Geocoder;
+
+        getInstantlocationInfo()
+
+
+        function getInstantlocationInfo() {
+            ApiServer.getInstantlocationInfo(vm.queryParams, function (response) {
+                var bounds = new google.maps.LatLngBounds();
+                var containerInfo = response.data.containerInfo
+                var currentPosition = response.data.currentPosition
+                var locationName = undefined;
+                var content = undefined;
+
+                console.log(response.data);
+
+                var currentPositionMarker = MapService.addMarker(map)(currentPosition)
+
+                geocoder.geocode({'location': currentPosition}, function(results, status){
+                    if(!R.isNil(results)) {
+                        locationName = R.head(results).formatted_address;
+                    }
+                    content = 
+                        '<div class="map-marker">' +
+                            '<div class="marker-content">' +
+                               '<div class="content-left">' +
+                                    '<span>最近维修点</span>' +
+                                '</div>' +
+                                '<div class="content-right">' +
+                                    '<span>清风港口001维修站</span>' +
+                                    '<span>台湾省花莲市莲湖区234号海航大厦</span>' +
+                                    '<span>668-87-038402</span>' +
+                                '</div>' +
+                            '</div>' +
+                            '<div class="marker-bottom">' +
+                                '<div class="bottom-text">' +
+                                    '<p>相距<span>393</span>KM</p>' +
+                                '</div>' +
+                                '<div class="marker-line">' +
+
+                                '</div>' +
+                            '</div>' +
+                            '<div class="marker-point">' +
+
+                            '</div>' +
+                        '</div>';
+                    infoWindow(map, currentPositionMarker, content)
+                })
+
+                bounds.extend(currentPositionMarker.getPosition());
+
+                map.fitBounds(bounds);
+
+            },function (err) {
+                console.log("Get Historyview Info Failed", err);
+            });
+        }
+
+        function infoWindow(map, marker, content) {
+          var infowindow = new google.maps.InfoWindow({
+            content: content
+          });
+
+          infowindow.open(map, marker);
+        }
+
 
         $scope.resetShow = false;
         $scope.resetClick = function () {

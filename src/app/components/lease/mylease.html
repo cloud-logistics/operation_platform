@@ -114,7 +114,9 @@
                         <td style="vertical-align: middle;">{{item.leaseStartTime | date:"yyyy-MM-dd"}}至{{item.leaseEndTime | date:"yyyy-MM-dd"}}</td>
                         <td style="vertical-align: middle;">{{item.locationName}}</td>
                         <td style="vertical-align: middle;">{{item.carrier}}</td>
-                        <td><a class="btn-table-detail" ng-click="bool=!bool">查看详情</a></td>
+                        <td><a class="btn-table-detail" ui-sref="app.realtime({
+                            containerId: vm.containersInfo.mycontainers.detail[$index].containerId
+                        })">查看详情</a></td>
                     </tr>
                     </tbody>
                 </table>

@@ -52,12 +52,13 @@
 
                 var sessionId = result.sessionid;
                 var token = result.token;
+                var role = result.role;
                 var userInfo = {
                     username: user.username,
-                    role: "regularclient"
+                    role: role
                 }
 
-                var sessionInfo = {username: user.username,token:token};
+                var sessionInfo = {username: user.username, token:token};
 
                 StorageService.put(authorizationKey,sessionInfo,24 * 7 * 60 * 60);//3 天过期
                 StorageService.put(constdata.informationKey,userInfo,24 * 3 * 60 * 60);
