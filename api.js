@@ -442,15 +442,15 @@ server.post('/options', function (req, res) {
     ],
     "alertCode": [
       {
-        "value":"option1",
+        "value":111,
         "id": 1
       },
       {
-        "value":"option2",
+        "value":222,
         "id": 2
       },
       {
-        "value":"option3",
+        "value":333,
         "id": 3
       }
     ],

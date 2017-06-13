@@ -55,8 +55,15 @@
             $scope.modalShow = false;
         }
 
+        function inputTransFunc (num) {
+            return parseInt(num, 10)
+        }
+
         function newIssueConfigPost () {
-            var config = vm.newIssueConfig
+
+            var config = R.evolve({
+                alertCode: inputTransFunc
+            })(vm.newIssueConfig)
             console.log("new issueInfo params: ", config);
 
             ApiServer.newIssueConfig(config, function (response) {

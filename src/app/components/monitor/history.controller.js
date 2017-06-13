@@ -27,6 +27,7 @@
 
         ApiServer.getOptions(requiredOptions, function(options) {
             vm.options = options
+            console.log(vm.options);
 
             transformations = {
                 containerType: optionsTransFunc(vm.options.containerType),
@@ -41,6 +42,8 @@
                 startTime: moment(new Date()),
                 endTime: moment(new Date())
             }
+
+            console.log(vm.queryParams);
         })
 
         vm.getContainerReportHistory = getContainerReportHistory
