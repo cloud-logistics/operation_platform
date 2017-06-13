@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('MyleaseController', MyleaseController);
 
     /** @ngInject */
-    function MyleaseController($scope,$stateParams, ApiServer, MapService, toastr, $state, $timeout, $interval, parseLocation) {
+    function MyleaseController($scope,$stateParams, ApiServer, MapService, toastr, $state, $timeout, $interval) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -24,6 +24,8 @@
             }
         }
 
+        vm.selectedContainer = undefined;
+
         function getContainerInfo() {
             ApiServer.getMyContainers(successHandler("mycontainers", myContainersPostProc), failureHandler);
 
@@ -33,6 +35,7 @@
         $scope.mineActive = true;
         $scope.leaseActive = false;
         $scope.refundActive = false;
+        $scope.mineShow = true;
         $scope.leaseShow = false;
         $scope.refundShow = false;
 
@@ -41,6 +44,7 @@
             $scope.leaseActive = false;
             $scope.refundActive = false;
             $scope.leaseShow = false;
+            $scope.mineShow = true;
 
             refreshMarkers(vm.containersInfo.mycontainers.detail);
         };
@@ -49,6 +53,7 @@
             $scope.leaseActive = true;
             $scope.mineActive = false;
             $scope.refundActive = false;
+            $scope.mineShow = false;
             $scope.leaseShow = true;
             $scope.refundShow = false;
 
@@ -80,7 +85,8 @@
         function myContainersPostProc() {
             refreshMarkers(vm.containersInfo.mycontainers.detail);
 
-            vm.containersInfo.mycontainers.detail = parseLocation(vm.containersInfo.mycontainers.detail)
+            // default value
+            vm.selectedContainer = vm.containersInfo.mycontainers.detail[0];
         }
 
         function refreshMarkers(containers) {
@@ -94,6 +100,27 @@
                 R.map(MapService.addMarker(map, "container")),
                 R.map(R.prop("position"))
             )(containers)
+
+            function add_listener(i) {
+                return function(e) {
+                    checkDetail(containers, i)
+                }
+            }
+
+            for( var i = 0; i < markers.length; i++) {
+                markers[i].addListener('click', add_listener(i))
+            }
+        }
+
+
+        function checkDetail(containers, idx) {
+            $scope.detailIdx = idx;
+            $scope.showDetail = true;
+
+            vm.selectedContainer = containers[idx];
+
+            console.log(vm.selectedContainer);
+            console.log($scope.showDetail);
         }
 
         getContainerInfo();

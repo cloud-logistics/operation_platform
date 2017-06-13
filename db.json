@@ -4,6 +4,7 @@
       {
         "containerId": "22937203474450",
         "containerType": "标准云箱",
+        "locationName": "中国上海市",
         "position": {
           "lng": 118.78,
           "lat":32.04
@@ -12,6 +13,7 @@
       {
         "containerId": "22937203474450",
         "containerType": "标准云箱",
+        "locationName": "中国上海市",
         "position": {
           "lng": 150.989501,
           "lat": -34.347096
@@ -28,6 +30,7 @@
       {
         "containerId": "22937203474450",
         "containerType": "标准云箱",
+        "locationName": "中国上海市",
         "position": {
           "lng": 118.78,
           "lat":32.04
@@ -36,6 +39,7 @@
       {
         "containerId": "22937203474450",
         "containerType": "标准云箱",
+        "locationName": "中国上海市",
         "position": {
           "lng": 122.289718,
           "lat": 30.027183
@@ -44,6 +48,7 @@
       {
         "containerId": "22937203474450",
         "containerType": "标准云箱",
+        "locationName": "中国上海市",
         "position": {
           "lng": 103.847353,
           "lat": 1.398561
@@ -52,6 +57,7 @@
       {
         "containerId": "22937203474450",
         "containerType": "标准云箱",
+        "locationName": "中国上海市",
         "position": {
           "lng": -15.98606,
           "lat": 17.603375
@@ -60,6 +66,7 @@
       {
         "containerId": "22937203474450",
         "containerType": "标准云箱",
+        "locationName": "中国上海市",
         "position": {
           "lng": -159.632154,
           "lat": 27.629633
@@ -78,6 +85,7 @@
           "lng": 118.78,
           "lat":32.04
         },
+        "locationName": "中国上海市",
         "carrier":"中集智能"
       },
       {
@@ -89,6 +97,7 @@
           "lng": -58.5035321,
           "lat": -34.6155728
         },
+        "locationName": "中国上海市",
         "carrier":"中集智能"
       },
       {
@@ -100,6 +109,7 @@
           "lng": -122.5078119,
           "lat": 37.7578149
         },
+        "locationName": "中国上海市",
         "carrier":"中集智能"
       },
       {
@@ -111,6 +121,7 @@
           "lng": 120.4651,
           "lat": 36.3373
         },
+        "locationName": "中国上海市",
         "carrier":"中集智能"
       }
     ]
@@ -126,6 +137,7 @@
           "lng": 118.78,
           "lat":32.04
         },
+        "locationName": "中国上海市",
         "carrier":"中集智能"
       },
       {
@@ -137,6 +149,7 @@
           "lng": -58.5035321,
           "lat": -34.6155728
         },
+        "locationName": "中国上海市",
         "carrier":"中集智能"
       },
       {
@@ -148,6 +161,7 @@
           "lng": -122.5078119,
           "lat": 37.7578149
         },
+        "locationName": "中国上海市",
         "carrier":"中集智能"
       },
       {
@@ -159,6 +173,7 @@
           "lng": 120.4651,
           "lat": 36.3373
         },
+        "locationName": "中国上海市",
         "carrier":"中集智能"
       }
     ]

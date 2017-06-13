@@ -30,9 +30,7 @@
                             <label class="col-md-4 control-label form-control-static">云箱型号</label>
                             <div class="col-md-8">
                                 <select name="account" class="form-control m-b" ng-model="vm.queryParams.containerType">
-                                    <option ng-repeat="item in vm.options.containerType track by $index">
-                                        {{item.value}}
-                                    </option>
+                                    <option ng-repeat="item in vm.options.containerType track by $index">{{item.value}}</option>
                                 </select>
                             </div>
                         </div>
@@ -42,8 +40,7 @@
                             <label class="col-md-4 control-label form-control-static">报文类型</label>
                             <div class="col-md-8">
                                 <select name="account" class="form-control m-b" ng-model="vm.queryParams.reportType">
-                                    <option ng-repeat="item in vm.options.reportType track by $index">{{item.value}}
-                                    </option>
+                                    <option ng-repeat="item in vm.options.reportType track by $index">{{item.value}}</option>
                                 </select>
                             </div>
                         </div>

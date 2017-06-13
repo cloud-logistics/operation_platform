@@ -74,27 +74,6 @@
                 initHumiLine();
                 initBattLine();
                 initStatusLine();
-
-                MapService.geoCodePosition(vm.realtimeInfo.position)
-                .then(function(results){
-                    if(!R.isNil(results)){
-                        locationName = R.compose(
-                            R.head,
-                            R.split(" "),
-                            R.prop("formatted_address"),
-                            R.head
-                        )(results)
-                    } else {
-                        locationName = "未找到地名"
-                    }
-
-                    vm.realtimeInfo.locationName = locationName
-                    console.log(locationName);
-                })
-                .catch(function(status){
-                    console.log(status);
-                    // alert(status)
-                })
             },function (err) {
                 console.log("Get RealtimeInfo Info Failed", err);
             });

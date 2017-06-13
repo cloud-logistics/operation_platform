@@ -17,23 +17,23 @@
                 <div class="ls-info ls-fade" ng-show="showDetail">
                     <ul class="ls-content">
                         <li>
-                            <p><span>云箱ID</span><i>{{vm.containers[detailIdx].containerId}}</i></p>
+                            <p><span>云箱ID</span><i>{{vm.selectedContainer.containerId}}</i></p>
                         </li>
                         <li>
-                            <p><span>云箱型号</span><i>{{vm.containers[detailIdx].containerType}}</i></p>
+                            <p><span>云箱型号</span><i>{{vm.selectedContainer.containerType}}</i></p>
                         </li>
                         <li>
-                            <p><span>承运方</span><i>{{vm.containers[detailIdx].carrier}}</i></p>
+                            <p><span>承运方</span><i>{{vm.selectedContainer.carrier}}</i></p>
                         </li>
                         <li>
-                            <p><span>当前所在地</span><i>{{vm.containers[detailIdx].locationName}}</i></p>
+                            <p><span>当前所在地</span><i>{{vm.selectedContainer.locationName}}</i></p>
                         </li>
                         <li>
-                            <p><span>当前位置</span><i>纬度{{vm.containers[detailIdx].position.lat}} - 经度{{vm.containers[detailIdx].position.lng}}</i></p>
+                            <p><span>当前位置</span><i>纬度{{vm.selectedContainer.position.lat}} - 经度{{vm.containers[detailIdx].position.lng}}</i></p>
                         </li>
                     </ul>
                     <button class="ls-query" ui-sref="app.realtime({
-                            containerId: vm.containers[detailIdx].containerId
+                            containerId: vm.selectedContainer.containerId
                         })">查看详情</button>
                 </div>
             </div>

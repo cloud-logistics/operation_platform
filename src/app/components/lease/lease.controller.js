@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('LeaseController', LeaseController);
 
     /** @ngInject */
-    function LeaseController($stateParams, ApiServer, MapService, toastr, $state, $timeout, $interval, $scope, parseLocation) {
+    function LeaseController($stateParams, ApiServer, MapService, toastr, $state, $timeout, $interval, $scope) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -16,9 +16,10 @@
         vm.mapSize = {"width": width + 'px', "height": height + 'px'};
 
         var map = MapService.map_init("dashboard_map", "terrain");
-        var markers = []
+        vm.markers = []
         var circles = []
         vm.containers = [];
+        vm.selectedContainer = undefined;
 
         $scope.showDetail = false;
         $scope.checkDetail = checkDetail
@@ -28,12 +29,20 @@
             ApiServer.getOnLeaseContainers(function (response) {
                 vm.containers = response.data.containersonlease;
 
-                markers = R.compose(
+                vm.markers = R.compose(
                     R.map(MapService.addMarker(map, "container")),
                     R.map(R.prop("position"))
                 )(vm.containers)
 
-                vm.containers = parseLocation(vm.containers)
+                function add_listener(i) {
+                    return function(e) {
+                        checkDetail(i)
+                    }
+                }
+
+                for( var i = 0; i < vm.markers.length; i++) {
+                    vm.markers[i].addListener('click', add_listener(i));
+                }
 
             }, function (err) {
                 console.log("Get Container Info Failed", err);
@@ -42,7 +51,11 @@
 
         function checkDetail(idx) {
             $scope.detailIdx = idx;
+            vm.selectedContainer = vm.containers[idx];
             $scope.showDetail = true;
+
+            console.log(vm.selectedContainer);
+            console.log($scope.showDetail);
         }
 
 

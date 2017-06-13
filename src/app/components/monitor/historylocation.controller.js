@@ -21,6 +21,8 @@
 
         console.log($stateParams);
 
+        vm.getHistorylocationInfo = getHistorylocationInfo
+
         vm.queryParams = {
             startTime: moment(new Date()),
             endTime: moment(new Date())
@@ -28,8 +30,6 @@
 
         // 鼠标绘图工具
         var overlay = undefined;
-
-        var geocoder = new google.maps.Geocoder;
 
         vm.getHistorylocationInfo = getHistorylocationInfo;
 
@@ -56,17 +56,9 @@
                   var startPointMarker = MapService.addMarker(map)(route.start.position)
                   var endPointMarker = MapService.addMarker(map)(route.end.position)
 
-                  geocoder.geocode({'location': startPointLatlng}, function(results, status){
-                    if(!R.isNil(results)) {
-                      infoWindow(map, startPointMarker, "起点: " + R.head(results).formatted_address)
-                    }
-                  })
+                  infoWindow(map, startPointMarker, "起点: " + route.start.locationName)
 
-                  geocoder.geocode({'location': endPointLatlng}, function(results, status){
-                    if(!R.isNil(results)) {
-                      infoWindow(map, endPointMarker, "终点: " + R.head(results).formatted_address)
-                    }
-                  })
+                  infoWindow(map, endPointMarker, "终点: " + route.end.locationName)
 
                   bounds.extend(startPointMarker.getPosition());
                   bounds.extend(endPointMarker.getPosition());

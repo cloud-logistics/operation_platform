@@ -31,7 +31,7 @@
         getInstantlocationInfo();
         var timer = $interval(function(){
             getInstantlocationInfo();
-        },5000, 500);
+        },50000, 500);
 
         $scope.$on("$destroy", function(){
             $interval.cancel(timer);
@@ -43,6 +43,7 @@
                 var containerInfo = response.data.containerInfo
                 var startPosition = response.data.startPosition
                 var currentPosition = response.data.currentPosition
+                var currentLocationName = response.data.currentLocationName;
                 var endPosition = response.data.endPosition
 
                 console.log(response.data);
@@ -51,12 +52,7 @@
                 var currentPositionMarker = MapService.addMarker(map)(currentPosition)
                 var endPositionMarker = MapService.addMarker(map)(startPosition)
 
-
-                geocoder.geocode({'location': currentPosition}, function(results, status){
-                  if(!R.isNil(results)) {
-                    infoWindow(map, currentPositionMarker, "当前点: " + R.head(results).formatted_address)
-                  }
-                })
+                infoWindow(map, currentPositionMarker, "当前点: " + currentLocationName)
 
                 bounds.extend(startPositionMarker.getPosition());
                 bounds.extend(currentPositionMarker.getPosition());

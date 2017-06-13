@@ -60,14 +60,17 @@ server.post('/containerInstantInfo', function (req, res) {
       "lng": 117,
       "lat": 36.65
     },
+    "startLocationName": "中国上海市",
     "currentPosition": {
       "lng": 118.78,
       "lat": 32.04
     },
+    "currentLocationName": "中国上海市",
     "endPosition": {
       "lng": 121.557348,
       "lat": 31.179784
-    }
+    },
+    "endLocationName": "中国上海市"
   });
 })
 
@@ -129,6 +132,7 @@ server.post('/alerts', function (req, res) {
           "lng": 121.557348,
           "lat": 31.179784
         },
+        "locationName": "中国上海市",
         "speed": 100,
         "temperature": 39,
         "humidity": 0.7,
@@ -149,6 +153,7 @@ server.post('/alerts', function (req, res) {
           "lng": 121.557348,
           "lat": 31.179784
         },
+        "locationName": "中国上海市",
         "speed": 100,
         "temperature": 39,
         "humidity": 0.7,
@@ -157,7 +162,7 @@ server.post('/alerts', function (req, res) {
         "battery": 0.5,
         "robertOperationStatus": "卸货"
       },
-            {
+      {
         "containerId": "22932214122313",
         "alertTime": "1495597347299",
         "alertLevel": "高",
@@ -169,6 +174,7 @@ server.post('/alerts', function (req, res) {
           "lng": 121.557348,
           "lat": 31.179784
         },
+        "locationName": "中国上海市",
         "speed": 100,
         "temperature": 39,
         "humidity": 0.7,
@@ -177,7 +183,7 @@ server.post('/alerts', function (req, res) {
         "battery": 0.5,
         "robertOperationStatus": "卸货"
       },
-            {
+      {
         "containerId": "22932214122313",
         "alertTime": "1495597347299",
         "alertLevel": "高",
@@ -189,6 +195,7 @@ server.post('/alerts', function (req, res) {
           "lng": 121.557348,
           "lat": 31.179784
         },
+        "locationName": "中国上海市",
         "speed": 100,
         "temperature": 39,
         "humidity": 0.7,
@@ -197,7 +204,7 @@ server.post('/alerts', function (req, res) {
         "battery": 0.5,
         "robertOperationStatus": "卸货"
       },
-            {
+      {
         "containerId": "22932214122313",
         "alertTime": "1495597347299",
         "alertLevel": "高",
@@ -209,6 +216,7 @@ server.post('/alerts', function (req, res) {
           "lng": 121.557348,
           "lat": 31.179784
         },
+        "locationName": "中国上海市",
         "speed": 100,
         "temperature": 39,
         "humidity": 0.7,
@@ -231,6 +239,27 @@ server.post('/boxStatus', function (req, res) {
           "lng": 121.557348,
           "lat": 31.179784
         },
+        "locationName": "中国上海市",
+        "carrier": "中集集团"
+      },
+      {
+        "containerId": "22932214122313",
+        "currentStatus": "标准云箱",
+        "position": {
+          "lng": 121.557348,
+          "lat": 31.179784
+        },
+        "locationName": "中国上海市",
+        "carrier": "中集集团"
+      },
+      {
+        "containerId": "22932214122313",
+        "currentStatus": "标准云箱",
+        "position": {
+          "lng": 121.557348,
+          "lat": 31.179784
+        },
+        "locationName": "中国上海市",
         "carrier": "中集集团"
       },
       {
@@ -249,24 +278,7 @@ server.post('/boxStatus', function (req, res) {
           "lng": 121.557348,
           "lat": 31.179784
         },
-        "carrier": "中集集团"
-      },
-      {
-        "containerId": "22932214122313",
-        "currentStatus": "标准云箱",
-        "position": {
-          "lng": 121.557348,
-          "lat": 31.179784
-        },
-        "carrier": "中集集团"
-      },
-      {
-        "containerId": "22932214122313",
-        "currentStatus": "标准云箱",
-        "position": {
-          "lng": 121.557348,
-          "lat": 31.179784
-        },
+        "locationName": "中国上海市",
         "carrier": "中集集团"
       }
     ]
@@ -280,6 +292,7 @@ server.post('/containerhistory', function (req, res) {
         "containerId": "111",
         "start": {
           "time": "111",
+          "locationName": "中国上海市",
           "position": {
             "lng": 121.557348,
             "lat": 31.179784
@@ -287,6 +300,7 @@ server.post('/containerhistory', function (req, res) {
         },
         "end": {
           "time": "222",
+          "locationName": "中国上海市",
           "position": {
             "lng": 117,
             "lat": 36.65
@@ -297,6 +311,7 @@ server.post('/containerhistory', function (req, res) {
         "containerId": "222",
         "start": {
           "time": "111",
+          "locationName": "中国上海市",
           "position": {
             "lng": 104.06,
             "lat": 30.67
@@ -304,6 +319,7 @@ server.post('/containerhistory', function (req, res) {
         },
         "end": {
           "time": "222",
+          "locationName": "中国上海市",
           "position": {
             "lng": 118.78,
             "lat": 32.04
@@ -314,6 +330,7 @@ server.post('/containerhistory', function (req, res) {
         "containerId": "333",
         "start": {
           "time": "111",
+          "locationName": "中国上海市",
           "position": {
             "lng": 113,
             "lat": 28.21
@@ -321,6 +338,7 @@ server.post('/containerhistory', function (req, res) {
         },
         "end": {
           "time": "222",
+          "locationName": "中国上海市",
           "position": {
             "lng": 108.95,
             "lat": 34.27
@@ -388,6 +406,7 @@ server.post('/realtimeInfo', function (req, res) {
       "lng": 118.78,
       "lat":32.04
     },
+    "locationName": "中国上海市",
     "speed": 120,
     "temperature": { value: 39, status: "正常"},
     "humidity": { value: 70, status: "正常"},

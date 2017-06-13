@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('BoxstatusController', BoxstatusController);
 
     /** @ngInject */
-    function BoxstatusController(constdata, NetworkService, MapService, $stateParams, ApiServer, toastr, $state, $timeout, $interval,$scope, optionsTransFunc, parseLocation) {
+    function BoxstatusController(constdata, NetworkService, MapService, $stateParams, ApiServer, toastr, $state, $timeout, $interval,$scope, optionsTransFunc) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -57,7 +57,7 @@
             var queryParams = R.evolve(transformations)(vm.queryParams)
             console.log(queryParams);
             ApiServer.getBoxStatus(queryParams, function (response) {
-                vm.containerlist = parseLocation(response.data.boxStatus)
+                vm.containerlist = response.data.boxStatus
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);
             });
