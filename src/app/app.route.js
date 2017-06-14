@@ -76,7 +76,7 @@
                 $state.go($rootScope.previousState_name,$rootScope.previousState_params);
             };
         });
-        
+
 
     function routeConfig($stateProvider, $urlRouterProvider) {
 
@@ -213,6 +213,10 @@
             .state('app.command',{
                 url: 'command/:containerId',
                 templateUrl: 'app/components/monitor/command.html'
+            })
+            .state('app.allhist',{
+                url: 'allhist',
+                templateUrl: 'app/components/analysis/allHist.html'
             })
 
             /** LOGIN **/

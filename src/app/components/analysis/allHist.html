@@ -1,0 +1,130 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="AllHistController as vm"
+     ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
+    <!-- main -->
+    <div class="col">
+        <!-- main header -->
+        <!--<div class="bg-light lter b-b wrapper-xs">-->
+        <!--<div class="row">-->
+        <!--<div class="col-md-6 col-sm-6 col-xs-12">-->
+        <!--<h1 class="font-thin h3 text-black m-l m-t-sm">{{vm.title}}</h1>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <div id="content">
+            <div class="wrapper-md">
+                <div class="row ana-line1">
+                    <span class="ana-title">整体历史数据</span>
+                    <div class="col-md-4">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <label>所选国家</label>
+                                <select class="form-control">
+                                    <option>中国-上海</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <label>时间</label>
+                                <input ng-model="vm.newSecurityConfig.temperature.min" type="text" class="form-control"
+                                       placeholder="请输入..."> -
+                                <input ng-model="vm.newSecurityConfig.temperature.max" type="text" class="form-control"
+                                       placeholder="请输入...">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="ana-btn">查询数据</span>
+                    </div>
+                </div>
+
+                <div class="row ana-line2">
+                    <div class="col-md-3">
+                        <div class="ana-sale">
+                            <span class="ana-sale-title">承运方销售额</span>
+                            <p><span>8623</span>万元</p>
+                            <img src="http://ol37p4zz4.bkt.clouddn.com/img_bg_01.png">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="ana-profit">
+                            <span class="ana-profit-title">承运方利润率</span>
+                            <p><span>68</span>%</p>
+                            <img src="http://ol37p4zz4.bkt.clouddn.com/img_bg_02.png">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="ana-order">
+                            <span class="ana-order-title">承运方接订单量</span>
+                            <p><span>3402</span>万</p>
+                            <img src="http://ol37p4zz4.bkt.clouddn.com/img_bg_03.png">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="ana-box">
+                            <span class="ana-box-title">云箱使用量</span>
+                            <p><span>5927</span>万</p>
+                            <img src="http://ol37p4zz4.bkt.clouddn.com/img_bg_04.png">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row ana-line3">
+                    <div class="col-md-3">
+                        <div class="ana-transport">
+                            <div id="ana-transport-pie" class="ana-trans-pie">
+
+                            </div>
+                            <span class="ana-trans-title">运输方式</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="ana-goods">
+                            <div id="ana-goods-pie" class="ana-goods-pie">
+
+                            </div>
+                            <span class="ana-goods-title">货品分类</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row bd-line4 clearfix">
+                    <div class="bd-line4-title">
+                        <span>整体数据</span>
+                    </div>
+                    <div class="bd-tab">
+                        <uib-tabset active="activeJustified" justified="true">
+                            <uib-tab index="0" heading="销售额">
+                                <div class="bd-chart" id="bd-speed-chart">
+
+                                </div>
+                            </uib-tab>
+                            <uib-tab index="1" heading="利润率">
+                                <div class="bd-chart" id="bd-temp-chart">
+
+                                </div>
+                            </uib-tab>
+                            <uib-tab index="2" heading="订单量">
+                                <div class="bd-chart" id="bd-humi-chart">
+
+                                </div>
+                            </uib-tab>
+                            <uib-tab index="3" heading="云箱使用量">
+                                <div class="bd-chart" id="bd-batt-chart">
+
+                                </div>
+                            </uib-tab>
+
+                        </uib-tabset>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

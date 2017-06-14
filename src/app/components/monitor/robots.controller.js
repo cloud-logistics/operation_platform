@@ -14,7 +14,7 @@
         const posi = ['0%', '16.333%', '32.333%', '48.999%', '64.666%', '81.332%'];
         $scope.show = [];
         var vm = this;
-        arrowSet('wrcys');
+        arrowSet('jxb');
 
         var timer = $interval(function () {
             arrowSet(phase[Math.floor(Math.random()*5 + 1)]);
