@@ -19,12 +19,12 @@
           containerId : $stateParams.containerId
         };
 
-        var map = MapService.map_init("instantlocation", "terrain", 4);
+        var mapCenter = {lat: 31.2891, lng: 121.4648}; 
+
+        var map = MapService.map_init("instantlocation", mapCenter, "terrain", 4);
 
         // 鼠标绘图工具
         var overlay = undefined;
-
-        var geocoder = new google.maps.Geocoder;
 
         vm.getInstantlocationInfo = getInstantlocationInfo
 

@@ -15,9 +15,11 @@
         var height = document.body.clientHeight;
         var containers = [];
         var markers = [];
+        // Shanghai as center for the map
+        var mapCenter = {lat: 31.2891, lng: 121.4648}; 
         vm.mapSize = {"width":width + 'px',"height":height + 'px'};
 
-        var map = MapService.map_init("container_overview", "terrain");
+        var map = MapService.map_init("container_overview", mapCenter, "terrain");
 
         // 鼠标绘图工具
         var overlay = undefined;
@@ -28,7 +30,7 @@
         getContainerOverviewInfo();
         var timer = $interval(function(){
             getContainerOverviewInfo();
-        },5000, 500);
+        },150000, 500);
 
         $scope.$on("$destroy", function(){
             $interval.cancel(timer);
@@ -74,10 +76,14 @@
             });
 
             google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
-                if(!R.isNil(overlay)) {
-                    overlay.setMap(null)
-                }
                 overlay = event.overlay;
+
+                if(!R.isNil(overlay)) {
+                    setTimeout(function(){
+                        overlay.setMap(null)
+                    },500)
+                }
+
             });
         }
 
@@ -86,13 +92,10 @@
                 return bounds.contains(container.position)
             })
 
-            markers.map(function (marker){
-                marker.setMap(null)
-            })
-            markers = []
+            clearMarker();
 
             markers = R.compose(
-                R.map(MapService.addMarker(map)),
+                R.map(MapService.addMarker(map, "container")),
                 R.map(R.prop("position"))
             )(remainContainer)
 
@@ -100,6 +103,7 @@
         }
 
         function getContainerOverviewInfo() {
+            clearMarker();
             ApiServer.getContainerOverviewInfo(function (response) {
                 containers = response.data
                 console.log(containers);
@@ -110,6 +114,13 @@
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);
             });
+        }
+
+        function clearMarker () {
+            markers.map(function (marker){
+                marker.setMap(null)
+            })
+            markers = []
         }
 
     }

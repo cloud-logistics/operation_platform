@@ -29,6 +29,8 @@
     function optionsTransFunc() {
         return function (options) {
             return function(optionValue) {
+                console.log(options);
+                console.log(optionValue);
                 var optionId =
                     R.compose(
                         R.prop("id"),

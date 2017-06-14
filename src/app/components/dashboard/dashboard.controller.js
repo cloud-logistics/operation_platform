@@ -13,9 +13,10 @@
 
         var width = document.body.clientWidth;
         var height = document.body.clientHeight;
+        var mapCenter = {lat: 31.2891, lng: 121.4648}; 
         vm.mapSize = {"width": width + 'px', "height": height + 'px'};
 
-        var map = MapService.map_init("dashboard_map", "terrain");
+        var map = MapService.map_init("dashboard_map", mapCenter, "terrain");
         var markers = []
         var circles = []
 

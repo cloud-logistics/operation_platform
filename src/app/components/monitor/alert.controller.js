@@ -29,8 +29,14 @@
 
         ApiServer.getOptions(requiredOptions, function(options) {
             vm.options = options;
-            console.log(vm.options);
 
+            vm.options.alertCode = R.map(function(alertCode){
+                return {
+                    id: alertCode.id,
+                    value: alertCode.value.toString()
+                }
+            })(vm.options.alertCode)
+            console.log(vm.options);
             transformations = {
                 alertCode: optionsTransFunc(vm.options.alertCode),
                 alertType: optionsTransFunc(vm.options.alertType),
@@ -46,8 +52,7 @@
         })
         
         function getAlerts () {
-            // var queryParams = R.evolve(transformations)(vm.queryParams)
-            var queryParams = vm.queryParams
+            var queryParams = R.evolve(transformations)(vm.queryParams)
             console.log(queryParams);
             ApiServer.getAlerts(queryParams, function (response) {
                 vm.alerts = response.data.alerts

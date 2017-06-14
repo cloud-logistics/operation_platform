@@ -15,7 +15,8 @@
         var height = document.body.clientHeight;
         vm.mapSize = {"width":width + 'px',"height":height + 'px'};
 
-        var map = MapService.map_init("satellite_overview", "satellite", 3);
+        var mapCenter = {lat: 31.2891, lng: 121.4648};
+        var map = MapService.map_init("satellite_overview", mapCenter, "satellite", 3);
         var markers = []
 
         //创建航线，航线是固定的。。。出于保密原因，先这样
