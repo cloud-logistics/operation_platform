@@ -38,10 +38,10 @@
 
         ////////////信息
 
-        function map_init(id, mapType, zoomLevel) {
+        function map_init(id, center, mapType, zoomLevel) {
             // Create a map object and specify the DOM element for display.
             var map = new google.maps.Map(document.getElementById(id), {
-                center: {lat: 31.2891, lng: 121.4648},
+                center: center,
                 mapTypeId: mapType,
                 scrollwheel: true,
                 zoom: zoomLevel | 3

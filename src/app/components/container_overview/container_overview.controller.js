@@ -15,9 +15,11 @@
         var height = document.body.clientHeight;
         var containers = [];
         var markers = [];
+        // Shanghai as center for the map
+        var mapCenter = {lat: 31.2891, lng: 121.4648}; 
         vm.mapSize = {"width":width + 'px',"height":height + 'px'};
 
-        var map = MapService.map_init("container_overview", "terrain");
+        var map = MapService.map_init("container_overview", mapCenter, "terrain");
 
         // 鼠标绘图工具
         var overlay = undefined;

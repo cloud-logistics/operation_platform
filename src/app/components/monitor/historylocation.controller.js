@@ -16,8 +16,9 @@
         var histories = [];
         var routes = [];
         vm.mapSize = {"width":width + 'px',"height":height + 'px'};
+        var mapCenter = {lat: 31.2891, lng: 121.4648}; 
 
-        var map = MapService.map_init("histotylocation", "terrain", 4);
+        var map = MapService.map_init("histotylocation", mapCenter, "terrain", 4);
 
         console.log($stateParams);
 

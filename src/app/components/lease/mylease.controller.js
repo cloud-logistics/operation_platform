@@ -11,7 +11,9 @@
         /* jshint validthis: true */
         var vm = this;
 
-        var map = MapService.map_init("mylease_map", "terrain");
+        var mapCenter = {lat: 31.2891, lng: 121.4648};
+
+        var map = MapService.map_init("mylease_map", mapCenter, "terrain");
         var markers = [];
         vm.containersInfo = {
             mycontainers:{
