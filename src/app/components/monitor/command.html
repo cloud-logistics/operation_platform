@@ -10,7 +10,9 @@
                 <span class="bread-symbol">></span>
                 <span class="bread-2">报警处理</span>
                 <div class="comm-right">
-                    <span class="comm-detail">云箱详情</span>
+                    <span class="comm-detail" ui-sref="app.realtime({
+                                                containerId: vm.commandParams.containerId
+                                            })">云箱详情</span>
                     <span class="comm-reset" ng-click="resetClick()"><i class="glyphicon glyphicon-repeat"></i>重置</span>
                     <span class="comm-shutdown" ng-click="shutClick()"><i class="glyphicon glyphicon-off"></i>关机</span>
                 </div>

@@ -107,9 +107,9 @@
 
                                 '</div>' +
                             '</div>' +
-                            '<div class="marker-point">' +
+                            // '<div class="marker-point">' +
 
-                            '</div>' +
+                            // '</div>' +
                         '</div>';
                     infoWindow(map, currentPositionMarker, content)
                 })
