@@ -1,4 +1,4 @@
-<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="BoxAlertController as vm"
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="BoxRepairController as vm"
      ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
     <!-- main -->
     <div class="col">
@@ -10,7 +10,72 @@
         <!--</div>-->
         <!--</div>-->
         <!--</div>-->
+        <modal-dialog show='modalInput' width='659px' height='400px'>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="bm-update-header">
+                        <span class="pull-left">{{vm.options.title}}</span>
+                        <span ng-class="{true: 'pull-right hide', false:'pull-right'}[vm.options.is_insert]">删除条目</span>
+                    </div>
+                </div>
+                <div class="row bm-input m-b-md">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label form-control-static">维修点</label>
+                            <div class="col-md-8">
+                                <input ng-model="vm.newRepairConfig.name" type="text" class="form-control" placeholder="请输入">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label form-control-static">国家和地区</label>
+                            <div class="col-md-8">
+                                <select ng-model="vm.newRepairConfig.locationName" name="account" class="form-control">
+                                    <option ng-repeat="item in vm.options.carrier track by $index" >{{item.value}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="row bm-input m-b-md">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label form-control-static">经度</label>
+                            <div class="col-md-8">
+                                <input ng-model="vm.newRepairConfig.position.lng" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label form-control-static">纬度</label>
+                              <div class="col-md-8">
+                                <input ng-model="vm.newRepairConfig.position.lat" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row bm-input m-b-md">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label form-control-static">联系方式</label>
+                              <div class="col-md-8">
+                                <input ng-model="vm.newRepairConfig.contact" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="bm-input-bottom">
+                        <button class="pull-right bm-save"  ng-click="vm.saveRepairInfoConfig()">保存</button>
+                        <button class="pull-right bm-cancel" ng-click="vm.cancelRepairInfoConfig()" >取消</button>
+                    </div>
+                </div>
+            </div>
+        </modal-dialog>
         <div id="content" style="height: 100vh;">
             <div class="wrapper-md">
                 <div class="row" style="background-color: #fff">
@@ -21,7 +86,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">维修点</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" placeholder="请输入维修点名称">
+                                        <input ng-model="vm.newRepairConfig.name" type="text" class="form-control" placeholder="请输入维修点名称">
                                     </div>
                                 </div>
                             </div>
@@ -30,7 +95,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">国家和地区</label>
                                     <div class="col-md-8">
-                                        <select name="account" class="form-control">
+                                        <select  ng-model="vm.newRepairConfig.locationName" name="account" class="form-control">
                                             <option>中国-上海</option>
                                         </select>
                                     </div>
@@ -40,7 +105,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">经度</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" placeholder="请输入经度">
+                                        <input  ng-model="vm.newRepairConfig.position.lng"type="text" class="form-control" placeholder="请输入经度">
                                     </div>
                                 </div>
                             </div>
@@ -51,7 +116,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">纬度</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" placeholder="请输入纬度">
+                                        <input  ng-model="vm.newRepairConfig.position.lat"type="text" class="form-control" placeholder="请输入纬度">
                                     </div>
                                 </div>
                             </div>
@@ -59,7 +124,7 @@
                                 <div class="form-group">
                                     <label class="col-md-2 control-label form-control-static">联系方式</label>
                                     <div class="col-md-10">
-                                        <input type="text" class="form-control" placeholder="请输入联系方式">
+                                        <input  ng-model="vm.newRepairConfig.contact" type="text" class="form-control" placeholder="请输入联系方式">
                                     </div>
                                 </div>
                             </div>
@@ -69,7 +134,7 @@
 
                             <div class="col-md-offset-8 col-md-4">
                                 <div class="pull-right bb-btn">
-                                    <span>保存</span>
+                                    <span ng-click="vm.saveRepairInfoConfig()">保存</span>
                                 </div>
                             </div>
                         </div>
@@ -92,38 +157,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td style="vertical-align: middle;">上海码头</td>
-                            <td style="vertical-align: middle;">中国上海</td>
-                            <td style="vertical-align: middle;">108.31231</td>
-                            <td style="vertical-align: middle;">34.123123</td>
-                            <td style="vertical-align: middle;">上海海航大厦</td>
+                        <tr ng-repeat="item in vm.repairInfoManage track by $index">
+                            <td style="vertical-align: middle;">{{item.name}}</td>
+                            <td style="vertical-align: middle;">{{item.locationName}}</td>
+                            <td style="vertical-align: middle;">{{item.position.lng}}</td>
+                            <td style="vertical-align: middle;">{{item.position.lat}}</td>
+                            <td style="vertical-align: middle;">{{item.contact}}</td>
                             <td style="vertical-align: middle;">
-                                <span class="bb-edit-btn" ng-click="basicUpdate()">编辑</span>
-                                <span class="bb-del-btn">删除</span>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">上海码头</td>
-                            <td style="vertical-align: middle;">中国上海</td>
-                            <td style="vertical-align: middle;">108.31231</td>
-                            <td style="vertical-align: middle;">34.123123</td>
-                            <td style="vertical-align: middle;">上海海航大厦</td>
-                            <td style="vertical-align: middle;">
-                                <span class="bb-edit-btn" ng-click="basicUpdate()">编辑</span>
-                                <span class="bb-del-btn">删除</span>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">上海码头</td>
-                            <td style="vertical-align: middle;">中国上海</td>
-                            <td style="vertical-align: middle;">108.31231</td>
-                            <td style="vertical-align: middle;">34.123123</td>
-                            <td style="vertical-align: middle;">上海海航大厦</td>
-                            <td style="vertical-align: middle;">
-                                <span class="bb-edit-btn" ng-click="basicUpdate()">编辑</span>
+                                <span class="bb-edit-btn" ng-click="vm.repairUpdate(vm.repairInfoManage[$index].id)">编辑</span>
                                 <span class="bb-del-btn">删除</span>
                             </td>
 

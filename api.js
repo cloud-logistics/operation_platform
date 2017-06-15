@@ -24,13 +24,12 @@ server.use(jsonServer.rewriter({
   "/container/api/v1/cloudbox/alertLevel":"/alertLevel",
   "/container/api/v1/cloudbox/basicInfoManage":"/basicInfoManage",
   "/container/api/v1/cloudbox/issueInfo":"/issueInfo",
-  "/container/api/v1/cloudbox/alertInfo":"/alertInfo",
+  "/container/api/v1/cloudbox/repairInfo":"/repairInfo",
   "/container/api/v1/cloudbox/basicInfoConfig":"/basicInfoConfig",
   "/container/api/v1/cloudbox/securityConfig":"/securityConfig",
-  "/container/api/v1/cloudbox/alertConfig":"/alertConfig",
+  "/container/api/v1/cloudbox/repairConfig":"/repairConfig",
   "/container/api/v1/cloudbox/issueConfig":"/issueConfig",
   "/container/api/v1/cloudbox/issueConfig":"/issueConfig",
-  "/container/api/v1/cloudbox/alertConfig":"/alertConfig",
   "/container/api/v1/cloudbox/options":"/options",
   "/container/api/v1/cloudbox/carriers":"/carriers",
   "/container/api/v1/cloudbox/newcarrier":"/newcarrier",
@@ -647,7 +646,7 @@ server.post('/securityConfig', function (req, res) {
   });
 })
 
-server.post('/alertConfig', function (req, res) {
+server.post('/repairConfig', function (req, res) {
   res.json({
     "code": "OK"
   });
@@ -674,7 +673,7 @@ server.post('/command', function (req, res) {
 //       {"containerId": "22937203474450"},
 //       {"containerId": "22937203474450"}
 //     ],
-//     "alertConfig": [
+//     "repairConfig": [
 //       {"maintenanceLocation" : "陕西西安天谷八路"},
 //       {"maintenanceLocation" : "陕西西安天谷八路"},
 //       {"maintenanceLocation" : "陕西西安天谷八路"},

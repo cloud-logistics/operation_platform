@@ -4,10 +4,10 @@
 (function () {
     'use strict';
 
-    angular.module('smart_container').controller('BoxAlertController', BoxAlertController);
+    angular.module('smart_container').controller('BoxRepairController', BoxRepairController);
 
     /** @ngInject */
-    function BoxAlertController(constdata, NetworkService, $stateParams, ApiServer, toastr, $state, $timeout, $interval, $scope, optionsTransFunc) {
+    function BoxRepairController(constdata, NetworkService, $stateParams, ApiServer, toastr, $state, $timeout, $interval, $scope, optionsTransFunc) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -16,47 +16,54 @@
         vm.queryParams = {}
 
 
-        vm.newAlertConfig = {};
-        vm.alertInfoManage = {};
+        vm.newRepairConfig = {};
+        vm.repairInfoManage = {};
 
-        vm.saveAlertInfoConfig = saveAlertInfoConfig;
-        vm.cancelAlertInfoConfig = cancelAlertInfoConfig;
-        vm.newAlertConfigPost = newAlertConfigPost;
+        vm.saveRepairInfoConfig = saveRepairInfoConfig;
+        vm.cancelRepairInfoConfig = cancelRepairInfoConfig;
+        vm.newRepairConfigPost = newRepairConfigPost;
+        vm.repairUpdate = repairUpdate
 
  
-        getAlertInfoManage();
+        getRepairInfoManage();
         var timer = $interval(function(){
-            getAlertInfoManage();
+            getRepairInfoManage();
         },5000, 500);
 
         $scope.$on("$destroy", function(){
             $interval.cancel(timer);
         });
 
-        function getAlertInfoManage () {
-            ApiServer.getAlertInfoManage(function (response) {
-                vm.alertInfoManage = response.data
-                console.log(vm.alertInfoManage);
+        function getRepairInfoManage () {
+            ApiServer.getRepairInfoManage(function (response) {
+                vm.repairInfoManage = response.data.repairInfo
+                console.log(vm.repairInfoManage);
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);
             });
         }
 
-        function saveAlertInfoConfig() {
-            newAlertConfigPost();
+        function saveRepairInfoConfig() {
+            newRepairConfigPost();
 
             $scope.modalInput = !$scope.modalInput;
         }
 
-        function cancelAlertInfoConfig() {
-            $scope.modalInput = !$scope.modalInput;
+        function cancelRepairInfoConfig() {
+            $scope.modalInput = false;
         }
 
-        function newAlertConfigPost () {
-            var config = vm.newAlertConfig
-            console.log("new alertInfo params: ", config);
+        function repairUpdate (id) {
+            console.log("hehe");
+            $scope.modalInput = true;
+            vm.newRepairConfig.id = id;
+        }
 
-            ApiServer.newAlertConfig(config, function (response) {
+        function newRepairConfigPost () {
+            var config = vm.newRepairConfig
+            console.log("new repairInfo params: ", config);
+
+            ApiServer.newRepairConfig(config, function (response) {
                 console.log(response.data);
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);

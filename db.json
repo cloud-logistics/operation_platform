@@ -268,13 +268,48 @@
       }
     ]
   },
-  "alertInfo": {
-    "alertInfo" :[
-      {"maintenanceLocation" : "陕西西安天谷八路"},
-      {"maintenanceLocation" : "陕西西安天谷八路"},
-      {"maintenanceLocation" : "陕西西安天谷八路"},
-      {"maintenanceLocation" : "陕西西安天谷八路"},
-      {"maintenanceLocation" : "陕西西安天谷八路"}
+  "repairInfo": {
+    "repairInfo" :[
+      {
+        "id":1,
+        "name" : "陕西西安天谷八路",
+        "locationName":"中国上海",
+        "position": {
+          "lng": 118.78,
+          "lat":32.04
+        },
+        "contact":"028-999999999"
+      },
+      {
+        "id":2,
+        "name" : "陕西西安天谷八路",
+        "locationName":"中国上海",
+        "position": {
+          "lng": 118.78,
+          "lat":32.04
+        },
+        "contact":"028-999999999"
+      },
+      {
+        "id":3,
+        "name" : "陕西西安天谷八路",
+        "locationName":"中国上海",
+        "position": {
+          "lng": 118.78,
+          "lat":32.04
+        },
+        "contact":"028-999999999"
+      },
+      {
+        "id":4,
+        "name" : "陕西西安天谷八路",
+        "locationName":"中国上海",
+        "position": {
+          "lng": 118.78,
+          "lat":32.04
+        },
+        "contact":"028-999999999"
+      }
     ]
   },
   "login": {

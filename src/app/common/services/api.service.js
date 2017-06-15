@@ -41,11 +41,11 @@
             command: command,
             newBasicInfoConfig: newBasicInfoConfig,
             updateSecurityConfig: updateSecurityConfig,
-            newAlertConfig: newAlertConfig,
+            newRepairConfig: newRepairConfig,
             newIssueConfig: newIssueConfig,
             getBasicInfoManage: getBasicInfoManage,
             getIssueInfoManage: getIssueInfoManage,
-            getAlertInfoManage: getAlertInfoManage,
+            getRepairInfoManage: getRepairInfoManage,
 
             isAuthed: isAuthed,
             roleType: roleType,
@@ -245,8 +245,8 @@
                                 failedHandler);
         }
 
-        function newAlertConfig(params, successHandler,failedHandler) {
-            NetworkService.post(constdata.api.alertConfig,
+        function newRepairConfig(params, successHandler,failedHandler) {
+            NetworkService.post(constdata.api.repairConfig,
                                 params,
                                 successHandler,
                                 failedHandler);
@@ -273,8 +273,8 @@
                                 failedHandler);
         }
 
-        function getAlertInfoManage(successHandler,failedHandler) {
-            NetworkService.get(constdata.api.alertInfo,
+        function getRepairInfoManage(successHandler,failedHandler) {
+            NetworkService.get(constdata.api.repairInfo,
                                 null,
                                 successHandler,
                                 failedHandler);
