@@ -16,7 +16,7 @@
         vm.mapSize = {"width":width + 'px',"height":height + 'px'};
 
         vm.queryParams = {
-          containerId : $stateParams.containerId
+          containerId : $stateParams.containerId || "ESP32_AI_001"
         };
 
         var mapCenter = {lat: 31.2891, lng: 121.4648}; 

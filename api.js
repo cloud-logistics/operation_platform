@@ -292,7 +292,7 @@ server.post('/containerhistory', function (req, res) {
         "containerId": "111",
         "start": {
           "time": "111",
-          "locationName": "中国上海市",
+          "locationName": "\u4e2d\u56fd\u5c71\u4e1c\u7701\u9752\u5c9b\u5e02\u5e02\u5357\u533a\u70df\u96e8\u697c\u5bbe\u9986\uff08\u82cf\u5dde\u8def\uff09",
           "position": {
             "lng": 121.557348,
             "lat": 31.179784
@@ -300,7 +300,7 @@ server.post('/containerhistory', function (req, res) {
         },
         "end": {
           "time": "222",
-          "locationName": "中国上海市",
+          "locationName": "\u4e2d\u56fd\u5c71\u4e1c\u7701\u9752\u5c9b\u5e02\u5e02\u5357\u533a\u70df\u96e8\u697c\u5bbe\u9986\uff08\u82cf\u5dde\u8def\uff09",
           "position": {
             "lng": 117,
             "lat": 36.65
@@ -311,7 +311,7 @@ server.post('/containerhistory', function (req, res) {
         "containerId": "222",
         "start": {
           "time": "111",
-          "locationName": "中国上海市",
+          "locationName": "\u4e2d\u56fd\u5c71\u4e1c\u7701\u9752\u5c9b\u5e02\u5e02\u5357\u533a\u70df\u96e8\u697c\u5bbe\u9986\uff08\u82cf\u5dde\u8def\uff09",
           "position": {
             "lng": 104.06,
             "lat": 30.67

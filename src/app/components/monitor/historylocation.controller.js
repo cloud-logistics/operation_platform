@@ -49,6 +49,7 @@
                 var bounds = new google.maps.LatLngBounds();
 
                 histories = response.data.containerhistory
+                console.log(histories);
 
                 routes = histories.map(function (route) {
                   var startPointLatlng = route.start.position
@@ -56,6 +57,7 @@
 
                   var startPointMarker = MapService.addMarker(map)(route.start.position)
                   var endPointMarker = MapService.addMarker(map)(route.end.position)
+                  console.log(route.start.locationName);
 
                   infoWindow(map, startPointMarker, "起点: " + route.start.locationName)
 
