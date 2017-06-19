@@ -54,6 +54,7 @@
                 availablecontainers : "availablecontainers",
                 containersonlease : "containersonlease",
                 command : "command",
+                analysisresult : "analysisresult",
                 user:'user',
                 message:'message'
             },

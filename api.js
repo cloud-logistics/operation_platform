@@ -761,12 +761,220 @@ server.post('/analysisresult', function (req, res) {
   res.json({
     "carrier_sales_revenue": 86230000,
     "profit_margin": 0.68,
-    "carrier_orders": 3402000 ,
-    "use_of_containers": 5927000,
+    "carrier_orders": 34020000,
+    "use_of_containers": 59270000,
     "transportation_category": {
         "airline":0.3,
-        "highway":0.5,
-    }
+        "highway":0.2,
+        "ocean": 0.4,
+        "other": 0.1
+    },
+    "goods_category": {
+        "fish": 0.3,
+        "beaf": 0.2,
+        "chip": 0.3,
+        "gold": 0.2
+    },
+    "history_revenue": [
+        {
+            "value": 3000,
+            "time": "1月"
+        },
+        {
+            "value": 2000,
+            "time": "2月"
+        },
+        {
+            "value": 7000,
+            "time": "3月"
+        },
+        {
+            "value": 3000,
+            "time": "4月"
+        },
+        {
+            "value": 3000,
+            "time": "5月"
+        },
+        {
+            "value": 3000,
+            "time": "6月"
+        },
+        {
+            "value": 3000,
+            "time": "7月"
+        },
+        {
+            "value": 3000,
+            "time": "8月"
+        },
+        {
+            "value": 3000,
+            "time": "9月"
+        },
+        {
+            "value": 6000,
+            "time": "10月"
+        },
+        {
+            "value": 2000,
+            "time": "11月"
+        },
+        {
+            "value": 4000,
+            "time": "12月"
+        }
+    ],
+    "history_profit_margin": [
+        {
+            "value": 0.4,
+            "time": "1月"
+        },
+        {
+            "value": 0.3,
+            "time": "2月"
+        },
+        {
+            "value": 0.7,
+            "time": "3月"
+        },
+        {
+            "value": 0.3,
+            "time": "4月"
+        },
+        {
+            "value": 0.4,
+            "time": "5月"
+        },
+        {
+            "value": 0.5,
+            "time": "6月"
+        },
+        {
+            "value": 0.4,
+            "time": "7月"
+        },
+        {
+            "value": 0.3,
+            "time": "8月"
+        },
+        {
+            "value": 0.4,
+            "time": "9月"
+        },
+        {
+            "value": 0.4,
+            "time": "10月"
+        },
+        {
+            "value": 0.2,
+            "time": "11月"
+        },
+        {
+            "value": 0.4,
+            "time": "12月"
+        }
+    ],
+    "history_orders": [
+        {
+            "value": 3000,
+            "time": "1月"
+        },
+        {
+            "value": 2000,
+            "time": "2月"
+        },
+        {
+            "value": 7000,
+            "time": "3月"
+        },
+        {
+            "value": 3000,
+            "time": "4月"
+        },
+        {
+            "value": 3000,
+            "time": "5月"
+        },
+        {
+            "value": 3000,
+            "time": "6月"
+        },
+        {
+            "value": 3000,
+            "time": "7月"
+        },
+        {
+            "value": 3000,
+            "time": "8月"
+        },
+        {
+            "value": 3000,
+            "time": "9月"
+        },
+        {
+            "value": 6000,
+            "time": "10月"
+        },
+        {
+            "value": 2000,
+            "time": "11月"
+        },
+        {
+            "value": 4000,
+            "time": "12月"
+        }
+    ],
+    "history_use_of_containers": [
+        {
+            "value": 3000,
+            "time": "1月"
+        },
+        {
+            "value": 2000,
+            "time": "2月"
+        },
+        {
+            "value": 7000,
+            "time": "3月"
+        },
+        {
+            "value": 3000,
+            "time": "4月"
+        },
+        {
+            "value": 3000,
+            "time": "5月"
+        },
+        {
+            "value": 3000,
+            "time": "6月"
+        },
+        {
+            "value": 3000,
+            "time": "7月"
+        },
+        {
+            "value": 3000,
+            "time": "8月"
+        },
+        {
+            "value": 3000,
+            "time": "9月"
+        },
+        {
+            "value": 6000,
+            "time": "10月"
+        },
+        {
+            "value": 2000,
+            "time": "11月"
+        },
+        {
+            "value": 4000,
+            "time": "12月"
+        }
+    ]
   });
 })
 

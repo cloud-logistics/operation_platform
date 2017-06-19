@@ -23,16 +23,12 @@
         var speedChart;
         var speedOption;
 
-        var speedLineChart;
         var speedLineOption;
 
-        var tempBarChart;
         var tempBarOption;
 
-        var humiLineChart;
         var humiLineOption;
 
-        var battLineChart;
         var battLineOption;
 
         var pieChart;
@@ -44,43 +40,51 @@
 
         vm.title = '实时报文';
         vm.containerlists = [];
-        vm.getRealtimeInfo = getRealtimeInfo
+        vm.getAnalysisResult = getAnalysisResult
         vm.containerId = $stateParams.containerId
         vm.realtimeInfo = {}
         vm.speedStatus = ""
+        vm.queryParams = {
+            location : "中国"
+        };
 
-        getRealtimeInfo()
+        vm.getAnalysisResult = getAnalysisResult;
+
+        getAnalysisResult()
         // var timer = $interval(function(){
-        //     getRealtimeInfo();
+        //     getAnalysisResult();
         // },50000, 500);
         //
         // $scope.$on("$destroy", function(){
         //     $interval.cancel(timer);
         // });
 
-        function getRealtimeInfo () {
-            var queryParams = {
-                containerId: vm.containerId
-            }
+        function getAnalysisResult () {
+            var transformations = {
+                startTime: R.compose(R.toString, Date.parse),
+                endTime: R.compose(R.toString, Date.parse)
+            };
+            var queryParams = R.evolve(transformations)(vm.queryParams)
+            console.log(queryParams)
 
-            ApiServer.getRealtimeInfo(queryParams, function (response) {
+
+            ApiServer.getAnalysisResult(queryParams, function (response) {
                 var locationName = undefined;
+                console.log(response.data)
 
-                vm.realtimeInfo = response.data
-                vm.speedStatus = "正常"
-                console.log(vm.realtimeInfo);
+                vm.analysisResult = response.data
 
                 // initTemp(vm.realtimeInfo.temperature.value)
                 // initHumi(vm.realtimeInfo.humidity.value)
                 // initBatt(vm.realtimeInfo.battery.value);
                 // initSpeed(vm.realtimeInfo.speed);
 
-                initSpeedLine();
-                initTempBar();
-                initHumiLine();
-                initBattLine();
-                initPie();
-                initGoods();
+                initRevenueLine(vm.analysisResult.history_revenue);
+                initProfitMarginBar(vm.analysisResult.history_profit_margin);
+                initOrderLine(vm.analysisResult.history_orders);
+                initContainerLine(vm.analysisResult.history_use_of_containers);
+                initPie(vm.analysisResult.transportation_category);
+                initGoods(vm.analysisResult.goods_category);
                 // MapService.geoCodePosition(vm.realtimeInfo.position)
                 //     .then(function(results){
                 //         if(!R.isNil(results)){
@@ -491,16 +495,10 @@
         }
 
         /*初始化速度line chart*/
-        function initSpeedLine() {
-            var xData = function () {
-                var data = [];
-                for (var i = 1; i < 13; i++) {
-                    data.push(i + "月份");
-                }
-                return data;
-            }();
+        function initRevenueLine(value) {
+            var xData = R.map(R.prop("time"))(value)
 
-            speedLineChart = echarts.init(document.getElementById('bd-speed-chart'));
+            var revenueLineChart = echarts.init(document.getElementById('bd-revenue-chart'));
 
             speedLineOption = {
                 backgroundColor: "#fff",
@@ -612,38 +610,19 @@
                                 }
                             }
                         },
-                        "data": [
-                            1036,
-                            3693,
-                            2962,
-                            3810,
-                            2519,
-                            1915,
-                            1748,
-                            4675,
-                            6209,
-                            4323,
-                            2865,
-                            4298
-                        ]
+                        "data": R.map(R.prop("value"))(value)
                     },
                 ]
             }
 
-            speedLineChart.setOption(speedLineOption);
+            revenueLineChart.setOption(speedLineOption);
         }
 
         /*初始化温度bar chart*/
-        function initTempBar() {
-            var xData = function () {
-                var data = [];
-                for (var i = 1; i < 13; i++) {
-                    data.push(i + "月份");
-                }
-                return data;
-            }();
+        function initProfitMarginBar(value) {
+            var xData = R.map(R.prop("time"))(value)
 
-            tempBarChart = echarts.init(document.getElementById('bd-temp-chart'));
+            var profitMarginBarChart = echarts.init(document.getElementById('bd-profit-margin-chart'));
 
             tempBarOption = {
                 backgroundColor: "#fff",
@@ -746,38 +725,19 @@
                             }
                             // "show":false
                         },
-                        "data": [
-                            709,
-                            -1917,
-                            2455,
-                            -2610,
-                            1719,
-                            -1433,
-                            1544,
-                            -3285,
-                            5208,
-                            3372,
-                            2484,
-                            4078
-                        ],
+                        "data": R.map(R.prop("value"))(value)
                     }
                 ]
             }
 
-            tempBarChart.setOption(tempBarOption);
+            profitMarginBarChart.setOption(tempBarOption);
         }
 
         /*初始化湿度line chart*/
-        function initHumiLine() {
-            var xData = function () {
-                var data = [];
-                for (var i = 1; i < 13; i++) {
-                    data.push(i + "月份");
-                }
-                return data;
-            }();
+        function initOrderLine(value) {
+            var xData = R.map(R.prop("time"))(value)
 
-            humiLineChart = echarts.init(document.getElementById('bd-humi-chart'));
+            var orderLineChart = echarts.init(document.getElementById('bd-order-chart'));
 
             humiLineOption = {
                 backgroundColor: "#fff",
@@ -880,37 +840,18 @@
                                 }
                             }
                         },
-                        "data": [
-                            1036,
-                            3693,
-                            2962,
-                            3810,
-                            2519,
-                            1915,
-                            1748,
-                            4675,
-                            6209,
-                            4323,
-                            2865,
-                            4298
-                        ]
+                        "data": R.map(R.prop("value"))(value)
                     },
                 ]
             }
 
-            humiLineChart.setOption(humiLineOption);
+            orderLineChart.setOption(humiLineOption);
         }
 
-        function initBattLine() {
-            var xData = function () {
-                var data = [];
-                for (var i = 1; i < 13; i++) {
-                    data.push(i + "月份");
-                }
-                return data;
-            }();
+        function initContainerLine(value) {
+            var xData = R.map(R.prop("time"))(value)
 
-            battLineChart = echarts.init(document.getElementById('bd-batt-chart'));
+            var containerLineChart = echarts.init(document.getElementById('bd-container-chart'));
 
             battLineOption = {
                 backgroundColor: "#fff",
@@ -1013,29 +954,16 @@
                                 }
                             }
                         },
-                        "data": [
-                            3000,
-                            2900,
-                            2840,
-                            2600,
-                            2519,
-                            2319,
-                            2019,
-                            1919,
-                            1819,
-                            1719,
-                            1819,
-                            1619
-                        ]
+                        "data": R.map(R.prop("value"))(value)
                     },
                 ]
             };
 
-            battLineChart.setOption(battLineOption);
+            containerLineChart.setOption(battLineOption);
         }
 
 
-        function initPie() {
+        function initPie(value) {
             pieChart = echarts.init(document.getElementById('ana-transport-pie'));
             pieOption = {
                 tooltip: {
@@ -1088,10 +1016,10 @@
                             }
                         },
                         data: [
-                            {value: 40, name: '航空'},
-                            {value: 30, name: '公路'},
-                            {value: 10, name: '海运'},
-                            {value: 20, name: '其他'}
+                            {value: value.airline * 100, name: '航空'},
+                            {value: value.highway * 100, name: '公路'},
+                            {value: value.ocean * 100, name: '海运'},
+                            {value: value.other * 100, name: '其他'}
                         ]
                     }
                 ]
@@ -1099,7 +1027,7 @@
             pieChart.setOption(pieOption);
         }
 
-        function initGoods() {
+        function initGoods(value) {
             goodsChart = echarts.init(document.getElementById('ana-goods-pie'));
             goodsOption = {
                 tooltip: {
@@ -1152,10 +1080,10 @@
                             }
                         },
                         data: [
-                            {value: 40, name: '航空'},
-                            {value: 30, name: '公路'},
-                            {value: 10, name: '海运'},
-                            {value: 20, name: '其他'}
+                            {value: value.fish, name: '鱼类'},
+                            {value: value.beaf, name: '牛肉'},
+                            {value: value.chip, name: '芯片'},
+                            {value: value.gold, name: '黄金'}
                         ]
                     }
                 ]

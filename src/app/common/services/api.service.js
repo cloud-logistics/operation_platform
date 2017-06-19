@@ -44,6 +44,7 @@
             updateSecurityConfig: updateSecurityConfig,
             newRepairConfig: newRepairConfig,
             newIssueConfig: newIssueConfig,
+            getAnalysisResult: getAnalysisResult,
             getBasicInfoManage: getBasicInfoManage,
             getIssueInfoManage: getIssueInfoManage,
             getRepairInfoManage: getRepairInfoManage,
@@ -262,6 +263,13 @@
 
         function newIssueConfig(params, successHandler,failedHandler) {
             NetworkService.post(constdata.api.issueConfig,
+                                params,
+                                successHandler,
+                                failedHandler);
+        }
+
+        function getAnalysisResult(params, successHandler,failedHandler) {
+            NetworkService.post(constdata.api.analysisresult,
                                 params,
                                 successHandler,
                                 failedHandler);

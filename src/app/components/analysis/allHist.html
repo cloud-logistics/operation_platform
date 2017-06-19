@@ -19,8 +19,11 @@
                         <form class="form-inline">
                             <div class="form-group">
                                 <label>所选国家</label>
-                                <select class="form-control">
-                                    <option>中国-上海</option>
+                                <select ng-model="vm.queryParams.location" class="form-control">
+                                    <option>中国</option>
+                                    <option>美国</option>
+                                    <option>德国</option>
+                                    <option>日本</option>
                                 </select>
                             </div>
                         </form>
@@ -29,15 +32,22 @@
                         <form class="form-inline">
                             <div class="form-group">
                                 <label>时间</label>
-                                <input ng-model="vm.newSecurityConfig.temperature.min" type="text" class="form-control"
-                                       placeholder="请输入..."> -
-                                <input ng-model="vm.newSecurityConfig.temperature.max" type="text" class="form-control"
-                                       placeholder="请输入...">
+                                <input ng-model="vm.queryParams.startTime"
+                                    min-view="hours"
+                                    placeholder="Select date"
+                                    moment-picker
+                                    format="YYYY-MM-DD">
+                                <span> - </span>
+                                <input ng-model="vm.queryParams.endTime"
+                                    min-view="hours"
+                                    placeholder="Select date"
+                                    moment-picker
+                                    format="YYYY-MM-DD">
                             </div>
                         </form>
                     </div>
                     <div class="col-md-4">
-                        <span class="ana-btn">查询数据</span>
+                        <span class="ana-btn" ng-click="vm.getAnalysisResult()">查询数据</span>
                     </div>
                 </div>
 
@@ -45,21 +55,21 @@
                     <div class="col-md-3">
                         <div class="ana-sale">
                             <span class="ana-sale-title">承运方销售额</span>
-                            <p><span>8623</span>万元</p>
+                            <p><span>{{vm.analysisResult.carrier_sales_revenue / 10000}}</span>万元</p>
                             <img src="http://ol37p4zz4.bkt.clouddn.com/img_bg_01.png">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="ana-profit">
                             <span class="ana-profit-title">承运方利润率</span>
-                            <p><span>68</span>%</p>
+                            <p><span>{{vm.analysisResult.profit_margin * 100}}</span>%</p>
                             <img src="http://ol37p4zz4.bkt.clouddn.com/img_bg_02.png">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="ana-order">
                             <span class="ana-order-title">承运方接订单量</span>
-                            <p><span>3402</span>万</p>
+                            <p><span>{{vm.analysisResult.carrier_orders / 10000}}</span>万</p>
                             <img src="http://ol37p4zz4.bkt.clouddn.com/img_bg_03.png">
                         </div>
                     </div>
@@ -67,7 +77,7 @@
                     <div class="col-md-3">
                         <div class="ana-box">
                             <span class="ana-box-title">云箱使用量</span>
-                            <p><span>5927</span>万</p>
+                            <p><span>{{vm.analysisResult.use_of_containers / 10000}}</span>万</p>
                             <img src="http://ol37p4zz4.bkt.clouddn.com/img_bg_04.png">
                         </div>
                     </div>
@@ -100,22 +110,22 @@
                     <div class="bd-tab">
                         <uib-tabset active="activeJustified" justified="true">
                             <uib-tab index="0" heading="销售额">
-                                <div class="bd-chart" id="bd-speed-chart">
+                                <div class="bd-chart" id="bd-revenue-chart">
 
                                 </div>
                             </uib-tab>
                             <uib-tab index="1" heading="利润率">
-                                <div class="bd-chart" id="bd-temp-chart">
+                                <div class="bd-chart" id="bd-profit-margin-chart">
 
                                 </div>
                             </uib-tab>
                             <uib-tab index="2" heading="订单量">
-                                <div class="bd-chart" id="bd-humi-chart">
+                                <div class="bd-chart" id="bd-order-chart">
 
                                 </div>
                             </uib-tab>
                             <uib-tab index="3" heading="云箱使用量">
-                                <div class="bd-chart" id="bd-batt-chart">
+                                <div class="bd-chart" id="bd-container-chart">
 
                                 </div>
                             </uib-tab>
