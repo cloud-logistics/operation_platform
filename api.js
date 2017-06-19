@@ -15,6 +15,7 @@ server.use(jsonServer.rewriter({
   '/container/api/v1/cloudbox/containerhistory': '/containerhistory',
   '/container/api/v1/cloudbox/containerInstantInfo': '/containerInstantInfo',
   '/container/api/v1/cloudbox/containerReportHistory': '/containerReportHistory',
+  '/container/api/v1/cloudbox/containerHistoryStatus': '/containerHistoryStatus',
   '/container/api/v1/cloudbox/alerts': '/alerts',
   '/container/api/v1/cloudbox/basicInfo': '/basicInfo',
   '/container/api/v1/cloudbox/boxStatus': '/boxStatus',
@@ -116,11 +117,96 @@ server.post('/containerReportHistory', function (req, res) {
   });
 })
 
+server.post('/containerHistoryStatus', function (req, res) {
+  res.json({
+    "temperature": [
+      {
+        "value": 33,
+        "time": "1～2"
+      },
+      {
+        "value": 35,
+        "time": "2～3"
+      },
+      {
+        "value": 32,
+        "time": "3～4"
+      },
+      {
+        "value": 30,
+        "time": "4～5"
+      },
+      {
+        "value": 35,
+        "time": "5～6"
+      },
+      {
+        "value": 34,
+        "time": "6～7"
+      },
+      {
+        "value": 33,
+        "time": "7～8"
+      },
+      {
+        "value": 32,
+        "time": "8～9"
+      },
+      {
+        "value": 35,
+        "time": "9～10"
+      },
+      {
+        "value": 39,
+        "time": "10～11"
+      },
+      {
+        "value": 35,
+        "time": "11～12"
+      },
+      {
+        "value": 38,
+        "time": "12～13"
+      },
+      {
+        "value": 39,
+        "time": "13～14"
+      }
+    ],
+    "humidity": [
+      {
+        "value": 0.65,
+        "time": "8～9"
+      }
+    ],
+    "battery": [
+      {
+        "value": 0.65,
+        "time": "8～9"
+      }
+    ],
+    "speed": [
+      {
+        "value": 65,
+        "time": "8～9"
+      }
+    ],
+    "boxStatus": [
+      {
+        "num_of_door_open": 10,
+        "num_of_collide": 10,
+        "time": "8～9"
+      }
+    ]
+  });
+})
+
 server.post('/alerts', function (req, res) {
   res.json({
     "alerts": [
       {
         "containerId": "22932214122313",
+        "endpointId":"111",
         "alertTime": 1495597347299,
         "alertLevel": "高",
         "alertType": "失联",
@@ -142,6 +228,7 @@ server.post('/alerts', function (req, res) {
       },
        {
         "containerId": "22932214122313",
+        "endpointId":"222",
         "alertTime": "1495597347299",
         "alertLevel": "高",
         "alertType": "失联",
@@ -163,6 +250,7 @@ server.post('/alerts', function (req, res) {
       },
       {
         "containerId": "22932214122313",
+        "endpointId":"333",
         "alertTime": "1495597347299",
         "alertLevel": "高",
         "alertType": "失联",
@@ -184,6 +272,7 @@ server.post('/alerts', function (req, res) {
       },
       {
         "containerId": "22932214122313",
+        "endpointId":"444",
         "alertTime": "1495597347299",
         "alertLevel": "高",
         "alertType": "失联",
@@ -205,6 +294,7 @@ server.post('/alerts', function (req, res) {
       },
       {
         "containerId": "22932214122313",
+        "endpointId":"555",
         "alertTime": "1495597347299",
         "alertLevel": "高",
         "alertType": "失联",

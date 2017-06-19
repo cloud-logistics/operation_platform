@@ -35,6 +35,7 @@
                 containerhistory : "containerhistory",
                 containerInstantInfo : "containerInstantInfo",
                 containerReportHistory : "containerReportHistory",
+                containerHistoryStatus : "containerHistoryStatus",
                 basicInfoManage : "basicInfoManage",
                 issueInfo : "issueInfo",
                 repairInfo : "repairInfo",

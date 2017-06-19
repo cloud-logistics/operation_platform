@@ -72,6 +72,7 @@
 
         function successHandler(key, callback) {
             return function (response) {
+                console.log(response.data);
                 vm.containersInfo[key].detail = R.prop(key)(response.data)
                 vm.containersInfo[key].count = vm.containersInfo[key].detail.length
                 if(callback !== undefined) {

@@ -28,6 +28,7 @@
             getHistorylocationInfo: getHistorylocationInfo,
             getInstantlocationInfo: getInstantlocationInfo,
             getContainerReportHistory: getContainerReportHistory,
+            getContainerHistoryStatus: getContainerHistoryStatus,
             getAlerts: getAlerts,
             getBasicInfo: getBasicInfo,
             getBoxStatus: getBoxStatus,
@@ -182,6 +183,13 @@
 
         function getContainerReportHistory(params, successHandler,failedHandler) {
             NetworkService.post(constdata.api.containerReportHistory,
+                                params,
+                                successHandler,
+                                failedHandler);
+        }
+
+        function getContainerHistoryStatus(params, successHandler,failedHandler) {
+            NetworkService.post(constdata.api.containerHistoryStatus,
                                 params,
                                 successHandler,
                                 failedHandler);

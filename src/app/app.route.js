@@ -211,7 +211,7 @@
             })
 
             .state('app.command',{
-                url: 'command/:containerId',
+                url: 'command/:containerId/:endpointId',
                 templateUrl: 'app/components/monitor/command.html'
             })
             .state('app.allhist',{

@@ -51,14 +51,15 @@
                 var result = response.data;
 
                 var sessionId = result.sessionid;
-                var token = result.token;
+                var token = "JWT " + result.token;
                 var role = result.role;
                 var userInfo = {
                     username: user.username,
                     role: role
                 }
 
-                var sessionInfo = {username: user.username, token:token};
+                // var sessionInfo = {username: user.username, Authorization:token};
+                var sessionInfo = {Authorization:token};
 
                 StorageService.put(authorizationKey,sessionInfo,24 * 7 * 60 * 60);//3 天过期
                 StorageService.put(constdata.informationKey,userInfo,24 * 3 * 60 * 60);

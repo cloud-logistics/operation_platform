@@ -45,6 +45,14 @@
         vm.realtimeInfo = {}
         vm.speedStatus = ""
 
+        var historyStatus = {
+            speed:[],
+            temperature: [],
+            humidity: [],
+            battery: [],
+            boxStatus:[]
+        }
+
         getRealtimeInfo()
         var timer = $interval(function(){
             getRealtimeInfo();
@@ -53,6 +61,30 @@
         $scope.$on("$destroy", function(){
             $interval.cancel(timer);
         });
+
+        $scope.getContainerHistoryStatus = getContainerHistoryStatus
+        function getContainerHistoryStatus (requiredParam) {
+            var queryParams = {
+                requiredParam: requiredParam,
+                containerId : vm.containerId
+            }
+            ApiServer.getContainerHistoryStatus(queryParams, function(response){
+                historyStatus = R.compose(
+                                    R.merge(historyStatus),
+                                    R.pick([requiredParam])
+                                )(response.data);
+
+                initSpeedLine();
+                initTempBar();
+                initHumiLine();
+                initBattLine();
+                initStatusLine();
+            }, function (err) {
+                console.log("Get ContainerHisfotyStatus Info Failed", err);
+            })
+
+            return status;
+        }
 
         function getRealtimeInfo () {
             var queryParams = {
@@ -69,11 +101,6 @@
                 initHumi(vm.realtimeInfo.humidity.value)
                 initBatt(vm.realtimeInfo.battery.value);
                 initSpeed(vm.realtimeInfo.speed);
-                initSpeedLine();
-                initTempBar();
-                initHumiLine();
-                initBattLine();
-                initStatusLine();
             },function (err) {
                 console.log("Get RealtimeInfo Info Failed", err);
             });
@@ -465,13 +492,15 @@
 
         /*初始化速度line chart*/
         function initSpeedLine() {
-            var xData = function () {
-                var data = [];
-                for (var i = 1; i < 13; i++) {
-                    data.push(i + "月份");
-                }
-                return data;
-            }();
+            var xData = R.compose(
+                            R.map(R.prop("time")),
+                            R.prop("speed")
+                        )(historyStatus)
+
+            var speedValues =  R.compose(
+                                    R.map(R.prop("value")),
+                                    R.prop("speed")
+                                )(historyStatus)
 
             speedLineChart = echarts.init(document.getElementById('bd-speed-chart'));
 
@@ -585,20 +614,7 @@
                                 }
                             }
                         },
-                        "data": [
-                            1036,
-                            3693,
-                            2962,
-                            3810,
-                            2519,
-                            1915,
-                            1748,
-                            4675,
-                            6209,
-                            4323,
-                            2865,
-                            4298
-                        ]
+                        "data": speedValues
                     },
                 ]
             }
@@ -608,13 +624,15 @@
 
         /*初始化温度bar chart*/
         function initTempBar() {
-            var xData = function () {
-                var data = [];
-                for (var i = 1; i < 13; i++) {
-                    data.push(i + "月份");
-                }
-                return data;
-            }();
+            var xData = R.compose(
+                            R.map(R.prop("time")),
+                            R.prop("temperature")
+                        )(historyStatus)
+
+            var tempValues =  R.compose(
+                                    R.map(R.prop("value")),
+                                    R.prop("temperature")
+                                )(historyStatus)
 
             tempBarChart = echarts.init(document.getElementById('bd-temp-chart'));
 
@@ -719,20 +737,7 @@
                             }
                             // "show":false
                         },
-                        "data": [
-                            709,
-                            -1917,
-                            2455,
-                            -2610,
-                            1719,
-                            -1433,
-                            1544,
-                            -3285,
-                            5208,
-                            3372,
-                            2484,
-                            4078
-                        ],
+                        "data": tempValues,
                     }
                 ]
             }
@@ -742,13 +747,15 @@
 
         /*初始化湿度line chart*/
         function initHumiLine() {
-            var xData = function () {
-                var data = [];
-                for (var i = 1; i < 13; i++) {
-                    data.push(i + "月份");
-                }
-                return data;
-            }();
+            var xData = R.compose(
+                        R.map(R.prop("time")),
+                        R.prop("humidity")
+                    )(historyStatus)
+
+            var humiValues =  R.compose(
+                        R.map(R.prop("value")),
+                        R.prop("humidity")
+                    )(historyStatus)
 
             humiLineChart = echarts.init(document.getElementById('bd-humi-chart'));
 
@@ -853,20 +860,7 @@
                                 }
                             }
                         },
-                        "data": [
-                            1036,
-                            3693,
-                            2962,
-                            3810,
-                            2519,
-                            1915,
-                            1748,
-                            4675,
-                            6209,
-                            4323,
-                            2865,
-                            4298
-                        ]
+                        "data": humiValues
                     },
                 ]
             }
@@ -875,13 +869,15 @@
         }
 
         function initBattLine() {
-            var xData = function () {
-                var data = [];
-                for (var i = 1; i < 13; i++) {
-                    data.push(i + "月份");
-                }
-                return data;
-            }();
+            var xData = R.compose(
+                        R.map(R.prop("time")),
+                        R.prop("battery")
+                    )(historyStatus)
+
+            var batteryValues =  R.compose(
+                        R.map(R.prop("value")),
+                        R.prop("battery")
+                    )(historyStatus)
 
             battLineChart = echarts.init(document.getElementById('bd-batt-chart'));
 
@@ -986,20 +982,7 @@
                                 }
                             }
                         },
-                        "data": [
-                            3000,
-                            2900,
-                            2840,
-                            2600,
-                            2519,
-                            2319,
-                            2019,
-                            1919,
-                            1819,
-                            1719,
-                            1819,
-                            1619
-                        ]
+                        "data": batteryValues
                     },
                 ]
             };

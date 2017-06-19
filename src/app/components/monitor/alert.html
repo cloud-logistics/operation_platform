@@ -119,7 +119,8 @@
                             <td style="vertical-align: middle;">{{item.carrier}}</td>
                             <td><a ui-sref="app.realtime" class="btn-table-detail">查看详情</a> 
                                 <a ui-sref="app.command({
-                                                containerId: item.containerId
+                                                containerId: item.containerId,
+                                                endpointId: item.endpointId
                                             })"
                                     class="btn-table-detail"
                                     style="background-color: #c26b6b">报警处理</a>

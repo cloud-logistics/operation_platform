@@ -23,7 +23,7 @@
         };
 
         vm.commandParams = {
-            containerId : $stateParams.containerId,
+            endpointId : $stateParams.endpointId,
             action: "reset"
         };
 
