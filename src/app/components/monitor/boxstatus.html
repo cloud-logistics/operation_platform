@@ -193,8 +193,16 @@
                             <!--</th>-->
                             <th>云箱ID</th>
                             <th>当前状态</th>
-                            <th>所在地</th>
-                            <th>承运人</th>
+                            <th>承运方</th>
+                            <th>当前位置</th>
+                            <th>当前所在地</th>
+                            <th>速度</th>
+                            <th>温度</th>
+                            <th>湿度</th>
+                            <th>碰撞次数</th>
+                            <th>开关箱门次数</th>
+                            <th>电量</th>
+                            <th>机器人操作状态</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -202,8 +210,16 @@
                         <tr ng-repeat="item in vm.containerlist track by $index">
                             <td style="vertical-align: middle;">{{item.containerId}}</td>
                             <td style="vertical-align: middle;">{{item.currentStatus}}</td>
-                            <td style="vertical-align: middle;">{{item.locationName}}</td>
                             <td style="vertical-align: middle;">{{item.carrier}}</td>
+                            <td style="vertical-align: middle;">经度:{{item.position.lng}}，纬度:{{item.position.lat}}</td>
+                            <td style="vertical-align: middle;">{{item.locationName}}</td>
+                            <td style="vertical-align: middle;">{{item.speed}}</td>
+                            <td style="vertical-align: middle;">{{item.temperature}}</td>
+                            <td style="vertical-align: middle;">{{item.humidity}}%</td>
+                            <td style="vertical-align: middle;">{{item.num_of_collide}}</td>
+                            <td style="vertical-align: middle;">{{item.num_of_door_open}}</td>
+                            <td style="vertical-align: middle;">{{item.battery * 100}}%</td>
+                            <td style="vertical-align: middle;">{{item.robot_operation_status}}</td>
                             <td><a href="#" class="btn-table-detail">查看详情</a></td>
                         </tr>
                         </tbody>

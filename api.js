@@ -37,7 +37,8 @@ server.use(jsonServer.rewriter({
   "/container/api/v1/cloudbox/mycontainers":"/mycontainers",
   "/container/api/v1/cloudbox/containersonlease":"/containersonlease",
   "/container/api/v1/cloudbox/availablecontainers":"/availablecontainers",
-  "/container/api/v1/cloudbox/command":"/command"
+  "/container/api/v1/cloudbox/command":"/command",
+  "/container/api/v1/cloudbox/analysisresult":"/analysisresult"
 }))
 
 server.post('/auth', function (req, res) {
@@ -323,52 +324,54 @@ server.post('/boxStatus', function (req, res) {
     "boxStatus": [
       {
         "containerId": "22932214122313",
-        "currentStatus": "标准云箱",
+        "currentStatus": "在运",
         "position": {
           "lng": 121.557348,
           "lat": 31.179784
         },
         "locationName": "中国上海市",
-        "carrier": "中集集团"
+        "carrier": "中集集团",
+        "speed": 323,
+        "temperature": 39,
+        "humidity": 70,
+        "num_of_collide": 30,
+        "num_of_door_open": 40,
+        "battery": 0.6,
+        "robot_operation_status": "装箱"
       },
       {
         "containerId": "22932214122313",
-        "currentStatus": "标准云箱",
+        "currentStatus": "在运",
         "position": {
           "lng": 121.557348,
           "lat": 31.179784
         },
         "locationName": "中国上海市",
-        "carrier": "中集集团"
+        "carrier": "中集集团",
+        "speed": 323,
+        "temperature": 39,
+        "humidity": 70,
+        "num_of_collide": 30,
+        "num_of_door_open": 40,
+        "battery": 0.6,
+        "robot_operation_status": "装箱"
       },
       {
         "containerId": "22932214122313",
-        "currentStatus": "标准云箱",
+        "currentStatus": "在运",
         "position": {
           "lng": 121.557348,
           "lat": 31.179784
         },
         "locationName": "中国上海市",
-        "carrier": "中集集团"
-      },
-      {
-        "containerId": "22932214122313",
-        "currentStatus": "标准云箱",
-        "position": {
-          "lng": 121.557348,
-          "lat": 31.179784
-        },
-        "carrier": "中集集团"
-      },
-      {
-        "containerId": "22932214122313",
-        "currentStatus": "标准云箱",
-        "position": {
-          "lng": 121.557348,
-          "lat": 31.179784
-        },
-        "locationName": "中国上海市",
-        "carrier": "中集集团"
+        "carrier": "中集集团",
+        "speed": 323,
+        "temperature": 39,
+        "humidity": 70,
+        "num_of_collide": 30,
+        "num_of_door_open": 40,
+        "battery": 0.6,
+        "robot_operation_status": "装箱"
       }
     ]
   });
@@ -751,6 +754,19 @@ server.post('/issueConfig', function (req, res) {
 server.post('/command', function (req, res) {
   res.json({
     "code": "OK"
+  });
+})
+
+server.post('/analysisresult', function (req, res) {
+  res.json({
+    "carrier_sales_revenue": 86230000,
+    "profit_margin": 0.68,
+    "carrier_orders": 3402000 ,
+    "use_of_containers": 5927000,
+    "transportation_category": {
+        "airline":0.3,
+        "highway":0.5,
+    }
   });
 })
 
