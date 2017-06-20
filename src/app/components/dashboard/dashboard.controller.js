@@ -193,7 +193,6 @@
                 "series": [{
                     "name": "在运",
                     "type": "bar",
-                    "stack": "总量",
                     "barMaxWidth": 10,
                     "barGap": "10%",
                     "label":{
@@ -225,7 +224,6 @@
                     {
                         "name": "租赁",
                         "type": "line",
-                        "stack": "总量",
                         symbolSize:10,
                         symbol:'circle',
                         "label":{
