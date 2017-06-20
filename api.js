@@ -38,7 +38,8 @@ server.use(jsonServer.rewriter({
   "/container/api/v1/cloudbox/containersonlease":"/containersonlease",
   "/container/api/v1/cloudbox/availablecontainers":"/availablecontainers",
   "/container/api/v1/cloudbox/command":"/command",
-  "/container/api/v1/cloudbox/analysisresult":"/analysisresult"
+  "/container/api/v1/cloudbox/analysisresult":"/analysisresult",
+  "/container/api/v1/cloudbox/operationoverview":"/operationoverview"
 }))
 
 server.post('/auth', function (req, res) {
@@ -757,6 +758,7 @@ server.post('/command', function (req, res) {
   });
 })
 
+
 server.post('/analysisresult', function (req, res) {
   res.json({
     "carrier_sales_revenue": 86230000,
@@ -764,10 +766,10 @@ server.post('/analysisresult', function (req, res) {
     "carrier_orders": 34020000,
     "use_of_containers": 59270000,
     "transportation_category": {
-        "airline":0.3,
-        "highway":0.2,
-        "ocean": 0.4,
-        "other": 0.1
+        "airline":0.45943,
+        "highway":0.20255,
+        "ocean": 0.17335,
+        "other": 0.16465
     },
     "goods_category": {
         "fish": 0.3,

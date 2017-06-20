@@ -19,6 +19,7 @@
         var map = MapService.map_init("dashboard_map", mapCenter, "terrain");
         var markers = []
         var circles = []
+        vm.operationOverview = {};
 
         function getContainerInfo() {
             ApiServer.getContainerOverviewInfo(function (response) {
@@ -34,10 +35,25 @@
             });
         }
 
+        getOperationOverview()
+        function getOperationOverview() {
+            ApiServer.getOperationOverview(function (response) {
+                vm.operationOverview = response.data
+                console.log(vm.operationOverview);
+
+                initPie(vm.operationOverview.container_location);
+
+                initLine(vm.operationOverview.container_on_lease_history, vm.operationOverview.container_on_transportation_history);
+                
+            }, function (err) {
+                console.log("Get getOperationOverview  Info Failed", err);
+            });
+        }
+
         var pieChart;
         var pieOption;
 
-        function initPie() {
+        function initPie(value) {
             pieChart = echarts.init(document.getElementById('pie-chart'));
             pieOption = {
                 tooltip: {
@@ -84,13 +100,13 @@
                             }
                         },
                         data: [
-                            {value: 335, name: '中国'},
-                            {value: 310, name: '美国'},
-                            {value: 234, name: '欧盟'},
-                            {value: 135, name: '印度'},
-                            {value: 130, name: '日本'},
-                            {value: 120, name: '加拿大'},
-                            {value: 200, name: '其他'}
+                            {value: value.China, name: '中国'},
+                            {value: value.USA, name: '美国'},
+                            {value: value.Europe, name: '欧盟'},
+                            {value: value.India, name: '印度'},
+                            {value: value.Japan, name: '日本'},
+                            {value: value.Canada, name: '加拿大'},
+                            {value: value.other, name: '其他'}
                         ]
                     }
                 ]
@@ -98,19 +114,12 @@
             pieChart.setOption(pieOption);
         }
 
-        initPie();
 
         var lineChart;
         var lineOption;
 
-        function initLine(){
-            var xData = function() {
-                var data = [];
-                for (var i = 1; i < 13; i++) {
-                    data.push(i + "月份");
-                }
-                return data;
-            }();
+        function initLine(lease_value, transportation_value){
+            var xData = R.map(R.prop("time"))(lease_value)
 
             lineChart = echarts.init(document.getElementById('line-chart'));
 
@@ -210,20 +219,7 @@
                         }
                         // "show":false
                     },
-                    "data": [
-                        709,
-                        1917,
-                        2455,
-                        2610,
-                        1719,
-                        1433,
-                        1544,
-                        3285,
-                        5208,
-                        3372,
-                        2484,
-                        4078
-                    ],
+                    "data": R.map(R.prop("value"))(transportation_value)
                 },
 
                     {
@@ -250,27 +246,13 @@
                                 }
                             }
                         },
-                        "data": [
-                            1036,
-                            3693,
-                            2962,
-                            3810,
-                            2519,
-                            1915,
-                            1748,
-                            4675,
-                            6209,
-                            4323,
-                            2865,
-                            4298
-                        ]
+                        "data": R.map(R.prop("value"))(lease_value)
                     },
                 ]
             }
 
             lineChart.setOption(lineOption);
         }
-        initLine();
 
         getContainerInfo();
         var timer = $interval(function(){

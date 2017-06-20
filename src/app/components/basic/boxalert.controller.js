@@ -16,7 +16,9 @@
         vm.queryParams = {}
 
 
-        vm.newRepairConfig = {};
+        vm.newRepairConfig = {
+            locationName: "中国-上海"
+        };
         vm.repairInfoManage = {};
 
         vm.saveRepairInfoConfig = saveRepairInfoConfig;
