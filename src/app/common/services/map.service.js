@@ -53,9 +53,13 @@
         // 编写自定义函数,创建标注
         function addMarker(map, type){
             return function (position) {
+                var adjusted_position = position_adjustment(position)
+
+                console.log(adjusted_position);
+
                 var marker = new google.maps.Marker({
                     map: map,
-                    position: position,
+                    position: adjusted_position,
                     icon: mapIcons[type],
                 });
                 return marker
@@ -91,6 +95,34 @@
             })
         }
 
+        function position_adjustment(position) {
+            var lat = position.lat;
+            var lng = position.lng;
+            var newPosition = [];
+
+            var adjusted_position = {}
+
+            lat = do_convert(lat);
+            lng = do_convert(lng);
+
+            // https://github.com/wandergis/coordtransform/blob/master/index.js
+            newPosition = coordtransform.wgs84togcj02(lng, lat)
+            adjusted_position.lng = newPosition[0] 
+            adjusted_position.lat = newPosition[1] 
+
+            return adjusted_position
+        }
+
+        function do_convert(value) {
+            var int_value = Math.floor(value);
+            var decimal_value = value - int_value;
+            var retVal = undefined;
+
+            retVal = ( decimal_value * 100 / 60 ) + int_value;
+
+            return retVal;
+        }
     }
+
 
 })();
