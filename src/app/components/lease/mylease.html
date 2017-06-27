@@ -10,6 +10,22 @@
         <!--</div>-->
         <!--</div>-->
         <!--</div>-->
+        <modal-dialog show='modalInput' width='659px' height='400px'>
+            <div class="container-fluid">
+                <div class="row bm-input m-b-md">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-12 control-label form-control-static">没有可用云箱</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="bm-input-bottom">
+                        <button class="pull-right bm-save"  ng-click="toggleModal()">保存</button>
+                    </div>
+                </div>
+            </div>
+        </modal-dialog>
         <div class="wrapper-md">
 
             <div class="row ds-map">
@@ -46,7 +62,7 @@
                         <p><span>472</span>km</p>
                     </div>
                     <div class="mls-ava-4">
-                        <span>我要租赁</span>
+                        <span ng-click="vm.requestLease()">我要租赁</span>
                     </div>
                     <div class="mls-ava-5">
                         <span>周边货运站</span>
@@ -114,9 +130,12 @@
                         <td style="vertical-align: middle;">{{item.leaseStartTime | date:"yyyy-MM-dd"}}至{{item.leaseEndTime | date:"yyyy-MM-dd"}}</td>
                         <td style="vertical-align: middle;">{{item.locationName}}</td>
                         <td style="vertical-align: middle;">{{item.carrier}}</td>
-                        <td><a class="btn-table-detail" ui-sref="app.realtime({
-                            containerId: vm.containersInfo.mycontainers.detail[$index].containerId
-                        })">查看详情</a></td>
+                            <td style="vertical-align: middle;">
+                                <a class="btn-table-detail" ui-sref="app.realtime({
+                                    containerId: vm.containersInfo.mycontainers.detail[$index].containerId
+                                })">查看详情</a>
+                                <span class="btn-table-detail" ng-click="vm.returnContainer(item.containerId)">归还</span>
+                            </td>
                     </tr>
                     </tbody>
                 </table>

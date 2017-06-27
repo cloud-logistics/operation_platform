@@ -27,6 +27,43 @@
         }
 
         vm.selectedContainer = undefined;
+        vm.requestLease = requestLease;
+        vm.returnContainer = returnContainer;
+        vm.requestParams = {
+            containerType : "标准云箱",
+            startTime:1495597347299,
+            endTime:1495597347299
+        };
+        $scope.modalInput = false
+
+        $scope.toggleModal = function() {
+            $scope.modalInput = true;
+        }
+
+        function returnContainer(containerId) {
+            var params = {
+                containerId : containerId
+            }
+            console.log("Return containerId: ", containerId);
+            ApiServer.returnContainer(params, function(response){
+                getContainerInfo()
+                console.log(response);
+            }, function(err){
+                console.log("Return error: ", err);
+            })
+        }
+
+        function requestLease() {
+            console.log(vm.requestParams);
+            ApiServer.requestLease(vm.requestParams, function(response){
+                // update container status
+                getContainerInfo()
+                console.log(response);
+            }, function(err){
+                $scope.modalInput = true;
+                console.log("requestLease failed", err);
+            })
+        }
 
         function getContainerInfo() {
             ApiServer.getMyContainers(successHandler("mycontainers", myContainersPostProc), failureHandler);

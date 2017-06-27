@@ -38,6 +38,8 @@
             getMyContainers: getMyContainers,
             getAvailableContainers: getAvailableContainers,
             getOnLeaseContainers: getOnLeaseContainers,
+            requestLease: requestLease,
+            returnContainer: returnContainer,
             newCarrier: newCarrier,
             command: command,
             newBasicInfoConfig: newBasicInfoConfig,
@@ -329,6 +331,20 @@
         function getOnLeaseContainers(successHandler,failedHandler) {
             NetworkService.get(constdata.api.containersonlease,
                                 null,
+                                successHandler,
+                                failedHandler);
+        }
+
+        function requestLease(params, successHandler,failedHandler) {
+            NetworkService.post(constdata.api.requestlease,
+                                params,
+                                successHandler,
+                                failedHandler);
+        }
+
+        function returnContainer(params, successHandler,failedHandler) {
+            NetworkService.post(constdata.api.returncontainer,
+                                params,
                                 successHandler,
                                 failedHandler);
         }

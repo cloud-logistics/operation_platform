@@ -36,6 +36,8 @@ server.use(jsonServer.rewriter({
   "/container/api/v1/cloudbox/newcarrier":"/newcarrier",
   "/container/api/v1/cloudbox/mycontainers":"/mycontainers",
   "/container/api/v1/cloudbox/containersonlease":"/containersonlease",
+  "/container/api/v1/cloudbox/requestlease":"/requestlease",
+  "/container/api/v1/cloudbox/returncontainer":"/returncontainer",
   "/container/api/v1/cloudbox/availablecontainers":"/availablecontainers",
   "/container/api/v1/cloudbox/command":"/command",
   "/container/api/v1/cloudbox/analysisresult":"/analysisresult",
@@ -758,6 +760,18 @@ server.post('/command', function (req, res) {
   });
 })
 
+server.post('/requestlease', function (req, res) {
+  res.json({
+    "status": "OK",
+    "containerId": "111"
+  });
+})
+
+server.post('/returncontainer', function (req, res) {
+  res.json({
+    "status": "OK"
+  });
+})
 
 server.post('/analysisresult', function (req, res) {
   res.json({
