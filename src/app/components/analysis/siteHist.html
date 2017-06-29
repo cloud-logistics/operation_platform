@@ -1,0 +1,137 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="SiteHistController as vm"
+     ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
+    <!-- main -->
+    <div class="col">
+        <!-- main header -->
+        <!--<div class="bg-light lter b-b wrapper-xs">-->
+        <!--<div class="row">-->
+        <!--<div class="col-md-6 col-sm-6 col-xs-12">-->
+        <!--<h1 class="font-thin h3 text-black m-l m-t-sm">{{vm.title}}</h1>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <div id="content">
+            <div class="wrapper-md">
+                <div class="row ana-line1">
+                    <span class="ana-title">站点历史数据</span>
+                    <div class="col-md-4">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <label>所选国家</label>
+                                <select ng-model="vm.queryParams.location" class="form-control">
+                                    <option>上海</option>
+                                    <option>北京</option>
+                                    <option>深圳</option>
+                                    <option>海口</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <label>时间</label>
+                                <input ng-model="vm.queryParams.startTime"
+                                    min-view="hours"
+                                    placeholder="Select date"
+                                    moment-picker
+                                    format="YYYY-MM-DD">
+                                <span> - </span>
+                                <input ng-model="vm.queryParams.endTime"
+                                    min-view="hours"
+                                    placeholder="Select date"
+                                    moment-picker
+                                    format="YYYY-MM-DD">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="ana-btn" ng-click="vm.getAnalysisResult()">查询数据</span>
+                    </div>
+                </div>
+
+                <div class="row ana-line2">
+                    <div class="col-md-3">
+                        <div class="ana-sale">
+                            <span class="ana-sale-title">各站点业务量</span>
+                            <p><span>{{vm.analysisResult.carrier_sales_revenue / 10000}}</span>万元</p>
+                            <img src="http://ol37p4zz4.bkt.clouddn.com/img_bg_01.png">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="ana-profit">
+                            <span class="ana-profit-title">各站点利润率</span>
+                            <p><span>{{vm.analysisResult.profit_margin * 100}}</span>%</p>
+                            <img src="http://ol37p4zz4.bkt.clouddn.com/img_bg_02.png">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="ana-order">
+                            <span class="ana-order-title">站点订单量</span>
+                            <p><span>{{vm.analysisResult.carrier_orders / 10000}}</span>万</p>
+                            <img src="http://ol37p4zz4.bkt.clouddn.com/img_bg_03.png">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="ana-box">
+                            <span class="ana-box-title">站点云箱使用量</span>
+                            <p><span>{{vm.analysisResult.use_of_containers / 10000}}</span>万</p>
+                            <img src="http://ol37p4zz4.bkt.clouddn.com/img_bg_04.png">
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3">
+                        <div class="ana-box">
+                            <span class="ana-box-title">站点机器人使用量</span>
+                            <p><span>382</span>万</p>
+                            <img src="http://ol37p4zz4.bkt.clouddn.com/img_bg_01.png">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row ana-line3">
+                    <div id="sitehist_map" class="embeded_mapview"></div>
+                </div>
+                <div class="row bd-line4 clearfix">
+                    <div class="bd-line4-title">
+                        <span>整体数据</span>
+                    </div>
+                    <div class="bd-tab">
+                        <uib-tabset active="activeJustified" justified="true">
+                            <uib-tab index="0" heading="销售额">
+                                <div class="bd-chart" id="bd-revenue-chart">
+
+                                </div>
+                            </uib-tab>
+                            <uib-tab index="1" heading="利润率">
+                                <div class="bd-chart" id="bd-profit-margin-chart">
+
+                                </div>
+                            </uib-tab>
+                            <uib-tab index="2" heading="订单量">
+                                <div class="bd-chart" id="bd-order-chart">
+
+                                </div>
+                            </uib-tab>
+                            <uib-tab index="3" heading="云箱使用量">
+                                <div class="bd-chart" id="bd-container-chart">
+
+                                </div>
+                            </uib-tab>
+                            <uib-tab index="3" heading="机器人用量">
+                                <div class="bd-chart" id="bd-robot-chart">
+
+                                </div>
+                            </uib-tab>
+
+                        </uib-tabset>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

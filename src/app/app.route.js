@@ -218,6 +218,11 @@
                 url: 'allhist',
                 templateUrl: 'app/components/analysis/allHist.html'
             })
+            .state('app.sitehist',{
+                url: 'sitehist',
+                templateUrl: 'app/components/analysis/siteHist.html'
+            })
+
 
             /** LOGIN **/
             .state('access', {
