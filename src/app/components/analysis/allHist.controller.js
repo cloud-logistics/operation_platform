@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('AllHistController', AllHistController);
 
     /** @ngInject */
-    function AllHistController(constdata, NetworkService, MapService, $stateParams, ApiServer, toastr, $state, $timeout, $interval, $scope) {
+    function AllHistController(NetworkService, MapService, $stateParams, ApiServer, toastr, $state, $timeout, constdata, $interval, $scope) {
         /* jshint validthis: true */
         /* jshint validthis: true */
         var vm = this;
@@ -53,7 +53,7 @@
         getAnalysisResult()
         // var timer = $interval(function(){
         //     getAnalysisResult();
-        // },50000, 500);
+        // },constdata.refreshInterval, 500);
         //
         // $scope.$on("$destroy", function(){
         //     $interval.cancel(timer);

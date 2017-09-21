@@ -30,7 +30,7 @@
         getIssueInfoManage();
         var timer = $interval(function(){
             getIssueInfoManage();
-        },5000, 500);
+        },constdata.refreshInterval, 500);
 
         $scope.$on("$destroy", function(){
             $interval.cancel(timer);

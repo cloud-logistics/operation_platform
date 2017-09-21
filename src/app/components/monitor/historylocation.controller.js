@@ -25,6 +25,7 @@
         vm.getHistorylocationInfo = getHistorylocationInfo
 
         vm.queryParams = {
+            containerId: $stateParams.containerId || constdata.defaultContainerId,
             startTime: moment(new Date()),
             endTime: moment(new Date())
         };

@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('InstantlocationController', InstantlocationController);
 
     /** @ngInject */
-    function InstantlocationController($stateParams,ApiServer,MapService,toastr,$state,$timeout,$interval,$scope) {
+    function InstantlocationController($stateParams,ApiServer,MapService,toastr,$state,$timeout,constdata, $interval,$scope) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -16,7 +16,7 @@
         vm.mapSize = {"width":width + 'px',"height":height + 'px'};
 
         vm.queryParams = {
-          containerId : $stateParams.containerId || "ESP32_AI_001"
+          containerId : $stateParams.containerId || constdata.defaultContainerId
         };
 
         var mapCenter = {lat: 31.2891, lng: 121.4648}; 
@@ -31,7 +31,7 @@
         getInstantlocationInfo();
         var timer = $interval(function(){
             getInstantlocationInfo();
-        },50000, 500);
+        },constdata.refreshInterval, 500);
 
         $scope.$on("$destroy", function(){
             $interval.cancel(timer);

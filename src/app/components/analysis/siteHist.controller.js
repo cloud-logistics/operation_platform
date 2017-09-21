@@ -112,7 +112,7 @@
         getAnalysisResult()
         // var timer = $interval(function(){
         //     getAnalysisResult();
-        // },50000, 500);
+        // },constdata.refreshInterval, 500);
         //
         // $scope.$on("$destroy", function(){
         //     $interval.cancel(timer);
