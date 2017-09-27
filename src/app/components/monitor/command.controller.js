@@ -10,7 +10,7 @@
     angular.module('smart_container').controller('CommandController', CommandController);
 
     /** @ngInject */
-    function CommandController($stateParams,ApiServer,MapService,toastr,$state,$timeout,$interval,$scope) {
+    function CommandController($stateParams,ApiServer,MapService,toastr,$state,$timeout,constdata, $interval,$scope) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -23,6 +23,7 @@
         };
 
         vm.commandParams = {
+            containerId : $stateParams.containerId || constdata.defaultContainerId,
             endpointId : $stateParams.endpointId,
             action: "reset"
         };

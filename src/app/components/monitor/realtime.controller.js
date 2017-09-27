@@ -88,6 +88,9 @@
         }
 
         function getRealtimeInfo () {
+            // get History status
+            getContainerHistoryStatus();
+
             var queryParams = {
                 containerId: vm.containerId
             }

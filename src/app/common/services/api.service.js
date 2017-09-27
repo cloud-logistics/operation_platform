@@ -44,6 +44,7 @@
             command: command,
             newBasicInfoConfig: newBasicInfoConfig,
             updateSecurityConfig: updateSecurityConfig,
+            getSecurityConfig: getSecurityConfig,
             newRepairConfig: newRepairConfig,
             newIssueConfig: newIssueConfig,
             getAnalysisResult: getAnalysisResult,
@@ -246,6 +247,13 @@
             console.log(params);
             NetworkService.post(constdata.api.command,
                                 params,
+                                successHandler,
+                                failedHandler);
+        }
+
+        function getSecurityConfig(successHandler,failedHandler) {
+            NetworkService.get(constdata.api.getSecurityConfig,
+                                null,
                                 successHandler,
                                 failedHandler);
         }
