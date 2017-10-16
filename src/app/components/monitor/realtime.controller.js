@@ -75,7 +75,7 @@
                                     R.pick([requiredParam])
                                 )(response.data);
 
-                initSpeedLine();
+                //initSpeedLine();
                 initTempBar();
                 initHumiLine();
                 initBattLine();
@@ -98,6 +98,8 @@
                 var locationName = undefined;
 
                 vm.realtimeInfo = response.data
+                vm.realtimeInfo.locationName = "中国广东省深圳市龙岗区一号路";
+
                 vm.speedStatus = "正常"
                 console.log(vm.realtimeInfo);
 

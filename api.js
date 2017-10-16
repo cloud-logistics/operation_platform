@@ -502,7 +502,7 @@ server.post('/realtimeInfo', function (req, res) {
       "lng": 118.78,
       "lat":32.04
     },
-    "locationName": "中国海南省海口市秀英区向荣路11这里没有人你来这里干啥呢",
+    "locationName": "中国广东省深圳市龙岗区一号路 邮政编码: 518000",
     "speed": 120,
     "temperature": { value: 39, status: "正常"},
     "humidity": { value: 70, status: "正常"},

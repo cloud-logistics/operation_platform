@@ -49,17 +49,19 @@
                 console.log(response.data);
 
                 //var startPositionMarker = MapService.addMarker(map)(startPosition)
-                //var currentPositionMarker = MapService.addMarker(map)(currentPosition)
+                var currentPositionMarker = MapService.addMarker(map)(currentPosition)
                 //var endPositionMarker = MapService.addMarker(map)(startPosition)
 
-                //infoWindow(map, currentPositionMarker, "当前点: " + currentLocationName)
+                infoWindow(map, currentPositionMarker, "当前点: " + currentLocationName)
 
                 //bounds.extend(startPositionMarker.getPosition());
-                //bounds.extend(currentPositionMarker.getPosition());
+                bounds.extend(currentPositionMarker.getPosition());
                 //bounds.extend(endPositionMarker.getPosition());
 
+              /*
                 direction(startPosition, currentPosition)
                 direction(currentPosition, endPosition)
+                */
 
                 map.fitBounds(bounds);
 

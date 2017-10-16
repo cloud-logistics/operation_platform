@@ -19,7 +19,7 @@
             token:'airspc_access_authorization',
             informationKey:'airspc_information',
             refreshInterval: 300000,
-            defaultContainerId : '01-03-17-09-00-1E',
+            defaultContainerId : '01-03-17-09-00-22',
             api:{
                 resource:{
                     vehicle:'resource/vehicle',

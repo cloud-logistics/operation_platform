@@ -144,7 +144,9 @@
                             <td style="vertical-align: middle;">{{item.factory}}</td>
                             <td style="vertical-align: middle;">{{item.carrier}}</td>
                             <td style="vertical-align: middle;">{{item.factoryDate | date:"yyyy-MM-dd"}}</td>
-                            <td><a href="#" class="btn-table-detail">查看详情</a></td>
+                            <td><a class="btn-table-detail" ui-sref="app.realtime({
+                                containerId: item.containerId 
+                            })">查看详情</a></td>
                         </tr>
                         </tbody>
                     </table>
