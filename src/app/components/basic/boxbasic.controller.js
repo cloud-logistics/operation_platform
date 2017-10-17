@@ -14,7 +14,10 @@
         vm.title = '报警监控';
         vm.reports = [];
         vm.queryParams = {};
-
+        $scope.showAdd = false;
+        $scope.switchShowAdd = function(){
+            $scope.showAdd = ! $scope.showAdd;
+        }
         $scope.basicUpdate = function(){
             vm.options = R.merge(vm.options, {
                 title: "编辑云箱基础信息",
@@ -34,7 +37,8 @@
 
         vm.saveBasicInfoConfig = saveBasicInfoConfig;
         vm.cancelBasicInfoConfig = cancelBasicInfoConfig;
-
+        $scope.saveBasicInfoConfig = saveBasicInfoConfig;
+        $scope.cancelBasicInfoConfig = cancelBasicInfoConfig;
         vm.options = {};
         var transformations = undefined;
 
@@ -132,14 +136,21 @@
             });
         }
 
-        function saveBasicInfoConfig() {
+        function saveBasicInfoConfig(isUseForAdd) {
             newBasicInfoConfigPost();
-
-            $scope.bbUpdate = false;
+            if(isUseForAdd){
+                $scope.switchShowAdd();
+            }else{
+                $scope.bbUpdate = false;
+            }
         }
 
-        function cancelBasicInfoConfig() {
-            $scope.bbUpdate = false;
+        function cancelBasicInfoConfig(isUseForAdd) {
+            if(isUseForAdd){
+                $scope.switchShowAdd();
+            }else{
+                $scope.bbUpdate = false;
+            }
         }
 
         function newBasicInfoConfigPost () {

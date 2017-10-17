@@ -7,11 +7,10 @@
 
 # Generated on crash by the VM
 erl_crash.dump
-
+/.idea
 # Static artifacts
 /node_modules
 /lint
 /bower_components
 /build
 /dist
-

@@ -375,6 +375,35 @@
       text-align: left;
     }
   }
+  .bd-timeRange{
+    display: inline-block;
+    float: right;
+    margin-top: -3px;
+    margin-right: 50px;
+    border:1px solid #6f8deb;
+  }
+  .bd-timeRange >span{
+    width: 100px;
+    height: 18px;
+    margin: 11px 0;
+    line-height: 1;
+    display: inline-block;
+    font-size: 18px;
+    color: #6f8deb;
+    border-right: 1px solid;
+    cursor:hand;
+    text-align: center;
+  }
+  .bd-timeRange_selected{
+    background: #6f8deb;
+    color: white!important;
+    margin: 0!important;
+    height: 40px!important;
+    line-height: 40px!important;
+  }
+  .bd-timeRange >span:last-child{
+    border-right:0;
+  }
   .bd-tab {
     margin: 18px 0 0 30px;
     .bd-chart{

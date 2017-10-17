@@ -503,7 +503,7 @@ server.post('/realtimeInfo', function (req, res) {
       "lat":32.04
     },
     "locationName": "中国广东省深圳市龙岗区一号路 邮政编码: 518000",
-    "speed": 120,
+    "speed": 3.6,
     "temperature": { value: 39, status: "正常"},
     "humidity": { value: 70, status: "正常"},
     "battery": { value: 0.6, status: "正常" },

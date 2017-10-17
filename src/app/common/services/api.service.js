@@ -109,11 +109,46 @@
             shipOrderLoadgoods: shipOrderLoadgoods,
             shipOrderDepartrue: shipOrderDepartrue,
             shipOrderArriveDestinationPort: shipOrderArriveDestinationPort,
-            shipOrderDeliverGoods: shipOrderDeliverGoods
+            shipOrderDeliverGoods: shipOrderDeliverGoods,
+            getPredictionDecisionData :getPredictionDecisionData
 
         };
 
         return service;
+
+        function getPredictionDecisionData(){
+            var param = {
+                currentPage :"1",
+                pageNum:"20"
+            };
+            //NetworkService.post(constdata.api.user,param,successHandler,failedHandler);
+
+            var zjMock = function(dict,length){
+                var res = [];
+                var tempDic = {};
+                for(var s = 0;s < length;s++){
+                    tempDic = {};
+                    for(var k in dict){
+                        if(dict.hasOwnProperty(k)){
+
+                            var len = dict[k].length;
+                            var index = (Math.random()*(len-1)).toFixed(0)
+                            tempDic[k] = dict[k][index]
+                        }
+                    }
+                    res.push(tempDic)
+                }
+                return res;
+            }
+            var dict = {
+                status:['进行中','待调度'],
+                oAddress:['BG1123','XA0029','TY0354'],
+                count:[1,3,4],
+                tAddress:['BJ1123','AK0029','HLJ0354']
+            }
+            return zjMock(dict,10);
+        }
+
 
         ////////////信息
 

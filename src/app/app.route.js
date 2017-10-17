@@ -340,7 +340,10 @@
                 url: 'ship/shippingschedule/:shippingScheduleId',
                 templateUrl: 'app/components/shippingschedule/shippingschedule.add.html'
             })
-
+            .state('app.prediction', {
+                url: 'prediction/',
+                templateUrl: 'app/components/predictionDecision/predictionDecision.html'
+            })
 
             .state('app', {
                 //abstract: true,

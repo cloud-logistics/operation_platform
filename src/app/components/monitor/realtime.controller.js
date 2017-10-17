@@ -44,7 +44,7 @@
         vm.containerId = $stateParams.containerId || constdata.defaultContainerId 
         vm.realtimeInfo = {}
         vm.speedStatus = ""
-
+        vm.days = 1;
         var historyStatus = {
             speed:[],
             temperature: [],
@@ -54,6 +54,7 @@
         }
 
         getRealtimeInfo()
+
         var timer = $interval(function(){
             getRealtimeInfo();
             console.log(constdata.refreshInterval);
@@ -62,12 +63,17 @@
         $scope.$on("$destroy", function(){
             $interval.cancel(timer);
         });
-
+        $scope.getHistoryData = function(days){
+            vm.days = days || 1;
+            getContainerHistoryStatus();
+        };
         $scope.getContainerHistoryStatus = getContainerHistoryStatus
         function getContainerHistoryStatus (requiredParam) {
+            vm.requiredParam = requiredParam || vm.requiredParam;
             var queryParams = {
-                requiredParam: requiredParam,
-                containerId : vm.containerId
+                requiredParam: vm.requiredParam,
+                containerId : vm.containerId,
+                days:vm.days
             }
             ApiServer.getContainerHistoryStatus(queryParams, function(response){
                 historyStatus = R.compose(
@@ -422,6 +428,7 @@
 
 
         function initSpeed(value) {
+
             speedChart = echarts.init(document.getElementById('speed-chart'));
             speedOption = {
                 tooltip: {
@@ -644,7 +651,8 @@
                                     R.prop("temperature")
                                 )(historyStatus)
 
-            tempBarChart = echarts.init(document.getElementById('bd-temp-chart'));
+            var dom = $('#bd-temp-chart')[0];
+            tempBarChart = echarts.init(dom);
 
             tempBarOption = {
                 backgroundColor: "#fff",

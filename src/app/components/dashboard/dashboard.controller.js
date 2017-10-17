@@ -35,16 +35,15 @@
             });
         }
 
-        getOperationOverview()
+
+        getOperationOverview();
         function getOperationOverview() {
             ApiServer.getOperationOverview(function (response) {
-                vm.operationOverview = response.data
-                console.log(vm.operationOverview);
-
-                initPie(vm.operationOverview.container_location);
-
-                initLine(vm.operationOverview.container_on_lease_history, vm.operationOverview.container_on_transportation_history);
-                
+                vm.operationOverview = response.data;
+                setTimeout(function(){
+                    initPie(vm.operationOverview.container_location);
+                },100)
+                //initLine(vm.operationOverview.container_on_lease_history, vm.operationOverview.container_on_transportation_history);
             }, function (err) {
                 console.log("Get getOperationOverview  Info Failed", err);
             });
@@ -54,7 +53,10 @@
         var pieOption;
 
         function initPie(value) {
-            pieChart = echarts.init(document.getElementById('pie-chart'));
+            var dom = $('#pie-chart');
+            console.log("dom",dom)
+            pieChart = echarts.init(dom[0]);
+
             pieOption = {
                 tooltip: {
                     trigger: 'item',
