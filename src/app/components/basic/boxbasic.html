@@ -21,9 +21,9 @@
                 <div class="row bm-input m-b-md">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="col-md-4 control-label form-control-static">云箱ID</label>
+                            <label class="col-md-4 control-label form-control-static">RFID</label>
                             <div class="col-md-8">
-                                <input ng-model="vm.newBasicInfoConfig.containerId" type="text" class="form-control" placeholder="请输入">
+                                <input ng-model="vm.newBasicInfoConfig.containerId" type="text" class="form-control" placeholder="请输入RFID">
                             </div>
                         </div>
                     </div>
@@ -121,9 +121,9 @@
                         <div class="row m-b">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label form-control-static">ID</label>
+                                    <label class="col-md-4 control-label form-control-static">RFID</label>
                                     <div class="col-md-8">
-                                        <input ng-model="vm.newBasicInfoConfig.containerId" type="text" class="form-control" placeholder="请输入云箱ID">
+                                        <input ng-model="vm.newBasicInfoConfig.containerId" type="text" class="form-control" placeholder="请输入RFID">
                                     </div>
                                 </div>
                             </div>
@@ -216,6 +216,7 @@
                             <!--{{title}}-->
                             <!--</th>-->
                             <th>云箱ID</th>
+                            <th>RFID</th>
                             <th>云箱型号</th>
                             <th>生产地</th>
                             <th>生产厂家</th>
@@ -227,6 +228,7 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="item in vm.basicInfoManage track by $index">
+                            <td style="vertical-align: middle;">{{item.containerId}}</td>
                             <td style="vertical-align: middle;">{{item.containerId}}</td>
                             <td style="vertical-align: middle;">{{item.containerType}}</td>
                             <td style="vertical-align: middle;">{{item.factoryLocation}}</td>
