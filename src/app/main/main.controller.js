@@ -66,11 +66,11 @@
             vm.classAnimation = '';
         }
 
-        if (ApiServer.isAuthed()){
-
-            if (url.indexOf('#') === -1 || url.indexOf('access') !== -1){
-                $timeout(function () {
-                    var roleType = ApiServer.roleType();
+        // if (ApiServer.isAuthed()){
+        //
+        //     if (url.indexOf('#') === -1 || url.indexOf('access') !== -1){
+        //         $timeout(function () {
+        //             var roleType = ApiServer.roleType();
                     // if (roleType === 'cargoagent'){
                     //     $state.go('app.goodorder');
                     // }else if (roleType === 'carrier'){
@@ -80,14 +80,14 @@
                     // }else{
                         $state.go('app.pipelineview');
                     // }
-                },10);
-            }
-
-        }else{
-            $timeout(function () {
-                $state.go('access.signin');
-            },10);
-        }
+        //         },10);
+        //     }
+        //
+        // }else{
+        //     $timeout(function () {
+        //         $state.go('access.signin');
+        //     },10);
+        // }
 
 
     }

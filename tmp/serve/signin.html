@@ -195,20 +195,19 @@
 <!-- build:js({tmp/serve,tmp/partials,src}) scripts/app.js -->
 <!-- inject:js -->
 <script src="app/app.module.js"></script>
-<script src="app/main/blocks/aside.controller.js"></script>
 <script src="app/components/webdevtec/webdevtec.service.js"></script>
 <script src="app/components/vehicle/vehicles.controller.js"></script>
 <script src="app/components/vehicle/vehicle.controller.js"></script>
+<script src="app/components/transporttask/transporttask.controller.js"></script>
 <script src="app/components/storage/storages.controller.js"></script>
 <script src="app/components/storage/storage.controller.js"></script>
-<script src="app/components/transporttask/transporttask.controller.js"></script>
 <script src="app/components/signin/signup.controller.js"></script>
 <script src="app/components/signin/signin.controller.js"></script>
 <script src="app/components/shippingschedule/shippingschedule.controller.js"></script>
 <script src="app/components/shippingschedule/shippingschedule.add.controller.js"></script>
 <script src="app/components/satellite/satellite.controller.js"></script>
-<script src="app/components/pipelineview/pipelineview.controller.js"></script>
 <script src="app/components/profile/profile.controller.js"></script>
+<script src="app/components/pipelineview/pipelineview.controller.js"></script>
 <script src="app/components/overview/overview.controller.js"></script>
 <script src="app/components/order/user.order.controller.js"></script>
 <script src="app/components/order/user.order.add.controller.js"></script>
@@ -242,11 +241,11 @@
 <script src="app/components/container_overview/container_overview.controller.js"></script>
 <script src="app/components/container/containers.controller.js"></script>
 <script src="app/components/container/container.controller.js"></script>
+<script src="app/components/company/company.controller.js"></script>
 <script src="app/components/basic/boxparam.controller.js"></script>
 <script src="app/components/basic/boxmalfun.controller.js"></script>
 <script src="app/components/basic/boxbasic.controller.js"></script>
 <script src="app/components/basic/boxalert.controller.js"></script>
-<script src="app/components/company/company.controller.js"></script>
 <script src="app/components/analysis/siteHist.controller.js"></script>
 <script src="app/components/analysis/allHist.controller.js"></script>
 <script src="app/common/services/ui-load.js"></script>
@@ -254,6 +253,7 @@
 <script src="app/common/services/map.service.js"></script>
 <script src="app/common/services/fun.service.js"></script>
 <script src="app/common/services/api.service.js"></script>
+<script src="app/main/blocks/aside.controller.js"></script>
 <script src="app/common/directives/ui.page.directive.js"></script>
 <script src="app/common/directives/ui-toggleclass.js"></script>
 <script src="app/common/directives/ui-shift.js"></script>
@@ -273,7 +273,7 @@
 <!-- endinject -->
 
 <!-- inject:partials -->
-<script src="templateCacheHtml.js"></script>
+<!-- angular templates will be automatically converted in js and inserted here -->
 <!-- endinject -->
 <!-- endbuild -->
 
