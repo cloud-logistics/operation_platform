@@ -44,6 +44,8 @@
                 center: center,
                 mapTypeId: mapType,
                 scrollwheel: true,
+                maxZoom: 13,
+                minZoom: 2,
                 zoom: zoomLevel | 3
             });
 

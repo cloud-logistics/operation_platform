@@ -28,6 +28,7 @@ server.use(jsonServer.rewriter({
   "/container/api/v1/cloudbox/repairInfo":"/repairInfo",
   "/container/api/v1/cloudbox/basicInfoConfig":"/basicInfoConfig",
   "/container/api/v1/cloudbox/securityConfig":"/securityConfig",
+  "/container/api/v1/cloudbox/getSecurityConfig":"/getSecurityConfig",
   "/container/api/v1/cloudbox/repairConfig":"/repairConfig",
   "/container/api/v1/cloudbox/issueConfig":"/issueConfig",
   "/container/api/v1/cloudbox/issueConfig":"/issueConfig",
@@ -501,7 +502,7 @@ server.post('/realtimeInfo', function (req, res) {
       "lng": 118.78,
       "lat":32.04
     },
-    "locationName": "中国上海市",
+    "locationName": "中国广东省深圳市龙岗区一号路 邮政编码: 518000",
     "speed": 120,
     "temperature": { value: 39, status: "正常"},
     "humidity": { value: 70, status: "正常"},

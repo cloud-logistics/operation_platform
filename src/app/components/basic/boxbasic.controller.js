@@ -106,7 +106,7 @@
         getBasicInfo();
         var timer = $interval(function(){
             getBasicInfo();
-        },5000, 500);
+        },constdata.refreshInterval, 500);
 
         $scope.$on("$destroy", function(){
             $interval.cancel(timer);

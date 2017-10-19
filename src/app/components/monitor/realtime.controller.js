@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('RealtimeController', RealtimeController);
 
     /** @ngInject */
-    function RealtimeController(constdata, NetworkService, MapService, $stateParams, ApiServer, toastr, $state, $timeout, $interval, $scope) {
+    function RealtimeController(NetworkService, MapService, $stateParams, ApiServer, toastr, $state, $timeout, constdata, $interval, $scope) {
         /* jshint validthis: true */
         var vm = this;
         var tempOption;
@@ -41,7 +41,7 @@
         vm.title = '实时报文';
         vm.containerlists = [];
         vm.getRealtimeInfo = getRealtimeInfo
-        vm.containerId = $stateParams.containerId
+        vm.containerId = $stateParams.containerId || constdata.defaultContainerId 
         vm.realtimeInfo = {}
         vm.speedStatus = ""
 
@@ -56,7 +56,8 @@
         getRealtimeInfo()
         var timer = $interval(function(){
             getRealtimeInfo();
-        },50000, 500);
+            console.log(constdata.refreshInterval);
+        },constdata.refreshInterval, 500);
 
         $scope.$on("$destroy", function(){
             $interval.cancel(timer);
@@ -74,7 +75,7 @@
                                     R.pick([requiredParam])
                                 )(response.data);
 
-                initSpeedLine();
+                //initSpeedLine();
                 initTempBar();
                 initHumiLine();
                 initBattLine();
@@ -87,6 +88,9 @@
         }
 
         function getRealtimeInfo () {
+            // get History status
+            getContainerHistoryStatus();
+
             var queryParams = {
                 containerId: vm.containerId
             }
@@ -94,6 +98,8 @@
                 var locationName = undefined;
 
                 vm.realtimeInfo = response.data
+                vm.realtimeInfo.locationName = "中国广东省深圳市龙岗区一号路";
+
                 vm.speedStatus = "正常"
                 console.log(vm.realtimeInfo);
 

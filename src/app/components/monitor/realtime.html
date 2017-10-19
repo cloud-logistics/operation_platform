@@ -43,8 +43,8 @@
                                 <p><span>云箱型号</span>{{vm.realtimeInfo.containerType}}</p>
                                 <p><span>承运方</span>{{vm.realtimeInfo.carrier}}</p>
                                 <p><span>当前所在地</span>{{vm.realtimeInfo.locationName}}</p>
-                                <p><span>当前位置</span>经度: {{vm.realtimeInfo.position.lat}} 纬度:
-                                    {{vm.realtimeInfo.position.lng}}</p>
+                                <p><span>当前位置</span>经度: {{vm.realtimeInfo.position.lng}} 纬度:
+                                    {{vm.realtimeInfo.position.lat}}</p>
                             </div>
                         </div>
                     </div>
@@ -134,11 +134,6 @@
                     </div>
                     <div class="bd-tab">
                         <uib-tabset active="activeJustified" justified="true">
-                            <uib-tab index="0" heading="速&nbsp;度" select="getContainerHistoryStatus('speed')">
-                                <div class="bd-chart" id="bd-speed-chart">
-
-                                </div>
-                            </uib-tab>
                             <uib-tab index="1" heading="温&nbsp;度" select="getContainerHistoryStatus('temperature')">
                                 <div class="bd-chart" id="bd-temp-chart">
 

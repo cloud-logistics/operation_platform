@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('HistorylocationController', HistorylocationController);
 
     /** @ngInject */
-    function HistorylocationController($stateParams,ApiServer,MapService,toastr,$state,$timeout,$interval,$scope) {
+    function HistorylocationController($stateParams, constdata, ApiServer,MapService,toastr,$state,$timeout,$interval,$scope) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -25,6 +25,7 @@
         vm.getHistorylocationInfo = getHistorylocationInfo
 
         vm.queryParams = {
+            containerId: $stateParams.containerId || constdata.defaultContainerId,
             startTime: moment(new Date()),
             endTime: moment(new Date())
         };
@@ -55,16 +56,16 @@
                   var startPointLatlng = route.start.position
                   var endPointLatlng = route.end.position
 
-                  var startPointMarker = MapService.addMarker(map)(route.start.position)
-                  var endPointMarker = MapService.addMarker(map)(route.end.position)
+                  //var startPointMarker = MapService.addMarker(map)(route.start.position)
+                  //var endPointMarker = MapService.addMarker(map)(route.end.position)
                   console.log(route.start.locationName);
 
-                  infoWindow(map, startPointMarker, "起点: " + route.start.locationName)
+                  //infoWindow(map, startPointMarker, "起点: " + route.start.locationName)
 
-                  infoWindow(map, endPointMarker, "终点: " + route.end.locationName)
+                  //infoWindow(map, endPointMarker, "终点: " + route.end.locationName)
 
-                  bounds.extend(startPointMarker.getPosition());
-                  bounds.extend(endPointMarker.getPosition());
+                  bounds.extend(startPointLatlng);
+                  bounds.extend(endPointLatlng);
 
                   direction(startPointLatlng, endPointLatlng)
                 })
