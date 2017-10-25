@@ -97,8 +97,12 @@
             ApiServer.getRealtimeInfo(queryParams, function (response) {
                 var locationName = undefined;
 
+                if(response.data&&response.data['locationName']){
+                    response.data['locationName4Hover'] = response.data['locationName'];
+                    response.data['locationName'] = response.data['locationName'].split(' ')[0];
+                }
                 vm.realtimeInfo = response.data
-                vm.realtimeInfo.locationName = "中国广东省深圳市龙岗区一号路";
+                //vm.realtimeInfo.locationName = "中国广东省深圳市龙岗区一号路";
 
                 vm.speedStatus = "正常"
                 console.log(vm.realtimeInfo);

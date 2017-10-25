@@ -75,118 +75,17 @@
     ]
   },
   "operationoverview":{
-      "container_num": 10000,
-      "container_on_lease": 9000,
-      "container_on_transportation": 6500,
-      "container_location" :{
-          "China": 2000,
-          "USA": 2000,
-          "Europe": 1500,
-          "India": 1500,
-          "Japan": 1000,
-          "Canada": 500,
-          "other": 500
-      },
-    "container_on_lease_history": [
-        {
-            "value": 5000,
-            "time": "1月"
-        },
-        {
-            "value": 4000,
-            "time": "2月"
-        },
-        {
-            "value": 8000,
-            "time": "3月"
-        },
-        {
-            "value": 4000,
-            "time": "4月"
-        },
-        {
-            "value": 4000,
-            "time": "5月"
-        },
-        {
-            "value": 4000,
-            "time": "6月"
-        },
-        {
-            "value": 4000,
-            "time": "7月"
-        },
-        {
-            "value": 4000,
-            "time": "8月"
-        },
-        {
-            "value": 4000,
-            "time": "9月"
-        },
-        {
-            "value": 7000,
-            "time": "10月"
-        },
-        {
-            "value": 3000,
-            "time": "11月"
-        },
-        {
-            "value": 5000,
-            "time": "12月"
-        }
-    ],
-    "container_on_transportation_history": [
-        {
-            "value": 3000,
-            "time": "1月"
-        },
-        {
-            "value": 2000,
-            "time": "2月"
-        },
-        {
-            "value": 7000,
-            "time": "3月"
-        },
-        {
-            "value": 3000,
-            "time": "4月"
-        },
-        {
-            "value": 3000,
-            "time": "5月"
-        },
-        {
-            "value": 3000,
-            "time": "6月"
-        },
-        {
-            "value": 3000,
-            "time": "7月"
-        },
-        {
-            "value": 3000,
-            "time": "8月"
-        },
-        {
-            "value": 3000,
-            "time": "9月"
-        },
-        {
-            "value": 6000,
-            "time": "10月"
-        },
-        {
-            "value": 2000,
-            "time": "11月"
-        },
-        {
-            "value": 4000,
-            "time": "12月"
-        }
-    ]
+    "site_num": 14,
+    "container_num": 9,
+    "container_location" :{
+      "China": 2000,
+      "USA": 2000,
+      "Europe": 1500,
+      "India": 1500,
+      "Japan": 1000,
+      "Canada": 500,
+      "other": 500
+    }
   },
   "containersonlease": {
     "containersonlease":[
