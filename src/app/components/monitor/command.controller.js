@@ -108,7 +108,7 @@
 
                         // '</div>' +
                     '</div>';
-                infoWindow(map, currentPositionMarker, content)
+                //infoWindow(map, currentPositionMarker, content)
 
                 // bounds.extend(currentPositionMarker.getPosition());
 
