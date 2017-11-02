@@ -82,7 +82,8 @@
 
         // $locationProvider.html5Mode(true);
         $urlRouterProvider
-            .otherwise('pipelineview');
+            //.otherwise('pipelineview');
+            .otherwise('warehouseStatus');
         $stateProvider
 
 
@@ -343,6 +344,16 @@
             .state('app.prediction', {
                 url: 'prediction/',
                 templateUrl: 'app/components/predictionDecision/predictionDecision.html'
+            })
+
+            .state('app.warehouseInfo', {
+                url: 'warehouseInfo/',
+                templateUrl: 'app/components/warehouse/warehouseInfo.html'
+            })
+
+            .state('app.warehouseStatus', {
+                url: 'warehouseStatus/',
+                templateUrl: 'app/components/warehouse/warehouseStatus.html'
             })
 
             .state('app', {

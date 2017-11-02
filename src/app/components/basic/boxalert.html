@@ -2,14 +2,7 @@
      ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
     <!-- main -->
     <div class="col">
-        <!-- main header -->
-        <!--<div class="bg-light lter b-b wrapper-xs">-->
-        <!--<div class="row">-->
-        <!--<div class="col-md-6 col-sm-6 col-xs-12">-->
-        <!--<h1 class="font-thin h3 text-black m-l m-t-sm">{{vm.title}}</h1>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
+
         <modal-dialog show='modalInput' width='659px' height='400px'>
             <div class="container-fluid">
                 <div class="row">
@@ -79,8 +72,11 @@
         <div id="content" style="height: 100vh;">
             <div class="wrapper-md">
                 <div class="row" style="background-color: #fff">
-                    <div class="bb-title"><span>维修点设置</span></div>
-                    <div class="bb-content">
+                    <div class="bb-title">
+                        <span>维修点设置</span>
+                        <span class="bb-add" ng-show="!showAdd" ng-click="switchShowAdd()">添 加</span>
+                    </div>
+                    <div class="bb-content" ng-show="showAdd">
                         <div class="row m-b">
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -134,7 +130,8 @@
 
                             <div class="col-md-offset-8 col-md-4">
                                 <div class="pull-right bb-btn">
-                                    <span ng-click="vm.saveRepairInfoConfig()">保存</span>
+                                    <span class="pull-right bm-save" ng-click="vm.saveRepairInfoConfig(true)">保存</span>
+                                    <span class="pull-right bm-cancel" style="background:#96a1b8;" ng-click="vm.cancelRepairInfoConfig(true)" >取  消</span>
                                 </div>
                             </div>
                         </div>

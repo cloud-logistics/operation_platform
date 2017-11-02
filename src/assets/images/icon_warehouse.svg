@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="74px" height="50px" viewBox="0 0 74 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_warehouse</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-20.7%" y="-41.4%" width="141.3%" height="182.8%" filterUnits="objectBoundingBox" id="filter-1">
+            <feGaussianBlur stdDeviation="4.608" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <polygon id="path-2" points="0.140216367 2.07885004 9.00487928 0.267345384 19.5835525 11.1426946 19.5835525 29.2081492 0.140216367 19.1882315"></polygon>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="05仓库管理-仓库状态" transform="translate(-683.000000, -482.000000)">
+            <g id="仓库-copy-3" transform="translate(683.000000, 482.000000)">
+                <polygon id="Rectangle-4" fill="#3D940A" opacity="0.5" filter="url(#filter-1)" points="3.55555556 28.3563292 41.55598 11.6545455 70.4440686 24.8216134 33.5130366 45.0581129"></polygon>
+                <g id="Group" transform="translate(10.475096, 0.600000)">
+                    <g id="Rectangle-2" transform="translate(1.885131, 10.736575)">
+                        <mask id="mask-3" fill="white">
+                            <use xlink:href="#path-2"></use>
+                        </mask>
+                        <use id="Mask" fill="#D8D8D8" xlink:href="#path-2"></use>
+                        <polygon fill="#FFFFFF" mask="url(#mask-3)" points="1.82670767 6.02605901 16.8142793 13.368587 16.8142793 27.2940415 1.82670767 19.570355"></polygon>
+                        <polygon fill="#888888" mask="url(#mask-3)" points="1.82670767 9.43710021 16.8142793 16.4238137 16.8142793 28.2329341 1.82670767 20.2781015"></polygon>
+                        <polygon fill="#A2A2A2" mask="url(#mask-3)" points="16.8142793 16.444116 16.8142793 28.2329341 1.82670767 20.2781015 13.2894948 14.7972307"></polygon>
+                    </g>
+                    <polygon id="Rectangle-2-Copy-6" fill="#D3D3D3" points="3.71183882 18.0779815 18.6343756 25.3406625 18.6343756 24.9190348 3.71183882 17.7293531"></polygon>
+                    <polygon id="Rectangle-2-Copy-7" fill="#D3D3D3" points="3.71183882 19.3492543 18.6343756 26.6119353 18.6343756 26.1903075 3.71183882 19.0006258"></polygon>
+                    <polygon id="Rectangle-3" fill="#AAAAAA" points="21.4686532 24.471515 46.5829929 11.0025538 46.5829929 26.4743964 21.4686532 39.9433576"></polygon>
+                    <polygon id="Rectangle" fill="#C84F43" points="10.1267376 12.9382564 36.336015 0.0917109162 48.7966981 12.9382564 22.5874208 25.7848018"></polygon>
+                    <polygon id="Rectangle" fill="#FA6557" points="0.282254535 13.248 26.4915319 0.401454545 36.3370039 0.0933558239 10.1277265 12.9399013"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
