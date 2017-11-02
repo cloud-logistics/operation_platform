@@ -113,9 +113,11 @@
             getPredictionDecisionData: getPredictionDecisionData,
             getCloudBoxData: getCloudBoxData,
             getCloudBoxInOutRecord: getCloudBoxInOutRecord,
+
             getCountryList: getCountryList,
             getProvinceList: getProvinceList,
-            getCityList: getCityList
+            getCityList: getCityList,
+            getAddressByLngLat :getAddressByLngLat
         };
         var zjMock = function (dict, length) {
             var res = [];
@@ -190,19 +192,7 @@
 
         //获取国家列表
         function getCountryList(opt) {
-            console.log(11)
-            if (false && location.hostname == 'localhost') {
-                return opt.success({
-                    data: [
-                        {
-                            nation_id: 1,
-                            nation_name: "中国"
-                        }
-                    ]
-                })
-            } else {
-                NetworkService.get(constdata.api.countryList, null, opt.success, opt.error);
-            }
+            NetworkService.get(constdata.api.countryList, null, opt.success, opt.error);
         }
 
         //根据国家获取省市列表
@@ -211,150 +201,9 @@
                 console.log("请选择国家先");
                 return;
             }
-            if (location.hostname == 'localhost') {
-                return opt.success({
-                    data: [
-                        {
-                            province_id: 1,
-                            province_name: "北京市"
-                        },
-                        {
-                            province_id: 2,
-                            province_name: "天津市"
-                        },
-                        {
-                            province_id: 3,
-                            province_name: "河北省"
-                        },
-                        {
-                            province_id: 4,
-                            province_name: "山西省"
-                        },
-                        {
-                            province_id: 5,
-                            province_name: "内蒙古自治区"
-                        },
-                        {
-                            province_id: 6,
-                            province_name: "辽宁省"
-                        },
-                        {
-                            province_id: 7,
-                            province_name: "吉林省"
-                        },
-                        {
-                            province_id: 8,
-                            province_name: "黑龙江省"
-                        },
-                        {
-                            province_id: 9,
-                            province_name: "上海市"
-                        },
-                        {
-                            province_id: 10,
-                            province_name: "江苏省"
-                        },
-                        {
-                            province_id: 11,
-                            province_name: "浙江省"
-                        },
-                        {
-                            province_id: 12,
-                            province_name: "安徽省"
-                        },
-                        {
-                            province_id: 13,
-                            province_name: "福建省"
-                        },
-                        {
-                            province_id: 14,
-                            province_name: "江西省"
-                        },
-                        {
-                            province_id: 15,
-                            province_name: "山东省"
-                        },
-                        {
-                            province_id: 16,
-                            province_name: "河南省"
-                        },
-                        {
-                            province_id: 17,
-                            province_name: "湖北省"
-                        },
-                        {
-                            province_id: 18,
-                            province_name: "湖南省"
-                        },
-                        {
-                            province_id: 19,
-                            province_name: "广东省"
-                        },
-                        {
-                            province_id: 20,
-                            province_name: "广西壮族自治区"
-                        },
-                        {
-                            province_id: 21,
-                            province_name: "海南省"
-                        },
-                        {
-                            province_id: 22,
-                            province_name: "重庆市"
-                        },
-                        {
-                            province_id: 23,
-                            province_name: "四川省"
-                        },
-                        {
-                            province_id: 24,
-                            province_name: "贵州省"
-                        },
-                        {
-                            province_id: 25,
-                            province_name: "云南省"
-                        },
-                        {
-                            province_id: 26,
-                            province_name: "西藏自治区"
-                        },
-                        {
-                            province_id: 27,
-                            province_name: "陕西省"
-                        },
-                        {
-                            province_id: 28,
-                            province_name: "甘肃省"
-                        },
-                        {
-                            province_id: 29,
-                            province_name: "青海省"
-                        },
-                        {
-                            province_id: 30,
-                            province_name: "宁夏回族自治区"
-                        },
-                        {
-                            province_id: 31,
-                            province_name: "新疆维吾尔自治区"
-                        },
-                        {
-                            province_id: 32,
-                            province_name: "台湾省"
-                        },
-                        {
-                            province_id: 33,
-                            province_name: "香港特别行政区"
-                        },
-                        {
-                            province_id: 34,
-                            province_name: "澳门特别行政区"
-                        }
-                    ]
-                })
-            } else {
-                NetworkService.get('/container/api/v1/cloudbox/provincelist/' + opt.countryId, null, opt.success, opt.error);
-            }
+
+            NetworkService.get(constdata.api.provinceList + opt.countryId, null, opt.success, opt.error);
+
         }
 
         //获取市列表
@@ -363,80 +212,12 @@
                 console.log("请选择省份先");
                 return;
             }
-            if (location.hostname == 'localhost') {
-                return opt.success({
-                    data: [
-                        {
-                            city_id: 132,
-                            city_name: "抚州",
-                            longitude: "116.358181",
-                            latitude: "27.949217"
-                        },
-                        {
-                            city_id: 129,
-                            city_name: "赣州",
-                            longitude: "114.933546",
-                            latitude: "25.830694"
-                        },
-                        {
-                            city_id: 126,
-                            city_name: "九江",
-                            longitude: "116.00193",
-                            latitude: "29.705077"
-                        },
-                        {
-                            city_id: 130,
-                            city_name: "吉安",
-                            longitude: "114.964696",
-                            latitude: "27.087637"
-                        },
-                        {
-                            city_id: 124,
-                            city_name: "景德镇",
-                            longitude: "117.178443",
-                            latitude: "29.268783"
-                        },
-                        {
-                            city_id: 123,
-                            city_name: "南昌",
-                            longitude: "115.858197",
-                            latitude: "28.682892"
-                        },
-                        {
-                            city_id: 125,
-                            city_name: "萍乡",
-                            longitude: "113.854556",
-                            latitude: "27.622768"
-                        },
-                        {
-                            city_id: 133,
-                            city_name: "上饶",
-                            longitude: "117.943433",
-                            latitude: "28.454862"
-                        },
-                        {
-                            city_id: 127,
-                            city_name: "新余",
-                            longitude: "114.917346",
-                            latitude: "27.817808"
-                        },
-                        {
-                            city_id: 131,
-                            city_name: "宜春",
-                            longitude: "114.416785",
-                            latitude: "27.815743"
-                        },
-                        {
-                            city_id: 128,
-                            city_name: "鹰潭",
-                            longitude: "117.069202",
-                            latitude: "28.260189"
-                        }
-                    ]
-                })
-            } else {
-                NetworkService.get('http://106.2.20.186:8000/container/api/v1/cloudbox/citylist/' + opt.provinceId, null, opt.success, opt.error);
-            }
+            NetworkService.get(constdata.api.cityList + opt.provinceId, null, opt.success, opt.error);
+
+        }
+
+        function getAddressByLngLat(opt){
+            NetworkService.post(constdata.api.getPosition, opt.param, opt.success, opt.error);
         }
 
         function isAuthed() {
@@ -448,7 +229,6 @@
         }
 
         function roleType() {
-            // "regularclient"; "cargoagent"; "carrier"; "shipper";
             var information = info();
             return information.role;
         }
