@@ -65,7 +65,15 @@
                 countryList:"nationlist",
                 provinceList:"/provincelist/",
                 cityList:"/citylist/",
-                getPosition:"/getPosition"
+                getPosition:"/getPosition",
+
+                //仓库部分的api
+                warehouse:{
+                    create:"/sites",
+                    update:"/sites/{",
+                    delete:"/sites/{",
+                    retrieve:'/allsites?page='
+                }
             },
             routeName:{
                 "app.dashboard":"全景展示",

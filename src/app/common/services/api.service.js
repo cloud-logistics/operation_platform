@@ -117,7 +117,11 @@
             getCountryList: getCountryList,
             getProvinceList: getProvinceList,
             getCityList: getCityList,
-            getAddressByLngLat :getAddressByLngLat
+            getAddressByLngLat :getAddressByLngLat,
+            addSiteInfo:addSiteInfo,
+            deleteSiteInfo:deleteSiteInfo,
+            updateSiteInfo:updateSiteInfo,
+            retrieveSiteInfo:retrieveSiteInfo
         };
         var zjMock = function (dict, length) {
             var res = [];
@@ -216,9 +220,28 @@
 
         }
 
+        //根据经纬度反查地名
         function getAddressByLngLat(opt){
             NetworkService.post(constdata.api.getPosition, opt.param, opt.success, opt.error);
         }
+
+        //新增仓库
+        function addSiteInfo(opt){
+            NetworkService.post(constdata.api.warehouse.create, opt.param, opt.success, opt.error);
+        }
+        //删除仓库
+        function deleteSiteInfo(opt){
+            NetworkService.delete(constdata.api.warehouse.delete + opt.site_code + "}", null, opt.success, opt.error);
+        }
+        //修改仓库
+        function updateSiteInfo(opt){
+            NetworkService.put(constdata.api.warehouse.update + opt.site_code + "}", opt.param, opt.success, opt.error);
+        }
+        //查询仓库
+        function retrieveSiteInfo(opt){
+            NetworkService.get(constdata.api.warehouse.retrieve+opt.param, null, opt.success, opt.error);
+        }
+
 
         function isAuthed() {
             var token = StorageService.get(constdata.token);

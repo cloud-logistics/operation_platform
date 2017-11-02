@@ -70,7 +70,7 @@
 
         function put(path,param,successHandler,failedHandler) {
             var account = RestService.one(path);
-            account.customPUT(param,"",param,requestHeader()).then(function (response) {
+            account.customPUT(param,"","",requestHeader()).then(function (response) {
                 successResponse(response,successHandler);
             },function (response) {
                 failedResponse(response,failedHandler,path);
