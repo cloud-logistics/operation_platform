@@ -25,8 +25,11 @@
         vm.cancelRepairInfoConfig = cancelRepairInfoConfig;
         vm.newRepairConfigPost = newRepairConfigPost;
         vm.repairUpdate = repairUpdate
+        $scope.showAdd = false;
+        $scope.switchShowAdd = function(){
+            $scope.showAdd = ! $scope.showAdd;
+        };
 
- 
         getRepairInfoManage();
         var timer = $interval(function(){
             getRepairInfoManage();
@@ -45,14 +48,21 @@
             });
         }
 
-        function saveRepairInfoConfig() {
+        function saveRepairInfoConfig(isUseForAdd) {
+            if(isUseForAdd){
+                $scope.switchShowAdd();
+            }else{
+                $scope.modalInput = !$scope.modalInput;
+            }
             newRepairConfigPost();
-
-            $scope.modalInput = !$scope.modalInput;
         }
 
-        function cancelRepairInfoConfig() {
-            $scope.modalInput = false;
+        function cancelRepairInfoConfig(isUseForAdd) {
+            if(isUseForAdd){
+                $scope.switchShowAdd();
+            }else{
+                $scope.modalInput = false;
+            }
         }
 
         function repairUpdate (id) {

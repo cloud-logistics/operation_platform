@@ -1,5 +1,7 @@
+/**
+ * Created by xianZJ on 2017/10/25.
+ */
 (function () {
-
     'use strict';
     angular.module('smart_container').controller('PredictionDecisionController', PredictionDecisionController);
 
@@ -133,7 +135,7 @@
             clearMarker();
 
             markers = R.compose(
-                R.map(MapService.addMarker(map, "container")),
+                R.map(MapService.addMarker(map, "redBox")),
                 R.map(R.prop("position"))
             )(remainContainer)
 

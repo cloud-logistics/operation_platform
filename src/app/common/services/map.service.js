@@ -30,9 +30,11 @@
         };
 
         var mapIcons = {
-            container: "images/box.svg",
-            satellite: "images/satellite3.svg"
-        }
+            'container': "images/icon_box_blue.svg",
+            'satellite': "images/satellite3.svg",
+            'warehouse': "images/icon_warehouse.svg",
+            'redBox': "images/icon_box_red.svg"
+        };
 
         return service;
 
@@ -54,13 +56,14 @@
 
         // 编写自定义函数,创建标注
         function addMarker(map, type){
-            return function (position) {
+            return function (position,opt) {
                 var adjusted_position = position_adjustment(position)
 
                 console.log(adjusted_position);
 
                 var marker = new google.maps.Marker({
                     map: map,
+                    draggable: opt ? opt.draggable || false : false,
                     position: adjusted_position,
                     icon: mapIcons[type],
                 });
@@ -119,12 +122,8 @@
             var int_value = Math.floor(value);
             var decimal_value = value - int_value;
             var retVal = undefined;
-
             retVal = ( decimal_value * 100 / 60 ) + int_value;
-
             return retVal;
         }
     }
-
-
 })();
