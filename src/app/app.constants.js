@@ -18,8 +18,8 @@
             // apiHost_OFFLINE:'http://172.16.2.189:8000/',
             token:'airspc_access_authorization',
             informationKey:'airspc_information',
-            refreshInterval: 300000,
-            defaultContainerId : '01-03-17-09-00-22',
+            refreshInterval: 60000,
+            defaultContainerId : 'HNAR0000099',
             api:{
                 resource:{
                     vehicle:'resource/vehicle',
