@@ -2,6 +2,20 @@
  * Created by xianZJ on 2017/10/17.
  */
 
+var showStatus = function(site_code) {
+    getCloudBoxStatusData();
+
+    switchStatus(true);
+    switchRecord(false);
+};
+
+var showRecord = function(site_code) {
+    getCloudBoxInOutRecord();
+
+    switchRecord(true);
+    switchStatus(false);
+};
+
 var switchStatus = function(isShow){
     if(isShow){
         $("#whTable").show();
@@ -38,28 +52,12 @@ var switchRecord = function(isShow){
         };
 
 
-        var getContainerInfo = function () {
-            ApiServer.getContainerOverviewInfo(function (response) {
-                var containers = response.data;
+        var getSitesInfo = function () {
+            ApiServer.getAllsites(function (response) {
                 markers = R.compose(
-                    R.map(MapService.addMarker(map, "warehouse")),
-                    R.map(R.prop("position"))
-                )(containers)
-                _.map(markers, function (item) {
-                    var infowindow = new google.maps.InfoWindow(
-                        {
-                            content: "<div class='wh_map'>" +
-                            "<span class='wh_map_infowindow_name'>XXX号仓库</span><br/>" +
-                            "<span class='wh_map_infowindow_address'>地址: 中国陕西省西安市环普产业园E座6F</span><br/>" +
-                            "<span class='wh_map_infowindow_btn1' onclick='switchStatus(true)'>在库云箱</span>" +
-                            "<span class='wh_map_infowindow_btn2' onclick='switchRecord(true)'>云箱出入记录</span>" +
-                            "</div>"
-                        });
-                    google.maps.event.addListener(item, 'click', function (event) {
-                        infowindow.open(map, item);
-                    });
-                })
-                console.log("markers = ", markers)
+                    R.map(addMarkerWithInfo),
+                    R.path(["data", "data", "results"])
+                )(response);
             }, function (err) {
                 console.log("Get Container Info Failed", err);
             });
@@ -81,8 +79,36 @@ var switchRecord = function(isShow){
         };
 
         setMap();
-        getContainerInfo();
-        getCloudBoxStatusData();
-        getCloudBoxInOutRecord();
+        getSitesInfo();
+
+        function addMarkerWithInfo (siteInfo) {
+            var position = {
+                lat: siteInfo.latitude,
+                lng: siteInfo.longitude
+            }
+
+            function showStatusHandler(){
+                console.log(siteInfo.site_code);
+            }
+
+            var marker = MapService.addMarker(map, "warehouse")(position)
+            var content = "<div class='wh_map'>" +
+                "<span class='wh_map_infowindow_name'>" + siteInfo.site_code + "</span><br/>" +
+                "<span class='wh_map_infowindow_address'>" + siteInfo.location + "</span><br/>" +
+                "<span class='wh_map_infowindow_btn1' onclick='showStatus(\"" + siteInfo.site_code + "\")'>在库云箱</span>" +
+                "<span class='wh_map_infowindow_btn2' onclick='showRecord(\"" + siteInfo.site_code + "\")'>云箱出入记录</span>" +
+                "</div>"
+
+            var infowindow = new google.maps.InfoWindow(
+                {
+                    content: content
+                });
+
+            google.maps.event.addListener(marker, 'click', function (event) {
+                infowindow.open(map, marker);
+            });
+
+            return marker;
+        }
     }
 })();

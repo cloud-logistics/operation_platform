@@ -111,6 +111,7 @@
             shipOrderArriveDestinationPort: shipOrderArriveDestinationPort,
             shipOrderDeliverGoods: shipOrderDeliverGoods,
             getPredictionDecisionData: getPredictionDecisionData,
+            getAllsites: getAllsites,
             getCloudBoxData: getCloudBoxData,
             getCloudBoxInOutRecord: getCloudBoxInOutRecord,
 
@@ -141,6 +142,12 @@
             return res;
         }
         return service;
+
+        // 获取所有仓库信息
+        function getAllsites(successHandler, failedHandler) {
+            NetworkService.get(constdata.api.allsites, null, successHandler, failedHandler);
+        }
+
 
         //获取在库云箱数据
         function getCloudBoxData() {

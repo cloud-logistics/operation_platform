@@ -62,6 +62,7 @@
                 operationoverview : "operationoverview",
                 user:'user',
                 message:'message',
+                allsites:"allsites",
                 countryList:"nationlist",
                 provinceList:"/provincelist/",
                 cityList:"/citylist/",
