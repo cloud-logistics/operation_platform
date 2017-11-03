@@ -71,9 +71,12 @@
                 //仓库部分的api
                 warehouse:{
                     create:"/sites",
-                    update:"/sites/",
-                    delete:"/sites/",
-                    retrieve:'/allsites?page='
+                    retrieve:'/allsites?page=',
+                    update:"/sites/{",
+                    delete:"/sites/{",
+                    allsites:'/allsites?page=',
+                    boxbysite: 'boxbysite/',
+                    siteStream: 'siteStream/'
                 },
                 dispatchInfo:"dispatch"
             },

@@ -432,34 +432,42 @@
     "msg": "query dispatches success",
     "dispatches": [
         {
-            "did": 2,
+            "did": 7,
             "start": {
-                "id": 1,
-                "location": "北京朝阳区堆场",
-                "site_code": "BJ001"
+                "id": 7,
+                "location": "潍坊堆场",
+                "longitude": "119.160459",
+                "latitude": "36.710008",
+                "site_code": "WF001"
             },
             "finish": {
-                "id": 2,
-                "location": "北京海淀区堆场",
-                "site_code": "BJ002"
+                "id": 8,
+                "location": "滨州堆场",
+                "longitude": "117.970763",
+                "latitude": "37.381072",
+                "site_code": "BZ001"
             },
             "count": 2,
             "status": "undispatch",
             "create_date": "2017-11-03"
         },
         {
-            "did": 3,
+            "did": 8,
             "start": {
-                "id": 1,
-                "location": "北京朝阳区堆场",
-                "site_code": "BJ001"
+                "id": 9,
+                "location": "沧州堆场",
+                "longitude": "116.838607",
+                "latitude": "38.306742",
+                "site_code": "CZ001"
             },
             "finish": {
-                "id": 3,
-                "location": "天津堆场",
-                "site_code": "TJ001"
+                "id": 10,
+                "location": "廊坊堆场",
+                "longitude": "116.684922",
+                "latitude": "39.537800",
+                "site_code": "LF001"
             },
-            "count": 3,
+            "count": 5,
             "status": "undispatch",
             "create_date": "2017-11-03"
         }

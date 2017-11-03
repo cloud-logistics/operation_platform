@@ -112,6 +112,8 @@
             shipOrderDeliverGoods: shipOrderDeliverGoods,
             getDispatchData: getDispatchData,
             getAllsites: getAllsites,
+            getBoxbysite: getBoxbysite,
+            getSiteStream: getSiteStream,
             getCloudBoxData: getCloudBoxData,
             getCloudBoxInOutRecord: getCloudBoxInOutRecord,
 
@@ -144,9 +146,18 @@
         return service;
 
         // 获取所有仓库信息
-        function getAllsites(successHandler, failedHandler) {
-            NetworkService.get(constdata.api.allsites, null, successHandler, failedHandler);
+        function getAllsites(page, successHandler, failedHandler) {
+            NetworkService.get(constdata.api.warehouse.allsites + page, null, successHandler, failedHandler);
         }
+
+        function getBoxbysite(id , successHandler, failedHandler) {
+            NetworkService.get(constdata.api.warehouse.boxbysite + id, null, successHandler, failedHandler);
+        }
+
+        function getSiteStream(id , successHandler, failedHandler) {
+            NetworkService.get(constdata.api.warehouse.siteStream + id, null, successHandler, failedHandler);
+        }
+
 
 
         //获取在库云箱数据
