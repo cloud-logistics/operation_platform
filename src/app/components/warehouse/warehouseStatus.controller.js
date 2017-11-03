@@ -3,13 +3,13 @@
  */
 
 var showStatus = function(id) {
-    getBoxbysite(id);
+    //getBoxbysite(id);
     switchStatus(true);
     switchRecord(false);
 };
 
 var showRecord = function(id) {
-    getSiteStream(id);
+    //getSiteStream(id);
     switchRecord(true);
     switchStatus(false);
 };
@@ -35,6 +35,7 @@ var switchRecord = function(isShow){
     function WarehouseStatusController($scope, ApiServer, MapService, $interval) {
         var vm = this;
         var markers = [];
+        var infoWindows = [];
         var map;
         vm.stateMenu = {
             'in':"入库",
@@ -62,8 +63,8 @@ var switchRecord = function(isShow){
         
         var getBoxbysite = function(id){
             ApiServer.getBoxbysite(id, function(response){
-                vm.whStatusData = response;
-                console.log(response);
+                vm.whStatusData = response.data.data.results;
+                console.log(response.data.data.results);
             }, function(err){
                 console.log("Get Stream Info Failed", err);
             });
@@ -71,8 +72,8 @@ var switchRecord = function(isShow){
 
         var getSiteStream = function(id) {
             ApiServer.getSiteStream(id, function(response){
-                vm.recordList = response;
-                console.log(response);
+                vm.recordList = response.data.siteHistory;
+                console.log(response.data.siteHistory);
             }, function(err){
                 console.log("Get Stream Info Failed", err);
             });
@@ -87,6 +88,8 @@ var switchRecord = function(isShow){
 
         setMap();
         getSitesInfo();
+        getSiteStream(1);
+        getBoxbysite(1);
 
         function addMarkerWithInfo (siteInfo) {
             var position = {
@@ -111,7 +114,13 @@ var switchRecord = function(isShow){
                     content: content
                 });
 
+            infoWindows = R.append(infowindow)(infoWindows);
+
             google.maps.event.addListener(marker, 'click', function (event) {
+                R.map(function(item){
+                    item.close();
+                })(infoWindows);
+
                 infowindow.open(map, marker);
             });
 
