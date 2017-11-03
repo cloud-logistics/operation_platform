@@ -15,12 +15,13 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">国家</label>
                                     <div class="col-md-8">
-                                        <select ng-model="vm.siteInfo.nation_id"
+                                        <select ng-model="vm.siteInfo.nation.nation_id"
                                                 name="account"
                                                 class="form-control"
                                                 ng-change="vm.getProvinceList()"
-                                        ng-options="country.nation_id as country.nation_name for country in vm.countryList track by $index"
+                                        ng-options="country.nation_id as country.nation_name for country in vm.countryList"
                                        >
+                                            <option value="">-- 请选择 --</option>
                                         </select>
                                     </div>
                                 </div>
@@ -30,12 +31,13 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">省</label>
                                     <div class="col-md-8">
-                                        <select ng-model="vm.siteInfo.province_id"
+                                        <select ng-model="vm.siteInfo.province.province_id"
                                                 name="account"
                                                 ng-change="vm.getCityList()"
                                                 class="form-control"
-                                         ng-options="province.province_id as province.province_name for province in vm.provinceList track by $index"
+                                         ng-options="province.province_id as province.province_name for province in vm.provinceList"
                                         >
+                                            <option value="">-- 请选择 --</option>
                                         </select>
                                     </div>
                                 </div>
@@ -44,12 +46,13 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">市</label>
                                     <div class="col-md-8">
-                                        <select ng-model="vm.siteInfo.cityObj"
+                                        <select ng-model="vm.siteInfo.city.city_id"
                                                 name="account"
                                                 ng-change="vm.setPointer()"
                                                 class="form-control"
-                                                ng-options="city as city.city_name for city in vm.cityList track by $index"
+                                                ng-options="city.city_id as city.city_name for city in vm.cityList"
                                         >
+                                            <option value="">-- 请选择 --</option>
                                         </select>
                                     </div>
                                 </div>
@@ -110,14 +113,14 @@
                         <tbody>
                         <tr ng-repeat="item in vm.siteInfoList track by $index">
                             <td style="vertical-align: middle;">{{item.site_code}}</td>
-                            <td style="vertical-align: middle;">{{item.city.nation_name}}</td>
-                            <td style="vertical-align: middle;">{{item.city.state_name}}</td>
+                            <td style="vertical-align: middle;">{{item.nation.nation_name}}</td>
+                            <td style="vertical-align: middle;">{{item.province.province_name}}</td>
                             <td style="vertical-align: middle;">{{item.city.city_name}}</td>
                             <td style="vertical-align: middle;">{{item.longitude +","+item.latitude }}</td>
                             <td style="vertical-align: middle;">{{item.volume}}</td>
                             <td style="vertical-align: middle;">
                                 <span class="bb-edit-btn" ng-click="vm.edit(item)">编辑</span>
-                                <span class="bb-del-btn" ng-click="vm.deleteSiteInfo(item.site_code)">删除</span>
+                                <span class="bb-del-btn" ng-click="vm.deleteSiteInfo(item.id)">删除</span>
                             </td>
 
                         </tr>

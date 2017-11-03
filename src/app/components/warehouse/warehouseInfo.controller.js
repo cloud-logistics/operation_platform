@@ -11,22 +11,23 @@
         var map;
         vm.reports = [];
         var marker;
+        $scope.cityDataBack;
         vm.siteInfo = {
             "location": "",
             "longitude": "",
             "latitude": "",
             "site_code": "",
             "volume": "",
-            "city_id": 0,
-            "province_id": 0,
-            "nation_id": 0
+            "city":{},
+            "nation":{},
+            province:{}
         };
         var initialMap = function () {
             var width = document.body.clientWidth;
             var height = document.body.clientHeight;
             var mapCenter = {lat: 31.2891, lng: 121.4648};
             vm.mapSize = {"width": '200px', "height": '100px'};
-            map = MapService.map_init("warehouseInfo_map", mapCenter, "terrain", 4);
+            map = MapService.map_init("warehouseInfo_map", mapCenter, "terrain", 3);
         };
         $scope.showAdd = false;
         $scope.switchShowAdd = function () {
@@ -47,7 +48,6 @@
         $scope.save = save;
         $scope.cancel = cancel;
         vm.options = {};
-        var transformations = undefined;
 
         function clearMarker() {
             if (marker) {
@@ -57,7 +57,6 @@
 
         vm.getCountryList = function (callback) {
             ApiServer.getCountryList({
-                "countryId": vm.siteInfo.nation_id,
                 "success": function (res) {
                     res = res.data;
                     vm.countryList = res.data;
@@ -71,12 +70,12 @@
             })
         };
         vm.getProvinceList = function (callback) {
-            vm.siteInfo.province_id = null;
-            vm.siteInfo.city_id = null;
+            vm.siteInfo.province.province_id = 0;
+            vm.siteInfo.city.city_id = 0;
             vm.provinceList = [];
             vm.cityList = [];
             ApiServer.getProvinceList({
-                "countryId": vm.siteInfo.nation_id,
+                "countryId": vm.siteInfo.nation.nation_id,
                 "success": function (res) {
                     res = res.data;
                     console.log("res = ", res)
@@ -94,11 +93,12 @@
             vm.siteInfo.city_id = null;
             vm.cityList = [];
             ApiServer.getCityList({
-                "provinceId": vm.siteInfo.province_id,
+                "provinceId": vm.siteInfo.province.province_id,
                 "success": function (res) {
                     res = res.data;
                     console.log("res = ", res)
                     vm.cityList = res.data;
+                    $scope.cityDataBack = res.data;
                     if(callback){
                         callback();
                     }
@@ -113,16 +113,16 @@
         initialMap();
 
         vm.setPointer = function () {
-            if(!vm.siteInfo.cityObj){
-                return;
-            }
             clearMarker();
+            var data = _.find($scope.cityDataBack,function(item){
+                return item.city_id ==  vm.siteInfo.city.city_id;
+            });
+            vm.siteInfo.longitude = data.longitude;
+            vm.siteInfo.latitude = data.latitude;
             var point = {
-                lng: JSON.parse(vm.siteInfo.cityObj).longitude,
-                lat: JSON.parse(vm.siteInfo.cityObj).latitude
+                lng: vm.siteInfo.longitude,
+                lat: vm.siteInfo.latitude
             };
-            vm.siteInfo.longitude = point.lng;
-            vm.siteInfo.latitude = point.lat;
             marker = MapService.addMarker(map)(point, {draggable: true});
             google.maps.event.addListener(marker, 'dragend', function (MouseEvent) {
                 console.log("移动后的经纬度", MouseEvent.latLng);
@@ -159,30 +159,26 @@
         vm.edit = function (obj) {
             console.log("obj =", obj);
             vm.getCountryList(function(){
-                vm.siteInfo.nation_id = obj.nation;
+                vm.siteInfo.nation.nation_id = obj.nation.nation_id;
 
                 vm.getProvinceList(function(){
-                    vm.siteInfo.province_id = obj.province;
+                    vm.siteInfo.province.province_id = obj.province.province_id;
+
                     vm.getCityList(function(){
-                        vm.siteInfo.province_id = obj.province;
-                        vm.siteInfo.nation_id = obj.nation;
-                        vm.siteInfo.city_id = obj.city.id;
-                        vm.siteInfo.longitude = obj.longitude;
-                        vm.siteInfo.latitude = obj.latitude;
-                        vm.siteInfo.cityObj = JSON.stringify({
-                            longitude:obj.longitude,
-                            latitude:obj.latitude
-                        });
+                        vm.siteInfo =obj;
+                        vm.siteInfo.city = {
+                            "city_id":obj.city.id,
+                            "city_name":obj.city.city_name,
+                            "longitude":obj.longitude,
+                            "latitude":obj.latitude
+                        };
+
+                        console.log("3333",vm.siteInfo);
                         vm.setPointer();
+
                     })
                 });
             });
-
-            vm.siteInfo.location = obj.location;
-            vm.siteInfo.site_code = obj.site_code;
-            vm.siteInfo.volume = obj.volume;
-
-            console.log(vm.siteInfo)
 
 
             $scope.switchShowAdd();
@@ -190,6 +186,14 @@
         };
 
         function save() {
+            if(!vm.siteInfo.location){
+                console.log("请输入地点位置.");
+                return;
+            }
+            if(!vm.siteInfo.volumn){
+                console.log("请输入容量.");
+                return;
+            }
             if (!(vm.siteInfo.site_code)) {
                 addSiteInfo();
             } else {
@@ -211,9 +215,9 @@
                 "latitude": "",
                 "site_code": "",
                 "volume": "",
-                "city_id": 0,
-                "province_id": 0,
-                "nation_id": 0
+                "city":{},
+                "nation":{},
+                province:{}
             };
         }
 
@@ -223,10 +227,10 @@
                 "longitude": vm.siteInfo.longitude,
                 "latitude": vm.siteInfo.latitude,
                 "site_code": vm.siteInfo.site_code || "1111",
-                "volume": vm.siteInfo.volume,
-                "city_id": JSON.parse(vm.siteInfo.cityObj).city_id,
-                "province_id": vm.siteInfo.province_id,
-                "nation_id": vm.siteInfo.nation_id
+                "volume": vm.siteInfo.volume||0,
+                "city_id": vm.siteInfo.city.city_id,
+                "province_id": vm.siteInfo.province.province_id,
+                "nation_id": vm.siteInfo.nation.nation_id
             };
             ApiServer.addSiteInfo({
                 "param": data,
@@ -241,11 +245,15 @@
             });
         }
 
-        vm.deleteSiteInfo = function (site_code) {
-            console.log("del site_code :", site_code);
+        vm.deleteSiteInfo = function (site_id) {
+            console.log("del site_code :", site_id);
+            if(!site_id){
+                console.log("site_id为空")
+                return;
+            }
             ApiServer.deleteSiteInfo({
-                "param": site_code || "1111",
-                "site_code":site_code,
+                "param": site_id,
+                "site_code":site_id,
                 "success": function (res) {
                     alert(response.data.msg);
                 },
@@ -262,13 +270,13 @@
                 "latitude": vm.siteInfo.latitude,
                 "site_code": vm.siteInfo.site_code || "1111",
                 "volume": vm.siteInfo.volume,
-                "city_id": vm.siteInfo.city_id,
-                "province_id": vm.siteInfo.province_id,
-                "nation_id": vm.siteInfo.nation_id
+                "city_id": vm.siteInfo.city.city_id,
+                "province_id": vm.siteInfo.province.province_id,
+                "nation_id": vm.siteInfo.nation.nation_id
             };
             ApiServer.updateSiteInfo({
                 "param": data,
-                "site_code":vm.siteInfo.site_code,
+                "site_code":vm.siteInfo.id,
                 "success": function (response) {
                     alert(response.data.msg);
                     console.log(response.data.code);
@@ -282,7 +290,7 @@
 
         function retrieveSiteInfo() {
             ApiServer.retrieveSiteInfo({
-                "param": "1",
+                "param": "2",
                 "success": function (res) {
                     vm.siteInfoList = res.data.data.results;
                     console.log("vm.siteInfoList", vm.siteInfoList)
