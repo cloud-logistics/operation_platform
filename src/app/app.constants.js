@@ -73,7 +73,9 @@
                     create:"/sites",
                     update:"/sites/{",
                     delete:"/sites/{",
-                    retrieve:'/allsites?page='
+                    allsites:'/allsites?page=',
+                    boxbysite: 'boxbysite/',
+                    siteStream: 'siteStream/'
                 }
             },
             routeName:{

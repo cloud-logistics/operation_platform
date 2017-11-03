@@ -2,16 +2,14 @@
  * Created by xianZJ on 2017/10/17.
  */
 
-var showStatus = function(site_code) {
-    getCloudBoxStatusData();
-
+var showStatus = function(id) {
+    getBoxbysite(id);
     switchStatus(true);
     switchRecord(false);
 };
 
-var showRecord = function(site_code) {
-    getCloudBoxInOutRecord();
-
+var showRecord = function(id) {
+    getSiteStream(id);
     switchRecord(true);
     switchStatus(false);
 };
@@ -30,7 +28,6 @@ var switchRecord = function(isShow){
         $("#whHistory").hide();
     }
 };
-
 (function () {
     angular.module('smart_container').controller('WarehouseStatusController', WarehouseStatusController);
 
@@ -53,7 +50,7 @@ var switchRecord = function(isShow){
 
 
         var getSitesInfo = function () {
-            ApiServer.getAllsites(function (response) {
+            ApiServer.getAllsites(1, function (response) {
                 markers = R.compose(
                     R.map(addMarkerWithInfo),
                     R.path(["data", "data", "results"])
@@ -62,6 +59,24 @@ var switchRecord = function(isShow){
                 console.log("Get Container Info Failed", err);
             });
         };
+        
+        var getBoxbysite = function(id){
+            ApiServer.getBoxbysite(id, function(response){
+                vm.whStatusData = response;
+                console.log(response);
+            }, function(err){
+                console.log("Get Stream Info Failed", err);
+            });
+        }
+
+        var getSiteStream = function(id) {
+            ApiServer.getSiteStream(id, function(response){
+                vm.recordList = response;
+                console.log(response);
+            }, function(err){
+                console.log("Get Stream Info Failed", err);
+            });
+        }
 
         function clearMarker () {
             markers.map(function (marker){
@@ -69,14 +84,6 @@ var switchRecord = function(isShow){
             })
             markers = []
         }
-
-        var getCloudBoxStatusData = function () {
-            vm.whStatusData = ApiServer.getCloudBoxData();
-        };
-
-        var getCloudBoxInOutRecord = function(){
-            vm.recordList = ApiServer.getCloudBoxInOutRecord();
-        };
 
         setMap();
         getSitesInfo();
@@ -95,8 +102,8 @@ var switchRecord = function(isShow){
             var content = "<div class='wh_map'>" +
                 "<span class='wh_map_infowindow_name'>" + siteInfo.site_code + "</span><br/>" +
                 "<span class='wh_map_infowindow_address'>" + siteInfo.location + "</span><br/>" +
-                "<span class='wh_map_infowindow_btn1' onclick='showStatus(\"" + siteInfo.site_code + "\")'>在库云箱</span>" +
-                "<span class='wh_map_infowindow_btn2' onclick='showRecord(\"" + siteInfo.site_code + "\")'>云箱出入记录</span>" +
+                "<span class='wh_map_infowindow_btn1' onclick='showStatus(\"" + siteInfo.id + "\")'>在库云箱</span>" +
+                "<span class='wh_map_infowindow_btn2' onclick='showRecord(\"" + siteInfo.id + "\")'>云箱出入记录</span>" +
                 "</div>"
 
             var infowindow = new google.maps.InfoWindow(
@@ -110,5 +117,6 @@ var switchRecord = function(isShow){
 
             return marker;
         }
+
     }
 })();
