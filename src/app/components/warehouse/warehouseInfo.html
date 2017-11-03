@@ -1,0 +1,133 @@
+<div class="whInfo hbox hbox-auto-xs hbox-auto-sm" ng-controller="WarehouseInfoController as vm"
+     ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
+    <!-- main -->
+    <div class="col">
+        <div id="whInfo" style="height: 100vh;">
+            <div class="wrapper-md">
+                <div class="row" style="background-color: #fff">
+                    <div class="bb-title wh-title">
+                        <span>录入云箱基础信息</span>
+                        <span class="bb-add" ng-show="!showAdd" ng-click="switchShowAdd()">添 加</span>
+                    </div>
+                    <div class="bb-content" ng-show="showAdd" style="margin-top:15px;">
+                        <div class="row m-b">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label form-control-static">国家</label>
+                                    <div class="col-md-8">
+                                        <select ng-model="vm.siteInfo.nation_id"
+                                                name="account"
+                                                class="form-control"
+                                                ng-change="vm.getProvinceList()"
+                                        ng-options="country.nation_id as country.nation_name for country in vm.countryList track by $index"
+                                       >
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label form-control-static">省</label>
+                                    <div class="col-md-8">
+                                        <select ng-model="vm.siteInfo.province_id"
+                                                name="account"
+                                                ng-change="vm.getCityList()"
+                                                class="form-control"
+                                         ng-options="province.province_id as province.province_name for province in vm.provinceList track by $index"
+                                        >
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label form-control-static">市</label>
+                                    <div class="col-md-8">
+                                        <select ng-model="vm.siteInfo.cityObj"
+                                                name="account"
+                                                ng-change="vm.setPointer()"
+                                                class="form-control"
+                                                ng-options="city as city.city_name for city in vm.cityList track by $index"
+                                        >
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-b">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label form-control-static">位置</label>
+                                    <div class="col-md-10">
+                                        <input ng-model="vm.siteInfo.location" type="text" class="form-control" placeholder="请输入位置">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label form-control-static">容量</label>
+                                    <div class="col-md-8">
+                                        <input ng-model="vm.siteInfo.volume" type="text" class="form-control" placeholder="请输入容量">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- line3 -->
+                        <div class="row m-b" style="margin-top:20px;">
+                            <div class="col-md-4" style="float:right;">
+                                <div class="pull-right bb-btn">
+                                    <div class="bm-input-bottom">
+                                        <span class="pull-right bm-save"  ng-click="vm.save(true)">保  存</span>
+                                        <span class="pull-right bm-cancel" style="background:#96a1b8;" ng-click="vm.cancel(true)" >取  消</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="" style="height:200px;">
+                            <div id="warehouseInfo_map" class="mapview"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row bb-table whTable" ng-show="!showAdd">
+                    <table st-table="vm.items" st-safe-src="vm.items" class="table table-striped table-hover m-t">
+                        <thead>
+                        <tr>
+                            <th>仓库ID</th>
+                            <th>国家</th>
+                            <th>省</th>
+                            <th>市</th>
+                            <th>位置</th>
+                            <th>容量</th>
+                            <th>操作</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in vm.siteInfoList track by $index">
+                            <td style="vertical-align: middle;">{{item.site_code}}</td>
+                            <td style="vertical-align: middle;">{{item.city.nation_name}}</td>
+                            <td style="vertical-align: middle;">{{item.city.state_name}}</td>
+                            <td style="vertical-align: middle;">{{item.city.city_name}}</td>
+                            <td style="vertical-align: middle;">{{item.longitude +","+item.latitude }}</td>
+                            <td style="vertical-align: middle;">{{item.volume}}</td>
+                            <td style="vertical-align: middle;">
+                                <span class="bb-edit-btn" ng-click="vm.edit(item)">编辑</span>
+                                <span class="bb-del-btn" ng-click="vm.deleteSiteInfo(item.site_code)">删除</span>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div auto-pagination pageination="vm.pageination"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -2,26 +2,11 @@
      ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
     <!-- main -->
     <div class="col">
-        <!-- main header -->
-        <!--<div class="bg-light lter b-b wrapper-xs">-->
-        <!--<div class="row">-->
-        <!--<div class="col-md-6 col-sm-6 col-xs-12">-->
-        <!--<h1 class="font-thin h3 text-black m-l m-t-sm">{{vm.title}}</h1>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-
         <div id="content" style="height: 100vh;">
             <div class="wrapper-md">
                 <div class="row m-l m-r al-contents" style="background-color: #fff">
                     <div class="alert-title-posi"><h3 class="alert-title">报警监控</h3></div>
-                    <div class="col-md-6 m-b">
-                        <!--<div class="form-group">-->
-                        <!--<label class="col-md-4 control-label form-control-static">ID</label>-->
-                        <!--<div class="col-md-8">-->
-                        <!--<input type="text" class="form-control" placeholder="请输入云箱ID" ng-model="vm.queryParams.containerId" >-->
-                        <!--</div>-->
-                        <!--</div>-->
+                    <div class="col-md-4 m-b">
                         <form class="form-inline">
                             <div class="form-group">
                                 <label>ID</label>
@@ -30,37 +15,8 @@
                             </div>
                         </form>
                     </div>
-
-                    <!--<div class="col-md-4 m-b">-->
-                        <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<label class="col-md-4 control-label form-control-static">故障代码</label>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<div class="col-md-8">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<select name="account" class="form-control m-b" ng-model="vm.queryParams.alertCode">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<option ng-repeat="item in vm.options.alertCode track by $index">{{item.value}}&ndash;&gt;-->
-                        <!--&lt;!&ndash;</option>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</select>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                        <!--<form class="form-inline">-->
-                            <!--<div class="form-group">-->
-                                <!--<label>故障代码</label>-->
-                                <!--<select class="form-control" ng-model="vm.queryParams.alertCode">-->
-                                    <!--<option ng-repeat="item in vm.options.alertCode track by $index">{{item.value}}</option>-->
-                                <!--</select>-->
-                            <!--</div>-->
-                        <!--</form>-->
-                    <!--</div>-->
                     <!-- line2 -->
-                    <div class="col-md-6 m-b">
-                        <!--<div class="form-group">-->
-                        <!--<label class="col-md-4 control-label form-control-static">故障类型</label>-->
-                        <!--<div class="col-md-8">-->
-                        <!--<select name="account" class="form-control m-b" ng-model="vm.queryParams.alertType">-->
-                        <!--<option ng-repeat="item in vm.options.alertType track by $index">{{item.value}}-->
-                        <!--</option>-->
-                        <!--</select>-->
-                        <!--</div>-->
-                        <!--</div>-->
+                    <div class="col-md-4 m-b">
                         <form class="form-inline">
                             <div class="form-group">
                                 <label>故障类型</label>
@@ -70,8 +26,8 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-md-offset-4 col-md-4 m-b">
-                        <div class="form-group">
+                    <div class=" col-md-4 m-b">
+                        <div class="form-group" style="margin-top:-2.5px;">
                                 <span type="submit" class="btn btn-sm btn-alert" ng-click="vm.getAlerts()">查
                                     询
                                 </span>

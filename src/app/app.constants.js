@@ -7,7 +7,7 @@
         .constant('malarkey', malarkey)
         .constant('moment', moment)
         .constant('constdata', {
-            debugMode: location.hostname == "localhost",//http://52.80.40.26:9090/
+            debugMode: (location.hostname == "localhost"),//http://52.80.40.26:9090/
             logLevel: 111111,//控制log显示的级别（0不显示,1显示）,从左到右每位分别代表[error,warn,info,debug,log]
             apiHost_ONLINE:'http://106.2.20.186/container/api/v1/cloudbox/', //http://54.223.162.108:9090/ production1
             // apiHost_OFFLINE:'http://52.80.40.26:9090/',//http://54.223.29.24:9090/ production2
@@ -18,8 +18,8 @@
             // apiHost_OFFLINE:'http://172.16.2.189:8000/',
             token:'airspc_access_authorization',
             informationKey:'airspc_information',
-            refreshInterval: 300000,
-            defaultContainerId : '01-03-17-09-00-22',
+            refreshInterval: 60000,
+            defaultContainerId : 'HNAR0000099',
             api:{
                 resource:{
                     vehicle:'resource/vehicle',
@@ -61,7 +61,20 @@
                 analysisresult : "analysisresult",
                 operationoverview : "operationoverview",
                 user:'user',
-                message:'message'
+                message:'message',
+                allsites:"allsites",
+                countryList:"nationlist",
+                provinceList:"/provincelist/",
+                cityList:"/citylist/",
+                getPosition:"/getPosition",
+
+                //仓库部分的api
+                warehouse:{
+                    create:"/sites",
+                    update:"/sites/{",
+                    delete:"/sites/{",
+                    retrieve:'/allsites?page='
+                }
             },
             routeName:{
                 "app.dashboard":"全景展示",

@@ -15,7 +15,7 @@
             <div class="wrapper-md">
                 <div class="rt-head">
                     <div class="rt-head-left">
-                        <h3>实时报文</h3>
+                        <h3>实时状态</h3>
                     </div>
                     <div class="rt-head-right">
                         <span class="rt-id">ID</span>
@@ -143,8 +143,8 @@
                         <span>云箱历史记录</span>
                         <div class="bd-timeRange">
                             <span ng-class="{false:'',true:'bd-timeRange_selected'}[vm.days == 1]" ng-click="getHistoryData(1)">一天</span>
-                            <span  ng-class="{false:'',true:'bd-timeRange_selected'}[vm.days == 3]" ng-click="getHistoryData(3)">三天</span>
-                            <span  ng-class="{false:'',true:'bd-timeRange_selected'}[vm.days == 7]" ng-chick="getHistoryData(7)">一周</span>
+                            <span ng-class="{false:'',true:'bd-timeRange_selected'}[vm.days == 3]" ng-click="getHistoryData(3)">三天</span>
+                            <span ng-class="{false:'',true:'bd-timeRange_selected'}[vm.days == 7]" ng-click="getHistoryData(7)">一周</span>
                         </div>
                     </div>
                     <div class="bd-tab">

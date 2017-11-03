@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('DashboardController', DashboardController);
 
     /** @ngInject */
-    function DashboardController($stateParams, ApiServer, MapService, toastr, $state, $timeout, $interval,$scope) {
+    function DashboardController($stateParams, ApiServer, MapService, toastr, $state, $timeout, constdata, $interval,$scope) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -257,7 +257,7 @@
         getContainerInfo();
         var timer = $interval(function(){
             getContainerInfo();
-        },5000, 500);
+        },constdata.refreshInterval, 500);
 
         $scope.$on("$destroy", function(){
             $interval.cancel(timer);
