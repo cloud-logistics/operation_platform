@@ -387,7 +387,7 @@
 
 #### BODY:
 
-
+`无`
 
 #### 返回：
 
@@ -408,6 +408,65 @@
     "site_id": "1"
 }
 ```
+
+
+### 7. 查询仓库调度：
+
+#### URL：
+
+`container/api/v1/cloudbox/dispatch`
+
+#### 方法：
+
+`GET`
+
+#### BODY:
+
+`无`
+
+#### 返回：
+
+```
+{
+    "status": "OK",
+    "msg": "query dispatches success",
+    "dispatches": [
+        {
+            "did": 2,
+            "start": {
+                "id": 1,
+                "location": "北京朝阳区堆场",
+                "site_code": "BJ001"
+            },
+            "finish": {
+                "id": 2,
+                "location": "北京海淀区堆场",
+                "site_code": "BJ002"
+            },
+            "count": 2,
+            "status": "undispatch",
+            "create_date": "2017-11-03"
+        },
+        {
+            "did": 3,
+            "start": {
+                "id": 1,
+                "location": "北京朝阳区堆场",
+                "site_code": "BJ001"
+            },
+            "finish": {
+                "id": 3,
+                "location": "天津堆场",
+                "site_code": "TJ001"
+            },
+            "count": 3,
+            "status": "undispatch",
+            "create_date": "2017-11-03"
+        }
+    ]
+}
+```
+
 
 
 
