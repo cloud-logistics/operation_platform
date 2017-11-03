@@ -9,7 +9,7 @@
                         <span>录入云箱基础信息</span>
                         <span class="bb-add" ng-show="!showAdd" ng-click="switchShowAdd()">添 加</span>
                     </div>
-                    <div class="bb-content" ng-show="showAdd">
+                    <div class="bb-content" ng-show="showAdd" style="margin-top:15px;">
                         <div class="row m-b">
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -68,7 +68,7 @@
                                 <div class="form-group">
                                     <label class="col-md-2 control-label form-control-static">位置</label>
                                     <div class="col-md-10">
-                                        <input ng-model="vm.newBasicInfoConfig.containerId" type="text" class="form-control" placeholder="请输入位置">
+                                        <input ng-model="vm.address" type="text" class="form-control" placeholder="请输入位置">
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +94,7 @@
                             </div>
                         </div>
 
-                        <div class="">
+                        <div class="" style="height:200px;">
                             <div id="warehouseInfo_map" class="mapview"></div>
                         </div>
                     </div>

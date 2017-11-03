@@ -21,12 +21,10 @@
 
 
         var service = {
-
           map_init: map_init,
           addMarker: addMarker,
           addCircle: addCircle,
           geoCodePosition: geoCodePosition
-
         };
 
         var mapIcons = {
@@ -46,7 +44,7 @@
                 center: center,
                 mapTypeId: mapType,
                 scrollwheel: true,
-                maxZoom: 13,
+                maxZoom: 17,
                 minZoom: 2,
                 zoom: zoomLevel | 3
             });

@@ -63,7 +63,10 @@
                 user:'user',
                 message:'message',
                 allsites:"allsites",
-                countryList:"nationlist"
+                countryList:"nationlist",
+                provinceList:"/provincelist/",
+                cityList:"/citylist/",
+                getPosition:"/getPosition"
             },
             routeName:{
                 "app.dashboard":"全景展示",
