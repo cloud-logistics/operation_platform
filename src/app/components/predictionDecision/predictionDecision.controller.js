@@ -19,6 +19,11 @@
 
         var map = MapService.map_init("map-canvas", mapCenter, "terrain");
 
+        vm.pageination = {
+            totalPages:10,
+            hasContent:true,
+        };
+
         // 鼠标绘图工具
         var overlay = undefined;
 
@@ -122,23 +127,21 @@
         }
 
         $scope.updateMarker = function(bounds) {
+            console.log("bounds",bounds);
             var remainContainer = [{
-                "title": "东海",
+                "title": "",
                 "detail": "",
-                fillColor:"red",
                 "position":
                 {
-                    "lng": 122.289718, "lat": 30.027183
+                    "lng": bounds['oPoint'].lng,
+                    "lat": bounds['oPoint'].lat
                 }
             }];
-
             clearMarker();
-
             markers = R.compose(
                 R.map(MapService.addMarker(map, "redBox")),
                 R.map(R.prop("position"))
             )(remainContainer)
-
         };
 
         function clearMarker() {
@@ -149,7 +152,41 @@
         }
 
         var getData = function () {
-            vm.pDData = ApiServer.getPredictionDecisionData()
+            //vm.pDData = ApiServer.getDispatchData()
+
+            ApiServer.getDispatchData({
+                data:{
+                    limit:10,
+                    offset:0
+                },
+                success:function(res){
+                    console.log("res = ",res);
+                    var menu = {
+                        "undispatch":"待调度",
+                        "dispatch":"进行中"
+                    };
+                    vm.pDData = _.map(res.data.dispatches,function(item){
+                        return {
+                            oPoint:{
+                                lng:item.start.longitude,
+                                lat:item.start.latitude
+                            },
+                            tPoint:{
+                                lng:item.finish.longitude,
+                                lat:item.finish.latitude
+                            },
+                            status:menu[item.status],
+                            oAddress:item.start.location,
+                            count:item.count,
+                            tAddress:item.finish.location,
+                        }
+                    });
+                    console.log(vm.pDData)
+                },
+                error:function(res){
+                    console.log("获取调度信息失败 = ",res);
+                }
+            })
         };
 
         getData();

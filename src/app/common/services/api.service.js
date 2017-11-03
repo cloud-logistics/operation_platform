@@ -110,7 +110,7 @@
             shipOrderDepartrue: shipOrderDepartrue,
             shipOrderArriveDestinationPort: shipOrderArriveDestinationPort,
             shipOrderDeliverGoods: shipOrderDeliverGoods,
-            getPredictionDecisionData: getPredictionDecisionData,
+            getDispatchData: getDispatchData,
             getAllsites: getAllsites,
             getCloudBoxData: getCloudBoxData,
             getCloudBoxInOutRecord: getCloudBoxInOutRecord,
@@ -185,20 +185,21 @@
         }
 
         //获取预测及评估的数据
-        function getPredictionDecisionData() {
-            var param = {
-                currentPage: "1",
-                pageNum: "20"
-            };
-            //NetworkService.post(constdata.api.user,param,successHandler,failedHandler);
+        function getDispatchData(opt) {
 
-            var dict = {
-                status: ['进行中', '待调度'],
-                oAddress: ['BG1123', 'XA0029', 'TY0354'],
-                count: [1, 3, 4],
-                tAddress: ['BJ1123', 'AK0029', 'HLJ0354']
-            }
-            return zjMock(dict, 10);
+            NetworkService.get(constdata.api.dispatchInfo,opt.data,opt.success,opt.error);
+            //
+            //var param = {
+            //    currentPage: "1",
+            //    pageNum: "20"
+            //};
+            //var dict = {
+            //    status: ['进行中', '待调度'],
+            //    oAddress: ['BG1123', 'XA0029', 'TY0354'],
+            //    count: [1, 3, 4],
+            //    tAddress: ['BJ1123', 'AK0029', 'HLJ0354']
+            //}
+            //return zjMock(dict, 10);
         }
 
         //获取国家列表
