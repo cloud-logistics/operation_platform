@@ -238,11 +238,11 @@
         }
         //删除仓库
         function deleteSiteInfo(opt){
-            NetworkService.delete(constdata.api.warehouse.delete + opt.site_code + "}", null, opt.success, opt.error);
+            NetworkService.delete(constdata.api.warehouse.delete + opt.site_code, null, opt.success, opt.error);
         }
         //修改仓库
         function updateSiteInfo(opt){
-            NetworkService.put(constdata.api.warehouse.update + opt.site_code + "}", opt.param, opt.success, opt.error);
+            NetworkService.put(constdata.api.warehouse.update + opt.site_code + "/", opt.param, opt.success, opt.error);
         }
         //查询仓库
         function retrieveSiteInfo(opt){
