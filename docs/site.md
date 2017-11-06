@@ -475,6 +475,118 @@
 }
 ```
 
+### 7. 查询热力图数据：
+
+#### URL：
+
+`container/api/v1/cloudbox/distribution`
+
+#### 方法：
+
+`GET`
+
+#### BODY:
+
+`无`
+
+#### 返回：
+
+```
+{
+    "status": "OK",
+    "msg": "query distribution success",
+    "sites": [
+        {
+            "site_code": "BJ001",
+            "longitude": "116.46111",
+            "location": "北京朝阳区堆场",
+            "latitude": "39.92111",
+            "box_num": 3000,
+            "id": 1
+        },
+        {
+            "site_code": "GZ001",
+            "longitude": "113.261870",
+            "location": "广州堆场",
+            "latitude": "23.131716",
+            "box_num": 3000,
+            "id": 5
+        },
+        {
+            "site_code": "QD001",
+            "longitude": "120.33",
+            "location": "青岛堆场",
+            "latitude": "36.07",
+            "box_num": 3000,
+            "id": 6
+        },
+        {
+            "site_code": "WF001",
+            "longitude": "119.160459",
+            "location": "潍坊堆场",
+            "latitude": "36.710008",
+            "box_num": 3000,
+            "id": 7
+        },
+        {
+            "site_code": "BZ001",
+            "longitude": "117.970763",
+            "location": "滨州堆场",
+            "latitude": "37.381072",
+            "box_num": 3000,
+            "id": 8
+        },
+        {
+            "site_code": "CZ001",
+            "longitude": "116.838607",
+            "location": "沧州堆场",
+            "latitude": "38.306742",
+            "box_num": 3000,
+            "id": 9
+        },
+        {
+            "site_code": "LF001",
+            "longitude": "116.684922",
+            "location": "廊坊堆场",
+            "latitude": "39.537800",
+            "box_num": 3000,
+            "id": 10
+        },
+        {
+            "site_code": "HK001",
+            "longitude": "110.290146",
+            "location": "海口堆场",
+            "latitude": "20.024706",
+            "box_num": 3000,
+            "id": 11
+        },
+        {
+            "site_code": "WH001",
+            "longitude": "114.300457",
+            "location": "武汉堆场",
+            "latitude": "30.590830",
+            "box_num": 3000,
+            "id": 12
+        },
+        {
+            "site_code": "JN001",
+            "longitude": "117.049018",
+            "location": "济南堆场",
+            "latitude": "36.662650",
+            "box_num": 3000,
+            "id": 13
+        },
+        {
+            "site_code": "XA001",
+            "longitude": "108.838780",
+            "location": "西安堆场",
+            "latitude": "34.211539",
+            "box_num": 3000,
+            "id": 14
+        }
+    ]
+}
+```
 
 
 
