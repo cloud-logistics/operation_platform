@@ -59,7 +59,7 @@
         <div class="whTable_content" style="margin:0 15px; overflow-y:scroll;height:90%;">
             <div class="whTable_content_container"  ng-repeat="item in vm.recordList track by $index">
                 <div class="whTable_content_line1" ng-class="{true:'line1FC',false:''}[$index == 0]">
-                    <span class="whTable_content_line1_circle" ng-class="{true:'status_in',false:'status_out'}[item.status == 'in']"></span>
+                    <span class="whTable_content_line1_circle" ng-class="{true:'status_in',false:'status_out'}[item.type == '入库']"></span>
                     <span class="whTable_content_line1_time">{{item.timestamp}}</span>
                 </div>
                 <div class="whTable_content_line2">
