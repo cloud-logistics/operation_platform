@@ -3,15 +3,21 @@
  */
 
 var showStatus = function(id) {
-    //getBoxbysite(id);
-    switchStatus(true);
-    switchRecord(false);
+    var dom = document.getElementById("whTable");
+    var scope = angular.element(dom).scope();
+    scope['getBoxbysite'](id,function(){
+        switchRecord(false);
+        switchStatus(true);
+    })
 };
 
 var showRecord = function(id) {
-    //getSiteStream(id);
-    switchRecord(true);
-    switchStatus(false);
+    var dom = document.getElementById("whTable");
+    var scope = angular.element(dom).scope();
+    scope['getSiteStream'](id,function(){
+        switchRecord(true);
+        switchStatus(false);
+    })
 };
 
 var switchStatus = function(isShow){
@@ -41,6 +47,7 @@ var switchRecord = function(isShow){
             'in':"入库",
             'out':"出库"
         };
+
         var setMap = function(){
             var width = document.body.clientWidth;
             var height = document.body.clientHeight;
@@ -61,23 +68,29 @@ var switchRecord = function(isShow){
             });
         };
         
-        var getBoxbysite = function(id){
+        $scope.getBoxbysite = function(id,callback){
             ApiServer.getBoxbysite(id, function(response){
                 vm.whStatusData = response.data.data.results;
                 console.log(response.data.data.results);
+                if(callback){
+                    callback()
+                }
             }, function(err){
                 console.log("Get Stream Info Failed", err);
             });
         }
 
-        var getSiteStream = function(id) {
+        $scope.getSiteStream = function(id,callback) {
             ApiServer.getSiteStream(id, function(response){
                 vm.recordList = response.data.siteHistory;
                 console.log(response.data.siteHistory);
+                if(callback){
+                    callback()
+                }
             }, function(err){
                 console.log("Get Stream Info Failed", err);
             });
-        }
+        };
 
         function clearMarker () {
             markers.map(function (marker){
@@ -88,8 +101,7 @@ var switchRecord = function(isShow){
 
         setMap();
         getSitesInfo();
-        getSiteStream(1);
-        getBoxbysite(1);
+
 
         function addMarkerWithInfo (siteInfo) {
             var position = {

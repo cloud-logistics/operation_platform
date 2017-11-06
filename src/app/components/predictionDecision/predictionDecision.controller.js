@@ -19,11 +19,6 @@
 
         var map = MapService.map_init("map-canvas", mapCenter, "terrain");
 
-        vm.pageination = {
-            totalPages:10,
-            hasContent:true,
-        };
-
         // 鼠标绘图工具
         var overlay = undefined;
 
@@ -49,31 +44,33 @@
             }
         );
 
-        var randomIn = function (min, max, intager) {
-            min = min || 0;
-            max = max || 1;
-            intager = intager || 0;
-            var temp = min + Math.random() * (max - min);
-            return temp.toFixed(intager)
-        };
+        var setHeatmap = function(){
+            ApiServer.getDistribution({
+                data:"",
+                success:function(res){
+                    console.log("res = ",res.data);
+                    var max = 0;
+                    var data = _.map(res.data.sites,function(item){
+                        max = item.box_num < max ? max : item.box_num;
+                        return{
+                           "lng":item.longitude,
+                            "lat":item.latitude,
+                            count:item.box_num
+                        }
+                    });
+                    //heatmap.setData(testData);
+                    heatmap.setData({
+                        max:max,
+                        data:data
+                    });
 
-        var dict = {};
-        var data = [];
-        for (var i = 0; i < 1000; i++) {
-            dict = {};
-            dict['lat'] = randomIn(-90, 90, 4);
-            dict['lng'] = randomIn(-180, 180, 4);
-            dict['count'] = randomIn(0, 1000, 0);
-            data.push(dict);
-        }
-        var testData = {
-            max: 1000,
-            data: data
+                },
+                error:function(err){
+                    console.log("获取仓库分布失败.");
+                }
+            })
         };
-
-        setTimeout(function () {
-            heatmap.setData(testData);
-        }, 100)
+        setHeatmap();
 
         function drawingManagerInit(map) {
             var styleOptions = {

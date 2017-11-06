@@ -78,7 +78,8 @@
                     boxbysite: 'boxbysite/',
                     siteStream: 'siteStream/'
                 },
-                dispatchInfo:"dispatch"
+                dispatchInfo:"dispatch",
+                distribution:"/distribution"
             },
             routeName:{
                 "app.dashboard":"全景展示",

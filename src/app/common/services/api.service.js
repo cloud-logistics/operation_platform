@@ -111,6 +111,7 @@
             shipOrderArriveDestinationPort: shipOrderArriveDestinationPort,
             shipOrderDeliverGoods: shipOrderDeliverGoods,
             getDispatchData: getDispatchData,
+            getDistribution:getDistribution,
             getAllsites: getAllsites,
             getBoxbysite: getBoxbysite,
             getSiteStream: getSiteStream,
@@ -158,7 +159,10 @@
             NetworkService.get(constdata.api.warehouse.siteStream + id, null, successHandler, failedHandler);
         }
 
-
+        //获取分布信息数据
+        function getDistribution(opt){
+            NetworkService.get(constdata.api.distribution,null,opt.success,opt.error)
+        }
 
         //获取在库云箱数据
         function getCloudBoxData() {
@@ -195,7 +199,7 @@
             return zjMock(dict, 10);
         }
 
-        //获取预测及评估的数据
+        //获取调度数据
         function getDispatchData(opt) {
 
             NetworkService.get(constdata.api.dispatchInfo,opt.data,opt.success,opt.error);
