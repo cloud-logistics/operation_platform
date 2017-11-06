@@ -70,7 +70,7 @@
                 }
             })
         };
-        setHeattmap();
+        setHeatmap();
 
         function drawingManagerInit(map) {
             var styleOptions = {
