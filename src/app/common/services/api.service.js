@@ -151,8 +151,9 @@
             NetworkService.get(constdata.api.warehouse.allsites + page, null, successHandler, failedHandler);
         }
 
-        function getBoxbysite(id , successHandler, failedHandler) {
-            NetworkService.get(constdata.api.warehouse.boxbysite + id, null, successHandler, failedHandler);
+        function getBoxbysite(opt) {
+            var url = constdata.api.warehouse.boxbysite.replace("{id}",opt.id).replace("{limit}",opt.limit).replace("{offset}",opt.offset)
+            NetworkService.get(url, null,opt.success, opt.error);
         }
 
         function getSiteStream(id , successHandler, failedHandler) {
@@ -262,7 +263,8 @@
         }
         //查询仓库
         function retrieveSiteInfo(opt){
-            NetworkService.get(constdata.api.warehouse.retrieve+opt.param, null, opt.success, opt.error);
+            var url = constdata.api.warehouse.retrieve.replace("{limit}",opt.limit).replace("{offset}",opt.offset);
+            NetworkService.get(url, null, opt.success, opt.error);
         }
 
 

@@ -55,6 +55,16 @@
             }
         }
 
+        $scope.conf = {
+            currentPage: 1,
+            itemsPerPage: 10,
+            totalItems:0,
+            pagesLength: 15,
+            perPageOptions: [10, 20, 30, 40, 50],
+            onChange: function () {
+            }
+        };
+
         vm.getCountryList = function (callback) {
             ApiServer.getCountryList({
                 "success": function (res) {
@@ -290,9 +300,11 @@
 
         function retrieveSiteInfo() {
             ApiServer.retrieveSiteInfo({
-                "param": "2",
+                "limit": $scope.conf.itemsPerPage,
+                "offset": ($scope.conf.currentPage - 1)*$scope.conf.itemsPerPage,
                 "success": function (res) {
                     vm.siteInfoList = res.data.data.results;
+                    $scope.conf.totalItems = res.data.data.count;
                     console.log("vm.siteInfoList", vm.siteInfoList)
                 },
                 "error": function (err) {
@@ -302,5 +314,7 @@
         }
 
         retrieveSiteInfo();
+
+        $scope.$watchGroup(['conf.currentPage','conf.itemsPerPage'],retrieveSiteInfo)
     }
 })();

@@ -10,11 +10,7 @@
     function PipelineviewController($stateParams,ApiServer,toastr,$state,$timeout,$interval) {
         /* jshint validthis: true */
         var vm = this;
-
         vm.title = '全景平台';
-
-
-
         // 全景地图功能
         var _map = document.getElementById('pipelineview');
         function calcMap(){
@@ -149,32 +145,20 @@
 
         var BJData = [
             [{name:'北京'}, {name:'布宜诺斯艾利斯',value:60}],
-            // [{name:'北京'}, {name:'悉尼',value:50}],
-            // [{name:'北京'}, {name:'开普敦',value:40}],
-            // [{name:'北京'}, {name:'伦敦',value:30}],
             [{name:'北京'}, {name:'旧金山',value:20}],
-            // [{name:'北京'}, {name:'多伦多',value:10}]
         ];
-
 
         var LondonData = [
             [{name:'伦敦'}, {name:'布宜诺斯艾利斯',value:60}],
-            // [{name:'伦敦'}, {name:'悉尼',value:50}],
             [{name:'伦敦'}, {name:'开普敦',value:40}],
-            // [{name:'伦敦'}, {name:'旧金山',value:20}],
-            // [{name:'伦敦'}, {name:'多伦多',value:10}]
         ];
 
         var SydneyData = [
-            // [{name:'悉尼'}, {name:'北京',value:60}],
-            // [{name:'悉尼'}, {name:'上海',value:50}],
             [{name:'悉尼'}, {name:'开普敦',value:40}],
-            // [{name:'悉尼'}, {name:'旧金山',value:20}],
             [{name:'悉尼'}, {name:'多伦多',value:10}]
         ];
 
         var SHData = [
-            // [{name:'上海'}, {name:'布宜诺斯艾利斯',value:60}],
             [{name:'上海'},{name:'广州',value:80}],
             [{name:'上海'},{name:'大连',value:10}]
         ];
@@ -185,7 +169,6 @@
         ];
 
         var TRTData = [
-            // [{name:'多伦多'},{name:'布宜诺斯艾利斯',value:95}],
             [{name:'多伦多'}, {name:'北京',value:60}],
             [{name:'多伦多'},{name:'开普敦',value:10}]
         ];
@@ -195,8 +178,6 @@
             [{name:'旧金山'},{name:'广州',value:10}]
         ];
 
-        // var planePath = 'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z';
-        // var planePath = 'http://ol37p4zz4.bkt.clouddn.com/map1.png';
         var planePath = 'path://M10.0680373,23.8807967 L0.067265,18.8810206 L0.067265,6.88155809 L10.0680373,11.8813341 L10.0680373,23.8807967 Z M11.4014736,23.8401211 L11.4014736,11.8815468 L21.4021981,6.88048319 L21.4015993,18.2143461 L11.4014736,23.8401211 Z M10.7366787,24.2141151 L10.734768,24.21519 L10.7366787,24.2141151 Z M0.067265,5.54828447 L10.7347554,0.21519 L21.4022459,5.54828447 L10.7347554,10.8813789 L0.067265,5.54828447 Z';
 
         var convertData = function (data) {
@@ -296,7 +277,6 @@
 
         var option = {
             backgroundColor: '#B5C4D4',
-            // color: '#E4E8E4',
             title : {
                 text: '智能云箱',
                 subtext: '云箱全景平台',
