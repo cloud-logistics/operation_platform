@@ -410,7 +410,7 @@
 ```
 
 
-### 7. 查询仓库调度：
+### 7. 查询仓库当天调度：
 
 #### URL：
 
@@ -475,7 +475,73 @@
 }
 ```
 
-### 7. 查询热力图数据：
+### 8. 查询仓库调度历史：
+
+#### URL：
+
+`container/api/v1/cloudbox/disHistory`
+
+#### 方法：
+
+`GET`
+
+#### BODY:
+
+`无`
+
+#### 返回：
+
+```
+{
+    "status": "OK",
+    "msg": "query dispatches success",
+    "dispatches": [
+        {
+            "did": 7,
+            "start": {
+                "id": 7,
+                "location": "潍坊堆场",
+                "longitude": "119.160459",
+                "latitude": "36.710008",
+                "site_code": "WF001"
+            },
+            "finish": {
+                "id": 8,
+                "location": "滨州堆场",
+                "longitude": "117.970763",
+                "latitude": "37.381072",
+                "site_code": "BZ001"
+            },
+            "count": 2,
+            "status": "undispatch",
+            "create_date": "2017-11-03"
+        },
+        {
+            "did": 8,
+            "start": {
+                "id": 9,
+                "location": "沧州堆场",
+                "longitude": "116.838607",
+                "latitude": "38.306742",
+                "site_code": "CZ001"
+            },
+            "finish": {
+                "id": 10,
+                "location": "廊坊堆场",
+                "longitude": "116.684922",
+                "latitude": "39.537800",
+                "site_code": "LF001"
+            },
+            "count": 5,
+            "status": "undispatch",
+            "create_date": "2017-11-03"
+        }
+    ]
+}
+```
+
+
+### 9. 查询热力图数据：
 
 #### URL：
 
