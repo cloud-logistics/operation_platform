@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     // Declare app directives module which depends on views, and components
     angular
         .module('smart_container')
@@ -61,8 +60,7 @@
             function updatePagination(pageination) {
 
                 if (!pageination || !pageination.hasContent){
-                    // toastr.error('当前无数据哦~');
-                    return;
+                   return;
                 }
 
                 var page = pageination.page;
