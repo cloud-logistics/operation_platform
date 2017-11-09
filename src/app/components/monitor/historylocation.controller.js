@@ -55,15 +55,6 @@
                 routes = histories.map(function (route) {
                   var startPointLatlng = route.start.position
                   var endPointLatlng = route.end.position
-
-                  //var startPointMarker = MapService.addMarker(map)(route.start.position)
-                  //var endPointMarker = MapService.addMarker(map)(route.end.position)
-                  console.log(route.start.locationName);
-
-                  //infoWindow(map, startPointMarker, "起点: " + route.start.locationName)
-
-                  //infoWindow(map, endPointMarker, "终点: " + route.end.locationName)
-
                   bounds.extend(startPointLatlng);
                   bounds.extend(endPointLatlng);
 

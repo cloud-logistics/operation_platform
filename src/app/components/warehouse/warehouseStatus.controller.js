@@ -1,7 +1,6 @@
 /**
  * Created by xianZJ on 2017/10/17.
  */
-
 var showStatus = function (id) {
     var dom = document.getElementById("whTable");
     var scope = angular.element(dom).scope();
@@ -128,7 +127,6 @@ var switchRecord = function (isShow) {
         initMap();
         getSitesInfo();
 
-
         function addMarkerWithInfo(siteInfo) {
             var position = {
                 lat: siteInfo.latitude,
@@ -168,6 +166,5 @@ var switchRecord = function (isShow) {
         $scope.$watchGroup(['conf.currentPage', 'conf.itemsPerPage'], function () {
             $scope.getBoxbysite();
         })
-
     }
 })();

@@ -4,8 +4,6 @@
 
 (function () {
     'use strict';
-
-
     /**
      *
      * facotry是一个单例,它返回一个包含service成员的对象。

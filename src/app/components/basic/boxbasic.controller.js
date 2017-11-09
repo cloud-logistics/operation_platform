@@ -115,16 +115,6 @@
         $scope.$on("$destroy", function(){
             $interval.cancel(timer);
         });
-
-        // function getBasicInfoManage () {
-        //     ApiServer.getBasicInfoManage(function (response) {
-        //         vm.basicInfoManage = response.data
-        //         console.log(vm.basicInfoManage);
-        //     },function (err) {
-        //         console.log("Get ContainerOverview Info Failed", err);
-        //     });
-        // }
-
                 
         function getBasicInfo () {
             ApiServer.getBasicInfo({}, function (response) {

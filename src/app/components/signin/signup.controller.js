@@ -59,10 +59,5 @@
                 return constdata.apiHost_ONLINE + constdata.api.user;
             }
         }
-
-
-
-
     }
-
 })();

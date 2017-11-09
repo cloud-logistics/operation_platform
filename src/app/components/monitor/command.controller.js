@@ -1,9 +1,6 @@
 /**
  * Created by guankai on 09/06/2017.
  */
-/**
- * Created by Otherplayer on 16/7/21.
- */
 (function () {
     'use strict';
 
@@ -104,15 +101,7 @@
 
                             '</div>' +
                         '</div>' +
-                        // '<div class="marker-point">' +
-
-                        // '</div>' +
                     '</div>';
-                //infoWindow(map, currentPositionMarker, content)
-
-                // bounds.extend(currentPositionMarker.getPosition());
-
-                // map.fitBounds(bounds);
 
             },function (err) {
                 console.log("Get Historyview Info Failed", err);

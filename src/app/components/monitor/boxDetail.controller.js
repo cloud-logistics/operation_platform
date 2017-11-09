@@ -1,9 +1,6 @@
 /**
  * Created by guankai on 01/06/2017.
  */
-/**
- * Created by guankai on 23/05/2017.
- */
 (function () {
     'use strict';
 
@@ -371,11 +368,6 @@
                                 fontSize: 24,
                                 color: '#6DB988'
                             }
-                            //shadowBlur: 0
-                            // textStyle {
-                            //     fontSize: 10,
-                            //     color: '#fff'
-                            // }
                         }
 
                     },
@@ -384,8 +376,6 @@
                         itemStyle: {
                             borderWidth: 1,
                             borderColor: '#86cea0'
-                            // shadowBlur: 0,
-                            // shadowColor: 'rgba(255, 0, 0, 1)'
                         }
                     }
 
@@ -467,11 +457,6 @@
                 ]
             };
             speedChart.setOption(speedOption);
-
-            // setInterval(function () {
-            //     speedOption.series[0].data[0].value = (Math.random() * 1000).toFixed(2) - 0;
-            //     speedChart.setOption(speedOption, true);
-            // }, 2000);
         }
 
         /*初始化速度line chart*/
@@ -568,19 +553,6 @@
                         "lineStyle": {
                             "normal": {
                                 width: 4
-                                // color: {
-                                //     type: 'linear',
-                                //     x: 0,
-                                //     y: 0,
-                                //     x2: 0,
-                                //     y2: 1,
-                                //     colorStops: [{
-                                //         offset: 0, color: 'red' // 0% 处的颜色
-                                //     }, {
-                                //         offset: 1, color: 'blue' // 100% 处的颜色
-                                //     }],
-                                //     globalCoord: false // 缺省为 false
-                                // }
                             }
                         },
                         "itemStyle": {
@@ -722,13 +694,9 @@
                                         "color": "#fff"
                                     },
                                     "width": 1,
-                                    "position": "insideTop",
-                                    // formatter: function(p) {
-                                    //     return p.value > 0 ? (p.value) : '';
-                                    // }
+                                    "position": "insideTop"
                                 }
                             }
-                            // "show":false
                         },
                         "data": [
                             709,

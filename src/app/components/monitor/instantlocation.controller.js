@@ -45,24 +45,10 @@
                 var currentPosition = response.data.currentPosition
                 var currentLocationName = response.data.currentLocationName;
                 var endPosition = response.data.endPosition
-
-                console.log(response.data);
-
-                //var startPositionMarker = MapService.addMarker(map)(startPosition)
                 var currentPositionMarker = MapService.addMarker(map)(currentPosition)
-                //var endPositionMarker = MapService.addMarker(map)(startPosition)
-
                 infoWindow(map, currentPositionMarker, "当前点: " + currentLocationName)
 
-                //bounds.extend(startPositionMarker.getPosition());
                 bounds.extend(currentPositionMarker.getPosition());
-                //bounds.extend(endPositionMarker.getPosition());
-
-              /*
-                direction(startPosition, currentPosition)
-                direction(currentPosition, endPosition)
-                */
-
                 map.fitBounds(bounds);
 
             },function (err) {
@@ -84,28 +70,16 @@
           var control = document.getElementById('floating-panel');
 
           directionsDisplay.setMap(map);
-          // directionsDisplay.setPanel(document.getElementById('right-panel'));
-
-          // control.style.display = 'block';
-          // map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
-
-
           var request = {
             origin: startPointLatlng,
             destination: endPointLatlng,
             travelMode: 'DRIVING'
           };
-
-
           directionsService.route(request, function(result, status) {
             if (status == 'OK') {
               directionsDisplay.setDirections(result);
             }
           });
-
-
         }
-
     }
-
 })();

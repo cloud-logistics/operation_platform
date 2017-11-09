@@ -64,7 +64,7 @@
                 StorageService.put(authorizationKey,sessionInfo,24 * 7 * 60 * 60);//3 天过期
                 StorageService.put(constdata.informationKey,userInfo,24 * 3 * 60 * 60);
 
-                var appGo = 'app.pipelineview';
+                var appGo = 'app.dashboard';
 
                 $rootScope.$on('$locationChangeSuccess',function(){//返回前页时，刷新前页
                     parent.location.reload();
@@ -99,10 +99,8 @@
         vm.toggleLang = function(lang) {
             vm.langChoosen = (vm.langChoosen == langChi) ? langEng : langChi
             vm.langLeft = (vm.langLeft == langChi) ? langEng : langChi;
-            // console.log(lang);
             lang == langEng ? $translate.use('en-us') : $translate.use('zh-cn');
             lang == langEng ? window.localStorage.userLanguage='en-us' :  window.localStorage.userLanguage='zh-cn'
-            // window.location.reload();
         }
 
     }
