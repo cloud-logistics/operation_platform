@@ -27,7 +27,7 @@
             var height = document.body.clientHeight;
             var mapCenter = {lat: 31.2891, lng: 121.4648};
             vm.mapSize = {"width": '200px', "height": '100px'};
-            map = MapService.map_init("warehouseInfo_map", mapCenter, "terrain", 3);
+            map = MapService.map_init("warehouseInfo_map", mapCenter, "terrain", 3.5);
         };
         $scope.showAdd = false;
         $scope.switchShowAdd = function () {
@@ -140,11 +140,26 @@
             });
         };
 
-        var resetLocation = function (obj) {
+        var resetLocation = function (obj,lng,lat) {
             console.log("obj = ", obj);
-            return;
             vm.siteInfo.nation_id = obj.nation_id;
-            vm.getProvinceList();
+            var obj = {
+                latitude:lat,
+                location:obj.position_name,
+                longitude:lng,
+                city:{
+                    city_id:obj.city_id
+                },
+                nation:{
+                    nation_id:obj.nation_id
+                },
+                province:{
+                   province_id:obj.province_id
+                },
+                site_code:vm.siteInfo.site_code,
+                volume:vm.siteInfo.volume
+            };
+            vm.edit(obj);
         };
 
         var getAddressByLngLat = function (lng, lat) {
@@ -158,7 +173,7 @@
                 "success": function (res) {
                     console.log("res = ", res);
                     vm.siteInfo.location = res.data.position_name;
-                    resetLocation(res.data);
+                    resetLocation(res.data,lng,lat);
                 },
                 "error": function (res) {
                     console.log(222)
@@ -166,7 +181,7 @@
             })
         };
 
-        vm.edit = function (obj) {
+        vm.edit = function (obj,isNeedSwitchShowAdd) {
             console.log("obj =", obj);
             vm.getCountryList(function(){
                 vm.siteInfo.nation.nation_id = obj.nation.nation_id;
@@ -175,24 +190,21 @@
                     vm.siteInfo.province.province_id = obj.province.province_id;
 
                     vm.getCityList(function(){
-                        vm.siteInfo =obj;
+                        vm.siteInfo = _.clone(obj);
                         vm.siteInfo.city = {
-                            "city_id":obj.city.id,
+                            "city_id":obj.city.city_id||obj.city.id,
                             "city_name":obj.city.city_name,
                             "longitude":obj.longitude,
                             "latitude":obj.latitude
                         };
-
-                        console.log("3333",vm.siteInfo);
                         vm.setPointer();
 
                     })
                 });
             });
-
-
-            $scope.switchShowAdd();
-
+            if(isNeedSwitchShowAdd){
+                $scope.switchShowAdd();
+            }
         };
 
         function save() {
@@ -200,7 +212,7 @@
                 console.log("请输入地点位置.");
                 return;
             }
-            if(!vm.siteInfo.volumn){
+            if(!vm.siteInfo.volume && vm.siteInfo.volume != 0){
                 console.log("请输入容量.");
                 return;
             }
@@ -248,6 +260,7 @@
                     alert(response.data.msg);
                     console.log(response.data.code);
                     emptyInfo();
+                    retrieveSiteInfo();
                 },
                 "error": function (err) {
                     console.log("新增仓库失败", err);
@@ -265,7 +278,8 @@
                 "param": site_id,
                 "site_code":site_id,
                 "success": function (res) {
-                    alert(response.data.msg);
+                    alert(res.data.msg);
+                    retrieveSiteInfo();
                 },
                 "error": function (res) {
                     console.log("删除仓库失败", res);
@@ -291,6 +305,7 @@
                     alert(response.data.msg);
                     console.log(response.data.code);
                     emptyInfo();
+                    retrieveSiteInfo();
                 },
                 "error": function (err) {
                     console.log("新增仓库失败", err);

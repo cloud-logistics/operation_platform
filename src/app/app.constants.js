@@ -67,8 +67,8 @@
                 warehouse:{
                     create:"/sites",
                     retrieve:'/allsites?limit={limit}&offset={offset}',
-                    update:"/sites/{",
-                    delete:"/sites/{",
+                    update:"/sites/",
+                    delete:"/sites/",
                     allsites:'/allsites?page=',
                     boxbysite: 'boxbysite/{id}?limit={limit}&offset={offset}',
                     siteStream: 'siteStream/'
