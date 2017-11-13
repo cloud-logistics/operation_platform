@@ -6,7 +6,7 @@
     angular.module('smart_container').controller('WarehouseInfoController', WarehouseInfoController);
 
     /** @ngInject */
-    function WarehouseInfoController($scope, ApiServer, MapService, optionsTransFunc) {
+    function WarehouseInfoController($scope, ApiServer,toastr, MapService, optionsTransFunc) {
         var vm = this;
         var map;
         vm.reports = [];
@@ -257,7 +257,7 @@
             ApiServer.addSiteInfo({
                 "param": data,
                 "success": function (response) {
-                    alert(response.data.msg);
+                    toastr.success(response.data.msg);
                     console.log(response.data.code);
                     emptyInfo();
                     retrieveSiteInfo();
@@ -278,11 +278,11 @@
                 "param": site_id,
                 "site_code":site_id,
                 "success": function (res) {
-                    alert(res.data.msg);
+                    toastr.success(res.data.msg);
                     retrieveSiteInfo();
                 },
                 "error": function (res) {
-                    console.log("删除仓库失败", res);
+                    toastr.error("删除仓库失败", res);
                 }
             })
         }
@@ -302,7 +302,7 @@
                 "param": data,
                 "site_code":vm.siteInfo.id,
                 "success": function (response) {
-                    alert(response.data.msg);
+                    toastr.success(response.data.msg);
                     console.log(response.data.code);
                     emptyInfo();
                     retrieveSiteInfo();

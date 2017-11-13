@@ -131,7 +131,7 @@ var switchRecord = function (isShow) {
             var position = {
                 lat: siteInfo.latitude,
                 lng: siteInfo.longitude
-            }
+            };
 
             function showStatusHandler() {
                 console.log(siteInfo.site_code);

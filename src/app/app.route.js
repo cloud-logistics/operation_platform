@@ -152,6 +152,10 @@
                 templateUrl: 'app/components/predictionDecision/predictionDecision.html'
             })
 
+            .state('app.profile', {
+                url: 'user/profile',
+                templateUrl: 'app/components/profile/profile.html'
+            })
             .state('access.signin', {
                 url: '/signin',
                 templateUrl: 'app/components/signin/signin.html'
