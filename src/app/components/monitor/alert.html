@@ -39,22 +39,17 @@
                     <table st-table="vm.items" st-safe-src="vm.items" class="table table-striped table-hover m-t">
                         <thead>
                         <tr>
-                            <!--<th ng-repeat="title in vm.titles">-->
-                            <!--{{title}}-->
-                            <!--</th>-->
                             <th>云箱ID</th>
                             <th>报警时间</th>
                             <th>报警类别</th>
-                            <th>承运人</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr ng-repeat="item in vm.alerts track by $index">
-                            <td style="vertical-align: middle;">{{item.containerId}}</td>
-                            <td style="vertical-align: middle;">{{item.alertTime | date:"yyyy-MM-dd"}}</td>
-                            <td style="vertical-align: middle;">{{item.alertType}}</td>
-                            <td style="vertical-align: middle;">{{item.carrier}}</td>
+                            <td style="vertical-align: middle;">{{item.deviceid}}</td>
+                            <td style="vertical-align: middle;">{{item.timestamp | date:"yyyy-MM-dd hh:mm:ss"}}</td>
+                            <td style="vertical-align: middle;">{{item.error_description}}</td>
                             <td><a ui-sref="app.realtime({
                                                 containerId: item.containerId
                                             })" class="btn-table-detail">查看详情</a> 
@@ -69,8 +64,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div auto-pagination pageination="vm.pageination"></div>
-
+                <tm-pagination style="float:right;" conf="conf"></tm-pagination>
             </div>
         </div>
     </div>

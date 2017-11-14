@@ -134,8 +134,8 @@
                                     <input ng-model="vm.newBasicInfoConfig.manufactureTime" 
                                         class="form-control m-b" 
                                         moment-picker
+                                           max-date="vm.MaxDate"
                                         format="YYYY-MM-DD">
-                                        <!--<input date-time ng-model="vm.newBasicInfoConfig.manufactureTime" class="form-control m-b" min-view="hours" format="YYYY-MM-DD HH:mm">-->
                                     </div>
                                 </div>
                             </div>
@@ -201,9 +201,6 @@
                     <table st-table="vm.items" st-safe-src="vm.items" class="table table-striped table-hover m-t">
                         <thead>
                         <tr>
-                            <!--<th ng-repeat="title in vm.titles">-->
-                            <!--{{title}}-->
-                            <!--</th>-->
                             <th>云箱ID</th>
                             <th>RFID</th>
                             <th>云箱型号</th>

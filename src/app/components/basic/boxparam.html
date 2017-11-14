@@ -4,15 +4,15 @@
     <div class="col">
         <div id="content" style="height: 100vh;">
             <div class="wrapper-md">
-                <div class="row m-l m-r bp-param-1">
-                    <div class="bp-title-1"><span>标准云箱安全参数设置</span></div>
+                <div class="row m-l m-r bp-param-1" ng-repeat="box in vm.boxList" >
+                    <div class="bp-title-1"><span>{{box.box_type_name}}安全参数设置</span></div>
                     <div class="bp-param-content1">
                         <div class="col-md-4 m-b-md">
                             <form class="form-inline">
                                 <div class="form-group">
                                     <label>GPS中断时间</label>
-                                    <select ng-model="vm.newNormalSecurityConfig.intervalTime" name="account" class="form-control">
-                                        <option ng-repeat="item in vm.options.intervalTime track by $index" >{{item.value}}</option>
+                                    <select ng-model="box.interval_time" name="account" class="form-control">
+                                        <option ng-repeat="item in vm.options.intervalTime track by $index" ng-value="item.value">{{item.value}}</option>
                                     </select>
                                 </div>
                             </form>
@@ -22,8 +22,8 @@
                             <form class="form-inline">
                                 <div class="form-group">
                                     <label>温度区间</label>
-                                    <input ng-model="vm.newNormalSecurityConfig.temperature.min" type="text" class="form-control" placeholder="请输入..."> -
-                                    <input ng-model="vm.newNormalSecurityConfig.temperature.max" type="text" class="form-control" placeholder="请输入...">
+                                    <input ng-model="box.temperature_threshold_min" type="text" class="form-control" placeholder="请输入..."> -
+                                    <input ng-model="box.temperature_threshold_max" type="text" class="form-control" placeholder="请输入...">
                                 </div>
                             </form>
                         </div>
@@ -31,8 +31,8 @@
                             <form class="form-inline">
                                 <div class="form-group">
                                     <label>湿度区间</label>
-                                    <input ng-model="vm.newNormalSecurityConfig.humidity.min" type="text" class="form-control" placeholder="请输入..."> -
-                                    <input ng-model="vm.newNormalSecurityConfig.humidity.max" type="text" class="form-control" placeholder="请输入...">
+                                    <input ng-model="box.humidity_threshold_min" type="text" class="form-control" placeholder="请输入..."> -
+                                    <input ng-model="box.humidity_threshold_max" type="text" class="form-control" placeholder="请输入...">
                                 </div>
                             </form>
                         </div>
@@ -41,8 +41,8 @@
                             <form class="form-inline">
                                 <div class="form-group">
                                     <label>开关门数</label>
-                                    <input ng-model="vm.newNormalSecurityConfig.operation.min" type="text" class="form-control" placeholder="请输入..."> -
-                                    <input ng-model="vm.newNormalSecurityConfig.operation.max" type="text" class="form-control" placeholder="请输入...">
+                                    <input ng-model="box.operation_threshold_min" type="text" class="form-control" placeholder="请输入..."> -
+                                    <input ng-model="box.operation_threshold_max" type="text" class="form-control" placeholder="请输入...">
                                 </div>
                             </form>
                         </div>
@@ -51,8 +51,8 @@
                             <form class="form-inline">
                                 <div class="form-group">
                                     <label>碰撞次数</label>
-                                    <input ng-model="vm.newNormalSecurityConfig.collision.min" type="text" class="form-control" placeholder="请输入..."> -
-                                    <input ng-model="vm.newNormalSecurityConfig.collision.max" type="text" class="form-control" placeholder="请输入...">
+                                    <input ng-model="box.collision_threshold_min" type="text" class="form-control" placeholder="请输入..."> -
+                                    <input ng-model="box.collision_threshold_max" type="text" class="form-control" placeholder="请输入...">
                                 </div>
                             </form>
                         </div>
@@ -60,88 +60,19 @@
                             <form class="form-inline">
                                 <div class="form-group">
                                     <label>电池余量</label>
-                                    <input ng-model="vm.newSecurityConfig.batteryThresholdLow" type="text" class="form-control" placeholder="请输入..."> -
-                                    <input ng-model="vm.newSecurityConfig.batteryThresholdHigh" type="text" class="form-control" placeholder="请输入...">
+                                    <input ng-model="box.battery_threshold_min" type="text" class="form-control" placeholder="请输入..."> -
+                                    <input ng-model="box.battery_threshold_max" type="text" class="form-control" placeholder="请输入...">
                                 </div>
                             </form>
                         </div>
 
                         <div class="col-md-offset-8 col-md-4">
-                            <span class="pull-right" ng-click="vm.updateNormalContainerSecurityConfigPost()" >更新设置</span>
+                            <span class="pull-right" ng-click="vm.resetSafeSetting(box)" >更新设置</span>
                         </div>
                     </div>
 
                 </div>
 
-
-                <!--集装箱安全参数设置 div-->
-                <div class="row m-l m-r bp-param-2">
-                    <div class="bp-title-2"><span>集装箱云箱安全参数设置</span></div>
-                    <div class="bp-param-content2">
-                        <div class="col-md-4 m-b-md">
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <label>GPS中断时间</label>
-                                    <select ng-model="vm.newUldSecurityConfig.intervalTime" name="account" class="form-control">
-                                        <option ng-repeat="item in vm.options.intervalTime track by $index" >{{item.value}}</option>
-                                    </select>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="col-md-4 m-b-md">
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <label>温度区间</label>
-                                    <input ng-model="vm.newUldSecurityConfig.temperature.min" type="text" class="form-control" placeholder="请输入..."> -
-                                    <input ng-model="vm.newUldSecurityConfig.temperature.max" type="text" class="form-control" placeholder="请输入...">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-md-4 m-b-md">
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <label>湿度区间</label>
-                                    <input ng-model="vm.newUldSecurityConfig.humidity.min" type="text" class="form-control" placeholder="请输入..."> -
-                                    <input ng-model="vm.newUldSecurityConfig.humidity.max" type="text" class="form-control" placeholder="请输入...">
-                                </div>
-                            </form>
-                        </div>
-                        <!-- line2 -->
-                        <div class="col-md-4 m-b-md">
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <label>开关门数</label>
-                                    <input ng-model="vm.newUldSecurityConfig.operation.min" type="text" class="form-control" placeholder="请输入..."> -
-                                    <input ng-model="vm.newUldSecurityConfig.operation.max" type="text" class="form-control" placeholder="请输入...">
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="col-md-4 m-b-md">
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <label>碰撞次数</label>
-                                    <input ng-model="vm.newUldSecurityConfig.collision.min" type="text" class="form-control" placeholder="请输入..."> -
-                                    <input ng-model="vm.newUldSecurityConfig.collision.max" type="text" class="form-control" placeholder="请输入...">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-md-4 m-b-md">
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <label>电池余量</label>
-                                    <input ng-model="vm.newUldSecurityConfig.batteryThresholdLow" type="text" class="form-control" placeholder="请输入..."> -
-                                    <input ng-model="vm.newUldSecurityConfig.batteryThresholdHigh" type="text" class="form-control" placeholder="请输入...">
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="col-md-offset-8 col-md-4">
-                            <span class="pull-right" ng-click="vm.updateUldSecurityConfigPost()" >更新设置</span>
-                        </div>
-                    </div>
-                </div>
 
             </div>
         </div>

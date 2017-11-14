@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('BoxBasicController', BoxBasicController);
 
     /** @ngInject */
-    function BoxBasicController(constdata, NetworkService, $stateParams, ApiServer, toastr, $state, $timeout, $interval, $scope, optionsTransFunc) {
+    function BoxBasicController(constdata, NetworkService,ApiServer, toastr, $scope, optionsTransFunc) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -98,6 +98,7 @@
                 hardwareInfo : R.compose(R.prop("value"),R.head)(vm.options.hardwareInfo),
                 manufactureTime: moment(new Date())
             };
+            vm.MaxDate = moment()
             vm.newSecurityConfig = {
                 intervalTime : R.compose(R.prop("value"),R.head)(vm.options.intervalTime)
             };
@@ -105,21 +106,13 @@
             vm.newIssueConfig = {};
 
             console.log(options);
-        })
+        });
 
         getBasicInfo();
-        var timer = $interval(function(){
-            getBasicInfo();
-        },constdata.refreshInterval, 500);
 
-        $scope.$on("$destroy", function(){
-            $interval.cancel(timer);
-        });
-                
         function getBasicInfo () {
             ApiServer.getBasicInfo({}, function (response) {
-                // console.log(Date.parse(vm.queryParams.startTime).toString());
-                vm.basicInfoManage = response.data.basicInfo
+               vm.basicInfoManage = response.data.basicInfo
                 console.log(vm.basicInfoManage);
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);

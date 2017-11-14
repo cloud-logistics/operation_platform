@@ -10,7 +10,8 @@
             debugMode: (location.hostname == "localhost"),//http://52.80.40.26:9090/
             logLevel: 111111,//控制log显示的级别（0不显示,1显示）,从左到右每位分别代表[error,warn,info,debug,log]
             apiHost_ONLINE:'http://106.2.20.186/container/api/v1/cloudbox/monservice/', //http://54.223.162.108:9090/ production1
-            apiHost_OFFLINE:'http://localhost:4000/container/api/v1/cloudbox/',
+            apiHost_OFFLINE:'http://106.2.20.185/container/api/v1/cloudbox/monservice/', //http://54.223.162.108:9090/ production1
+            //apiHost_OFFLINE:'http://localhost:4000/container/api/v1/cloudbox/',
             token:'airspc_access_authorization',
             informationKey:'airspc_information',
             refreshInterval: 60000,
@@ -40,7 +41,7 @@
                 securityConfig : "securityConfig",
                 repairConfig : "repairConfig",
                 issueConfig : "issueConfig",
-                alerts : "alerts",
+                alerts : "alerts/{container_id}/{alert_type_id}?limit={limit}&offset={offset}",
                 basicInfo : "basicInfo",
                 boxStatus : "boxStatus",
                 realtimeInfo : "realtimeInfo",
@@ -73,6 +74,8 @@
                     boxbysite: 'boxbysite/{id}?limit={limit}&offset={offset}',
                     siteStream: 'siteStream/'
                 },
+                safeSetting:"safeSettings",
+                resetSafeSetting:"safeSettings/{id}/",
                 dispatchInfo:"dispatch",
                 distribution:"/distribution"
             },
@@ -82,7 +85,7 @@
                 "app.signin":"登陆"
             },
             map:{
-                mapStyle: { 
+                mapStyle: {
                     features: ["road", "building","water","land"],//隐藏地图上的poi
                     style : "light"  //设置地图风格为高端黑
                 }

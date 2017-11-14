@@ -18,6 +18,16 @@
         vm.queryParams = $stateParams
         vm.options = {}
 
+        $scope.conf = {
+            currentPage: 1,
+            itemsPerPage: 10,
+            totalItems:0,
+            pagesLength: 15,
+            perPageOptions: [10, 20, 30, 40, 50],
+            onChange: function () {
+            }
+        };
+
         vm.getAlerts = getAlerts
         var transformations = undefined;
 
@@ -52,13 +62,25 @@
         
         function getAlerts () {
             var queryParams = R.evolve(transformations)(vm.queryParams)
-            console.log(queryParams);
-            ApiServer.getAlerts(queryParams, function (response) {
-                vm.alerts = response.data.alerts
-            },function (err) {
-                console.log("Get ContainerOverview Info Failed", err);
+            var data = {
+                containerId:queryParams.containerId || "all",
+                alertType:queryParams.alertType,
+                limit:$scope.conf.itemsPerPage,
+                offset:($scope.conf.itemsPerPage * ($scope.conf.currentPage - 1))
+            };
+            ApiServer.getAlerts({
+                data: data,
+                success: function (response) {
+                    vm.alerts = response.data.data.results;
+                    $scope.conf.totalItems = response.data.data.count;
+                },
+                error: function (err) {
+                    console.log("获取报警监控信息失败", err);
+                }
             });
         }
+
+        $scope.$watchGroup(['conf.currentPage','conf.itemsPerPage'],getAlerts)
     }
 
 })();

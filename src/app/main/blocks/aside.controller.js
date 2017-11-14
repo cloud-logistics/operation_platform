@@ -8,15 +8,12 @@
     angular.module('smart_container').controller('AsideController', AsideController);
 
     /** @ngInject */
-    function AsideController(ApiServer,$state, StorageService, constdata) {
+    function AsideController($state, ApiServer, toastr, StorageService, constdata) {
         /* jshint validthis: true */
         var vm = this;
-        var info = ApiServer.info();
-
         var height = document.body.clientHeight + 'px';
-        vm.navStyle = {'height':height};
+        vm.navStyle = {'height': height};
 
-        vm.clearAllMessageAction = clearAllMessageAction;
         vm.logoutAction = logoutAction;
 
         vm.messages = [];
@@ -24,23 +21,37 @@
 
         vm.role = StorageService.get(constdata.informationKey).role;
 
-        function clearAllMessageAction() {
-            vm.messages = [];
-            for (var i = 0; i < vm.messages.length; i++){
-                var msg = vm.messages[i];
-                ApiServer.messageDelete(msg.messageid);
-            }
-        }
-        
-        ApiServer.messageGetByUserId(function (res) {
-            vm.messages = res.data;
-            if (vm.messages.length > 5){
-                vm.messages = vm.messages.slice(0,5);
-            }
-        },function (err) {
+        vm.jumpTo = function(url){
+            $state.go(url);
+        };
 
-        })
-        
+        ApiServer.messageGetByUserId({
+            success: function (res) {
+                console.log(res.data);
+                var dict = {
+                    "alarm_count":"告警信息",
+                    "undispach_count":"调度信息"
+                };
+                var obj = [
+                    {
+                        name:dict['alarm_count'],
+                        count:res.data['alarm_count'],
+                        url:"app.alert"
+                    },
+                    {
+                        name:dict['undispach_count'],
+                        count:res.data['undispach_count'],
+                        url:"app.prediction"
+                    }
+                ];
+                vm.totalMessage = res.data.message_count;
+                vm.messages = obj;
+            },
+            error: function (err) {
+                console.log("获取消息失败.",err);
+            }
+        });
+
         function logoutAction() {
             ApiServer.logoutAction();
         }

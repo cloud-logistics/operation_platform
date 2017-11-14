@@ -123,7 +123,9 @@
             addSiteInfo:addSiteInfo,
             deleteSiteInfo:deleteSiteInfo,
             updateSiteInfo:updateSiteInfo,
-            retrieveSiteInfo:retrieveSiteInfo
+            retrieveSiteInfo:retrieveSiteInfo,
+            getAllSafeSetting:getAllSafeSetting,
+            resetSafeSetting:resetSafeSetting
         };
 
         return service;
@@ -167,6 +169,23 @@
             NetworkService.get(constdata.api.provinceList + opt.countryId, null, opt.success, opt.error);
 
         }
+
+        //获取所有安全参数设置
+        function getAllSafeSetting(opt) {
+            NetworkService.get(constdata.api.safeSetting,
+                opt.params.data,
+                opt.success,
+                opt.error);
+        }
+        //根据id设置云箱的安全参数
+        function resetSafeSetting(opt){
+            var url = constdata.api.resetSafeSetting.replace("{id}",opt.params.id)
+            NetworkService.put(url,
+                opt.params.data,
+                opt.success,
+                opt.error);
+        }
+
 
         //获取市列表
         function getCityList(opt) {
@@ -290,11 +309,16 @@
                 failedHandler);
         }
 
-        function getAlerts(params, successHandler, failedHandler) {
-            NetworkService.post(constdata.api.alerts,
-                params,
-                successHandler,
-                failedHandler);
+        function getAlerts(opt) {
+            var url = constdata.api.alerts.replace("{container_id}",opt.data.containerId)
+                      .replace("{alert_type_id}",opt.data.alertType)
+                      .replace("{limit}",opt.data.limit)
+                      .replace("{offset}",opt.data.offset);
+
+            NetworkService.get(url,
+                null,
+                opt.success,
+                opt.error);
         }
 
         function getBasicInfo(params, successHandler, failedHandler) {
@@ -486,8 +510,8 @@
             NetworkService.get(constdata.api.message + '/' + messageId, null, successHandler, failedHandler);
         }
 
-        function messageGetByUserId(userId, successHandler, failedHandler) {
-            NetworkService.get(constdata.api.message, null, successHandler, failedHandler);
+        function messageGetByUserId(opt) {
+            NetworkService.get(constdata.api.message, null, opt.success, opt.error);
         }
 
         function messageDelete(messageId, successHandler, failedHandler) {

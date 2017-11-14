@@ -7,21 +7,9 @@
     angular.module('smart_container').controller('BoxParamController', BoxParamController);
 
     /** @ngInject */
-    function BoxParamController(constdata, NetworkService, $stateParams, ApiServer, toastr, $state, $timeout, $interval, $scope, optionsTransFunc) {
+    function BoxParamController(constdata, NetworkService, ApiServer, toastr, $state, $timeout, $interval, $scope, optionsTransFunc) {
         /* jshint validthis: true */
         var vm = this;
-
-        vm.title = '报警监控';
-        vm.reports = [];
-        vm.queryParams = {}
-
-
-        vm.newSecurityConfig = {};
-        vm.newNormalSecurityConfig = {};
-        vm.newUldSecurityConfig = {};
-
-        vm.updateNormalContainerSecurityConfigPost = updateNormalContainerSecurityConfigPost;
-        vm.updateUldSecurityConfigPost = updateUldSecurityConfigPost;
 
         vm.options = {};
         var transformations = undefined;
@@ -66,30 +54,40 @@
             };
 
             console.log(options);
+
+            getAllSafeSetting();
         })
 
-
-        function updateNormalContainerSecurityConfigPost () {
-            var config = R.evolve(transformations)(vm.newNormalSecurityConfig)
-
-            console.log(config);
-
-            ApiServer.updateSecurityConfig(config, function (response) {
-                console.log(response.data);
-            },function (err) {
-                console.log("Get ContainerOverview Info Failed", err);
+        var getAllSafeSetting = function(){
+            ApiServer.getAllSafeSetting({
+                params:{},
+                success: function (res) {
+                    console.log(res.data);
+                    vm.boxList = res.data.box_types;
+                },
+                error: function (err) {
+                    console.log("获取所有安全测试设置失败", err);
+                }
             });
-        }
+        };
 
-        function updateUldSecurityConfigPost () {
-            var config = R.evolve(transformations)(vm.newUldSecurityConfig)
-
-            console.log(config);
-
-            ApiServer.updateSecurityConfig(config, function (response) {
-                console.log(response.data);
-            },function (err) {
-                console.log("Get ContainerOverview Info Failed", err);
+        vm.resetSafeSetting = function(box){
+            console.log()
+            ApiServer.resetSafeSetting({
+                params:{
+                    id:box.id,
+                    data:box
+                },
+                success: function (res) {
+                    if(res.data.status == "OK"){
+                        toastr.success(res.data.msg);
+                    }else{
+                        toastr.error(res.data.msg);
+                    }
+                },
+                error: function (err) {;
+                    toastr.error("设置失败");
+                }
             });
         }
 
