@@ -359,3 +359,58 @@ end_time: 结束时间，不限制结束时间传0
     ]
 }
 ```
+
+### 8. 状态汇总：
+
+#### URL： 
+
+`container/api/v1/cloudbox/monservice/boxStatus?container_id=all&container_type=1&location_id=0&limit=10&offset=0`
+
+#### URL参数:
+
+```
+container_id:  云箱id，查询全部时传all
+container_type: 云箱类型id，查询全部时传0
+location_id: 堆场id，查询全部时传0
+
+```
+
+#### 方法： 
+
+`GET`
+
+#### BODY:
+
+`无`
+
+#### 返回：
+```
+{
+    "message": "query alarm success",
+    "code": "OK",
+    "data": {
+        "count": 1,
+        "limit": 10,
+        "results": [
+            {
+                "deviceid": "HNAR0000247",
+                "longitude": "0",
+                "latitude": "0",
+                "speed": "0.0",
+                "temperature": "0.0",
+                "humidity": "0.0",
+                "collide": "0.0",
+                "num_of_door_open": 5,
+                "robot_operation_status": "装箱",
+                "battery": 0,
+                "location_name": ""
+            }
+        ],
+        "links": {
+            "previous": null,
+            "next": null
+        },
+        "offset": 0
+    }
+}```
+
