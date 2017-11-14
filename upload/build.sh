@@ -6,7 +6,7 @@ git pull
 
 echo "git pull done...."
 
-# sudo gulp dist
+sudo gulp dist
 
 echo "run gulp dist done...."
 
