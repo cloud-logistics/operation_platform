@@ -8,13 +8,13 @@
 
 #### URL：
 
-`127.0.0.1:8000/container/api/v1/cloudbox/monservice/alerts/container_id/alert_type_id?limit=10&offset=0`
+`container/api/v1/cloudbox/monservice/alerts?container_id=01-03-17-09-00-24&alert_type_id=0&limit=10&offset=0`
 
 #### URL参数:
 
 ```
 container_id:  云箱id，查询全部时传all
-alert_type_id: 告警类型id
+alert_type_id: 告警类型id，查询全部时传0
 
 ```
 

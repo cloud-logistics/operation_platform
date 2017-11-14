@@ -100,16 +100,16 @@
 
 #### URL： 
 
-`container/api/v1/cloudbox/monservice/basicInfo/{container_id}/{container_type}/{factory}/{start_time}/{end_time}`
+`container/api/v1/cloudbox/monservice/basicInfo?container_id=01-03-17-09-00-1E&container_type=0&factory=0&start_time=0&end_time=0&limit=10&offset=0`
 
 #### URL参数:
 
 ```
 container_id:  云箱id，查询全部时传all
-container_type: 云箱类型id
-factory: 生产厂家id
-start_time: 开始时间（用于过滤箱子生产时间）
-end_time: 结束时间
+container_type: 云箱类型id，查询全部时传0
+factory: 生产厂家id，查询全部时传0
+start_time: 开始时间，不限制开始时间传0
+end_time: 结束时间，不限制结束时间传0
 
 ```
 
