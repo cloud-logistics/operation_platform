@@ -68,7 +68,7 @@
                     itemGap: 20,
                     align: 'left',
                     x: 'right',
-                    data: ['中国', '美国', '欧盟', '印度', '日本', '加拿大', '其他'],
+                    data: _.keys(value),
                     formatter: function (name) {
                         return name;
                     }
@@ -101,15 +101,7 @@
                                 show: false
                             }
                         },
-                        data: [
-                            {value: value.China, name: '中国'},
-                            {value: value.USA, name: '美国'},
-                            {value: value.Europe, name: '欧盟'},
-                            {value: value.India, name: '印度'},
-                            {value: value.Japan, name: '日本'},
-                            {value: value.Canada, name: '加拿大'},
-                            {value: value.other, name: '其他'}
-                        ]
+                        data:_.map(_.keys(value),function(item){return{name:item,value:value[item]}})
                     }
                 ]
             };

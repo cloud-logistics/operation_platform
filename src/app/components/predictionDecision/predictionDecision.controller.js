@@ -19,6 +19,18 @@
 
         var map = MapService.map_init("map-canvas", mapCenter, "terrain");
 
+        $scope.conf = {
+            currentPage: 1,
+            itemsPerPage: 10,
+            totalItems:0,
+            pagesLength: 15,
+            pagePreEnabled:false,
+            pageNextEnabled:false,
+            perPageOptions: [10, 20, 30, 40, 50],
+            onChange: function () {
+            }
+        };
+        
         // 鼠标绘图工具
         var overlay = undefined;
 
@@ -148,21 +160,24 @@
             markers = []
         }
 
-        var getData = function () {
-            //vm.pDData = ApiServer.getDispatchData()
-
+        $scope.getData = function (flag) {
+            if(flag == 1){
+                $scope.conf.currentPage++;
+            }else if(flag == -1){
+                $scope.conf.currentPage--;
+            }
             ApiServer.getDispatchData({
                 data:{
-                    limit:10,
-                    offset:0
+                    limit:$scope.conf.itemsPerPage,
+                    offset:($scope.conf.currentPage - 1)*$scope.conf.itemsPerPage
                 },
                 success:function(res){
-                    console.log("res = ",res);
+                    console.log("res = ",res.data.data);
                     var menu = {
                         "undispatch":"待调度",
                         "dispatch":"进行中"
                     };
-                    vm.pDData = _.map(res.data.dispatches,function(item){
+                    vm.pDData = _.map(res.data.data.results,function(item){
                         return {
                             oPoint:{
                                 lng:item.start.longitude,
@@ -178,6 +193,10 @@
                             tAddress:item.finish.location,
                         }
                     });
+                    $scope.conf.currentPage = (res.data.data.offset / res.data.data.limit) + 1;
+                    $scope.conf.pagePreEnabled =  $scope.conf.currentPage > 1;
+                    $scope.conf.pageNextEnabled = (res.data.data.count  / res.data.data.limit) > $scope.conf.currentPage;
+
                     console.log(vm.pDData)
                 },
                 error:function(res){
@@ -186,6 +205,6 @@
             })
         };
 
-        getData();
+        $scope.getData();
     };
 })();

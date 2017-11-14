@@ -26,9 +26,6 @@
                 var firstLevelNav = [
                     'app.overview',
                     'app.monitor',
-                    'app.pipelineview',
-                    'app.satellite',
-                    'app.container_overview',
                     'app.signin'
                 ];
 
@@ -82,83 +79,67 @@
 
         // $locationProvider.html5Mode(true);
         $urlRouterProvider
-            //.otherwise('pipelineview');
-            .otherwise('warehouseStatus');
+            .otherwise('dashboard');
         $stateProvider
-
-
+            //云箱概览
             .state('app.dashboard', {
                 url: 'dashboard',
                 templateUrl: 'app/components/dashboard/dashboard.html'
             })
-            //全景地图
-            .state('app.overview', {
-                url: 'overview',
-                templateUrl: 'app/components/overview/overview.html'
+            //实时报文详情
+            .state('app.realtime',{
+                url: 'realtime/:containerId',
+                templateUrl: 'app/components/monitor/realtime.html'
             })
-            //全景视图
-            .state('app.pipelineview',{
-                url: 'pipelineview',
-                templateUrl: 'app/components/pipelineview/pipelineview.html'
+            //实时位置
+            .state('app.instantlocation',{
+                url: 'instantlocation/:containerId',
+                templateUrl: 'app/components/monitor/instantlocation.html'
             })
-            //云箱监控
-            .state('app.monitor',{
-                url: 'monitor',
-                templateUrl: 'app/components/monitor/monitor.html'
+            //历史轨迹
+            .state('app.historylocation',{
+                url: 'historylocation/:containerId/:startTime/:endTime',
+                templateUrl: 'app/components/monitor/historylocation.html'
             })
             //告警详情
             .state('app.alert',{
                 url: 'alert/:containerId/:alertLevel/:alertType/:alertCode',
                 templateUrl: 'app/components/monitor/alert.html'
             })
-            //云箱状态汇总
-            .state('app.boxstatus',{
-                url: 'boxstatus/:containerId/:alertLevel/:alertType',
-                templateUrl: 'app/components/monitor/boxstatus.html'
-            })
-            //历史报文查询
-            .state('app.history',{
-                url: 'history/:containerId/:containerType/:startTime/:endTime',
-                templateUrl: 'app/components/monitor/history.html'
-            })
             //基础信息查询
             .state('app.basicinfo',{
                 url: 'basicinfo/:containerId/:containerType/:factory',
                 templateUrl: 'app/components/monitor/basicinfo.html'
             })
-
-            //实时报文详情
-            .state('app.realtime',{
-                url: 'realtime/:containerId',
-                templateUrl: 'app/components/monitor/realtime.html'
+            //状态汇总
+            .state('app.boxstatus',{
+                url: 'boxstatus/:containerId/:alertLevel/:alertType',
+                templateUrl: 'app/components/monitor/boxstatus.html'
             })
-            //机器人监控
-            .state('app.robots',{
-                url: 'robots',
-                templateUrl: 'app/components/monitor/robots.html'
+            //云箱管理 ---- 云箱信息
+            .state('app.boxbasic',{
+                url: 'boxbasic',
+                templateUrl: 'app/components/basic/boxbasic.html'
             })
-
-            //租赁admin
-            .state('app.lease',{
-                url: 'lease',
-                templateUrl: 'app/components/lease/lease.html'
+            //云箱管理  ----  安全参数
+            .state('app.boxparam',{
+                url: 'boxparam',
+                templateUrl: 'app/components/basic/boxparam.html'
             })
-            //租赁管理
-            .state('app.leasemanage',{
-                url: 'leasemanage',
-                templateUrl: 'app/components/lease/leaseManage.html'
+            //云箱管理  ---- 维修处理
+            .state('app.boxalert',{
+                url: 'boxalert',
+                templateUrl: 'app/components/basic/boxalert.html'
             })
-
-            //租赁承运商
-            .state('app.mylease',{
-                url: 'mylease',
-                templateUrl: 'app/components/lease/mylease.html'
+            //仓库信息
+            .state('app.warehouseInfo', {
+                url: 'warehouseInfo/',
+                templateUrl: 'app/components/warehouse/warehouseInfo.html'
             })
-
-            //基础信息查询
-            .state('app.basicmanage',{
-                url: 'basicmanage',
-                templateUrl: 'app/components/monitor/basicmanage.html'
+            //仓库状态
+            .state('app.warehouseStatus', {
+                url: 'warehouseStatus/',
+                templateUrl: 'app/components/warehouse/warehouseStatus.html'
             })
 
             //云箱信息查询
@@ -166,71 +147,14 @@
                 url: 'boxdetail',
                 templateUrl: 'app/components/monitor/boxDetail.html'
             })
-
-            //云箱参数设置
-            .state('app.boxparam',{
-                url: 'boxparam',
-                templateUrl: 'app/components/basic/boxparam.html'
+            .state('app.prediction', {
+                url: 'prediction/',
+                templateUrl: 'app/components/predictionDecision/predictionDecision.html'
             })
 
-            //云箱基础信息管理
-            .state('app.boxbasic',{
-                url: 'boxbasic',
-                templateUrl: 'app/components/basic/boxbasic.html'
-            })
-
-            //云箱报警处理设置
-            .state('app.boxalert',{
-                url: 'boxalert',
-                templateUrl: 'app/components/basic/boxalert.html'
-            })
-
-            //云箱故障库设置
-            .state('app.boxmalfun',{
-                url: 'boxmalfun',
-                templateUrl: 'app/components/basic/boxmalfun.html'
-            })
-
-            .state('app.satellite',{
-                url: 'satellite',
-                templateUrl: 'app/components/satellite/satellite.html'
-            })
-
-            .state('app.container_overview',{
-                url: 'container_overview',
-                templateUrl: 'app/components/container_overview/container_overview.html'
-            })
-
-            .state('app.historylocation',{
-                url: 'historylocation/:containerId/:startTime/:endTime',
-                templateUrl: 'app/components/monitor/historylocation.html'
-            })
-
-            .state('app.instantlocation',{
-                url: 'instantlocation/:containerId',
-                templateUrl: 'app/components/monitor/instantlocation.html'
-            })
-
-            .state('app.command',{
-                url: 'command/:containerId/:endpointId',
-                templateUrl: 'app/components/monitor/command.html'
-            })
-            .state('app.allhist',{
-                url: 'allhist',
-                templateUrl: 'app/components/analysis/allHist.html'
-            })
-            .state('app.sitehist',{
-                url: 'sitehist',
-                templateUrl: 'app/components/analysis/siteHist.html'
-            })
-
-
-            /** LOGIN **/
-            .state('access', {
-                url: '/access',
-                templateUrl: 'signin.html',
-                controller: 'SigninController',
-                controllerAs: 'vm'
+            .state('app.profile', {
+                url: 'user/profile',
+                templateUrl: 'app/components/profile/profile.html'
             })
             .state('access.signin', {
                 url: '/signin',
@@ -241,130 +165,24 @@
                 templateUrl: 'app/components/signin/signup.html'
             })
 
-
-            .state('app.profile', {
-                url: 'user/profile',
-                templateUrl: 'app/components/profile/profile.html'
-            })
-            .state('app.company', {
-                url: 'regular/company?type',
-                templateUrl: 'app/components/company/company.html'
+            .state('app.command',{
+                url: 'command/:containerId/:endpointId',
+                templateUrl: 'app/components/monitor/command.html'
             })
 
-            /** ACCOUNT **/
-
-            //////用户
-            .state('app.userorder', {
-                url: 'regular/order',
-                templateUrl: 'app/components/order/user.order.html'
-            })
-            .state('app.userorderadd', {
-                url: 'regular/order/:orderId',
-                templateUrl: 'app/components/order/user.order.add.html'
-            })
-
-
-            //////货代公司
-            .state('app.goodorder', {
-                url: 'good/order',
-                templateUrl: 'app/components/order/good.order.html'
-            })
-            .state('app.goodorderadd', {
-                url: 'good/order/:orderId',
-                templateUrl: 'app/components/order/good.order.add.html'
-            })
-            .state('app.goodordercar', {
-                url: 'good/order/:orderId/car',
-                templateUrl: 'app/components/order/good.order.car.html'
-            })
-            .state('app.goodorderspace', {
-                url: 'good/order/:orderId/space',
-                templateUrl: 'app/components/order/good.order.space.html'
-            })
-            .state('app.goodstorages', {
-                url: 'good/storages',
-                templateUrl: 'app/components/storage/storages.html'
-            })
-            .state('app.goodstorage', {
-                url: 'good/storage',
-                templateUrl: 'app/components/storage/storage.html'
-            })
-
-            //////拖车公司
-            .state('app.carorder', {
-                url: 'car/order',
-                templateUrl: 'app/components/order/car.order.html'
-            })
-            .state('app.carorderadd', {
-                url: 'car/order/:orderId',
-                templateUrl: 'app/components/order/car.order.add.html'
-            })
-            .state('app.carorderaddpacking', {
-                url: 'car/order/packing/:orderId',
-                templateUrl: 'app/components/order/car.order.packing.html'
-            })
-            .state('app.vehicles', {
-                url: 'car/vehicles',
-                templateUrl: 'app/components/vehicle/vehicles.html'
-            })
-            .state('app.vehicle', {
-                url: 'car/vehicle/:vehicleId',
-                templateUrl: 'app/components/vehicle/vehicle.html'
-            })
-            .state('app.transporttask', {
-                url: 'car/transporttask',
-                templateUrl: 'app/components/transporttask/transporttask.html'
-            })
-
-            //////船运公司
-            .state('app.shiporder', {
-                url: 'ship/order',
-                templateUrl: 'app/components/order/ship.order.html'
-            })
-            .state('app.shiporderadd', {
-                url: 'ship/order/:orderId',
-                templateUrl: 'app/components/order/ship.order.add.html'
-            })
-            .state('app.containers', {
-                url: 'ship/containers',
-                templateUrl: 'app/components/container/containers.html'
-            })
-            .state('app.container', {
-                url: 'ship/container/:containerId',
-                templateUrl: 'app/components/container/container.html'
-            })
-            .state('app.shippingschedule', {
-                url: 'ship/shippingschedule',
-                templateUrl: 'app/components/shippingschedule/shippingschedule.html'
-            })
-            .state('app.shippingscheduleadd', {
-                url: 'ship/shippingschedule/:shippingScheduleId',
-                templateUrl: 'app/components/shippingschedule/shippingschedule.add.html'
-            })
-            .state('app.prediction', {
-                url: 'prediction/',
-                templateUrl: 'app/components/predictionDecision/predictionDecision.html'
-            })
-
-            .state('app.warehouseInfo', {
-                url: 'warehouseInfo/',
-                templateUrl: 'app/components/warehouse/warehouseInfo.html'
-            })
-
-            .state('app.warehouseStatus', {
-                url: 'warehouseStatus/',
-                templateUrl: 'app/components/warehouse/warehouseStatus.html'
+            /** LOGIN **/
+            .state('access', {
+                url: '/access',
+                templateUrl: 'signin.html',
+                controller: 'SigninController',
+                controllerAs: 'vm'
             })
 
             .state('app', {
-                //abstract: true,
                 url: '/',
                 controller: 'MainController',
                 controllerAs: 'main',
                 templateUrl: 'app/main/main.html'
-            })
-
-        ;
+            });
     }
-
 })();

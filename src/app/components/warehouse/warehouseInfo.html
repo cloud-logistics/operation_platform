@@ -6,7 +6,7 @@
             <div class="wrapper-md">
                 <div class="row" style="background-color: #fff">
                     <div class="bb-title wh-title">
-                        <span>录入云箱基础信息</span>
+                        <span>录入仓库基础信息</span>
                         <span class="bb-add" ng-show="!showAdd" ng-click="switchShowAdd()">添 加</span>
                     </div>
                     <div class="bb-content" ng-show="showAdd" style="margin-top:15px;">
@@ -119,14 +119,15 @@
                             <td style="vertical-align: middle;">{{item.longitude +","+item.latitude }}</td>
                             <td style="vertical-align: middle;">{{item.volume}}</td>
                             <td style="vertical-align: middle;">
-                                <span class="bb-edit-btn" ng-click="vm.edit(item)">编辑</span>
+                                <span class="bb-edit-btn" ng-click="vm.edit(item,true)">编辑</span>
                                 <span class="bb-del-btn" ng-click="vm.deleteSiteInfo(item.id)">删除</span>
                             </td>
 
                         </tr>
                         </tbody>
                     </table>
-                    <div auto-pagination pageination="vm.pageination"></div>
+                    <tm-pagination style="float:right;" conf="conf"></tm-pagination>
+                </div>
                 </div>
 
             </div>

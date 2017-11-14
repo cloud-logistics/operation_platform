@@ -1,36 +1,35 @@
 /**
  * Created by xianZJ on 2017/10/17.
  */
-
-var showStatus = function(id) {
+var showStatus = function (id) {
     var dom = document.getElementById("whTable");
     var scope = angular.element(dom).scope();
-    scope['getBoxbysite'](id,function(){
+    scope['getBoxbysite'](id, function () {
         switchRecord(false);
         switchStatus(true);
     })
 };
 
-var showRecord = function(id) {
+var showRecord = function (id) {
     var dom = document.getElementById("whTable");
     var scope = angular.element(dom).scope();
-    scope['getSiteStream'](id,function(){
+    scope['getSiteStream'](id, function () {
         switchRecord(true);
         switchStatus(false);
     })
 };
 
-var switchStatus = function(isShow){
-    if(isShow){
+var switchStatus = function (isShow) {
+    if (isShow) {
         $("#whTable").show();
-    }else{
+    } else {
         $("#whTable").hide();
     }
 };
-var switchRecord = function(isShow){
-    if(isShow){
+var switchRecord = function (isShow) {
+    if (isShow) {
         $("#whHistory").show();
-    }else{
+    } else {
         $("#whHistory").hide();
     }
 };
@@ -44,18 +43,17 @@ var switchRecord = function(isShow){
         var infoWindows = [];
         var map;
         vm.stateMenu = {
-            'in':"入库",
-            'out':"出库"
+            'in': "入库",
+            'out': "出库"
         };
 
-        var setMap = function(){
+        var initMap = function () {
             var width = document.body.clientWidth;
             var height = document.body.clientHeight;
-            var mapCenter = {lat: 31.2891, lng: 121.4648};
+            var mapCenter = {lat: 39.26, lng: 115.25};
             vm.mapSize = {"width": width + 'px', "height": height + 'px'};
-            map = MapService.map_init("warehouseStatus_map", mapCenter, "terrain");
+            map = MapService.map_init("warehouseStatus_map", mapCenter, "terrain",4);
         };
-
 
         var getSitesInfo = function () {
             ApiServer.getAllsites(1, function (response) {
@@ -67,49 +65,75 @@ var switchRecord = function(isShow){
                 console.log("Get Container Info Failed", err);
             });
         };
-        
-        $scope.getBoxbysite = function(id,callback){
-            ApiServer.getBoxbysite(id, function(response){
-                vm.whStatusData = response.data.data.results;
-                console.log(response.data.data.results);
-                if(callback){
-                    callback()
+
+        $scope.getBoxbysite = function (id, callback) {
+            if (id) {
+                localStorage.setItem("siteId", id);
+            } else {
+                if (localStorage.getItem('siteId')) {
+                    id = localStorage.getItem('siteId')
+                } else {
+                    console.log("仓库ID不能为空。");
+                    return;
                 }
-            }, function(err){
-                console.log("Get Stream Info Failed", err);
+            }
+            ApiServer.getBoxbysite({
+                "id":id,
+                "limit": $scope.conf.itemsPerPage,
+                "offset": ($scope.conf.currentPage - 1) * $scope.conf.itemsPerPage,
+                "success": function (response) {
+                    vm.whStatusData = response.data.data.results;
+                    $scope.conf.totalItems = response.data.data.count;
+                    if (callback) {
+                        callback()
+                    }
+                },
+                "error": function (err) {
+                    console.log("Get Stream Info Failed", err);
+                }
             });
         }
 
-        $scope.getSiteStream = function(id,callback) {
-            ApiServer.getSiteStream(id, function(response){
+        $scope.getSiteStream = function (id, callback) {
+
+            ApiServer.getSiteStream(id, function (response) {
                 vm.recordList = response.data.siteHistory;
                 console.log(response.data.siteHistory);
-                if(callback){
+                if (callback) {
                     callback()
                 }
-            }, function(err){
+            }, function (err) {
                 console.log("Get Stream Info Failed", err);
             });
         };
 
-        function clearMarker () {
-            markers.map(function (marker){
+        $scope.conf = {
+            currentPage: 1,
+            itemsPerPage: 10,
+            totalItems: 0,
+            pagesLength: 15,
+            perPageOptions: [10, 20, 30, 40, 50],
+            onChange: function () {
+            }
+        };
+
+        function clearMarker() {
+            markers.map(function (marker) {
                 marker.setMap(null)
             })
             markers = []
         }
 
-        setMap();
+        initMap();
         getSitesInfo();
 
-
-        function addMarkerWithInfo (siteInfo) {
+        function addMarkerWithInfo(siteInfo) {
             var position = {
                 lat: siteInfo.latitude,
                 lng: siteInfo.longitude
-            }
+            };
 
-            function showStatusHandler(){
+            function showStatusHandler() {
                 console.log(siteInfo.site_code);
             }
 
@@ -129,7 +153,7 @@ var switchRecord = function(isShow){
             infoWindows = R.append(infowindow)(infoWindows);
 
             google.maps.event.addListener(marker, 'click', function (event) {
-                R.map(function(item){
+                R.map(function (item) {
                     item.close();
                 })(infoWindows);
 
@@ -139,5 +163,8 @@ var switchRecord = function(isShow){
             return marker;
         }
 
+        $scope.$watchGroup(['conf.currentPage', 'conf.itemsPerPage'], function () {
+            $scope.getBoxbysite();
+        })
     }
 })();

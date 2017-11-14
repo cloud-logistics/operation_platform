@@ -115,8 +115,6 @@
             getAllsites: getAllsites,
             getBoxbysite: getBoxbysite,
             getSiteStream: getSiteStream,
-            getCloudBoxData: getCloudBoxData,
-            getCloudBoxInOutRecord: getCloudBoxInOutRecord,
 
             getCountryList: getCountryList,
             getProvinceList: getProvinceList,
@@ -127,23 +125,7 @@
             updateSiteInfo:updateSiteInfo,
             retrieveSiteInfo:retrieveSiteInfo
         };
-        var zjMock = function (dict, length) {
-            var res = [];
-            var tempDic = {};
-            for (var s = 0; s < length; s++) {
-                tempDic = {};
-                for (var k in dict) {
-                    if (dict.hasOwnProperty(k)) {
 
-                        var len = dict[k].length;
-                        var index = (Math.random() * (len - 1)).toFixed(0)
-                        tempDic[k] = dict[k][index]
-                    }
-                }
-                res.push(tempDic)
-            }
-            return res;
-        }
         return service;
 
         // 获取所有仓库信息
@@ -151,8 +133,9 @@
             NetworkService.get(constdata.api.warehouse.allsites + page, null, successHandler, failedHandler);
         }
 
-        function getBoxbysite(id , successHandler, failedHandler) {
-            NetworkService.get(constdata.api.warehouse.boxbysite + id, null, successHandler, failedHandler);
+        function getBoxbysite(opt) {
+            var url = constdata.api.warehouse.boxbysite.replace("{id}",opt.id).replace("{limit}",opt.limit).replace("{offset}",opt.offset)
+            NetworkService.get(url, null,opt.success, opt.error);
         }
 
         function getSiteStream(id , successHandler, failedHandler) {
@@ -164,57 +147,9 @@
             NetworkService.get(constdata.api.distribution,null,opt.success,opt.error)
         }
 
-        //获取在库云箱数据
-        function getCloudBoxData() {
-            var param = {
-                currentPage: "1",
-                pageNum: "20"
-            };
-            //NetworkService.post(constdata.api.user,param,successHandler,failedHandler);
-
-            var dict = {
-                warehouseID: ['2293203474450', '2293203474220'],
-                country: ['中国', '非洲', '马尔代夫'],
-                province: ['陕西', '阿里斯加', '拉斯维加斯'],
-                city: ['西安', '太原', '富平'],
-                location: ['108,22', '12,22', '108,32'],
-                volume: ['2333', '111', '8702']
-            };
-            return zjMock(dict, 10);
-        }
-
-        //获取云箱出入记录数据
-        function getCloudBoxInOutRecord() {
-            var param = {
-                currentPage: "1",
-                pageNum: "20"
-            };
-            //NetworkService.post(constdata.api.user,param,successHandler,failedHandler);
-
-            var dict = {
-                status: ['in', 'out'],
-                time: ['2017/10/25 14:22', '2017/10/25 16:33', '2017/10/25 15:44'],
-                warehouseID: ['2293203474450', '2293203474451', '22932034744502']
-            };
-            return zjMock(dict, 10);
-        }
-
         //获取调度数据
         function getDispatchData(opt) {
-
             NetworkService.get(constdata.api.dispatchInfo,opt.data,opt.success,opt.error);
-            //
-            //var param = {
-            //    currentPage: "1",
-            //    pageNum: "20"
-            //};
-            //var dict = {
-            //    status: ['进行中', '待调度'],
-            //    oAddress: ['BG1123', 'XA0029', 'TY0354'],
-            //    count: [1, 3, 4],
-            //    tAddress: ['BJ1123', 'AK0029', 'HLJ0354']
-            //}
-            //return zjMock(dict, 10);
         }
 
         //获取国家列表
@@ -262,7 +197,8 @@
         }
         //查询仓库
         function retrieveSiteInfo(opt){
-            NetworkService.get(constdata.api.warehouse.retrieve+opt.param, null, opt.success, opt.error);
+            var url = constdata.api.warehouse.retrieve.replace("{limit}",opt.limit).replace("{offset}",opt.offset);
+            NetworkService.get(url, null, opt.success, opt.error);
         }
 
 

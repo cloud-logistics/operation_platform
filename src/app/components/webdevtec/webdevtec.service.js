@@ -5,8 +5,6 @@
       .module('smart_container')
       .service('webDevTec', webDevTec);
 
-
-
   /** @ngInject */
   function webDevTec(RestService, $scope) {
     var users = RestService.all('users');
@@ -78,9 +76,6 @@
         'logo': 'less.png'
       }
     ];
-
-    /* X_jshint validthis: true */
-    //this.getTec = getTec;
 
     function getTec() {
       return data;

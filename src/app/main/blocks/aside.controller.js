@@ -44,9 +44,5 @@
         function logoutAction() {
             ApiServer.logoutAction();
         }
-        
-        
-
-
     }
 })();

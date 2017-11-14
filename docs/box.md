@@ -97,7 +97,60 @@
 ```
 
 
-### 4. 查询云箱安全参数：
+### 4. 基础信息查询：
+
+#### URL： 
+
+`container/api/v1/cloudbox/monservice/basicInfo/{container_id}/{container_type}/{factory}/{start_time}/{end_time}`
+
+#### URL参数:
+
+```
+container_id:  云箱id，查询全部时传all
+container_type: 云箱类型id
+factory: 生产厂家id
+start_time: 开始时间（用于过滤箱子生产时间）
+end_time: 结束时间
+
+```
+
+#### 方法： 
+
+`GET`
+
+#### BODY:
+
+`无`
+
+#### 返回：
+```
+{
+    "message": "query alarm success",
+    "code": "OK",
+    "data": {
+        "count": 1,
+        "limit": 10,
+        "results": [
+            {
+                "deviceid": "HNAF0000284",
+                "tid": "124",
+                "date_of_production": "1509431998000",
+                "box_type_name": "冷冻箱",
+                "produce_area": "广东省深圳市龙岗区",
+                "manufacturer": "深圳市万引力工程技术有限公司"
+            }
+        ],
+        "links": {
+            "previous": null,
+            "next": null
+        },
+        "offset": 0
+    }
+}
+```
+
+
+### 5. 查询云箱安全参数：
 
 #### URL：
 
@@ -142,7 +195,7 @@
 }
 ```
 
-### 5. 修改云箱安全参数：
+### 6. 修改云箱安全参数：
 
 #### URL：
 
@@ -178,3 +231,4 @@
     "msg": "save box safe settings success"
 }
 ```
+

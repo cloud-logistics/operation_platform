@@ -33,7 +33,12 @@
                     </tbody>
                 </table>
             </div>
-            <div auto-pagination pageination="vm.pageination"></div>
+
+            <div class="btn-group pagination pull-right padder-lg">
+                <button type="button" class="btn btn-default" ng-click="getData(-1)" ng-disabled="!conf.pagePreEnabled" >上一页</button>
+                <button type="button" class="btn btn-default ng-binding" ng-disabled="true" disabled="disabled">{{conf.currentPage}}</button>
+                <button type="button" class="btn btn-default" ng-click="getData(1)" ng-disabled="!conf.pageNextEnabled" >下一页</button>
+            </div>
         </div>
     </div>
 

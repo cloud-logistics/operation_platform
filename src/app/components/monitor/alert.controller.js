@@ -36,7 +36,6 @@
                     value: alertCode.value.toString()
                 }
             })(vm.options.alertCode)
-            console.log(vm.options);
             transformations = {
                 alertCode: optionsTransFunc(vm.options.alertCode),
                 alertType: optionsTransFunc(vm.options.alertType),
@@ -56,8 +55,6 @@
             console.log(queryParams);
             ApiServer.getAlerts(queryParams, function (response) {
                 vm.alerts = response.data.alerts
-
-                console.log(vm.alerts);
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);
             });

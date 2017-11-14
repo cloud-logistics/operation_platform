@@ -995,45 +995,6 @@ server.post('/analysisresult', function (req, res) {
   });
 })
 
-// server.post('/basicInfoManage', function (req, res) {
-//   res.json({
-//     "basicInfoConfig": [
-//       {"containerId": "22937203474450"},
-//       {"containerId": "22937203474450"},
-//       {"containerId": "22937203474450"},
-//       {"containerId": "22937203474450"},
-//       {"containerId": "22937203474450"}
-//     ],
-//     "repairConfig": [
-//       {"maintenanceLocation" : "陕西西安天谷八路"},
-//       {"maintenanceLocation" : "陕西西安天谷八路"},
-//       {"maintenanceLocation" : "陕西西安天谷八路"},
-//       {"maintenanceLocation" : "陕西西安天谷八路"},
-//       {"maintenanceLocation" : "陕西西安天谷八路"}
-//     ],
-//     "issueConfig": [
-//       {
-//         "containerType": "标准云箱",
-//         "alertCode": "0x11",
-//         "alertType": "失联",
-//         "alertLevel": "严重故障"
-//       },
-//       {
-//         "containerType": "标准云箱",
-//         "alertCode": "0x11",
-//         "alertType": "失联",
-//         "alertLevel": "严重故障"
-//       },
-//       {
-//         "containerType": "标准云箱",
-//         "alertCode": "0x11",
-//         "alertType": "失联",
-//         "alertLevel": "严重故障"
-//       }
-//     ]
-//   });
-// })
-
 server.use(router)
 console.log('Listening at 4000')
 server.listen(4000)
