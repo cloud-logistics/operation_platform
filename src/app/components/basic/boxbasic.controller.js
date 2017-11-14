@@ -28,6 +28,16 @@
             // $scope.modalUpdate = !$scope.modalUpdate;
         };
 
+        $scope.conf = {
+            currentPage: 1,
+            itemsPerPage: 10,
+            totalItems:0,
+            pagesLength: 15,
+            perPageOptions: [10, 20, 30, 40, 50],
+            onChange: function () {
+            }
+        };
+
         vm.newBasicInfoConfig = {};
         vm.basicInfoManage = {
             basicInfoConfig : {},
@@ -111,8 +121,17 @@
         getBasicInfo();
 
         function getBasicInfo () {
-            ApiServer.getBasicInfo({}, function (response) {
-               vm.basicInfoManage = response.data.basicInfo
+            console.log(vm.queryParams)
+            var data = {
+                container_id:'all',
+                container_type:0,
+                factory:0,
+                start_time:0,
+                end_time:0
+            }
+            ApiServer.getBasicInfo(data, function (response) {
+               vm.basicInfoManage = response.data.data.results;
+                $scope.conf.totalItems = response.data.data.count;
                 console.log(vm.basicInfoManage);
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);
@@ -150,6 +169,8 @@
             return parseInt(num, 10)
         }
 
+
+        $scope.$watchGroup(['conf.currentPage','conf.itemsPerPage'],getBasicInfo)
     }
 
 })();

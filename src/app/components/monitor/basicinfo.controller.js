@@ -13,7 +13,16 @@
 
         vm.title = '报警监控';
         vm.containerlist = [];
-        vm.queryParams = $stateParams
+        vm.queryParams = $stateParams;
+        $scope.conf = {
+            currentPage: 1,
+            itemsPerPage: 10,
+            totalItems:0,
+            pagesLength: 15,
+            perPageOptions: [10, 20, 30, 40, 50],
+            onChange: function () {
+            }
+        };
 
         var transformations = undefined;
 
@@ -51,19 +60,23 @@
         vm.getBasicInfo = getBasicInfo
         
         function getBasicInfo () {
-            var queryParams = R.evolve(transformations)(vm.queryParams)
-
-            console.log(queryParams);
-
-            ApiServer.getBasicInfo(queryParams, function (response) {
-                // console.log(Date.parse(vm.queryParams.startTime).toString());
-                vm.containerlist = response.data.basicInfo
+            var data = {
+                container_id:vm.queryParams.containerId ||'all',
+                container_type:vm.queryParams.containerType || 0,
+                factory: vm.queryParams.factory||0,
+                start_time:vm.queryParams.startTime ? new Date(vm.queryParams.startTime).getTime() :0,
+                end_time:vm.queryParams.endTime ? new Date(vm.queryParams.endTime).getTime() : 0
+            }
+            ApiServer.getBasicInfo(data, function (response) {
+                vm.containerlist = response.data.data.results;
+                $scope.conf.totalItems = response.data.data.count;
                 console.log(vm.containerlist);
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);
             });
         }
 
+        $scope.$watchGroup(['conf.currentPage','conf.itemsPerPage'],getBasicInfo)
     }
 
 })();

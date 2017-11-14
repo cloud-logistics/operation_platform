@@ -310,19 +310,17 @@
         }
 
         function getAlerts(opt) {
-            var url = constdata.api.alerts.replace("{container_id}",opt.data.containerId)
-                      .replace("{alert_type_id}",opt.data.alertType)
-                      .replace("{limit}",opt.data.limit)
-                      .replace("{offset}",opt.data.offset);
+            var url = constdata.api.alerts;
 
             NetworkService.get(url,
-                null,
+                opt.data,
                 opt.success,
                 opt.error);
         }
 
+        //获取云箱基础信息
         function getBasicInfo(params, successHandler, failedHandler) {
-            NetworkService.post(constdata.api.basicInfo,
+            NetworkService.get(constdata.api.basicInfo,
                 params,
                 successHandler,
                 failedHandler);

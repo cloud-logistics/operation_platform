@@ -63,8 +63,8 @@
         function getAlerts () {
             var queryParams = R.evolve(transformations)(vm.queryParams)
             var data = {
-                containerId:queryParams.containerId || "all",
-                alertType:queryParams.alertType,
+                container_id:queryParams.containerId || "all",
+                alert_type_id:queryParams.alertType,
                 limit:$scope.conf.itemsPerPage,
                 offset:($scope.conf.itemsPerPage * ($scope.conf.currentPage - 1))
             };

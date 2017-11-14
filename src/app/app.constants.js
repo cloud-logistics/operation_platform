@@ -41,7 +41,7 @@
                 securityConfig : "securityConfig",
                 repairConfig : "repairConfig",
                 issueConfig : "issueConfig",
-                alerts : "alerts/{container_id}/{alert_type_id}?limit={limit}&offset={offset}",
+                alerts : "alerts",
                 basicInfo : "basicInfo",
                 boxStatus : "boxStatus",
                 realtimeInfo : "realtimeInfo",

@@ -214,13 +214,13 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="item in vm.basicInfoManage track by $index">
-                            <td style="vertical-align: middle;">{{item.containerId}}</td>
-                            <td style="vertical-align: middle;">{{item.containerId}}</td>
-                            <td style="vertical-align: middle;">{{item.containerType}}</td>
-                            <td style="vertical-align: middle;">{{item.factoryLocation}}</td>
-                            <td style="vertical-align: middle;">{{item.factory}}</td>
-                            <td style="vertical-align: middle;">{{item.factoryDate | date:"yyyy-MM-dd"}}</td>
-                            <td style="vertical-align: middle;">{{item.batteryInfo}}</td>
+                            <td style="vertical-align: middle;">{{item.deviceid}}</td>
+                            <td style="vertical-align: middle;">{{item.tid}}</td>
+                            <td style="vertical-align: middle;">{{item.box_type_name}}</td>
+                            <td style="vertical-align: middle;">{{item.produce_area}}</td>
+                            <td style="vertical-align: middle;">{{item.manufacturer}}</td>
+                            <td style="vertical-align: middle;">{{item.date_of_production | date:"yyyy-MM-dd"}}</td>
+                            <td style="vertical-align: middle;">{{item.battery_detail}}</td>
                             <td style="vertical-align: middle;">
                                 <span class="bb-edit-btn" ng-click="basicUpdate()">编辑</span>
                                 <span class="bb-del-btn">删除</span>
@@ -230,8 +230,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div auto-pagination pageination="vm.pageination"></div>
-
+                <tm-pagination style="float:right;" conf="conf"></tm-pagination>
             </div>
         </div>
     </div>

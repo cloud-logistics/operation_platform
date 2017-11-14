@@ -85,7 +85,7 @@
                         toastr.error(res.data.msg);
                     }
                 },
-                error: function (err) {;
+                error: function (err) {
                     toastr.error("设置失败");
                 }
             });

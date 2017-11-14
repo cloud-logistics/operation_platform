@@ -90,26 +90,21 @@
                     <table st-table="vm.items" st-safe-src="vm.items" class="table table-striped table-hover m-t">
                         <thead>
                         <tr>
-                            <!--<th ng-repeat="title in vm.titles">-->
-                            <!--{{title}}-->
-                            <!--</th>-->
                             <th>云箱ID</th>
                             <th>云箱型号</th>
                             <th>生产地</th>
                             <th>生产厂家</th>
-                            <!--<th>承运人</th>-->
                             <th>出厂日期</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr ng-repeat="item in vm.containerlist track by $index">
-                            <td style="vertical-align: middle;">{{item.containerId}}</td>
-                            <td style="vertical-align: middle;">{{item.containerType}}</td>
-                            <td style="vertical-align: middle;">{{item.factoryLocation}}</td>
-                            <td style="vertical-align: middle;">{{item.factory}}</td>
-                            <!--<td style="vertical-align: middle;">{{item.carrier}}</td>-->
-                            <td style="vertical-align: middle;">{{item.factoryDate | date:"yyyy-MM-dd"}}</td>
+                            <td style="vertical-align: middle;">{{item.deviceid}}</td>
+                            <td style="vertical-align: middle;">{{item.box_type_name}}</td>
+                            <td style="vertical-align: middle;">{{item.produce_area}}</td>
+                            <td style="vertical-align: middle;">{{item.manufacturer}}</td>
+                            <td style="vertical-align: middle;">{{item.date_of_production | date:"yyyy-MM-dd"}}</td>
                             <td><a class="btn-table-detail" ui-sref="app.realtime({
                                 containerId: item.containerId 
                             })">查看详情</a></td>
@@ -117,8 +112,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div auto-pagination pageination="vm.pageination"></div>
-
+                <tm-pagination style="float:right;" conf="conf"></tm-pagination>
             </div>
         </div>
     </div>
