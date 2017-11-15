@@ -23,7 +23,7 @@
                             <label class="col-md-4 control-label form-control-static">云箱型号</label>
                             <div class="col-md-8">
                                 <select name="account" class="form-control m-b" ng-model="vm.queryParams.containerType">
-                                    <option ng-repeat="item in vm.options.containerType track by $index">{{item.value}}</option>
+                                    <option ng-repeat="item in vm.options.containerType track by $index" ng-value="item.id">{{item.value}}</option>
                                 </select>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                             <label class="col-md-4 control-label form-control-static">生产厂家</label>
                             <div class="col-md-8">
                                 <select name="account" class="form-control m-b" ng-model="vm.queryParams.factory">
-                                    <option ng-repeat="item in vm.options.factory track by $index">{{item.value}}</option>
+                                    <option ng-repeat="item in vm.options.factory track by $index" ng-value="item.id">{{item.value}}</option>
                                 </select>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                             <th>生产地</th>
                             <th>生产厂家</th>
                             <th>出厂日期</th>
-                            <th>操作</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>

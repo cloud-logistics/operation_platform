@@ -43,6 +43,7 @@
             newCarrier: newCarrier,
             command: command,
             newBasicInfoConfig: newBasicInfoConfig,
+            editBasicInfoConfigPost: editBasicInfoConfigPost,
             updateSecurityConfig: updateSecurityConfig,
             getSecurityConfig: getSecurityConfig,
             newRepairConfig: newRepairConfig,
@@ -125,7 +126,8 @@
             updateSiteInfo:updateSiteInfo,
             retrieveSiteInfo:retrieveSiteInfo,
             getAllSafeSetting:getAllSafeSetting,
-            resetSafeSetting:resetSafeSetting
+            resetSafeSetting:resetSafeSetting,
+            deleteBasicInfoConfig:deleteBasicInfoConfig
         };
 
         return service;
@@ -326,11 +328,12 @@
                 failedHandler);
         }
 
-        function getBoxStatus(params, successHandler, failedHandler) {
-            NetworkService.post(constdata.api.boxStatus,
-                params,
-                successHandler,
-                failedHandler);
+        //
+        function getBoxStatus(opt) {
+            NetworkService.get(constdata.api.boxStatus,
+                opt.data,
+                opt.success,
+                opt.error);
         }
 
         function getRealtimeInfo(params, successHandler, failedHandler) {
@@ -340,11 +343,23 @@
                 failedHandler);
         }
 
-        function newBasicInfoConfig(params, successHandler, failedHandler) {
+        function newBasicInfoConfig(opt) {
             NetworkService.post(constdata.api.basicInfoConfig,
-                params,
-                successHandler,
-                failedHandler);
+                opt.data,
+                opt.success,
+                opt.error);
+        }
+        function editBasicInfoConfigPost(opt) {
+            NetworkService.put(constdata.api.editBoxBasic,
+                opt.data,
+                opt.success,
+                opt.error);
+        }
+        function deleteBasicInfoConfig(opt){
+            NetworkService.delete(constdata.api.deleteBoxBasic.replace("{container_id}",opt.container_id),
+                null,
+                opt.success,
+                opt.error);
         }
 
         function newCarrier(params, successHandler, failedHandler) {

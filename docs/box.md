@@ -401,6 +401,7 @@ location_id: 堆场id，查询全部时传0
                 "humidity": "0.0",
                 "collide": "0.0",
                 "num_of_door_open": 5,
+                "available_status":"",
                 "robot_operation_status": "装箱",
                 "battery": 0,
                 "location_name": ""

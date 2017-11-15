@@ -61,7 +61,11 @@
             toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
             vm.classAnimation = '';
         }
-
-        $state.go('app.dashboard');
+        if(!$location.$$url){
+            $state.go('app.dashboard');
+        }
+        setTimeout(function(){
+            $(".nav").find(".active").parent().parent().addClass("active")
+        },500)
     }
 })();

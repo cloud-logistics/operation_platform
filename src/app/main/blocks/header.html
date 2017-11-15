@@ -23,7 +23,7 @@
          >
         <!-- buttons -->
         <div class="nav navbar-nav hidden-xs">
-            <a href class="btn no-shadow navbar-btn" ng-click="app.settings.asideFolded = !app.settings.asideFolded">
+            <a href class="btn no-shadow navbar-btn" ng-click="app.settings.asideFolded = !app.settings.asideFolded;switchNav()">
                 <i class="fa {{app.settings.asideFolded ? 'fa-indent' : 'fa-dedent'}} fa-fw"></i>
             </a>
             <a href class="btn no-shadow navbar-btn" ui-toggle-class="show" target="#aside-user">

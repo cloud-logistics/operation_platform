@@ -38,6 +38,8 @@
                 issueInfo : "issueInfo",
                 repairInfo : "repairInfo",
                 basicInfoConfig : "basicInfoConfig",
+                editBoxBasic:"basicInfoMod",
+                deleteBoxBasic:"basicInfo/{container_id}",
                 securityConfig : "securityConfig",
                 repairConfig : "repairConfig",
                 issueConfig : "issueConfig",

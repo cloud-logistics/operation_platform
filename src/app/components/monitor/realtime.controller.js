@@ -55,14 +55,6 @@
 
         getRealtimeInfo()
 
-        var timer = $interval(function(){
-            getRealtimeInfo();
-            console.log(constdata.refreshInterval);
-        },constdata.refreshInterval, 500);
-
-        $scope.$on("$destroy", function(){
-            $interval.cancel(timer);
-        });
         $scope.getHistoryData = function(days){
             vm.days = days || 1;
             getContainerHistoryStatus();
@@ -94,7 +86,10 @@
         }
 
         function getRealtimeInfo () {
-            // get History status
+            if(!vm.containerId){
+                toastr.info("请输入云箱ID...");
+                return;
+            }
             getContainerHistoryStatus();
 
             var queryParams = {

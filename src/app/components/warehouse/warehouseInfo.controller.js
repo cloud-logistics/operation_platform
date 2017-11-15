@@ -108,7 +108,7 @@
                     res = res.data;
                     console.log("res = ", res)
                     vm.cityList = res.data;
-                    $scope.cityDataBack = res.data;
+                    $scope.cityDataBack = _.clone(res.data);
                     if(callback){
                         callback();
                     }

@@ -21,7 +21,7 @@
                                 <label class="col-md-4 control-label form-control-static">云箱型号</label>
                                 <div class="col-md-8">
                                     <select name="account" class="form-control m-b" ng-model="vm.queryParams.containerType" >
-                                        <option ng-repeat="item in vm.options.containerType track by $index" >{{item.value}}</option>
+                                        <option ng-repeat="item in vm.options.containerType track by $index" ng-value="item.id">{{item.value}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -31,7 +31,7 @@
                                 <label class="col-md-4 control-label form-control-static">当前所在地</label>
                                 <div class="col-md-8">
                                     <select name="account" class="form-control m-b" ng-model="vm.queryParams.location">
-                                        <option ng-repeat="item in vm.options.location track by $index">{{item.value}}</option>
+                                        <option ng-repeat="item in vm.options.location track by $index" ng-value="item.id">{{item.value}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -58,13 +58,8 @@
                            class="table table-striped table-hover m-t">
                         <thead>
                         <tr>
-                            <!--<th ng-repeat="title in vm.titles">-->
-                            <!--{{title}}-->
-                            <!--</th>-->
                             <th>云箱ID</th>
                             <th>当前状态</th>
-                            <!--<th>承运方</th>-->
-                            <!--<th>当前位置</th>-->
                             <th>当前所在地</th>
                             <th>速度</th>
                             <th>温度</th>
@@ -72,24 +67,20 @@
                             <th>碰撞次数</th>
                             <th>开关箱门次数</th>
                             <th>电量</th>
-                            <!--<th>机器人操作状态</th>-->
-                            <th>操作</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr ng-repeat="item in vm.containerlist track by $index">
-                            <td style="vertical-align: middle;">{{item.containerId}}</td>
-                            <td style="vertical-align: middle;">{{item.currentStatus}}</td>
-                            <!--<td style="vertical-align: middle;">{{item.carrier}}</td>-->
-                            <!--<td style="vertical-align: middle;">经度:{{item.position.lng}}，纬度:{{item.position.lat}}</td>-->
-                            <td style="vertical-align: middle;">{{item.locationName}}</td>
+                            <td style="vertical-align: middle;">{{item.deviceid}}</td>
+                            <td style="vertical-align: middle;">{{item.available_status}}</td>
+                            <td style="vertical-align: middle;">{{item.location_name}}</td>
                             <td style="vertical-align: middle;">{{item.speed}}</td>
                             <td style="vertical-align: middle;">{{item.temperature}}</td>
                             <td style="vertical-align: middle;">{{item.humidity}}%</td>
-                            <td style="vertical-align: middle;">{{item.num_of_collide}}</td>
+                            <td style="vertical-align: middle;">{{item.collide}}</td>
                             <td style="vertical-align: middle;">{{item.num_of_door_open}}</td>
                             <td style="vertical-align: middle;">{{item.battery * 100}}%</td>
-                            <!--<td style="vertical-align: middle;">{{item.robot_operation_status}}</td>-->
                             <td><a class="btn-table-detail" ui-sref="app.realtime({
                                 containerId: item.containerId 
                             })">查看详情</a></td>
@@ -97,8 +88,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div auto-pagination pageination="vm.pageination"></div>
-
+                <tm-pagination style="float:right;" conf="conf"></tm-pagination>
             </div>
         </div>
     </div>

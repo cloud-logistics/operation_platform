@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('BoxBasicController', BoxBasicController);
 
     /** @ngInject */
-    function BoxBasicController(constdata, NetworkService,ApiServer, toastr, $scope, optionsTransFunc) {
+    function BoxBasicController(constdata, NetworkService, ApiServer, toastr, $scope, optionsTransFunc) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -15,23 +15,40 @@
         vm.reports = [];
         vm.queryParams = {};
         $scope.showAdd = false;
-        $scope.switchShowAdd = function(){
-            $scope.showAdd = ! $scope.showAdd;
-        }
-        $scope.basicUpdate = function(){
+        $scope.switchShowAdd = function () {
+            $scope.showAdd = !$scope.showAdd;
+        };
+        $scope.basicUpdate = function (item) {
+            vm.editBasicInfoConfig = _.clone(item);
             vm.options = R.merge(vm.options, {
                 title: "编辑云箱基础信息",
                 is_insert: false
-            })
-
+            });
             $scope.bbUpdate = !$scope.bbUpdate;
-            // $scope.modalUpdate = !$scope.modalUpdate;
+
         };
+
+        $scope.deleteBoxBasic = function(item){
+            ApiServer.deleteBasicInfoConfig({
+                container_id: item.deviceid,
+                success: function (response) {
+                    if (response.data.status == "OK") {
+                        toastr.success(response.data.msg);
+                        getBasicInfo();
+                    } else {
+                        toastr.error(response.data.msg);
+                    }
+                },
+                error: function (err) {
+                    console.log("删除基础信息失败。", err);
+                }
+            })
+        }
 
         $scope.conf = {
             currentPage: 1,
             itemsPerPage: 10,
-            totalItems:0,
+            totalItems: 0,
             pagesLength: 15,
             perPageOptions: [10, 20, 30, 40, 50],
             onChange: function () {
@@ -40,10 +57,11 @@
 
         vm.newBasicInfoConfig = {};
         vm.basicInfoManage = {
-            basicInfoConfig : {},
+            basicInfoConfig: {},
             alertConfig: {},
             issueConfig: {}
         };
+
 
         vm.saveBasicInfoConfig = saveBasicInfoConfig;
         vm.cancelBasicInfoConfig = cancelBasicInfoConfig;
@@ -53,20 +71,20 @@
         var transformations = undefined;
 
         var requiredOptions = [
-                    "carrier",
-                    "factory",
-                    "factoryLocation",
-                    "batteryInfo",
-                    "hardwareInfo",
-                    "intervalTime",
-                    "maintenanceLocation",
-                    "containerType",
-                    "alertCode",
-                    "alertType",
-                    "alertLevel"
-                ];
+            "carrier",
+            "factory",
+            "factoryLocation",
+            "batteryInfo",
+            "hardwareInfo",
+            "intervalTime",
+            "maintenanceLocation",
+            "containerType",
+            "alertCode",
+            "alertType",
+            "alertLevel"
+        ];
 
-        ApiServer.getOptions(requiredOptions, function(options) {
+        ApiServer.getOptions(requiredOptions, function (options) {
             vm.options = options
 
             transformations = {
@@ -77,40 +95,40 @@
                 batteryInfo: optionsTransFunc(vm.options.batteryInfo),
                 hardwareInfo: optionsTransFunc(vm.options.hardwareInfo),
                 manufactureTime: R.compose(R.toString, Date.parse),
-                temperature : {
+                temperature: {
                     min: inputTransFunc,
                     max: inputTransFunc
                 },
-                humidity : {
+                humidity: {
                     min: inputTransFunc,
                     max: inputTransFunc
                 },
-                collision : {
+                collision: {
                     min: inputTransFunc,
                     max: inputTransFunc
                 },
-                battery : {
+                battery: {
                     min: inputTransFunc,
                     max: inputTransFunc
                 },
-                operation : {
+                operation: {
                     min: inputTransFunc,
                     max: inputTransFunc
                 }
             };
 
             vm.newBasicInfoConfig = {
-                carrier : R.compose(R.prop("value"),R.head)(vm.options.carrier),
-                containerType : R.compose(R.prop("value"),R.head)(vm.options.containerType),
-                factory : R.compose(R.prop("value"),R.head)(vm.options.factory),
-                factoryLocation : R.compose(R.prop("value"),R.head)(vm.options.factoryLocation),
-                batteryInfo : R.compose(R.prop("value"),R.head)(vm.options.batteryInfo),
-                hardwareInfo : R.compose(R.prop("value"),R.head)(vm.options.hardwareInfo),
+                carrier: R.compose(R.prop("value"), R.head)(vm.options.carrier),
+                containerType: R.compose(R.prop("value"), R.head)(vm.options.containerType),
+                factory: R.compose(R.prop("value"), R.head)(vm.options.factory),
+                factoryLocation: R.compose(R.prop("value"), R.head)(vm.options.factoryLocation),
+                batteryInfo: R.compose(R.prop("value"), R.head)(vm.options.batteryInfo),
+                hardwareInfo: R.compose(R.prop("value"), R.head)(vm.options.hardwareInfo),
                 manufactureTime: moment(new Date())
             };
             vm.MaxDate = moment()
             vm.newSecurityConfig = {
-                intervalTime : R.compose(R.prop("value"),R.head)(vm.options.intervalTime)
+                intervalTime: R.compose(R.prop("value"), R.head)(vm.options.intervalTime)
             };
             vm.newAlertConfig = {};
             vm.newIssueConfig = {};
@@ -120,57 +138,108 @@
 
         getBasicInfo();
 
-        function getBasicInfo () {
+        function getBasicInfo() {
             console.log(vm.queryParams)
             var data = {
-                container_id:'all',
-                container_type:0,
-                factory:0,
-                start_time:0,
-                end_time:0
+                container_id: 'all',
+                container_type: 0,
+                factory: 0,
+                start_time: 0,
+                end_time: 0
             }
             ApiServer.getBasicInfo(data, function (response) {
-               vm.basicInfoManage = response.data.data.results;
+                vm.basicInfoManage = response.data.data.results;
                 $scope.conf.totalItems = response.data.data.count;
                 console.log(vm.basicInfoManage);
-            },function (err) {
+            }, function (err) {
                 console.log("Get ContainerOverview Info Failed", err);
             });
         }
 
         function saveBasicInfoConfig(isUseForAdd) {
-            newBasicInfoConfigPost();
             if(isUseForAdd){
-                $scope.switchShowAdd();
+                newBasicInfoConfigPost(function(){
+                        $scope.switchShowAdd();
+                        getBasicInfo();
+                });
             }else{
-                $scope.bbUpdate = false;
+                editBasicInfoConfigPost(function(){
+                    $scope.bbUpdate = false;
+                })
             }
+
         }
 
         function cancelBasicInfoConfig(isUseForAdd) {
-            if(isUseForAdd){
+            if (isUseForAdd) {
                 $scope.switchShowAdd();
-            }else{
+            } else {
                 $scope.bbUpdate = false;
             }
         }
 
-        function newBasicInfoConfigPost () {
-            var config = R.evolve(transformations)(vm.newBasicInfoConfig)
-            console.log("new basicInfo params: ", config);
-            ApiServer.newBasicInfoConfig(config, function (response) {
-                console.log(response.data.code);
-            },function (err) {
-                console.log("Get ContainerOverview Info Failed", err);
+        function newBasicInfoConfigPost(callback) {
+             var data = {
+                 "containerId":vm.newBasicInfoConfig.deviceid,
+                "rfid": vm.newBasicInfoConfig.RFID,
+                "containerType": vm.newBasicInfoConfig.containerType,
+                "factory": vm.newBasicInfoConfig.factory,
+                "factoryLocation": vm.newBasicInfoConfig.factoryLocation,
+                "batteryInfo": vm.newBasicInfoConfig.batteryInfo,
+                "hardwareInfo": vm.newBasicInfoConfig.hardwareInfo,
+                "manufactureTime": vm.newBasicInfoConfig.manufactureTime ? new Date(vm.newBasicInfoConfig.manufactureTime.format("YYYY-MM-DD")).getTime() : ""
+            }
+            ApiServer.newBasicInfoConfig({
+                data: data,
+                success: function (response) {
+                    if(response.data.status == "OK"){
+                        toastr.success(response.data.msg);
+                        if(callback){
+                            callback();
+                        }
+                    }else{
+                        toastr.error(response.data.msg);
+                    }
+                },
+                error: function (err) {
+                    console.log("新增基础信息失败。", err);
+                }
             });
         }
 
-        function inputTransFunc (num) {
-            return parseInt(num, 10)
+        function editBasicInfoConfigPost(callback){
+            var data = {
+                "containerId":vm.editBasicInfoConfig.containerId,
+                "rfid": vm.editBasicInfoConfig.rfid,
+                "containerType": vm.editBasicInfoConfig.containerType,
+                "factory": vm.editBasicInfoConfig.factory,
+                "factoryLocation": vm.editBasicInfoConfig.factoryLocation,
+                "batteryInfo": vm.editBasicInfoConfig.batteryInfo,
+                "hardwareInfo": vm.editBasicInfoConfig.hardwareInfo,
+                "manufactureTime": vm.editBasicInfoConfig.manufactureTime ? new Date(vm.editBasicInfoConfig.manufactureTime.format("YYYY-MM-DD")).getTime() : ""
+            };
+            ApiServer.editBasicInfoConfigPost({
+                data: data,
+                success: function (response) {
+                    if (response.data.status == "OK") {
+                        toastr.success(response.data.msg);
+                        if (callback) {
+                            callback();
+                        }
+                    } else {
+                        toastr.error(response.data.msg);
+                    }
+                },
+                error: function (err) {
+                    toastr.error("修改基础信息失败。");
+                }
+            })
         }
 
-
-        $scope.$watchGroup(['conf.currentPage','conf.itemsPerPage'],getBasicInfo)
+        function inputTransFunc(num) {
+            return parseInt(num, 10)
+        }
+        $scope.$watchGroup(['conf.currentPage', 'conf.itemsPerPage'], getBasicInfo)
     }
 
 })();
