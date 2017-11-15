@@ -132,12 +132,19 @@ end_time: 结束时间，不限制结束时间传0
         "limit": 10,
         "results": [
             {
-                "deviceid": "HNAF0000284",
-                "tid": "124",
-                "date_of_production": "1509431998000",
+                "deviceid": "HNAF0000031",
+                "tid": "2322",
+                "date_of_production": "1483315200000",
                 "box_type_name": "冷冻箱",
                 "produce_area": "广东省深圳市龙岗区",
-                "manufacturer": "深圳市万引力工程技术有限公司"
+                "manufacturer": "深圳市万引力工程技术有限公司",
+                "battery_detail": "万引力电源",
+                "box_type_id": 2,
+                "produce_area_id": 1,
+                "manufacturer_id": 1,
+                "battery_id": 1,
+                "hardware_detail": "万引力智能硬件",
+                "hardware_id": 1
             }
         ],
         "links": {
@@ -146,8 +153,7 @@ end_time: 结束时间，不限制结束时间传0
         },
         "offset": 0
     }
-}
-```
+}```
 
 
 ### 5. 查询云箱安全参数：
