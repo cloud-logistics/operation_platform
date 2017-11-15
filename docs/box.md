@@ -393,17 +393,18 @@ location_id: 堆场id，查询全部时传0
         "limit": 10,
         "results": [
             {
-                "deviceid": "HNAR0000247",
-                "longitude": "0",
-                "latitude": "0",
-                "speed": "0.0",
-                "temperature": "0.0",
-                "humidity": "0.0",
-                "collide": "0.0",
+                "deviceid": "01-03-17-09-00-21",
+                "longitude": "114.053531",
+                "latitude": "22.533053",
+                "speed": "0.000569611787796",
+                "temperature": "24.8",
+                "humidity": "80.7",
+                "collide": "0",
                 "num_of_door_open": 5,
                 "robot_operation_status": "装箱",
                 "battery": 0,
-                "location_name": ""
+                "location_name": "中国广东省深圳市福田区福田ＣＢＤ民田路86号-94号 邮政编码: 518000",
+                "available_status": "可用"
             }
         ],
         "links": {
