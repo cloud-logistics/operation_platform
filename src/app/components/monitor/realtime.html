@@ -129,30 +129,30 @@
                     <div class="bd-line4-title">
                         <span>云箱历史记录</span>
                         <div class="bd-timeRange">
-                            <span ng-class="{false:'',true:'bd-timeRange_selected'}[vm.days == 1]" ng-click="getHistoryData(1)">一天</span>
-                            <span ng-class="{false:'',true:'bd-timeRange_selected'}[vm.days == 3]" ng-click="getHistoryData(3)">三天</span>
-                            <span ng-class="{false:'',true:'bd-timeRange_selected'}[vm.days == 7]" ng-click="getHistoryData(7)">一周</span>
+                            <span ng-class="{false:'',true:'bd-timeRange_selected'}[vm.days == 1]" ng-click="changeTimeRange(1)">一天</span>
+                            <span ng-class="{false:'',true:'bd-timeRange_selected'}[vm.days == 3]" ng-click="changeTimeRange(3)">三天</span>
+                            <span ng-class="{false:'',true:'bd-timeRange_selected'}[vm.days == 7]" ng-click="changeTimeRange(7)">一周</span>
                         </div>
                     </div>
                     <div class="bd-tab">
                         <uib-tabset active="activeJustified" justified="true">
-                            <uib-tab index="1" heading="温&nbsp;度" select="getContainerHistoryStatus('temperature')">
+                            <uib-tab index="1" heading="温&nbsp;度" select="changeRequiredParam('temperature')">
                                 <div class="bd-chart" id="bd-temp-chart">
 
                                 </div>
                             </uib-tab>
-                            <uib-tab index="2" heading="湿&nbsp;度" select="getContainerHistoryStatus('humidity')">
+                            <uib-tab index="2" heading="湿&nbsp;度" select="changeRequiredParam('humidity')">
                                 <div class="bd-chart" id="bd-humi-chart">
 
                                 </div>
                             </uib-tab>
                             <!-- 
-                            <uib-tab index="3" heading="电&nbsp;量"  select="getContainerHistoryStatus('battery')" >
+                            <uib-tab index="3" heading="电&nbsp;量"  select="changeRequiredParam('battery')" >
                                 <div class="bd-chart" id="bd-batt-chart">
 
                                 </div>
                             </uib-tab>
-                            <uib-tab index="4" heading="箱体情况"  select="getContainerHistoryStatus('boxStatus')">
+                            <uib-tab index="4" heading="箱体情况"  select="changeRequiredParam('boxStatus')">
                                 <div class="bd-chart" id="bd-status-chart">
 
                                 </div>

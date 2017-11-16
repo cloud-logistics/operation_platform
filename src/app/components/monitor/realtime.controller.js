@@ -45,6 +45,7 @@
         vm.realtimeInfo = {}
         vm.speedStatus = ""
         vm.days = 1;
+        vm.requiredParam = "temperature";
         var historyStatus = {
             speed:[],
             temperature: [],
@@ -55,27 +56,34 @@
 
         getRealtimeInfo()
 
-        $scope.getHistoryData = function(days){
+        $scope.changeTimeRange = function(days){
             vm.days = days || 1;
-            getContainerHistoryStatus();
+            getContainerHistoryStatus(days, vm.requiredParam);
         };
-        $scope.getContainerHistoryStatus = getContainerHistoryStatus
-        function getContainerHistoryStatus (requiredParam) {
-            vm.requiredParam = requiredParam || vm.requiredParam;
+
+        $scope.changeRequiredParam = function(requiredParam){
+            vm.requiredParam = requiredParam;
+            getContainerHistoryStatus(vm.days, requiredParam);
+        };
+
+        function getContainerHistoryStatus (days, requiredParam) {
             var queryParams = {
-                requiredParam: vm.requiredParam,
+                requiredParam: requiredParam,
                 containerId : vm.containerId,
                 days:vm.days
             }
             ApiServer.getContainerHistoryStatus(queryParams, function(response){
-                historyStatus = R.compose(
-                                    R.merge(historyStatus),
-                                    R.pick([requiredParam])
-                                )(response.data);
+                console.log(historyStatus);
+                console.log(requiredParam);
+                console.log(days);
+
+                if (requiredParam == "temperature") {
+                    initTempBar(days, response.data.temperature);
+                } else if( requiredParam == "humidity" ) {
+                    initHumiLine(days, response.data.humidity);
+                }
 
                 //initSpeedLine();
-                initTempBar();
-                initHumiLine();
                 //initBattLine();
                 //initStatusLine();
             }, function (err) {
@@ -90,7 +98,7 @@
                 toastr.info("请输入云箱ID...");
                 return;
             }
-            getContainerHistoryStatus();
+            getContainerHistoryStatus(vm.days, vm.requiredParam);
 
             var queryParams = {
                 containerId: vm.containerId
@@ -610,16 +618,17 @@
         }
 
         /*初始化温度bar chart*/
-        function initTempBar() {
+        function initTempBar(days, historyStatus) {
             var xData = R.compose(
                             R.map(R.prop("time")),
-                            R.prop("temperature")
                         )(historyStatus)
 
             var tempValues =  R.compose(
                                     R.map(R.prop("value")),
-                                    R.prop("temperature")
                                 )(historyStatus)
+
+            console.log(xData);
+            console.log(tempValues);
 
             var dom = $('#bd-temp-chart')[0];
             tempBarChart = echarts.init(dom);
@@ -734,15 +743,13 @@
         }
 
         /*初始化湿度line chart*/
-        function initHumiLine() {
+        function initHumiLine(days, historyStatus) {
             var xData = R.compose(
                         R.map(R.prop("time")),
-                        R.prop("humidity")
                     )(historyStatus)
 
             var humiValues =  R.compose(
                         R.map(R.prop("value")),
-                        R.prop("humidity")
                     )(historyStatus)
 
             humiLineChart = echarts.init(document.getElementById('bd-humi-chart'));
