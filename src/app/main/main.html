@@ -17,7 +17,20 @@
     </div>
 </div>
 <!-- /content -->
+<!--<modal-dialog show="true" width='659px' height='400px'>-->
+<modal-dialog show="showDelMsg" width="35.56%" height="27.80%">
+     <div class="row">
+         <div>
+             <img src="images/icon_tips.svg">
+             <p>确定要删除这条信息吗?</p>
+         </div>
 
+     </div>
+    <div class="row">
+        <button class="pull-right main-delModal-save"  ng-click="okFn()">确 定</button>
+        <button class="pull-right main-delModal-cancel"  ng-click="cancelFn()" >取 消</button>
+    </div>
+</modal-dialog>
 
 <!-- footer -->
 <!--<div class="app-footer wrapper b-t bg-light">
@@ -25,3 +38,4 @@
     &copy; 2017 Copyright.
 </div>-->
 <!-- / footer -->
+</div>

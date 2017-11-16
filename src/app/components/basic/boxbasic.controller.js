@@ -20,6 +20,7 @@
         };
         $scope.basicUpdate = function (item) {
             vm.editBasicInfoConfig = _.clone(item);
+            vm.editBasicInfoConfig.date_of_production = parseInt(vm.editBasicInfoConfig.date_of_production);
             vm.options = R.merge(vm.options, {
                 title: "编辑云箱基础信息",
                 is_insert: false
@@ -29,21 +30,26 @@
         };
 
         $scope.deleteBoxBasic = function(item){
-            ApiServer.deleteBasicInfoConfig({
-                container_id: item.deviceid,
-                success: function (response) {
-                    if (response.data.status == "OK") {
-                        toastr.success(response.data.msg);
-                        getBasicInfo();
-                    } else {
-                        toastr.error(response.data.msg);
-                    }
-                },
-                error: function (err) {
-                    console.log("删除基础信息失败。", err);
+            var opt = {
+                okFn:function(){
+                    ApiServer.deleteBasicInfoConfig({
+                        container_id: item.deviceid,
+                        success: function (response) {
+                            if (response.data.status == "OK") {
+                                toastr.success(response.data.msg);
+                                getBasicInfo();
+                            } else {
+                                toastr.error(response.data.msg);
+                            }
+                        },
+                        error: function (err) {
+                            console.log("删除基础信息失败。", err);
+                        }
+                    })
                 }
-            })
-        }
+            };
+            $scope.$emit('showDelMsg',opt);
+        };
 
         $scope.conf = {
             currentPage: 1,
@@ -165,6 +171,7 @@
             }else{
                 editBasicInfoConfigPost(function(){
                     $scope.bbUpdate = false;
+                    getBasicInfo();
                 })
             }
 
@@ -209,14 +216,14 @@
 
         function editBasicInfoConfigPost(callback){
             var data = {
-                "containerId":vm.editBasicInfoConfig.containerId,
-                "rfid": vm.editBasicInfoConfig.rfid,
-                "containerType": vm.editBasicInfoConfig.containerType,
-                "factory": vm.editBasicInfoConfig.factory,
-                "factoryLocation": vm.editBasicInfoConfig.factoryLocation,
-                "batteryInfo": vm.editBasicInfoConfig.batteryInfo,
-                "hardwareInfo": vm.editBasicInfoConfig.hardwareInfo,
-                "manufactureTime": vm.editBasicInfoConfig.manufactureTime ? new Date(vm.editBasicInfoConfig.manufactureTime.format("YYYY-MM-DD")).getTime() : ""
+                "containerId":vm.editBasicInfoConfig.deviceid,
+                "rfid": vm.editBasicInfoConfig.tid,
+                "containerType": vm.editBasicInfoConfig.box_type_id,
+                "factory": vm.editBasicInfoConfig.manufacturer_id,
+                "factoryLocation": vm.editBasicInfoConfig.produce_area_id,
+                "batteryInfo": vm.editBasicInfoConfig.battery_id,
+                "hardwareInfo": vm.editBasicInfoConfig.hardware_id,
+                "manufactureTime": vm.editBasicInfoConfig.date_of_production ? new Date(vm.editBasicInfoConfig.date_of_production).getTime()+"" : ""
             };
             ApiServer.editBasicInfoConfigPost({
                 data: data,

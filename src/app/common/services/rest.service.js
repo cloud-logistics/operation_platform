@@ -50,7 +50,9 @@
             // if (path !== 'account/auth'){
             //     header = requestHeader();
             // }
-            account.customPOST(param,"","",requestHeader()).then(
+            account.customPOST(param,"","",requestHeader()
+            ).then(
+
                 function (response) {
                     successResponse(response,successHandler);
                 },function (response) {
