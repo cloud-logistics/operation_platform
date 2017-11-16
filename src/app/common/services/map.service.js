@@ -43,7 +43,12 @@
             // Create a map object and specify the DOM element for display.
             var map = new google.maps.Map(document.getElementById(id), {
                 center: center,
-                mapTypeId: mapType,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeControl:false,
+                panControl:false,
+                streetViewControl: false,
+                overviewMapControl:false,
+                scaleControl: false,
                 scrollwheel: true,
                 maxZoom: 17,
                 minZoom: 2,

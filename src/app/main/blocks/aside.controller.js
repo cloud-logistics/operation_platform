@@ -8,11 +8,19 @@
     angular.module('smart_container').controller('AsideController', AsideController);
 
     /** @ngInject */
-    function AsideController($state, ApiServer, toastr, StorageService, constdata) {
+    function AsideController($state, ApiServer,$scope, toastr, StorageService, constdata) {
         /* jshint validthis: true */
         var vm = this;
         var height = document.body.clientHeight + 'px';
         vm.navStyle = {'height': height};
+
+        $scope.switchNav = function(flag){
+
+            toastr.success(flag);
+            setTimeout(function(){
+                $(".nav").find("li").removeClass("active")
+            },10)
+        };
 
         vm.logoutAction = logoutAction;
 

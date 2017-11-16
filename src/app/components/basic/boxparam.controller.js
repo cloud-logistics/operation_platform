@@ -81,6 +81,7 @@
                 success: function (res) {
                     if(res.data.status == "OK"){
                         toastr.success(res.data.msg);
+                        getAllSafeSetting()
                     }else{
                         toastr.error(res.data.msg);
                     }
