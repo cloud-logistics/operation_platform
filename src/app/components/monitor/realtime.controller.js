@@ -76,8 +76,8 @@
                 //initSpeedLine();
                 initTempBar();
                 initHumiLine();
-                initBattLine();
-                initStatusLine();
+                //initBattLine();
+                //initStatusLine();
             }, function (err) {
                 console.log("Get ContainerHisfotyStatus Info Failed", err);
             })
