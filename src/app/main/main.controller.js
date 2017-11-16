@@ -22,7 +22,6 @@
             asideDock: false,
             container: false
         };
-         toastr.success("zjy")
         // config
         $scope.app = {
             name: 'air cc',
