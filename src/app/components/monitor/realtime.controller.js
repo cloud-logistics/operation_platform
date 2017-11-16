@@ -619,13 +619,10 @@
 
         /*初始化温度bar chart*/
         function initTempBar(days, historyStatus) {
-            var xData = R.compose(
-                            R.map(R.prop("time")),
-                        )(historyStatus)
+            console.log(historyStatus);
+            var xData = R.map(R.prop("time"))(historyStatus);
 
-            var tempValues =  R.compose(
-                                    R.map(R.prop("value")),
-                                )(historyStatus)
+            var tempValues = R.map(R.prop("value"))(historyStatus);
 
             console.log(xData);
             console.log(tempValues);
@@ -744,13 +741,9 @@
 
         /*初始化湿度line chart*/
         function initHumiLine(days, historyStatus) {
-            var xData = R.compose(
-                        R.map(R.prop("time")),
-                    )(historyStatus)
+            var xData = R.map(R.prop("time"))(historyStatus);
 
-            var humiValues =  R.compose(
-                        R.map(R.prop("value")),
-                    )(historyStatus)
+            var humiValues = R.map(R.prop("value"))(historyStatus);
 
             humiLineChart = echarts.init(document.getElementById('bd-humi-chart'));
 
