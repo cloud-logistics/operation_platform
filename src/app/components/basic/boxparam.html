@@ -11,10 +11,8 @@
                             <form class="form-inline">
                                 <div class="form-group">
                                     <label>GPS中断时间</label>
-                                    <select ng-model="box.interval_time" name="account" class="form-control">
-                                        <option ng-value="-1">-- 请选择 --</option>
-                                        <option ng-repeat="item in vm.options.intervalTime track by $index" ng-value="item.value">{{item.value}}</option>
-                                    </select>
+                                    <input ng-model="box.interval_time" type="text" class="form-control" placeholder="请输入GPS中断时间...">
+                                    <label style="width: 90px;text-align: center;">分钟</label>
                                 </div>
                             </form>
                         </div>
