@@ -9,33 +9,31 @@
 <!-- content -->
 <div class="app-content">
     <div ui-butterbar></div>
-    <a href class="off-screen-toggle hide" ui-toggle-class="off-screen" data-target=".app-aside" ></a>
+    <a href class="off-screen-toggle hide" ui-toggle-class="off-screen" data-target=".app-aside"></a>
+
     <div class="hbox hbox-auto-xs hbox-auto-sm">
         <div class="app-content-body fade-in-up col">
             <div class="app-content-body fade-in-up col" ui-view>
+            </div>
         </div>
     </div>
-</div>
-<!-- /content -->
-<!--<modal-dialog show="true" width='659px' height='400px'>-->
-<modal-dialog show="showDelMsg" width="35.56%" height="27.80%">
-     <div class="row">
-         <div>
-             <img src="images/icon_tips.svg">
-             <p>确定要删除这条信息吗?</p>
-         </div>
+    <!-- /content -->
+    <!--<modal-dialog show="true" width='659px' height='400px'>-->
+    <modal-dialog show="showDelMsg" width="30%" height="25.33%">
+        <div class="main-delModal-content">
+            <img class="main-delModal-content-img" src="images/icon_tips.svg">
+            <p class="main-delModal-content-txt">确定要删除这条信息吗?</p>
+        </div>
+        <div class="main-delModal-action">
+            <button class="pull-right main-delModal-action-save" ng-click="okFn()">确 定</button>
+            <button class="pull-right main-delModal-action-cancel" ng-click="cancelFn()">取 消</button>
+        </div>
+    </modal-dialog>
 
-     </div>
-    <div class="row">
-        <button class="pull-right main-delModal-save"  ng-click="okFn()">确 定</button>
-        <button class="pull-right main-delModal-cancel"  ng-click="cancelFn()" >取 消</button>
-    </div>
-</modal-dialog>
-
-<!-- footer -->
-<!--<div class="app-footer wrapper b-t bg-light">
-    <span class="pull-right">{{app.version}} <a href ui-scroll-to="app" class="m-l-sm text-muted"><i class="fa fa-long-arrow-up"></i></a></span>
-    &copy; 2017 Copyright.
-</div>-->
-<!-- / footer -->
+    <!-- footer -->
+    <!--<div class="app-footer wrapper b-t bg-light">
+        <span class="pull-right">{{app.version}} <a href ui-scroll-to="app" class="m-l-sm text-muted"><i class="fa fa-long-arrow-up"></i></a></span>
+        &copy; 2017 Copyright.
+    </div>-->
+    <!-- / footer -->
 </div>
