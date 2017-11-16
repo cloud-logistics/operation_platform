@@ -120,6 +120,7 @@
             getProvinceList: getProvinceList,
             getCityList: getCityList,
             getAddressByLngLat :getAddressByLngLat,
+            getHistorypath: getHistorypath,
             addSiteInfo:addSiteInfo,
             deleteSiteInfo:deleteSiteInfo,
             updateSiteInfo:updateSiteInfo,
@@ -321,6 +322,14 @@
         //获取云箱基础信息
         function getBasicInfo(params, successHandler, failedHandler) {
             NetworkService.get(constdata.api.basicInfo,
+                params,
+                successHandler,
+                failedHandler);
+        }
+
+        //获取云箱历史轨迹
+        function getHistorypath(params, successHandler, failedHandler) {
+            NetworkService.get(constdata.api.historypath,
                 params,
                 successHandler,
                 failedHandler);

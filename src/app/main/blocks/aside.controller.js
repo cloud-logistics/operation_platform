@@ -19,7 +19,7 @@
         vm.messages = [];
         vm.title = '智能云箱';
 
-        vm.role = StorageService.get(constdata.informationKey).role;
+        vm.role = "carrier" || StorageService.get(constdata.informationKey).role;
 
         vm.jumpTo = function(url){
             $state.go(url);

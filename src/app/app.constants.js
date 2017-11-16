@@ -63,6 +63,7 @@
                 provinceList:"/provincelist/",
                 cityList:"/citylist/",
                 getPosition:"/getPosition",
+                historypath: "historypath",
 
                 //仓库部分的api
                 warehouse:{
