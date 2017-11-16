@@ -19,6 +19,7 @@
         var mapCenter = {lat: 31.2891, lng: 121.4648};
 
         var map = MapService.map_init("histotylocation", mapCenter, "terrain", 4);
+        var heatmap = undefined;
 
         console.log($stateParams);
 
@@ -26,8 +27,8 @@
 
         vm.queryParams = {
             containerId: $stateParams.containerId || constdata.defaultContainerId,
-            startTime: moment(new Date()),
-            endTime: moment(new Date())
+            start_time: moment(new Date()),
+            end_time: moment(new Date())
         };
 
         // 鼠标绘图工具
@@ -38,27 +39,32 @@
         getHistorylocationInfo()
 
         function getHistorylocationInfo() {
-            var transformations = {
-                startTime: R.compose(R.toString, Date.parse),
-                endTime: R.compose(R.toString, Date.parse)
-            };
-            var queryParams = R.evolve(transformations)(vm.queryParams)
+            var start_time = vm.queryParams.start_time.valueOf().toString().slice(0,10);
+            var end_time = vm.queryParams.end_time.valueOf().toString().slice(0,10);
+          
+            var queryParams = {
+                containerId: vm.queryParams.containerId,
+                start_time: start_time,
+                end_time: end_time
+            }
 
-            console.log(queryParams);
-
-            ApiServer.getHistorylocationInfo(queryParams, function (response) {
+            ApiServer.getHistorypath(queryParams, function (response) {
                 var bounds = new google.maps.LatLngBounds();
 
-                histories = response.data.containerhistory
-                console.log(histories);
+                var histData = R.map(function(item){
+                    var lng = parseFloat(item.longitude);
+                    var lat = parseFloat(item.latitude);
+                    var item = new google.maps.LatLng(lat, lng);
+                    return item;
+                })(response.data.path);
 
-                routes = histories.map(function (route) {
-                  var startPointLatlng = route.start.position
-                  var endPointLatlng = route.end.position
-                  bounds.extend(startPointLatlng);
-                  bounds.extend(endPointLatlng);
+                heatmap = new google.maps.visualization.HeatmapLayer({
+                  data: histData,
+                  map: map
+                });
 
-                  direction(startPointLatlng, endPointLatlng)
+                histData.map(function (item) {
+                  bounds.extend(item);
                 })
 
                 map.fitBounds(bounds);
@@ -68,34 +74,55 @@
             });
         }
 
-        function infoWindow(map, marker, content) {
-          var infowindow = new google.maps.InfoWindow({
-            content: content
-          });
+        function getData(){
+          var res = {
+              "status": "OK",
+              "msg": "get history path success",
+              "path": [
+                  {
+                      "timestamp": 1510628670,
+                      "longitude": "114.053531",
+                      "latitude": "22.533053"
+                  },
+                  {
+                      "timestamp": 1510629270,
+                      "longitude": "114.053531",
+                      "latitude": "22.533053"
+                  },
+                  {
+                      "timestamp": 1510629870,
+                      "longitude": "114.053531",
+                      "latitude": "22.533053"
+                  },
+                  {
+                      "timestamp": 1510630470,
+                      "longitude": "114.053531",
+                      "latitude": "22.533053"
+                  },
+                  {
+                      "timestamp": 1510631070,
+                      "longitude": "114.053531",
+                      "latitude": "22.533053"
+                  },
+                  {
+                      "timestamp": 1510631670,
+                      "longitude": "114.053531",
+                      "latitude": "22.533053"
+                  },
+                  {
+                      "timestamp": 1510632270,
+                      "longitude": "114.053531",
+                      "latitude": "22.533053"
+                  },
+                  {
+                      "timestamp": 1510632870,
+                      "longitude": "114.053531",
+                      "latitude": "22.533053"
+                  }
+              ]
+          }
 
-          infowindow.open(map, marker);
-        }
-
-        function direction(startPointLatlng, endPointLatlng) {
-          var directionsDisplay = new google.maps.DirectionsRenderer();
-          var directionsService = new google.maps.DirectionsService();
-
-          directionsDisplay.setMap(map);
-
-          var request = {
-            origin: startPointLatlng,
-            destination: endPointLatlng,
-            travelMode: 'DRIVING'
-          };
-
-
-          directionsService.route(request, function(result, status) {
-            if (status == 'OK') {
-              directionsDisplay.setDirections(result);
-            }
-          });
-
-
+          return res;
         }
 
     }

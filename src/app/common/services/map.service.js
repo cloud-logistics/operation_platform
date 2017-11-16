@@ -24,6 +24,7 @@
           map_init: map_init,
           addMarker: addMarker,
           addCircle: addCircle,
+          direction: direction,
           geoCodePosition: geoCodePosition
         };
 
@@ -88,6 +89,28 @@
                     radius: 1000000
                 });
             }
+        }
+
+        function direction(startPointLatlng, endPointLatlng) {
+          var directionsDisplay = new google.maps.DirectionsRenderer();
+          var directionsService = new google.maps.DirectionsService();
+
+          directionsDisplay.setMap(map);
+
+          var request = {
+            origin: startPointLatlng,
+            destination: endPointLatlng,
+            travelMode: 'DRIVING'
+          };
+
+
+          directionsService.route(request, function(result, status) {
+            if (status == 'OK') {
+              directionsDisplay.setDirections(result);
+            }
+          });
+
+
         }
 
         function geoCodePosition(position) {
