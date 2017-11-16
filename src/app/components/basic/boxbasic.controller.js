@@ -151,8 +151,10 @@
                 container_type: 0,
                 factory: 0,
                 start_time: 0,
-                end_time: 0
-            }
+                end_time: 0,
+                limit:$scope.conf.itemsPerPage,
+                offset: ($scope.conf.currentPage - 1) * $scope.conf.itemsPerPage
+            };
             ApiServer.getBasicInfo(data, function (response) {
                 vm.basicInfoManage = response.data.data.results;
                 $scope.conf.totalItems = response.data.data.count;
@@ -180,6 +182,7 @@
         function cancelBasicInfoConfig(isUseForAdd) {
             if (isUseForAdd) {
                 $scope.switchShowAdd();
+                vm.newBasicInfoConfig = {};
             } else {
                 $scope.bbUpdate = false;
             }

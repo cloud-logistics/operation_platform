@@ -31,9 +31,8 @@
             })
         }
         function cancelAction() {
-            $state.go('app.dashboard');
+            history.back();
         }
-
         function getDatas() {
             ApiServer.userGet(info.id,function (res) {
                 vm.user = res.data;
@@ -42,10 +41,7 @@
                 toastr.error(errInfo);
             })
         }
-
         getDatas();
-
-
     }
 
 })();

@@ -26,7 +26,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">省</label>
@@ -59,20 +58,29 @@
                             </div>
                         </div>
                         <div class="row m-b">
-                            <div class="col-md-8">
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="col-md-2 control-label form-control-static">位置</label>
-                                    <div class="col-md-10">
-                                        <input ng-model="vm.siteInfo.location" type="text" class="form-control" placeholder="请输入位置">
+                                    <label class="col-md-4 control-label form-control-static">名称</label>
+                                    <div class="col-md-8">
+                                        <input ng-model="vm.siteInfo.name" type="text" class="form-control" placeholder="请输入仓库名称">
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">容量</label>
                                     <div class="col-md-8">
                                         <input ng-model="vm.siteInfo.volume" type="text" class="form-control" placeholder="请输入容量">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-b">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label form-control-static">位置</label>
+                                    <div class="col-md-10" style="padding-left:10px;">
+                                        <input ng-model="vm.siteInfo.location" type="text" class="form-control" placeholder="请输入位置">
                                     </div>
                                 </div>
                             </div>

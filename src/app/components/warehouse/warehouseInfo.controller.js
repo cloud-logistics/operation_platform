@@ -250,6 +250,7 @@
                 "latitude": vm.siteInfo.latitude,
                 "site_code": vm.siteInfo.site_code || "1111",
                 "volume": vm.siteInfo.volume||0,
+                "name":vm.siteInfo.name,
                 "city_id": vm.siteInfo.city.city_id,
                 "province_id": vm.siteInfo.province.province_id,
                 "nation_id": vm.siteInfo.nation.nation_id
@@ -268,23 +269,30 @@
             });
         }
 
+
         vm.deleteSiteInfo = function (site_id) {
-            console.log("del site_code :", site_id);
-            if(!site_id){
-                console.log("site_id为空")
-                return;
-            }
-            ApiServer.deleteSiteInfo({
-                "param": site_id,
-                "site_code":site_id,
-                "success": function (res) {
-                    toastr.success(res.data.msg);
-                    retrieveSiteInfo();
-                },
-                "error": function (res) {
-                    toastr.error("删除仓库失败", res);
+            var opt = {
+                okFn:function(){
+                    console.log("del site_code :", site_id);
+                    if(!site_id){
+                        console.log("site_id为空")
+                        return;
+                    }
+                    ApiServer.deleteSiteInfo({
+                        "param": site_id,
+                        "site_code":site_id,
+                        "success": function (res) {
+                            toastr.success(res.data.msg);
+                            retrieveSiteInfo();
+                        },
+                        "error": function (res) {
+                            toastr.error("删除仓库失败", res);
+                        }
+                    })
                 }
-            })
+            };
+            $scope.$emit('showDelMsg',opt);
+
         }
 
         function updateSiteInfo() {
@@ -294,6 +302,7 @@
                 "latitude": vm.siteInfo.latitude,
                 "site_code": vm.siteInfo.site_code || "1111",
                 "volume": vm.siteInfo.volume,
+                "name":vm.siteInfo.name,
                 "city_id": vm.siteInfo.city.city_id,
                 "province_id": vm.siteInfo.province.province_id,
                 "nation_id": vm.siteInfo.nation.nation_id
