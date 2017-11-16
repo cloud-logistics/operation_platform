@@ -15,7 +15,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">RFID</label>
                             <div class="col-md-8">
-                                <input ng-model="vm.editBasicInfoConfig.rfid" type="text" class="form-control" placeholder="请输入RFID...">
+                                <input ng-model="vm.editBasicInfoConfig.tid" type="text" class="form-control" placeholder="请输入RFID...">
                             </div>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">云箱型号</label>
                             <div class="col-md-8">
-                                <select ng-model="vm.editBasicInfoConfig.containerType" name="account" class="form-control">
+                                <select ng-model="vm.editBasicInfoConfig.box_type_id" name="account" class="form-control">
                                     <option value="">-- 请选择 --</option>
                                     <option ng-repeat="item in vm.options.containerType track by $index" ng-value="item.id">{{item.value}}</option>
                                 </select>
@@ -38,10 +38,11 @@
                             <label class="col-md-4 control-label form-control-static">出厂日期</label>
                             <div class="col-md-8">
                                 <input date-time
-                                       ng-model="vm.editBasicInfoConfig.manufactureTime"
+                                       ng-model="vm.editBasicInfoConfig.date_of_production"
                                        class="form-control m-b"
                                        placeholder="请选择出厂日期"
-                                       min-view="hours" format="YYYY-MM-DD">
+                                       min-view="date"
+                                        format="YYYY-MM-DD">
                             </div>
                         </div>
                     </div>
@@ -49,7 +50,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">生产厂家</label>
                             <div class="col-md-8">
-                                <select  ng-model="vm.editBasicInfoConfig.factory" name="account" class="form-control">
+                                <select  ng-model="vm.editBasicInfoConfig.manufacturer_id" name="account" class="form-control">
                                     <option value="">-- 请选择 --</option>
                                     <option ng-repeat="item in vm.options.factory track by $index" ng-value="item.id">{{item.value}}</option>
                                 </select>
@@ -63,9 +64,9 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">生产地</label>
                             <div class="col-md-8">
-                                <select ng-model="vm.editBasicInfoConfig.factoryLocation" name="account" class="form-control">
+                                <select ng-model="vm.editBasicInfoConfig.produce_area_id" name="account" class="form-control">
                                     <option value="">-- 请选择 --</option>
-                                    <option ng-repeat="item in vm.options.factoryLocation track by $index" ng-value="value">{{item.value}}</option>
+                                    <option ng-repeat="item in vm.options.factoryLocation track by $index" ng-value="item.id">{{item.value}}</option>
                                 </select>
                             </div>
                         </div>
@@ -74,7 +75,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">电源信息</label>
                             <div class="col-md-8">
-                                <select  ng-model="vm.editBasicInfoConfig.batteryInfo" name="account" class="form-control">
+                                <select  ng-model="vm.editBasicInfoConfig.battery_id" name="account" class="form-control">
                                     <option value="">-- 请选择 --</option>
                                     <option ng-repeat="item in vm.options.batteryInfo track by $index" ng-value="item.id">{{item.value}}</option>
                                 </select>
@@ -89,7 +90,7 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label form-control-static">智能硬件信息</label>
                             <div class="col-md-6">
-                                <select ng-model="vm.editBasicInfoConfig.hardwareInfo" name="account" class="form-control">
+                                <select ng-model="vm.editBasicInfoConfig.hardware_id" name="account" class="form-control">
                                     <option value="">-- 请选择 --</option>
                                     <option ng-repeat="item in vm.options.hardwareInfo track by $index" ng-value="item.id">{{item.value}}</option>
                                 </select>

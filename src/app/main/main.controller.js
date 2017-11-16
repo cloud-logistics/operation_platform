@@ -22,7 +22,7 @@
             asideDock: false,
             container: false
         };
-
+         toastr.success("zjy")
         // config
         $scope.app = {
             name: 'air cc',
@@ -67,5 +67,18 @@
         setTimeout(function(){
             $(".nav").find(".active").parent().parent().addClass("active")
         },500)
+
+
+        $scope.$on('showDelMsg',function(d,opt){
+            $scope.showDelMsg = true;
+            $scope.okFn = function(){
+                opt.okFn();
+                $scope.showDelMsg = false;
+            };
+            $scope.cancelFn = opt.cancelFn || function(){
+                $scope.showDelMsg = false;
+            };
+
+        })
     }
 })();
