@@ -51,10 +51,10 @@
                             <td style="vertical-align: middle;">{{item.timestamp | date:"yyyy-MM-dd hh:mm:ss"}}</td>
                             <td style="vertical-align: middle;">{{item.error_description}}</td>
                             <td><a ui-sref="app.realtime({
-                                                containerId: item.containerId
+                                                containerId: item.deviceid
                                             })" class="btn-table-detail">查看详情</a> 
                                 <a ui-sref="app.command({
-                                                containerId: item.containerId,
+                                                containerId: item.deviceid,
                                                 endpointId: item.endpointId
                                             })"
                                     class="btn-table-detail"
