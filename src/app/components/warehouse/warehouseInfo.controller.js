@@ -130,10 +130,10 @@
             vm.siteInfo.longitude = data.longitude;
             vm.siteInfo.latitude = data.latitude;
             var point = {
-                lng: vm.siteInfo.longitude,
-                lat: vm.siteInfo.latitude
+                lng: parseFloat(vm.siteInfo.longitude),
+                lat: parseFloat(vm.siteInfo.latitude)
             };
-            marker = MapService.addMarker(map)(point, {draggable: true});
+            marker = MapService.addMarker(map)(point, {draggable: true,notTranslate:true});
             google.maps.event.addListener(marker, 'dragend', function (MouseEvent) {
                 console.log("移动后的经纬度", MouseEvent.latLng);
                 getAddressByLngLat(MouseEvent.latLng.lng(), MouseEvent.latLng.lat())
@@ -157,7 +157,8 @@
                    province_id:obj.province_id
                 },
                 site_code:vm.siteInfo.site_code,
-                volume:vm.siteInfo.volume
+                volume:vm.siteInfo.volume,
+                name:vm.siteInfo.name
             };
             vm.edit(obj);
         };
@@ -172,8 +173,12 @@
                 },
                 "success": function (res) {
                     console.log("res = ", res);
-                    vm.siteInfo.location = res.data.position_name;
-                    resetLocation(res.data,lng,lat);
+                    if(!res.data.position_name){
+                        toastr.info(res.data.msg);
+                    }else{
+                        vm.siteInfo.location = res.data.position_name;
+                        resetLocation(res.data,lng,lat);
+                    }
                 },
                 "error": function (res) {
                     console.log(222)
@@ -241,6 +246,7 @@
                 "nation":{},
                 province:{}
             };
+            clearMarker();
         }
 
         function addSiteInfo() {

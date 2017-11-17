@@ -494,9 +494,10 @@
         }
 
 
-        function getOptions(requiredOptions, sucHandler) {
+        function getOptions(requiredOptions, sucHandler,notNeedAll) {
             var queryParams = {
-                requiredOptions: requiredOptions
+                requiredOptions: requiredOptions,
+                optionsType :notNeedAll ? 0 : 1
             };
 
             var options = undefined;
