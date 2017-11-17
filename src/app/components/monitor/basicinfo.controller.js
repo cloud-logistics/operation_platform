@@ -65,7 +65,9 @@
                 container_type:vm.queryParams.containerType || 0,
                 factory: vm.queryParams.factory||0,
                 start_time:vm.queryParams.startTime ? new Date(vm.queryParams.startTime.format("YYYY-MM-DD")).getTime() :0,
-                end_time:vm.queryParams.endTime ? new Date(vm.queryParams.endTime.format("YYYY-MM-DD")).getTime() : 0
+                end_time:vm.queryParams.endTime ? new Date(vm.queryParams.endTime.format("YYYY-MM-DD")).getTime() : 0,
+                limit:$scope.conf.itemsPerPage,
+                offset: ($scope.conf.currentPage - 1) * $scope.conf.itemsPerPage
             }
             ApiServer.getBasicInfo(data, function (response) {
                 vm.containerlist = response.data.data.results;

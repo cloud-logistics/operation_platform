@@ -41,7 +41,7 @@
         vm.title = '实时报文';
         vm.containerlists = [];
         vm.getRealtimeInfo = getRealtimeInfo
-        vm.containerId = $stateParams.containerId || constdata.defaultContainerId 
+        vm.containerId =  "01-03-17-09-00-24" || $stateParams.containerId || constdata.defaultContainerId
         vm.realtimeInfo = {}
         vm.speedStatus = ""
         vm.days = 1;
@@ -621,120 +621,66 @@
         function initTempBar(days, historyStatus) {
             console.log(historyStatus);
             var xData = R.map(R.prop("time"))(historyStatus);
-
             var tempValues = R.map(R.prop("value"))(historyStatus);
-
-            console.log(xData);
-            console.log(tempValues);
 
             var dom = $('#bd-temp-chart')[0];
             tempBarChart = echarts.init(dom);
 
             tempBarOption = {
-                backgroundColor: "#fff",
-
-                "tooltip": {
-                    "trigger": "axis",
-                    "axisPointer": {
-                        "type": "shadow",
-                        textStyle: {
-                            color: "#fff"
-                        }
-
-                    },
-                },
-                "grid": {
-                    "borderWidth": 0,
-                    "top": 10,
-                    "bottom": 25,
-                    textStyle: {
-                        color: "#fff"
+                tooltip : {
+                    trigger: 'axis',
+                    formatter:function(item){
+                        var str = item[0].name + "</br>" + "平均温度: " + item[0].value + " °C"
+                        return str;
                     }
                 },
-                "calculable": true,
-                "xAxis": [{
-                    "type": "category",
-                    "axisLine": {
-                        lineStyle: {
-                            color: '#90979c'
-                        }
-                    },
-                    "splitLine": {
-                        "show": false
-                    },
-                    "axisTick": {
-                        "show": false
-                    },
-                    "splitArea": {
-                        "show": false
-                    },
-                    "axisLabel": {
-                        "interval": 0,
-
-                    },
-                    "data": xData,
-                }],
-                "yAxis": [{
-                    "type": "value",
-                    "splitLine": {
-                        "show": false
-                    },
-                    "axisLine": {
-                        lineStyle: {
-                            color: '#90979c'
-                        }
-                    },
-                    "axisTick": {
-                        "show": false
-                    },
-                    "axisLabel": {
-                        "interval": 0,
-
-                    },
-                    "splitArea": {
-                        "show": false
-                    },
-
-                }],
-
-                "series": [
+                toolbox: {
+                    show : false,
+                },
+                xAxis : [
                     {
-                        "name": "温度",
-                        "type": "bar",
-                        "stack": "总量",
-                        "barMaxWidth": 30,
-                        "barGap": "10%",
-                        "label": {
-                            "normal": {
-                                "show": false
+                        type : 'category',
+                        data : xData,
+                        splitLine:{show: false},//去除网格线
+                        splitArea : {show : false},//保留网格区域，
+                        axisLabel:{
+                            formatter: function (value, index) {
+                                var str = value.split("~")[0] +'\n'+ "~" + value.split("~")[1]
+                                return str
                             }
                         },
-                        "color": [new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                            offset: 0, color: '#D56FB1'
-                        }, {
-                            offset: 1, color: '#F1C89B'
-                        }], false), "transparent"],
-                        "itemStyle": {
-                            "normal": {
-                                // "barBorderRadius":[10,10,0,0],
-                                "label": {
-                                    "show": true,
-                                    "textStyle": {
-                                        "color": "#fff"
-                                    },
-                                    "width": 1,
-                                    "position": "insideTop",
-                                    // formatter: function(p) {
-                                    //     return p.value > 0 ? (p.value) : '';
-                                    // }
-                                }
-                            }
-                            // "show":false
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value',
+                        axisLabel : {
+                            formatter: '{value} °C'
                         },
-                        "data": tempValues,
+                        splitLine:{show: false},//去除网格线
+                        splitArea : {show : false}//保留网格区域
+                    }
+                ],
+                series : [
+                    {
+                        name:'温度',
+                        type:'line',
+                        data:tempValues,
+
+                        //markPoint : {
+                        //    data : [
+                        //        {type : 'max', name: '最大值'},
+                        //        {type : 'min', name: '最小值'}
+                        //    ]
+                        //},
+                        //markLine : {
+                        //    data : [
+                        //        {type : 'average', name: '平均值'}
+                        //    ]
+                        //}
                     }
                 ]
-            }
+            };
 
             tempBarChart.setOption(tempBarOption);
         }
@@ -748,108 +694,57 @@
             humiLineChart = echarts.init(document.getElementById('bd-humi-chart'));
 
             humiLineOption = {
-                backgroundColor: "#fff",
-
-                "tooltip": {
-                    "trigger": "axis",
-                    "axisPointer": {
-                        "type": "shadow",
-                        textStyle: {
-                            color: "#fff"
-                        }
-
-                    },
-                },
-                "grid": {
-                    "borderWidth": 0,
-                    "top": 10,
-                    "bottom": 25,
-                    textStyle: {
-                        color: "#fff"
+                tooltip : {
+                    trigger: 'axis',
+                    formatter:function(item){
+                        var str = item[0].name + "</br>" + "平均湿度: " + item[0].value + " %"
+                        return str;
                     }
                 },
-                "calculable": true,
-                "xAxis": [{
-                    "type": "category",
-                    "axisLine": {
-                        lineStyle: {
-                            color: '#90979c'
-                        }
-                    },
-                    "splitLine": {
-                        "show": false
-                    },
-                    "axisTick": {
-                        "show": false
-                    },
-                    "splitArea": {
-                        "show": false
-                    },
-                    "axisLabel": {
-                        "interval": 0,
-
-                    },
-                    "data": xData,
-                }],
-                "yAxis": [{
-                    "type": "value",
-                    "splitLine": {
-                        "show": false
-                    },
-                    "axisLine": {
-                        lineStyle: {
-                            color: '#90979c'
-                        }
-                    },
-                    "axisTick": {
-                        "show": false
-                    },
-                    "axisLabel": {
-                        "interval": 0,
-
-                    },
-                    "splitArea": {
-                        "show": false
-                    },
-
-                }],
-
-                "series": [
+                toolbox: {
+                    show : false,
+                },
+                xAxis : [
                     {
-                        "name": "湿度",
-                        "type": "line",
-                        "stack": "总量",
-                        symbolSize: 10,
-                        symbol: 'circle',
-                        "label": {
-                            "normal": {
-                                "show": false
+                        type : 'category',
+                        data : xData,
+                        splitLine:{show: false},//去除网格线
+                        splitArea : {show : false},//保留网格区域
+                        axisLabel:{
+                            formatter: function (value, index) {
+                                var str = value.split("~")[0] +'\n'+ "~" + value.split("~")[1]
+                                return str
                             }
                         },
-                        areaStyle: {
-                            normal: {
-                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    offset: 0, color: '#968CEA'
-                                }, {
-                                    offset: 1, color: '#9BE7F1'
-                                }], false)
-                            }
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value',
+                        axisLabel : {
+                            formatter: '{value} %'
                         },
-                        "itemStyle": {
-                            "normal": {
-                                "color": "#6ac2df",
-                                "barBorderRadius": 0,
-                                "label": {
-                                    "show": true,
-                                    "position": "top",
-                                    formatter: function (p) {
-                                        return p.value > 0 ? (p.value) : '';
-                                    }
-                                }
-                            }
-                        },
-                        "data": humiValues
-                    },
+                        splitLine:{show: false},//去除网格线
+                        splitArea : {show : false}//保留网格区域
+                    }
+                ],
+                series : [
+                    {
+                        name:'湿度',
+                        type:'line',
+                        data:humiValues,
+                        //markPoint : {
+                        //    data : [
+                        //        {type : 'max', name: '最大值'},
+                        //        {type : 'min', name: '最小值'}
+                        //    ]
+                        //},
+                        //markLine : {
+                        //    data : [
+                        //        {type : 'average', name: '平均值'}
+                        //    ]
+                        //}
+                    }
                 ]
             }
 

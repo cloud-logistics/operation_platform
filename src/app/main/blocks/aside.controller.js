@@ -15,8 +15,6 @@
         vm.navStyle = {'height': height};
 
         $scope.switchNav = function(flag){
-
-            toastr.success(flag);
             setTimeout(function(){
                 $(".nav").find("li").removeClass("active")
             },10)

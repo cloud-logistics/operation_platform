@@ -70,12 +70,20 @@
                             count:item.box_num
                         }
                     });
-                    //heatmap.setData(testData);
                     heatmap.setData({
                         max:max,
                         data:data
                     });
+                    heatmap = new google.maps.visualization.HeatmapLayer({
+                        data: histData,
+                        map: map
+                    });
 
+                    histData.map(function (item) {
+                        bounds.extend(item);
+                    })
+
+                    map.fitBounds(bounds);
                 },
                 error:function(err){
                     console.log("获取仓库分布失败.");
@@ -111,9 +119,7 @@
             drawingManager.setMap(map);
 
             google.maps.event.addListener(drawingManager, 'circlecomplete', function (circle) {
-                var radius = circle.getRadius();
-                var center = circle.getCenter();
-                var bounds = circle.getBounds();
+               var bounds = circle.getBounds();
 
                 updateMarker(bounds);
             });
