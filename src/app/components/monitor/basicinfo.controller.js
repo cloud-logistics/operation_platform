@@ -13,7 +13,10 @@
 
         vm.title = '报警监控';
         vm.containerlist = [];
-        vm.queryParams = $stateParams;
+        vm.queryParams = _.extend($stateParams,{
+            containerType :0,
+            factory:0
+        });
         $scope.conf = {
             currentPage: 1,
             itemsPerPage: 10,

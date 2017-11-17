@@ -17,6 +17,7 @@
         $scope.showAdd = false;
         $scope.switchShowAdd = function () {
             $scope.showAdd = !$scope.showAdd;
+
         };
         $scope.basicUpdate = function (item) {
             vm.editBasicInfoConfig = _.clone(item);
@@ -140,7 +141,7 @@
             vm.newIssueConfig = {};
 
             console.log(options);
-        });
+        },true);
 
         getBasicInfo();
 
@@ -167,7 +168,7 @@
         function saveBasicInfoConfig(isUseForAdd) {
             if(isUseForAdd){
                 newBasicInfoConfigPost(function(){
-                        $scope.switchShowAdd();
+                        cancelBasicInfoConfig(isUseForAdd)
                         getBasicInfo();
                 });
             }else{
