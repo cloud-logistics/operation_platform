@@ -14,7 +14,7 @@
             //apiHost_OFFLINE:'http://localhost:4000/container/api/v1/cloudbox/',
             token:'airspc_access_authorization',
             informationKey:'airspc_information',
-            refreshInterval: 60000,
+            refreshInterval: 300000,
             defaultContainerId : '01-03-17-09-00-22',
             api:{
                 resource:{

@@ -56,6 +56,14 @@
 
         getRealtimeInfo()
 
+        var timer = $interval(function(){
+            getRealtimeInfo();
+        },constdata.refreshInterval, 500);
+
+        $scope.$on("$destroy", function(){
+            $interval.cancel(timer);
+        });
+
         $scope.changeTimeRange = function(days){
             vm.days = days || 1;
             getContainerHistoryStatus(days, vm.requiredParam);

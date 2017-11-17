@@ -247,6 +247,7 @@
         }
 
         getContainerInfo();
+        /*
         var timer = $interval(function(){
             getContainerInfo();
         },constdata.refreshInterval, 500);
@@ -254,6 +255,7 @@
         $scope.$on("$destroy", function(){
             $interval.cancel(timer);
         });
+        */
     }
 
 })();
