@@ -41,7 +41,7 @@
         vm.title = '实时报文';
         vm.containerlists = [];
         vm.getRealtimeInfo = getRealtimeInfo
-        vm.containerId =  "01-03-17-09-00-24" || $stateParams.containerId || constdata.defaultContainerId
+        vm.containerId =  $stateParams.containerId || constdata.defaultContainerId
         vm.realtimeInfo = {}
         vm.speedStatus = ""
         vm.days = 1;
