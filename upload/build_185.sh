@@ -20,6 +20,6 @@ echo "found file name: ${FULL_NAME}"
 
 cd ../upload/
 
-./scp.sh ${FILE_NAME} ${FULL_NAME}
+./scp_185.sh ${FILE_NAME} ${FULL_NAME}
 
 echo "copy ${FULL_NAME} done"
