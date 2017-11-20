@@ -10,9 +10,18 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="col-md-4 control-label form-control-static">ID</label>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control" placeholder="请输入云箱ID"
-                                           ng-model="vm.queryParams.containerId">
+                                <div class="col-md-8" style="display:inline-block;">
+                                    <input ng-model="vm.queryParams.containerId"
+                                           type="text"
+                                           style="margin-right:0;"
+                                           class="form-control rt-search"
+                                           ng-change="validationCheck()"
+                                           maxlength="22"
+                                           ng-class="{true:'invalida-area',false:''}[isContainerIdInvalida]"
+                                           placeholder="请输入云箱ID...">
+                                    <div class="validation" ng-show="isContainerIdInvalida">
+                                        请输入合法的云箱ID：A-Za-z0-9-
+                                    </div>
                                 </div>
                             </div>
                         </div>

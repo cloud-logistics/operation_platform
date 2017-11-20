@@ -74,6 +74,10 @@
             getContainerHistoryStatus(vm.days, requiredParam);
         };
 
+        $scope.validationCheck = function(){
+            $scope.isContainerIdInvalida = vm.containerId != "" &&!constdata['validation']['id'].test(vm.containerId);
+        };
+
         function getContainerHistoryStatus (days, requiredParam) {
             var queryParams = {
                 requiredParam: requiredParam,
@@ -102,8 +106,7 @@
         }
 
         function getRealtimeInfo () {
-            if(!vm.containerId){
-                toastr.info("请输入云箱ID...");
+            if(vm.containerId == "" ||$scope.isContainerIdInvalida){
                 return;
             }
             getContainerHistoryStatus(vm.days, vm.requiredParam);

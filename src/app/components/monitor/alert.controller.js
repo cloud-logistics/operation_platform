@@ -27,7 +27,9 @@
             onChange: function () {
             }
         };
-
+        $scope.validationCheck = function(){
+            $scope.isContainerIdInvalida = vm.queryParams.containerId != "" &&!constdata['validation']['id'].test(vm.queryParams.containerId);
+        };
         vm.getAlerts = getAlerts
         var transformations = undefined;
 
@@ -61,6 +63,9 @@
         })
         
         function getAlerts () {
+            if(vm.queryParams.containerId == ''|| vm.queryParams.containerId == undefined || $scope.isContainerIdInvalida){
+                return;
+            }
             var queryParams = R.evolve(transformations)(vm.queryParams)
             var data = {
                 container_id:queryParams.containerId || "all",

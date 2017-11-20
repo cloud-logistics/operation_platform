@@ -28,16 +28,24 @@
 
         vm.getInstantlocationInfo = getInstantlocationInfo
 
-        getInstantlocationInfo();
-        var timer = $interval(function(){
-            getInstantlocationInfo();
-        },constdata.refreshInterval, 500);
+        $scope.validationCheck = function(){
+            $scope.isContainerIdInvalida = vm.queryParams.containerId!= "" && !constdata['validation']['id'].test(vm.queryParams.containerId);
+        };
 
-        $scope.$on("$destroy", function(){
-            $interval.cancel(timer);
-        });
+        getInstantlocationInfo();
+
+        //var timer = $interval(function(){
+        //    getInstantlocationInfo();
+        //},constdata.refreshInterval, 500);
+        //
+        //$scope.$on("$destroy", function(){
+        //    $interval.cancel(timer);
+        //});
 
         function getInstantlocationInfo() {
+            if(vm.queryParams.containerId != "" || $scope.isContainerIdInvalida){
+                return;
+            }
             ApiServer.getInstantlocationInfo(vm.queryParams, function (response) {
                 var bounds = new google.maps.LatLngBounds();
                 var containerInfo = response.data.containerInfo

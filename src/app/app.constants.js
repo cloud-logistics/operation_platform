@@ -92,6 +92,10 @@
                     features: ["road", "building","water","land"],//隐藏地图上的poi
                     style : "light"  //设置地图风格为高端黑
                 }
+            },
+            validation:{
+                'id' : /^[A-Za-z0-9-]+$/,
+                'rfid':/^[A-Za-z0-9-_]+$/
             }
         });
 })();

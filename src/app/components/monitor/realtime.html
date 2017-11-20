@@ -9,9 +9,21 @@
                         <h3>实时状态</h3>
                     </div>
                     <div class="rt-head-right">
-                        <span class="rt-id">ID</span>
-                        <input ng-model="vm.containerId" type="text" class="form-control rt-search"
-                               placeholder="请输入云箱ID...">
+                        <span class="rt-id rt-head-label">ID</span>
+                        <div style="display:inline-block;">
+                            <input ng-model="vm.containerId"
+                                   type="text"
+                                   style="margin-right:0;"
+                                   class="form-control rt-search"
+                                   ng-change="validationCheck()"
+                                   maxlength="22"
+                                   ng-class="{true:'invalida-area',false:''}[isContainerIdInvalida]"
+                                   placeholder="请输入云箱ID...">
+                            <div class="validation" ng-show="isContainerIdInvalida">
+                                请输入合法的云箱ID：A-Za-z0-9-
+                            </div>
+                        </div>
+
                         <button type="submit" class="rt-btn" ng-click="vm.getRealtimeInfo()">搜索报文</button>
                     </div>
                 </div>

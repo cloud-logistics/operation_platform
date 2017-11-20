@@ -17,8 +17,56 @@
         $scope.showAdd = false;
         $scope.switchShowAdd = function () {
             $scope.showAdd = !$scope.showAdd;
-
         };
+        $scope.saveValidation = {};
+        $scope.editValidation = {};
+
+        $scope.validationCheck = function(){
+             var flag = false;
+             for(var s in vm.newBasicInfoConfig){
+                 if(vm.newBasicInfoConfig[s] == undefined || vm.newBasicInfoConfig[s] ==""){
+                     $scope.saveValidation[s] = true;
+                     $scope.rfid = "areaRequire";
+                     flag = true;
+                 }else{
+                     $scope.saveValidation[s] = false;
+                 }
+             }
+             if((vm.newBasicInfoConfig['RFID'] != '' && !constdata.validation.rfid.test(vm.newBasicInfoConfig['RFID']))){
+                 $scope.rfid = "invalida-area"
+                 $scope.saveValidation['RFIDInvalid'] = true;
+                 flag = true;
+             }else{
+                 $scope.saveValidation['RFIDInvalid'] = false;
+                 $scope.rfid = vm.newBasicInfoConfig['RFID'] =="" ? "areaRequire":"";
+             }
+            console.log("$scope.saveValidation= ",$scope.saveValidation)
+            return flag;
+        };
+
+        $scope.editValidationCheck = function(){
+            var flag = false;
+            for(var s in vm.editBasicInfoConfig){
+                if(vm.editBasicInfoConfig[s] == undefined || vm.editBasicInfoConfig[s] ==""){
+                    $scope.editValidation[s] = true;
+                    $scope.editRfid = "areaRequire";
+                    flag = true;
+                }else{
+                    $scope.editValidation[s] = false;
+                }
+            }
+            if((vm.editBasicInfoConfig['tid'] != '' && !constdata.validation.rfid.test(vm.editBasicInfoConfig['tid']))){
+                $scope.editRfid = "invalida-area"
+                $scope.editValidation['RFIDInvalid'] = true;
+                flag = true;
+            }else{
+                $scope.editValidation['RFIDInvalid'] = false;
+                $scope.editRfid = vm.editBasicInfoConfig['tid'] =="" ? "areaRequire":"";
+            }
+            console.log("$scope.saveValidation= ",$scope.editValidation)
+            return flag;
+        };
+
         $scope.basicUpdate = function (item) {
             vm.editBasicInfoConfig = _.clone(item);
             vm.editBasicInfoConfig.date_of_production = parseInt(vm.editBasicInfoConfig.date_of_production);
@@ -62,13 +110,21 @@
             }
         };
 
-        vm.newBasicInfoConfig = {};
+        vm.newBasicInfoConfig = {
+            "containerId":"",
+            "rfid": "",
+            "containerType": "",
+            "factory": "",
+            "factoryLocation": "",
+            "batteryInfo": "",
+            "hardwareInfo": "",
+            "manufactureTime":""
+        };
         vm.basicInfoManage = {
             basicInfoConfig: {},
             alertConfig: {},
             issueConfig: {}
         };
-
 
         vm.saveBasicInfoConfig = saveBasicInfoConfig;
         vm.cancelBasicInfoConfig = cancelBasicInfoConfig;
@@ -93,7 +149,6 @@
 
         ApiServer.getOptions(requiredOptions, function (options) {
             vm.options = options
-
             transformations = {
                 intervalTime: optionsTransFunc(vm.options.intervalTime),
                 carrier: optionsTransFunc(vm.options.carrier),
@@ -123,16 +178,6 @@
                     max: inputTransFunc
                 }
             };
-
-            vm.newBasicInfoConfig = {
-                carrier: R.compose(R.prop("value"), R.head)(vm.options.carrier),
-                containerType: R.compose(R.prop("value"), R.head)(vm.options.containerType),
-                factory: R.compose(R.prop("value"), R.head)(vm.options.factory),
-                factoryLocation: R.compose(R.prop("value"), R.head)(vm.options.factoryLocation),
-                batteryInfo: R.compose(R.prop("value"), R.head)(vm.options.batteryInfo),
-                hardwareInfo: R.compose(R.prop("value"), R.head)(vm.options.hardwareInfo),
-                manufactureTime: moment(new Date())
-            };
             vm.MaxDate = moment()
             vm.newSecurityConfig = {
                 intervalTime: R.compose(R.prop("value"), R.head)(vm.options.intervalTime)
@@ -146,7 +191,6 @@
         getBasicInfo();
 
         function getBasicInfo() {
-            console.log(vm.queryParams)
             var data = {
                 container_id: 'all',
                 container_type: 0,
@@ -159,7 +203,6 @@
             ApiServer.getBasicInfo(data, function (response) {
                 vm.basicInfoManage = response.data.data.results;
                 $scope.conf.totalItems = response.data.data.count;
-                console.log(vm.basicInfoManage);
             }, function (err) {
                 console.log("Get ContainerOverview Info Failed", err);
             });
@@ -183,13 +226,26 @@
         function cancelBasicInfoConfig(isUseForAdd) {
             if (isUseForAdd) {
                 $scope.switchShowAdd();
-                vm.newBasicInfoConfig = {};
+                $scope.saveValidation = {};
+                vm.newBasicInfoConfig = {
+                    "containerId":"",
+                    "rfid": "",
+                    "containerType": "",
+                    "factory": "",
+                    "factoryLocation": "",
+                    "batteryInfo": "",
+                    "hardwareInfo": "",
+                    "manufactureTime":""
+                };
             } else {
                 $scope.bbUpdate = false;
             }
         }
 
         function newBasicInfoConfigPost(callback) {
+            if($scope.validationCheck()){
+                return;
+            }
              var data = {
                  "containerId":vm.newBasicInfoConfig.deviceid,
                 "rfid": vm.newBasicInfoConfig.RFID,
@@ -219,6 +275,9 @@
         }
 
         function editBasicInfoConfigPost(callback){
+            if($scope.editValidationCheck()){
+                return;
+            }
             var data = {
                 "containerId":vm.editBasicInfoConfig.deviceid,
                 "rfid": vm.editBasicInfoConfig.tid,

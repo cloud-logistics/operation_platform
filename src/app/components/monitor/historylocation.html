@@ -6,8 +6,22 @@
             <div class="floating-panel-his">
                 <span class="instTitleHis">历史轨迹</span>
                 <div class="instRightHis">
-                    <span class="instLabelHis">ID</span>
-                    <input type="text" placeholder="请输入云箱ID" ng-model="vm.queryParams.containerId" >
+                    <span class="instLabelHis instLabelHis-label" >ID</span>
+                    <div style="display:inline-block;float:left;">
+                       <input ng-model="vm.queryParams.containerId"
+                               type="text"
+                               style="margin-right:0;"
+                               class="form-control rt-search"
+                               ng-change="validationCheck()"
+                               maxlength="22"
+                               ng-class="{true:'invalida-area',false:''}[isContainerIdInvalida]"
+                               placeholder="请输入云箱ID...">
+                        <div class="validation" ng-show="isContainerIdInvalida">
+                            请输入合法的云箱ID：A-Za-z0-9-
+                        </div>
+                    </div>
+
+
                     <span class="instLabelHis" style="margin-left: 10px">时间</span>
                     <input ng-model="vm.queryParams.start_time"
                            min-view="hours"
