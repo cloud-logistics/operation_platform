@@ -26,7 +26,9 @@
             onChange: function () {
             }
         };
-
+        $scope.validationCheck = function(){
+            $scope.isContainerIdInvalida = vm.queryParams.containerId != "" &&!constdata['validation']['id'].test(vm.queryParams.containerId);
+        };
         var transformations = undefined;
 
         var requiredOptions = [
@@ -63,6 +65,9 @@
         vm.getBasicInfo = getBasicInfo
         
         function getBasicInfo () {
+            if($scope.isContainerIdInvalida){
+                return;
+            }
             var data = {
                 container_id:vm.queryParams.containerId ||'all',
                 container_type:vm.queryParams.containerType || 0,

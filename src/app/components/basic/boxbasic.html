@@ -15,7 +15,10 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">RFID</label>
                             <div class="col-md-8">
-                                <input ng-model="vm.editBasicInfoConfig.tid" type="text" class="form-control" placeholder="请输入RFID...">
+                                <input ng-model="vm.editBasicInfoConfig.tid"
+                                       type="text" class="form-control {{editRfid}}"
+                                       ng-change="editValidationCheck()"
+                                       placeholder="请输入RFID...">
                             </div>
                         </div>
                     </div>
@@ -23,7 +26,10 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">云箱型号</label>
                             <div class="col-md-8">
-                                <select ng-model="vm.editBasicInfoConfig.box_type_id" name="account" class="form-control">
+                                <select ng-model="vm.editBasicInfoConfig.box_type_id"
+                                        ng-class="{true:'areaRequire',false:''}[saveValidation.box_type_id]"
+                                        ng-change="editValidationCheck()"
+                                        name="account" class="form-control">
                                     <option value="">-- 请选择 --</option>
                                     <option ng-repeat="item in vm.options.containerType track by $index" ng-value="item.id">{{item.value}}</option>
                                 </select>
@@ -40,6 +46,8 @@
                                 <input date-time
                                        ng-model="vm.editBasicInfoConfig.date_of_production"
                                        class="form-control m-b"
+                                       ng-class="{true:'areaRequire',false:''}[saveValidation.date_of_production]"
+                                       ng-change="editValidationCheck()"
                                        placeholder="请选择出厂日期"
                                        min-view="date"
                                         format="YYYY-MM-DD">
@@ -50,7 +58,10 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">生产厂家</label>
                             <div class="col-md-8">
-                                <select  ng-model="vm.editBasicInfoConfig.manufacturer_id" name="account" class="form-control">
+                                <select  ng-model="vm.editBasicInfoConfig.manufacturer_id" name="account"
+                                         ng-class="{true:'areaRequire',false:''}[saveValidation.manufacturer_id]"
+                                         ng-change="editValidationCheck()"
+                                         class="form-control">
                                     <option value="">-- 请选择 --</option>
                                     <option ng-repeat="item in vm.options.factory track by $index" ng-value="item.id">{{item.value}}</option>
                                 </select>
@@ -64,7 +75,10 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">生产地</label>
                             <div class="col-md-8">
-                                <select ng-model="vm.editBasicInfoConfig.produce_area_id" name="account" class="form-control">
+                                <select ng-model="vm.editBasicInfoConfig.produce_area_id"
+                                        ng-class="{true:'areaRequire',false:''}[saveValidation.produce_area_id]"
+                                        ng-change="editValidationCheck()"
+                                        name="account" class="form-control">
                                     <option value="">-- 请选择 --</option>
                                     <option ng-repeat="item in vm.options.factoryLocation track by $index" ng-value="item.id">{{item.value}}</option>
                                 </select>
@@ -75,7 +89,10 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">电源信息</label>
                             <div class="col-md-8">
-                                <select  ng-model="vm.editBasicInfoConfig.battery_id" name="account" class="form-control">
+                                <select  ng-model="vm.editBasicInfoConfig.battery_id" name="account"
+                                         ng-class="{true:'areaRequire',false:''}[saveValidation.battery_id]"
+                                         ng-change="editValidationCheck()"
+                                         class="form-control">
                                     <option value="">-- 请选择 --</option>
                                     <option ng-repeat="item in vm.options.batteryInfo track by $index" ng-value="item.id">{{item.value}}</option>
                                 </select>
@@ -90,7 +107,10 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label form-control-static">智能硬件信息</label>
                             <div class="col-md-6">
-                                <select ng-model="vm.editBasicInfoConfig.hardware_id" name="account" class="form-control">
+                                <select ng-model="vm.editBasicInfoConfig.hardware_id"
+                                        ng-class="{true:'areaRequire',false:''}[saveValidation.hardware_id]"
+                                        ng-change="editValidationCheck()"
+                                        name="account" class="form-control">
                                     <option value="">-- 请选择 --</option>
                                     <option ng-repeat="item in vm.options.hardwareInfo track by $index" ng-value="item.id">{{item.value}}</option>
                                 </select>
@@ -120,8 +140,18 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">RFID</label>
-                                    <div class="col-md-8">
-                                        <input ng-model="vm.newBasicInfoConfig.RFID" type="text" class="form-control" placeholder="请输入RFID...">
+                                    <div class="col-md-8" style="display:inline-block;">
+
+                                            <input ng-model="vm.newBasicInfoConfig.RFID"
+                                                   type="text"
+                                                   style="margin-right:0;"
+                                                   class="form-control rt-search {{rfid}}"
+                                                   ng-change="validationCheck()"
+                                                   maxlength="22"
+                                                   placeholder="请输入RFID...">
+                                            <div class="validation" ng-show="saveValidation.RFIDInvalid">
+                                                请输入合法的RFID：A-Za-z0-9-
+                                            </div>
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +160,11 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">云箱型号</label>
                                     <div class="col-md-8">
-                                        <select ng-model="vm.newBasicInfoConfig.containerType" name="account" class="form-control">
+                                        <select ng-model="vm.newBasicInfoConfig.containerType"
+                                                name="account"
+                                                ng-change="validationCheck()"
+                                                ng-class="{true:'areaRequire',false:''}[saveValidation.containerType]"
+                                                class="form-control">
                                             <option value="">-- 请选择 --</option>
                                             <option ng-repeat="item in vm.options.containerType track by $index" ng-value="item.id">{{item.value}}</option>
                                         </select>
@@ -142,7 +176,9 @@
                                     <label class="col-md-4 control-label form-control-static">出厂日期</label>
                                     <div class="col-md-8">
                                     <input ng-model="vm.newBasicInfoConfig.manufactureTime" 
-                                        class="form-control m-b" 
+                                        class="form-control m-b"
+                                           ng-change="validationCheck()"
+                                           ng-class="{true:'areaRequire',false:''}[saveValidation.manufactureTime]"
                                         moment-picker
                                            placeholder="请选择出厂日期"
                                            max-date="vm.MaxDate"
@@ -157,7 +193,10 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">生产厂家</label>
                                     <div class="col-md-8">
-                                        <select  ng-model="vm.newBasicInfoConfig.factory" name="account" class="form-control">
+                                        <select  ng-model="vm.newBasicInfoConfig.factory" name="account"
+                                                 ng-class="{true:'areaRequire',false:''}[saveValidation.factory]"
+                                                 ng-change="validationCheck()"
+                                                 class="form-control">
                                             <option value="">-- 请选择 --</option>
                                             <option ng-repeat="item in vm.options.factory track by $index" ng-value="item.id">{{item.value}}</option>
                                         </select>
@@ -168,7 +207,10 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">生产地</label>
                                     <div class="col-md-8">
-                                        <select ng-model="vm.newBasicInfoConfig.factoryLocation" name="account" class="form-control">
+                                        <select ng-model="vm.newBasicInfoConfig.factoryLocation" name="account"
+                                                ng-change="validationCheck()"
+                                                ng-class="{true:'areaRequire',false:''}[saveValidation.factoryLocation]"
+                                                class="form-control">
                                             <option value="">-- 请选择 --</option>
                                             <option ng-repeat="item in vm.options.factoryLocation track by $index" ng-value="item.id">{{item.value}}</option>
                                         </select>
@@ -179,7 +221,10 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">电源信息</label>
                                     <div class="col-md-8">
-                                        <select  ng-model="vm.newBasicInfoConfig.batteryInfo" name="account" class="form-control">
+                                        <select  ng-model="vm.newBasicInfoConfig.batteryInfo" name="account"
+                                                 ng-change="validationCheck()"
+                                                 ng-class="{true:'areaRequire',false:''}[saveValidation.batteryInfo]"
+                                                 class="form-control">
                                             <option value="">-- 请选择 --</option>
                                             <option ng-repeat="item in vm.options.batteryInfo track by $index" ng-value="item.id">{{item.value}}</option>
                                         </select>
@@ -193,7 +238,10 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">智能硬件信息</label>
                                     <div class="col-md-8">
-                                        <select ng-model="vm.newBasicInfoConfig.hardwareInfo" name="account" class="form-control">
+                                        <select ng-model="vm.newBasicInfoConfig.hardwareInfo" name="account"
+                                                ng-class="{true:'areaRequire',false:''}[saveValidation.hardwareInfo]"
+                                                ng-change="validationCheck()"
+                                                class="form-control">
                                             <option value="">-- 请选择 --</option>
                                             <option ng-repeat="item in vm.options.hardwareInfo track by $index" ng-value="item.id">{{item.value}}</option>
                                         </select>

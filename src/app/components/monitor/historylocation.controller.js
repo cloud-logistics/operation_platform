@@ -31,6 +31,10 @@
             end_time: moment(new Date())
         };
 
+        $scope.validationCheck = function(){
+            $scope.isContainerIdInvalida = vm.queryParams.containerId != "" &&!constdata['validation']['id'].test(vm.queryParams.containerId);
+        };
+
         // 鼠标绘图工具
         var overlay = undefined;
 
@@ -39,6 +43,9 @@
         getHistorylocationInfo()
 
         function getHistorylocationInfo() {
+            if(vm.queryParams.containerId =='' || $scope.isContainerIdInvalida){
+                return;
+            }
             var start_time = vm.queryParams.start_time.valueOf().toString().slice(0,10);
             var end_time = vm.queryParams.end_time.valueOf().toString().slice(0,10);
           

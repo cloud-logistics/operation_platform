@@ -12,13 +12,24 @@
                                     class="col-md-3 control-label form-control-static">ID</label>
 
                             <div class="col-md-9" style="padding:0;">
-                                <input type="text" class="form-control" style="border-radius: 8px" placeholder="请输入云箱ID"
-                                       ng-model="vm.queryParams.containerId">
+                                <div style="display:inline-block;">
+                                    <input ng-model="vm.queryParams.containerId"
+                                           type="text"
+                                           style="margin-right:0;"
+                                           class="form-control rt-search"
+                                           ng-change="validationCheck()"
+                                           maxlength="22"
+                                           ng-class="{true:'invalida-area',false:''}[isContainerIdInvalida]"
+                                           placeholder="请输入云箱ID...">
+                                    <div class="validation" ng-show="isContainerIdInvalida">
+                                        请输入合法的云箱ID：A-Za-z0-9-
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-4" >
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">云箱型号</label>
                             <div class="col-md-8">
@@ -39,7 +50,7 @@
                         </div>
                     </div>
                     <!-- line2 -->
-                    <div class="col-md-4">
+                    <div class="col-md-4" style="clear:both;">
                         <form class="form-inline bi-chuchang">
                             <div class="form-group">
                                 <div  class="col-md-3"  style="padding-left:0">

@@ -24,7 +24,9 @@
             onChange: function () {
             }
         };
-
+        $scope.validationCheck = function(){
+            $scope.isContainerIdInvalida = vm.queryParams.containerId != "" &&!constdata['validation']['id'].test(vm.queryParams.containerId);
+        };
         var transformations = undefined;
 
         var requiredOptions = [
@@ -57,12 +59,11 @@
             }
 
             vm.queryParams = {
-                containerType: R.compose(R.prop("value"), R.head)(vm.options.containerType),
-                location: R.compose(R.prop("value"), R.head)(vm.options.location),
-                alertLevel: R.compose(R.prop("value"), R.head)(vm.options.alertLevel),
-                alertType: R.compose(R.prop("value"), R.head)(vm.options.alertType),
-                alertCode: R.compose(R.prop("value"), R.head)(vm.options.alertCode),
-                carrier: R.compose(R.prop("value"), R.head)(vm.options.carrier),
+                containerType: R.compose(R.prop("id"), R.head)(vm.options.containerType),
+                location: R.compose(R.prop("id"), R.head)(vm.options.location),
+                alertLevel: R.compose(R.prop("id"), R.head)(vm.options.alertLevel),
+                alertType: R.compose(R.prop("id"), R.head)(vm.options.alertType),
+                alertCode: R.compose(R.prop("id"), R.head)(vm.options.alertCode)
             }
 
             console.log(vm.queryParams);
@@ -72,6 +73,9 @@
 
         function getBoxStatus() {
             //var queryParams = R.evolve(transformations)(vm.queryParams)
+            if($scope.isContainerIdInvalida){
+                return;
+            }
             var data = {
                 container_id:vm.queryParams.containerId||'all',
                 container_type:vm.queryParams.containerType||0,
