@@ -649,6 +649,21 @@
             speedLineChart.setOption(speedLineOption);
         }
 
+        var intervalMenu = {
+            1:1,
+            3:24,
+            7:24,
+        };
+
+        var stringTruncation = function(value){
+            if(vm.days == 1){
+                var str = value.split("~")[0].substring(11,16);
+            }else{
+                var str = value.split("~")[0].substring(5,10);
+            }
+            return str;
+        };
+
         /*初始化温度bar chart*/
         function initTempBar(days, historyStatus) {
             console.log(historyStatus);
@@ -677,10 +692,10 @@
                         splitArea : {show : false},//保留网格区域，
                         axisLabel:{
                             formatter: function (value, index) {
-                                var str = value.split("~")[0] +'\n'+ "~" + value.split("~")[1]
-                                return str
-                            }
-                        },
+                                return stringTruncation(value);
+                            },
+                            interval: intervalMenu[vm.days]
+                        }
                     }
                 ],
                 yAxis : [
@@ -707,7 +722,6 @@
                     }
                 ]
             };
-
             tempBarChart.setOption(tempBarOption);
         }
 
@@ -738,10 +752,10 @@
                         splitArea : {show : false},//保留网格区域
                         axisLabel:{
                             formatter: function (value, index) {
-                                var str = value.split("~")[0].substring(6,10);
-                                return str
-                            }
-                        },
+                                return stringTruncation(value);
+                            },
+                            interval: intervalMenu[vm.days]
+                        }
                     }
                 ],
                 yAxis : [

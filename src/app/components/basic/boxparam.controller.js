@@ -131,6 +131,11 @@
                 success: function (res) {
                     console.log(res.data);
                     vm.boxList = res.data.box_types;
+                    _.map(vm.boxList,function(item){
+                        for(var s in item){
+                            item[s] = parseFloat(item[s]);
+                        }
+                    })
                 },
                 error: function (err) {
                     console.log("获取所有安全测试设置失败", err);
@@ -140,6 +145,7 @@
 
         vm.resetSafeSetting = function(box,index){
             console.log()
+
             if(!$scope.validationCheck(box,index)){
                 console.log("校验失败",index);
                 return;
