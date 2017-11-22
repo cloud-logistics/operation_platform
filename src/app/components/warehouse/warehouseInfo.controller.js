@@ -126,24 +126,29 @@
         vm.getCountryList();
         initialMap();
 
-        vm.setPointer = function () {
+        vm.setPointer = function (point) {
             clearMarker();
             $scope.validationCheck();
             if(!vm.siteInfo.city.city_id){
                 return;
             }
-            var data = _.find($scope.cityDataBack,function(item){
-                return item.city_id ==  vm.siteInfo.city.city_id;
-            });
-            vm.siteInfo.longitude = data.longitude;
-            vm.siteInfo.latitude = data.latitude;
+            if(!point){
+                var data = _.find($scope.cityDataBack,function(item){
+                    return item.city_id ==  vm.siteInfo.city.city_id;
+                });
+                vm.siteInfo.longitude = data.longitude;
+                vm.siteInfo.latitude = data.latitude;
+            }else{
+                vm.siteInfo.longitude = point.longitude;
+                vm.siteInfo.latitude = point.latitude;
+            }
             var point = {
                 lng: parseFloat(vm.siteInfo.longitude),
                 lat: parseFloat(vm.siteInfo.latitude)
             };
             marker = MapService.addMarker(map)(point, {draggable: true,notTranslate:true});
             google.maps.event.addListener(marker, 'dragend', function (MouseEvent) {
-                console.log("移动后的经纬度", MouseEvent.latLng);
+                console.log("移动后的经纬度", MouseEvent.latLng.lng() + " " + MouseEvent.latLng.lat());
                 getAddressByLngLat(MouseEvent.latLng.lng(), MouseEvent.latLng.lat());
             });
 
@@ -154,6 +159,7 @@
             vm.siteInfo.nation_id = obj.nation_id;
             var obj = {
                 latitude:lat,
+                id:obj.id,
                 location:obj.position_name,
                 longitude:lng,
                 city:{
@@ -186,7 +192,7 @@
                         toastr.info(res.data.msg);
                     }else{
                         vm.siteInfo.location = res.data.position_name;
-                        resetLocation(res.data,lng,lat);
+                        resetLocation(_.extend(res.data,{id:vm.siteInfo.id}),lng,lat);
                     }
                 },
                 "error": function (res) {
@@ -211,8 +217,10 @@
                             "longitude":obj.longitude,
                             "latitude":obj.latitude
                         };
-                        vm.setPointer();
-
+                        vm.setPointer({
+                            "longitude":obj.longitude,
+                            "latitude":obj.latitude
+                        });
                     })
                 });
             });

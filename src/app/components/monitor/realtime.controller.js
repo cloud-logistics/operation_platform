@@ -38,10 +38,10 @@
         var statusLineOption;
         vm.title = '实时报文';
         vm.containerlists = [];
-        vm.getRealtimeInfo = getRealtimeInfo
-        vm.containerId =  $stateParams.containerId || constdata.defaultContainerId
-        vm.realtimeInfo = {}
-        vm.speedStatus = ""
+        vm.getRealtimeInfo = getRealtimeInfo;
+        vm.containerId =  $stateParams.containerId || constdata.defaultContainerId;
+        vm.realtimeInfo = {};
+        vm.speedStatus = "";
         vm.days = 1;
         vm.requiredParam = "temperature";
         var historyStatus = {
@@ -50,7 +50,7 @@
             humidity: [],
             battery: [],
             boxStatus:[]
-        }
+        };
         $scope.validationCheck = function(){
             var flag = true;
             if(!$scope.btnClicked){
@@ -71,16 +71,7 @@
             return flag;
         };
 
-
         getRealtimeInfo(true);
-
-        var timer = $interval(function(){
-            getRealtimeInfo();
-        },constdata.refreshInterval, 500);
-
-        $scope.$on("$destroy", function(){
-            $interval.cancel(timer);
-        });
 
         $scope.changeTimeRange = function(days){
             vm.days = days || 1;
@@ -91,7 +82,6 @@
             vm.requiredParam = requiredParam;
             getContainerHistoryStatus(vm.days, requiredParam);
         };
-
 
         function getContainerHistoryStatus (days, requiredParam) {
             var queryParams = {
@@ -121,9 +111,7 @@
         }
 
         function getRealtimeInfo (isNotFromClick) {
-            if(isNotFromClick){
-                return;
-            }else{
+            if(!isNotFromClick){
                 $scope.btnClicked = true;
             }
             if(!$scope.validationCheck()){
@@ -145,13 +133,13 @@
                 vm.realtimeInfo = response.data
                 //vm.realtimeInfo.locationName = "中国广东省深圳市龙岗区一号路";
 
-                vm.speedStatus = "正常"
+                vm.speedStatus = "正常";
                 console.log(vm.realtimeInfo);
 
-                initTemp(vm.realtimeInfo.temperature.value)
-                initHumi(vm.realtimeInfo.humidity.value)
-                initBatt(vm.realtimeInfo.battery.value);
-                initSpeed(vm.realtimeInfo.speed);
+                initTemp(vm.realtimeInfo.temperature.value);
+                initHumi(vm.realtimeInfo.humidity.value);
+                initBatt(20||vm.realtimeInfo.battery.value);
+                initSpeed(Math.round(vm.realtimeInfo.speed*100)/100);
             },function (err) {
                 console.log("Get RealtimeInfo Info Failed", err);
             });
@@ -395,9 +383,8 @@
             humiChart.setOption(humiOption);
         }
 
-
         function initBatt(value) {
-            battChart = echarts.init(document.getElementById('batt-chart'));
+            battChart =  battChart || echarts.init(document.getElementById('batt-chart'));
             battOption = {
                 series: [{
                     type: 'liquidFill',
@@ -429,10 +416,8 @@
                     radius: '90%',
                     label: {
                         normal: {
-
                             formatter: function (param) {
-                                // param.value is 0.61245
-                                return (Math.floor(param.value * 10000) / 100) + '%';
+                                return param.value  + '%';
                             },
                             textStyle: {
                                 fontSize: 24,
@@ -448,15 +433,12 @@
                             borderColor: '#86cea0'
                         }
                     }
-
                 }]
             };
             battChart.setOption(battOption);
         }
 
-
         function initSpeed(value) {
-
             speedChart = echarts.init(document.getElementById('speed-chart'));
             speedOption = {
                 tooltip: {
@@ -475,7 +457,7 @@
                         type: 'gauge',
                         z: 3,
                         min: 0,
-                        max: 1000,
+                        max: 200,
                         splitNumber: 10,
                         radius: '90%',
                         axisLine: {            // 坐标轴线
@@ -528,125 +510,6 @@
                 ]
             };
             speedChart.setOption(speedOption);
-        }
-
-        /*初始化速度line chart*/
-        function initSpeedLine() {
-            var xData = R.compose(
-                            R.map(R.prop("time")),
-                            R.prop("speed")
-                        )(historyStatus)
-
-            var speedValues =  R.compose(
-                                    R.map(R.prop("value")),
-                                    R.prop("speed")
-                                )(historyStatus)
-
-            speedLineChart = echarts.init(document.getElementById('bd-speed-chart'));
-
-            speedLineOption = {
-                backgroundColor: "#fff",
-
-                "tooltip": {
-                    "trigger": "axis",
-                    "axisPointer": {
-                        "type": "shadow",
-                        textStyle: {
-                            color: "#fff"
-                        }
-
-                    },
-                },
-                "grid": {
-                    "borderWidth": 0,
-                    "top": 10,
-                    "bottom": 25,
-                    textStyle: {
-                        color: "#fff"
-                    }
-                },
-                "calculable": true,
-                "xAxis": [{
-                    "type": "category",
-                    "axisLine": {
-                        lineStyle: {
-                            color: '#90979c'
-                        }
-                    },
-                    "splitLine": {
-                        "show": false
-                    },
-                    "axisTick": {
-                        "show": false
-                    },
-                    "splitArea": {
-                        "show": false
-                    },
-                    "axisLabel": {
-                        "interval": 0,
-
-                    },
-                    "data": xData,
-                }],
-                "yAxis": [{
-                    "type": "value",
-                    "splitLine": {
-                        "show": false
-                    },
-                    "axisLine": {
-                        lineStyle: {
-                            color: '#90979c'
-                        }
-                    },
-                    "axisTick": {
-                        "show": false
-                    },
-                    "axisLabel": {
-                        "interval": 0,
-
-                    },
-                    "splitArea": {
-                        "show": false
-                    },
-
-                }],
-
-                "series": [
-                    {
-                        "name": "速度",
-                        "type": "line",
-                        "stack": "总量",
-                        symbolSize: 10,
-                        symbol: 'circle',
-                        "label": {
-                            "normal": {
-                                "show": false
-                            }
-                        },
-                        "lineStyle": {
-                            "normal": {
-                                width: 4
-                            }
-                        },
-                        "itemStyle": {
-                            "normal": {
-                                "color": "#6ac2df",
-                                "barBorderRadius": 0,
-                                "label": {
-                                    "show": true,
-                                    "position": "top",
-                                    formatter: function (p) {
-                                        return p.value > 0 ? (p.value) : '';
-                                    }
-                                }
-                            }
-                        },
-                        "data": speedValues
-                    },
-                ]
-            }
-
-            speedLineChart.setOption(speedLineOption);
         }
 
         var intervalMenu = {
@@ -785,314 +648,6 @@
 
             humiLineChart.setOption(humiLineOption);
         }
-
-        function initBattLine() {
-            var xData = R.compose(
-                        R.map(R.prop("time")),
-                        R.prop("battery")
-                    )(historyStatus)
-
-            var batteryValues =  R.compose(
-                        R.map(R.prop("value")),
-                        R.prop("battery")
-                    )(historyStatus)
-
-            battLineChart = echarts.init(document.getElementById('bd-batt-chart'));
-
-            battLineOption = {
-                backgroundColor: "#fff",
-
-                "tooltip": {
-                    "trigger": "axis",
-                    "axisPointer": {
-                        "type": "shadow",
-                        textStyle: {
-                            color: "#fff"
-                        }
-
-                    },
-                },
-                "grid": {
-                    "borderWidth": 0,
-                    "top": 10,
-                    "bottom": 25,
-                    textStyle: {
-                        color: "#fff"
-                    }
-                },
-                "calculable": true,
-                "xAxis": [{
-                    "type": "category",
-                    "axisLine": {
-                        lineStyle: {
-                            color: '#90979c'
-                        }
-                    },
-                    "splitLine": {
-                        "show": false
-                    },
-                    "axisTick": {
-                        "show": false
-                    },
-                    "splitArea": {
-                        "show": false
-                    },
-                    "axisLabel": {
-                        "interval": 0,
-
-                    },
-                    "data": xData,
-                }],
-                "yAxis": [{
-                    "type": "value",
-                    "splitLine": {
-                        "show": false
-                    },
-                    "axisLine": {
-                        lineStyle: {
-                            color: '#90979c'
-                        }
-                    },
-                    "axisTick": {
-                        "show": false
-                    },
-                    "axisLabel": {
-                        "interval": 0,
-
-                    },
-                    "splitArea": {
-                        "show": false
-                    },
-
-                }],
-
-                "series": [
-                    {
-                        "name": "电量",
-                        "type": "line",
-                        "stack": "总量",
-                        symbolSize: 10,
-                        symbol: 'circle',
-                        "label": {
-                            "normal": {
-                                "show": false
-                            }
-                        },
-                        areaStyle: {
-                            normal: {
-                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    offset: 0, color: '#968CEA'
-                                }, {
-                                    offset: 1, color: '#9BE7F1'
-                                }], false)
-                            }
-                        },
-                        "itemStyle": {
-                            "normal": {
-                                "color": "#6ac2df",
-                                "barBorderRadius": 0,
-                                "label": {
-                                    "show": true,
-                                    "position": "top",
-                                    formatter: function (p) {
-                                        return p.value > 0 ? (p.value) : '';
-                                    }
-                                }
-                            }
-                        },
-                        "data": batteryValues
-                    },
-                ]
-            };
-
-            battLineChart.setOption(battLineOption);
-        }
-
-        function initStatusLine(){
-            var xData = function() {
-                var data = [];
-                for (var i = 1; i < 13; i++) {
-                    data.push(i + "月份");
-                }
-                return data;
-            }();
-
-            statusLineChart = echarts.init(document.getElementById('bd-status-chart'));
-
-            statusLineOption = {
-                backgroundColor: "#fff",
-                legend: {
-                    orient: 'horizontal',
-                    align: 'left',
-                    data: ['开门次数','碰撞次数'],
-                    formatter: function (name) {
-                        return name;
-                    }
-
-                },
-                "tooltip": {
-                    "trigger": "axis",
-                    "axisPointer": {
-                        "type": "shadow",
-                        textStyle: {
-                            color: "#fff"
-                        }
-
-                    },
-                },
-                "grid": {
-                    "borderWidth": 0,
-                    "top": 10,
-                    "bottom": 25,
-                    textStyle: {
-                        color: "#fff"
-                    }
-                },
-                "calculable": true,
-                "xAxis": [{
-                    "type": "category",
-                    "axisLine": {
-                        lineStyle: {
-                            color: '#90979c'
-                        }
-                    },
-                    "splitLine": {
-                        "show": false
-                    },
-                    "axisTick": {
-                        "show": false
-                    },
-                    "splitArea": {
-                        "show": false
-                    },
-                    "axisLabel": {
-                        "interval": 0,
-
-                    },
-                    "data": xData,
-                }],
-                "yAxis": [{
-                    "type": "value",
-                    "splitLine": {
-                        "show": false
-                    },
-                    "axisLine": {
-                        lineStyle: {
-                            color: '#90979c'
-                        }
-                    },
-                    "axisTick": {
-                        "show": false
-                    },
-                    "axisLabel": {
-                        "interval": 0,
-
-                    },
-                    "splitArea": {
-                        "show": false
-                    },
-
-                }],
-
-                "series": [{
-                    "name": "开门次数",
-                    "type": "bar",
-                    "stack": "总量",
-                    "barMaxWidth": 40,
-                    "barGap": "10%",
-                    "label":{
-                        "normal":{
-                            "show":false
-                        }
-                    },
-                    "itemStyle": {
-                        "normal": {
-                            "color": new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                offset: 0, color: '#968CEA'
-                            }, {
-                                offset: 1, color: '#9BE7F1'
-                            }], false),
-                            "label": {
-                                "show": true,
-                                "textStyle": {
-                                    "color": "#fff"
-                                },
-                                "width":1,
-                                "position": "insideTop",
-                                // formatter: function(p) {
-                                //     return p.value > 0 ? (p.value) : '';
-                                // }
-                            }
-                        }
-                        // "show":false
-                    },
-                    "data": [
-                        709,
-                        1917,
-                        2455,
-                        2610,
-                        1719,
-                        1433,
-                        1544,
-                        3285,
-                        5208,
-                        3372,
-                        2484,
-                        4078
-                    ],
-                },
-
-                    {
-                        "name": "碰撞次数",
-                        "type": "line",
-                        "stack": "总量",
-                        symbolSize:10,
-                        symbol:'circle',
-                        "label":{
-                            "normal":{
-                                "show":false
-                            }
-                        },
-                        "lineStyle":{
-                            "normal":{
-                                "type":"dotted",
-                                "width":4
-                            }
-                        },
-                        "itemStyle": {
-                            "normal": {
-                                "color": "#6ac2df",
-                                "barBorderRadius": 0,
-                                "label": {
-                                    "show": true,
-                                    "position": "top",
-                                    formatter: function(p) {
-                                        return p.value > 0 ? (p.value) : '';
-                                    }
-                                }
-                            }
-                        },
-                        "data": [
-                            1036,
-                            3693,
-                            2962,
-                            3810,
-                            2519,
-                            1915,
-                            1748,
-                            4675,
-                            6209,
-                            4323,
-                            2865,
-                            4298
-                        ]
-                    },
-                ]
-            }
-
-            statusLineChart.setOption(statusLineOption);
-        }
-
     }
 
 })();
