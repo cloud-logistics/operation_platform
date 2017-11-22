@@ -24,7 +24,7 @@
         return service;
 
         ////////////
-        
+
         function jsonQueryStandard(param, successHandler, failedHandler) {
             NetworkService.post( constdata.api.query, param, successHandler, failedHandler);
         }

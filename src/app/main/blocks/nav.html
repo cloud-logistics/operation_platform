@@ -2,14 +2,27 @@
 <ul class="nav" ng-controller="AsideController as vm" ng-switch="vm.role">
     <div class="regular" ng-switch-when="carrier">
         <li>
-            <a href class="auto" ui-sref="app.dashboard">
+            <a href class="auto">
                   <span class="pull-right text-muted hidden-folded">
                     <i class="fa fa-fw fa-angle-right text"></i>
                     <i class="fa fa-fw fa-angle-down text-active"></i>
                   </span>
+                <!--<b class="badge bg-info pull-right">5</b>-->
                 <img src="images/icon_dashboard.svg" width="20px" height="20px" style="margin-right: 10px"/>
-                <span class="font-bold hidden-folded">云箱概览</span>
+                <span class="font-bold hidden-folded">运营概览</span>
             </a>
+            <ul class="nav nav-sub dk">
+                <li ui-sref-active="active">
+                    <a ui-sref="app.containeroverview">
+                        <span>云箱概览</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="app.siteoverview">
+                        <span>仓库概览</span>
+                    </a>
+                </li>
+            </ul>
         </li>
         <li>
             <a href class="auto">
