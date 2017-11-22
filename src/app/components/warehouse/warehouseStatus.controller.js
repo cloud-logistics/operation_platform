@@ -139,8 +139,8 @@ var switchRecord = function (isShow) {
 
             var marker = MapService.addMarker(map, "warehouse")(position,{notTranslate:true})
             var content = "<div class='wh_map'>" +
-                "<span class='wh_map_infowindow_name'>" + siteInfo.site_code + "</span><br/>" +
-                "<span class='wh_map_infowindow_address'>" + siteInfo.location + "</span><br/>" +
+                "<span class='wh_map_infowindow_name'>" + siteInfo.site_code  + "号仓库" + "</span><br/>" +
+                "<span class='wh_map_infowindow_address'>" + "地址：" + siteInfo.location + "</span><br/>" +
                 "<span class='wh_map_infowindow_btn1' onclick='showStatus(\"" + siteInfo.id + "\")'>在库云箱</span>" +
                 "<span class='wh_map_infowindow_btn2' onclick='showRecord(\"" + siteInfo.id + "\")'>云箱出入记录</span>" +
                 "</div>"
