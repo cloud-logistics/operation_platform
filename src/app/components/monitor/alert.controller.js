@@ -63,7 +63,7 @@
         })
         
         function getAlerts () {
-            if(vm.queryParams.containerId == ''|| vm.queryParams.containerId == undefined || $scope.isContainerIdInvalida){
+            if($scope.isContainerIdInvalida){
                 return;
             }
             var queryParams = R.evolve(transformations)(vm.queryParams)

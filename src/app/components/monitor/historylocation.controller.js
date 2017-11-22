@@ -32,7 +32,23 @@
         };
 
         $scope.validationCheck = function(){
-            $scope.isContainerIdInvalida = vm.queryParams.containerId != "" &&!constdata['validation']['id'].test(vm.queryParams.containerId);
+            var flag = true;
+            if(!$scope.btnClicked){
+                return flag;
+            }
+            if(!vm.queryParams.containerId){
+                $scope.containerId_class = " areaRequire ";
+                flag = false;
+                $scope.isContainerIdInvalida = false;
+            }else if(!constdata['validation']['id'].test(vm.queryParams.containerId)){
+                flag = false;
+                $scope.isContainerIdInvalida = true;
+                $scope.containerId_class = " invalida-area "
+            }else{
+                $scope.isContainerIdInvalida = false;
+                $scope.containerId_class = "";
+            }
+            return flag;
         };
 
         // 鼠标绘图工具
@@ -40,10 +56,16 @@
 
         vm.getHistorylocationInfo = getHistorylocationInfo;
 
-        getHistorylocationInfo()
+        getHistorylocationInfo(true)
 
-        function getHistorylocationInfo() {
-            if(vm.queryParams.containerId =='' || $scope.isContainerIdInvalida){
+        function getHistorylocationInfo(isNotFromClick) {
+            if(isNotFromClick){
+                return;
+            }else{
+                $scope.btnClicked = true;
+            }
+            if(!$scope.validationCheck()){
+                console.log("校验失败.");
                 return;
             }
             var start_time = vm.queryParams.start_time.valueOf().toString().slice(0,10);

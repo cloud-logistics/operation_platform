@@ -31,8 +31,8 @@
         }
         function loginAction() {
 
-            if (vm.user.username.length == 0 || vm.user.password.length == 0){
-                toastr.error('请输入用户名和密码');
+            if (!(vm.user.username && vm.user.password)){
+
                 return;
             }
 

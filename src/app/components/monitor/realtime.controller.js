@@ -36,8 +36,6 @@
 
         var statusLineChart;
         var statusLineOption;
-
-
         vm.title = '实时报文';
         vm.containerlists = [];
         vm.getRealtimeInfo = getRealtimeInfo
@@ -53,8 +51,28 @@
             battery: [],
             boxStatus:[]
         }
+        $scope.validationCheck = function(){
+            var flag = true;
+            if(!$scope.btnClicked){
+                return flag;
+            }
+            if(!vm.containerId){
+                $scope.containerId_class = " areaRequire ";
+                flag = false;
+                $scope.isContainerIdInvalida = false;
+            }else if(!constdata['validation']['id'].test(vm.containerId)){
+                flag = false;
+                $scope.isContainerIdInvalida = true;
+                $scope.containerId_class = " invalida-area "
+            }else{
+                $scope.isContainerIdInvalida = false;
+                $scope.containerId_class = "";
+            }
+            return flag;
+        };
 
-        getRealtimeInfo()
+
+        getRealtimeInfo(true);
 
         var timer = $interval(function(){
             getRealtimeInfo();
@@ -74,9 +92,6 @@
             getContainerHistoryStatus(vm.days, requiredParam);
         };
 
-        $scope.validationCheck = function(){
-            $scope.isContainerIdInvalida = vm.containerId != "" &&!constdata['validation']['id'].test(vm.containerId);
-        };
 
         function getContainerHistoryStatus (days, requiredParam) {
             var queryParams = {
@@ -105,15 +120,21 @@
             return status;
         }
 
-        function getRealtimeInfo () {
-            if(vm.containerId == "" ||$scope.isContainerIdInvalida){
+        function getRealtimeInfo (isNotFromClick) {
+            if(isNotFromClick){
+                return;
+            }else{
+                $scope.btnClicked = true;
+            }
+            if(!$scope.validationCheck()){
+                console.log("校验失败.");
                 return;
             }
             getContainerHistoryStatus(vm.days, vm.requiredParam);
 
             var queryParams = {
                 containerId: vm.containerId
-            }
+            };
             ApiServer.getRealtimeInfo(queryParams, function (response) {
                 var locationName = undefined;
 
@@ -676,19 +697,13 @@
                     {
                         name:'温度',
                         type:'line',
+                        itemStyle: {
+                            normal: {
+                                areaStyle: {type: 'default'},
+                                color:'#86CFED',
+                            }
+                        },
                         data:tempValues,
-
-                        //markPoint : {
-                        //    data : [
-                        //        {type : 'max', name: '最大值'},
-                        //        {type : 'min', name: '最小值'}
-                        //    ]
-                        //},
-                        //markLine : {
-                        //    data : [
-                        //        {type : 'average', name: '平均值'}
-                        //    ]
-                        //}
                     }
                 ]
             };
@@ -723,7 +738,7 @@
                         splitArea : {show : false},//保留网格区域
                         axisLabel:{
                             formatter: function (value, index) {
-                                var str = value.split("~")[0] +'\n'+ "~" + value.split("~")[1]
+                                var str = value.split("~")[0].substring(6,10);
                                 return str
                             }
                         },
@@ -744,17 +759,12 @@
                         name:'湿度',
                         type:'line',
                         data:humiValues,
-                        //markPoint : {
-                        //    data : [
-                        //        {type : 'max', name: '最大值'},
-                        //        {type : 'min', name: '最小值'}
-                        //    ]
-                        //},
-                        //markLine : {
-                        //    data : [
-                        //        {type : 'average', name: '平均值'}
-                        //    ]
-                        //}
+                        itemStyle: {
+                            normal: {
+                                areaStyle: {type: 'default'},
+                                color:'#86CFED',
+                            }
+                        }
                     }
                 ]
             }

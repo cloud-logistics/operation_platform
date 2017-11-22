@@ -1,78 +1,168 @@
 <div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="BoxParamController as vm"
      ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
     <!-- main -->
-    <div class="col">
+    <div class="col" id="boxparam">
         <div id="content" style="height: 100vh;">
             <div class="wrapper-md">
-                <div class="row m-l m-r bp-param-1" ng-repeat="box in vm.boxList" >
+                <div class="row m-l m-r bp-param-1" ng-repeat="box in vm.boxList track by $index" >
                     <div class="bp-title-1"><span>{{box.box_type_name}}安全参数设置</span></div>
                     <div class="bp-param-content1">
-                        <div class="col-md-4 m-b-md">
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <label>GPS中断时间</label>
-                                    <input ng-model="box.interval_time" type="text" class="form-control" placeholder="请输入GPS中断时间...">
-                                    <label style="width: 90px;text-align: center;">分钟</label>
-                                </div>
-                            </form>
+                        <div>
+                            <div class="col-md-4 m-b-md">
+                                <form class="form-inline">
+                                    <div class="form-group">
+                                        <label>GPS中断时间</label>
+                                        <div style="display:inline-block">
+                                            <input ng-model="box.interval_time"
+                                                   style="width:170px;"
+                                                   maxlength="22"
+                                                   ng-change="validationCheck(box,$index)"
+                                                   ng-class="box.interval_time_class"
+                                                   type="number" class="form-control"
+                                                   placeholder="请输入...">
+                                            <div class="validation ml5" ng-show="box.interval_time_msg">
+                                                {{box.interval_time_msg}}
+                                            </div>
+                                        </div>
+                                        <label style="
+                                        text-align: center;">分</label>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-4 m-b-md">
+                                <form class="form-inline">
+                                    <div class="form-group">
+                                        <label>温度区间</label>
+                                        <div style="display:inline-block">
+                                            <input ng-model="box.temperature_threshold_min"
+                                                   type="number"
+                                                   maxlength="22"
+                                                   ng-change="validationCheck(box,$index)"
+                                                   ng-class="box.temperature_threshold_class + box.temperature_threshold_min_class"
+                                                   class="form-control"
+                                                   placeholder="请输入..."> -
+                                            <input ng-model="box.temperature_threshold_max"
+                                                   type="number" class="form-control"
+                                                   maxlength="22"
+                                                   ng-change="validationCheck(box,$index)"
+                                                   ng-class="box.temperature_threshold_class  + box.temperature_threshold_max_class"
+                                                   placeholder="请输入...">
+                                            <div class="validation ml5" ng-show="box.temperature_threshold_msg">
+                                                {{box.temperature_threshold_msg}}
+                                            </div>
+                                        </div>
+                                        <label>℃</label>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-4 m-b-md">
+                                <form class="form-inline">
+                                    <div class="form-group">
+                                        <label>湿度区间</label>
+                                        <div style="display:inline-block">
+                                            <input ng-model="box.humidity_threshold_min"
+                                                   ng-change="validationCheck(box,$index)"
+                                                   ng-class="box.humidity_threshold_class  + box.humidity_threshold_min_class"
+                                                   maxlength="22"
+                                                   type="number" class="form-control" placeholder="请输入..."> -
+                                            <input ng-model="box.humidity_threshold_max"
+                                                   ng-change="validationCheck(box,$index)"
+                                                   maxlength="22"
+                                                   ng-class="box.humidity_threshold_class + box.humidity_threshold_max_class"
+                                                   type="number" class="form-control" placeholder="请输入...">
+                                            <div class="validation ml5" ng-show="box.humidity_threshold_msg">
+                                                {{box.humidity_threshold_msg}}
+                                            </div>
+                                        </div>
+                                        <label>%</label>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-
-                        <div class="col-md-4 m-b-md">
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <label>温度区间</label>
-                                    <input ng-model="box.temperature_threshold_min" type="text" class="form-control" placeholder="请输入..."> -
-                                    <input ng-model="box.temperature_threshold_max" type="text" class="form-control" placeholder="请输入...">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-md-4 m-b-md">
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <label>湿度区间</label>
-                                    <input ng-model="box.humidity_threshold_min" type="text" class="form-control" placeholder="请输入..."> -
-                                    <input ng-model="box.humidity_threshold_max" type="text" class="form-control" placeholder="请输入...">
-                                </div>
-                            </form>
-                        </div>
-                        <!-- line2 -->
-                        <div class="col-md-4 m-b-md">
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <label>开关门数</label>
-                                    <input ng-model="box.operation_threshold_min" type="text" class="form-control" placeholder="请输入..."> -
-                                    <input ng-model="box.operation_threshold_max" type="text" class="form-control" placeholder="请输入...">
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="col-md-4 m-b-md">
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <label>碰撞次数</label>
-                                    <input ng-model="box.collision_threshold_min" type="text" class="form-control" placeholder="请输入..."> -
-                                    <input ng-model="box.collision_threshold_max" type="text" class="form-control" placeholder="请输入...">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-md-4 m-b-md">
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <label>电池余量</label>
-                                    <input ng-model="box.battery_threshold_min" type="text" class="form-control" placeholder="请输入..."> -
-                                    <input ng-model="box.battery_threshold_max" type="text" class="form-control" placeholder="请输入...">
-                                </div>
-                            </form>
+                        <div  style="clear:both;">
+                            <div class="col-md-4 m-b-md">
+                                <form class="form-inline">
+                                    <div class="form-group">
+                                        <label>开关门数</label>
+                                        <div style="display:inline-block;">
+                                            <input ng-model="box.operation_threshold_min"
+                                                   ng-change="validationCheck(box,$index)"
+                                                   maxlength="22"
+                                                   ng-class="box.operation_threshold_class + box.operation_min_little_than_0_class +  box.operation_threshold_min_class"
+                                                   type="number" class="form-control" placeholder="请输入..."> -
+                                            <input ng-model="box.operation_threshold_max"
+                                                   ng-change="validationCheck(box,$index)"
+                                                   maxlength="22"
+                                                   ng-class="box.operation_threshold_class +  box.operation_threshold_max_class"
+                                                   type="number" class="form-control" placeholder="请输入...">
+                                            <div class="validation ml5" ng-show="box.operation_min_little_than_0_msg">
+                                                {{box.operation_min_little_than_0_msg}}
+                                            </div>
+                                            <div class="validation ml5" ng-show="box.operation_threshold_msg">
+                                                {{box.operation_threshold_msg}}
+                                            </div>
+                                        </div>
+                                        <label>次</label>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-4 m-b-md">
+                                <form class="form-inline">
+                                    <div class="form-group">
+                                        <label>碰撞次数</label>
+                                        <div  style="display:inline-block;">
+                                            <input ng-model="box.collision_threshold_min"
+                                                   maxlength="22"
+                                                   ng-change="validationCheck(box,$index)"
+                                                   ng-class="box.collision_threshold_class + box.collision_min_little_than_0_class  +  box.collision_threshold_min_class"
+                                                   type="number" class="form-control" placeholder="请输入..."> -
+                                            <input ng-model="box.collision_threshold_max"
+                                                   maxlength="22"
+                                                   type="number" class="form-control"
+                                                   ng-change="validationCheck(box,$index)"
+                                                   ng-class="box.collision_threshold_class +  box.collision_threshold_max_class"
+                                                   placeholder="请输入...">
+                                            <div class="validation ml5" ng-show="box.collision_threshold_msg">
+                                                {{box.collision_threshold_msg}}
+                                            </div>
+                                            <div class="validation ml5" ng-show="box.collision_min_little_than_0_msg">
+                                                {{box.collision_min_little_than_0_msg}}
+                                            </div>
+                                        </div>
+                                        <label>次</label>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-4 m-b-md">
+                                <form class="form-inline">
+                                    <div class="form-group">
+                                        <label>电池余量</label>
+                                        <div style="display:inline-block">
+                                            <input ng-model="box.battery_threshold_min"
+                                                   ng-change="validationCheck(box,$index)"
+                                                   maxlength="22"
+                                                   ng-class="box.battery_threshold_class +  box.battery_threshold_min_class"
+                                                   type="number" class="form-control" placeholder="请输入..."> -
+                                            <input ng-model="box.battery_threshold_max"
+                                                   maxlength="22"
+                                                   ng-change="validationCheck(box,$index)"
+                                                   ng-class="box.battery_threshold_class+  box.battery_threshold_max_class"
+                                                   type="number" class="form-control" placeholder="请输入...">
+                                            <div class="validation ml5" ng-show="box.battery_threshold_msg">
+                                                {{box.battery_threshold_msg}}
+                                            </div>
+                                        </div>
+                                        <label>%</label>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
 
                         <div class="col-md-offset-8 col-md-4">
-                            <span class="pull-right" ng-click="vm.resetSafeSetting(box)" >更新设置</span>
+                            <span class="pull-right" ng-click="vm.resetSafeSetting(box,$index)" >更新设置</span>
                         </div>
                     </div>
-
                 </div>
-
-
             </div>
         </div>
     </div>

@@ -14,10 +14,9 @@
                             <input ng-model="vm.containerId"
                                    type="text"
                                    style="margin-right:0;"
-                                   class="form-control rt-search"
+                                   class="form-control rt-search {{containerId_class}}"
                                    ng-change="validationCheck()"
                                    maxlength="22"
-                                   ng-class="{true:'invalida-area',false:''}[isContainerIdInvalida]"
                                    placeholder="请输入云箱ID...">
                             <div class="validation" ng-show="isContainerIdInvalida">
                                 请输入合法的云箱ID：A-Za-z0-9-

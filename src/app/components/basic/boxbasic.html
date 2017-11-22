@@ -3,7 +3,7 @@
     <!-- main -->
     <div class="col">
 
-        <modal-dialog show='bbUpdate' width='659px' height='400px'>
+        <modal-dialog show='bbUpdate' width='659px' height='450px'>
             <div class="container-fluid">
                 <div class="row">
                     <div class="bm-update-header">
@@ -14,11 +14,15 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">RFID</label>
-                            <div class="col-md-8">
+                            <div class="col-md-8" style="display:inline-block">
+
                                 <input ng-model="vm.editBasicInfoConfig.tid"
                                        type="text" class="form-control {{editRfid}}"
                                        ng-change="editValidationCheck()"
                                        placeholder="请输入RFID...">
+                                <div class="validation" ng-show="editValidation.RFIDInvalid">
+                                    请输入合法的RFID：A-Za-z0-9-
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -27,7 +31,7 @@
                             <label class="col-md-4 control-label form-control-static">云箱型号</label>
                             <div class="col-md-8">
                                 <select ng-model="vm.editBasicInfoConfig.box_type_id"
-                                        ng-class="{true:'areaRequire',false:''}[saveValidation.box_type_id]"
+                                        ng-class="{true:'areaRequire',false:''}[editValidation.box_type_id]"
                                         ng-change="editValidationCheck()"
                                         name="account" class="form-control">
                                     <option value="">-- 请选择 --</option>
@@ -46,7 +50,7 @@
                                 <input date-time
                                        ng-model="vm.editBasicInfoConfig.date_of_production"
                                        class="form-control m-b"
-                                       ng-class="{true:'areaRequire',false:''}[saveValidation.date_of_production]"
+                                       ng-class="{true:'areaRequire',false:''}[editValidation.date_of_production]"
                                        ng-change="editValidationCheck()"
                                        placeholder="请选择出厂日期"
                                        min-view="date"
@@ -59,7 +63,7 @@
                             <label class="col-md-4 control-label form-control-static">生产厂家</label>
                             <div class="col-md-8">
                                 <select  ng-model="vm.editBasicInfoConfig.manufacturer_id" name="account"
-                                         ng-class="{true:'areaRequire',false:''}[saveValidation.manufacturer_id]"
+                                         ng-class="{true:'areaRequire',false:''}[editValidation.manufacturer_id]"
                                          ng-change="editValidationCheck()"
                                          class="form-control">
                                     <option value="">-- 请选择 --</option>
@@ -76,7 +80,7 @@
                             <label class="col-md-4 control-label form-control-static">生产地</label>
                             <div class="col-md-8">
                                 <select ng-model="vm.editBasicInfoConfig.produce_area_id"
-                                        ng-class="{true:'areaRequire',false:''}[saveValidation.produce_area_id]"
+                                        ng-class="{true:'areaRequire',false:''}[editValidation.produce_area_id]"
                                         ng-change="editValidationCheck()"
                                         name="account" class="form-control">
                                     <option value="">-- 请选择 --</option>
@@ -90,7 +94,7 @@
                             <label class="col-md-4 control-label form-control-static">电源信息</label>
                             <div class="col-md-8">
                                 <select  ng-model="vm.editBasicInfoConfig.battery_id" name="account"
-                                         ng-class="{true:'areaRequire',false:''}[saveValidation.battery_id]"
+                                         ng-class="{true:'areaRequire',false:''}[editValidation.battery_id]"
                                          ng-change="editValidationCheck()"
                                          class="form-control">
                                     <option value="">-- 请选择 --</option>
@@ -108,7 +112,7 @@
                             <label class="col-md-6 control-label form-control-static">智能硬件信息</label>
                             <div class="col-md-6">
                                 <select ng-model="vm.editBasicInfoConfig.hardware_id"
-                                        ng-class="{true:'areaRequire',false:''}[saveValidation.hardware_id]"
+                                        ng-class="{true:'areaRequire',false:''}[editValidation.hardware_id]"
                                         ng-change="editValidationCheck()"
                                         name="account" class="form-control">
                                     <option value="">-- 请选择 --</option>
@@ -175,14 +179,14 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label form-control-static">出厂日期</label>
                                     <div class="col-md-8">
-                                    <input ng-model="vm.newBasicInfoConfig.manufactureTime" 
-                                        class="form-control m-b"
-                                           ng-change="validationCheck()"
-                                           ng-class="{true:'areaRequire',false:''}[saveValidation.manufactureTime]"
-                                        moment-picker
-                                           placeholder="请选择出厂日期"
-                                           max-date="vm.MaxDate"
-                                        format="YYYY-MM-DD">
+                                        <input ng-model="vm.newBasicInfoConfig.manufactureTime"
+                                            class="form-control m-b"
+                                               ng-change="validationCheck()"
+                                               ng-class="{true:'areaRequire',false:''}[saveValidation.manufactureTime]"
+                                            moment-picker
+                                               placeholder="请选择出厂日期"
+                                               max-date="vm.MaxDate"
+                                            format="YYYY-MM-DD">
                                     </div>
                                 </div>
                             </div>

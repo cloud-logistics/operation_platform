@@ -16,12 +16,27 @@
         vm.queryParams = {};
         $scope.showAdd = false;
         $scope.switchShowAdd = function () {
+            $scope.saveBtnClick = false;
+            $scope.saveValidation = {
+                "rfid":"",
+                "containerType":"",
+                "factory":"",
+                "factoryLocation":"",
+                "batteryInfo":"",
+                "hardwareInfo":"",
+                "manufactureTime":"",
+                "RFIDInvalid":""
+            };
+            $scope.rfid = "";
             $scope.showAdd = !$scope.showAdd;
         };
         $scope.saveValidation = {};
         $scope.editValidation = {};
 
         $scope.validationCheck = function(){
+             if(!$scope.saveBtnClick){
+                 return;
+             }
              var flag = false;
              for(var s in vm.newBasicInfoConfig){
                  if(vm.newBasicInfoConfig[s] == undefined || vm.newBasicInfoConfig[s] ==""){
@@ -40,11 +55,15 @@
                  $scope.saveValidation['RFIDInvalid'] = false;
                  $scope.rfid = vm.newBasicInfoConfig['RFID'] =="" ? "areaRequire":"";
              }
-            console.log("$scope.saveValidation= ",$scope.saveValidation)
+
+            console.log("$scope.saveValidation= ",$scope.saveValidation);
             return flag;
         };
 
         $scope.editValidationCheck = function(){
+            if(!$scope.editBtnClick){
+                return;
+            }
             var flag = false;
             for(var s in vm.editBasicInfoConfig){
                 if(vm.editBasicInfoConfig[s] == undefined || vm.editBasicInfoConfig[s] ==""){
@@ -63,11 +82,29 @@
                 $scope.editValidation['RFIDInvalid'] = false;
                 $scope.editRfid = vm.editBasicInfoConfig['tid'] =="" ? "areaRequire":"";
             }
-            console.log("$scope.saveValidation= ",$scope.editValidation)
+            console.log("$scope.saveValidation= ",JSON.stringify($scope.editValidation))
             return flag;
         };
 
         $scope.basicUpdate = function (item) {
+            $scope.editValidation = {
+                "deviceid": "",
+                "tid": "",
+                "date_of_production": "",
+                "box_type_name": "",
+                "produce_area": "",
+                "manufacturer": "",
+                "battery_detail": "",
+                "box_type_id": "",
+                "produce_area_id": "",
+                "manufacturer_id": "",
+                "battery_id": "",
+                "hardware_detail": "",
+                "hardware_id": "",
+                "RFIDInvalid": ""
+            };
+            $scope.eidtBtnClick = false;
+            $scope.editRfid = "";
             vm.editBasicInfoConfig = _.clone(item);
             vm.editBasicInfoConfig.date_of_production = parseInt(vm.editBasicInfoConfig.date_of_production);
             vm.options = R.merge(vm.options, {
@@ -111,8 +148,7 @@
         };
 
         vm.newBasicInfoConfig = {
-            "containerId":"",
-            "rfid": "",
+            "RFID": "",
             "containerType": "",
             "factory": "",
             "factoryLocation": "",
@@ -229,7 +265,7 @@
                 $scope.saveValidation = {};
                 vm.newBasicInfoConfig = {
                     "containerId":"",
-                    "rfid": "",
+                    "RFID": "",
                     "containerType": "",
                     "factory": "",
                     "factoryLocation": "",
@@ -243,11 +279,11 @@
         }
 
         function newBasicInfoConfigPost(callback) {
+            $scope.saveBtnClick = true;
             if($scope.validationCheck()){
                 return;
             }
              var data = {
-                 "containerId":vm.newBasicInfoConfig.deviceid,
                 "rfid": vm.newBasicInfoConfig.RFID,
                 "containerType": vm.newBasicInfoConfig.containerType,
                 "factory": vm.newBasicInfoConfig.factory,
@@ -275,6 +311,7 @@
         }
 
         function editBasicInfoConfigPost(callback){
+            $scope.editBtnClick = true;
             if($scope.editValidationCheck()){
                 return;
             }
@@ -309,6 +346,7 @@
         function inputTransFunc(num) {
             return parseInt(num, 10)
         }
+
         $scope.$watchGroup(['conf.currentPage', 'conf.itemsPerPage'], getBasicInfo)
     }
 

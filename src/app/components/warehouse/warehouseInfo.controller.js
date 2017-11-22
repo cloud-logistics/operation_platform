@@ -73,6 +73,7 @@
                     if(callback){
                         callback();
                     }
+                    $scope.validationCheck();
                 },
                 "error": function (res) {
                     console.log("获取国家列表失败")
@@ -93,6 +94,7 @@
                     if (callback) {
                         callback();
                     }
+                    $scope.validationCheck();
                 },
                 "error": function () {
 
@@ -112,6 +114,8 @@
                     if(callback){
                         callback();
                     }
+
+                    $scope.validationCheck();
                 },
                 "error": function () {
 
@@ -124,6 +128,10 @@
 
         vm.setPointer = function () {
             clearMarker();
+            $scope.validationCheck();
+            if(!vm.siteInfo.city.city_id){
+                return;
+            }
             var data = _.find($scope.cityDataBack,function(item){
                 return item.city_id ==  vm.siteInfo.city.city_id;
             });
@@ -136,8 +144,9 @@
             marker = MapService.addMarker(map)(point, {draggable: true,notTranslate:true});
             google.maps.event.addListener(marker, 'dragend', function (MouseEvent) {
                 console.log("移动后的经纬度", MouseEvent.latLng);
-                getAddressByLngLat(MouseEvent.latLng.lng(), MouseEvent.latLng.lat())
+                getAddressByLngLat(MouseEvent.latLng.lng(), MouseEvent.latLng.lat());
             });
+
         };
 
         var resetLocation = function (obj,lng,lat) {
@@ -212,13 +221,53 @@
             }
         };
 
-        function save() {
-            if(!vm.siteInfo.location){
-                console.log("请输入地点位置.");
+        $scope.validationCheck = function(){
+            if(!$scope.saveBtnClick){
                 return;
             }
-            if(!vm.siteInfo.volume && vm.siteInfo.volume != 0){
-                console.log("请输入容量.");
+            var flag = true;
+            var menu1 = [
+                'nation.nation_id',
+                'province.province_id',
+                'city.city_id',
+                'name',
+                'volume',
+                'location'
+            ];
+            var menu2 = [
+                'nation_class',
+                'province_class',
+                'city_class',
+                'name_class',
+                'volume_class',
+                'location_class'
+            ];
+            for(var s = 0,len = menu1.length;s<3;s++){
+                if(!(vm.siteInfo[menu1[s].split(".")[0]][menu1[s].split(".")[1]])){
+                    $scope[menu2[s]] = " areaRequire ";
+                    console.log("s = ",s)
+                    flag = false;
+                }else{
+                    $scope[menu2[s]] = " ";
+                }
+            }
+            for(var s = 3,len = menu1.length;s<len;s++){
+                if(!(vm.siteInfo[menu1[s]])){
+                    $scope[menu2[s]] = " areaRequire ";
+                    console.log("s = ",s)
+                    flag = false;
+                }else{
+                    $scope[menu2[s]] = " ";
+                }
+            }
+
+            return flag;
+        };
+
+        function save() {
+            $scope.saveBtnClick = true;
+            if(!$scope.validationCheck()){
+                console.log("校验失败.",$scope);
                 return;
             }
             if (!(vm.siteInfo.site_code)) {
@@ -226,7 +275,6 @@
             } else {
                 updateSiteInfo()
             }
-            $scope.switchShowAdd();
         }
 
         function cancel() {
@@ -247,6 +295,18 @@
                 province:{}
             };
             clearMarker();
+            $scope.saveBtnClick = false;
+            var menu2 = [
+                'nation_class',
+                'province_class',
+                'city_class',
+                'name_class',
+                'volume_class',
+                'location_class'
+            ];
+            for(var s = 0,len = menu2.length;s <len;s++){
+                $scope[menu2[s]] = "";
+            }
         }
 
         function addSiteInfo() {
@@ -266,6 +326,7 @@
                 "success": function (response) {
                     toastr.success(response.data.msg);
                     console.log(response.data.code);
+                    $scope.switchShowAdd();
                     emptyInfo();
                     retrieveSiteInfo();
                 },
@@ -320,6 +381,7 @@
                     toastr.success(response.data.msg);
                     console.log(response.data.code);
                     emptyInfo();
+                    $scope.switchShowAdd();
                     retrieveSiteInfo();
                 },
                 "error": function (err) {
