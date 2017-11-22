@@ -79,12 +79,15 @@
 
         // $locationProvider.html5Mode(true);
         $urlRouterProvider
-            .otherwise('dashboard');
+            .otherwise('siteoverview');
         $stateProvider
-            //云箱概览
-            .state('app.dashboard', {
-                url: 'dashboard',
-                templateUrl: 'app/components/dashboard/dashboard.html'
+            .state('app.containeroverview', {
+                url: 'containeroverview',
+                templateUrl: 'app/components/monitor/containeroverview.html'
+            })
+            .state('app.siteoverview', {
+                url: 'siteoverview',
+                templateUrl: 'app/components/monitor/siteoverview.html'
             })
             //实时报文详情
             .state('app.realtime',{
@@ -150,11 +153,6 @@
             .state('app.prediction', {
                 url: 'prediction/',
                 templateUrl: 'app/components/predictionDecision/predictionDecision.html'
-            })
-
-            .state('app.profile', {
-                url: 'user/profile',
-                templateUrl: 'app/components/profile/profile.html'
             })
             .state('access.signin', {
                 url: '/signin',

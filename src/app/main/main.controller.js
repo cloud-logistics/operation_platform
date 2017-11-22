@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('MainController', MainController);
 
     /** @ngInject */
-    function MainController($timeout, $translate, $location, ApiServer, $state, toastr, $scope) {
+    function MainController($timeout, $translate, $location, ApiServer,$state, toastr, $scope) {
         /* jshint validthis: true */
         var vm = this;
         var url = $location.absUrl();
@@ -79,5 +79,6 @@
             };
 
         })
+
     }
 })();
