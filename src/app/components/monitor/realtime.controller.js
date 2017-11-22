@@ -697,7 +697,12 @@
                     {
                         name:'温度',
                         type:'line',
-                        itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                        itemStyle: {
+                            normal: {
+                                areaStyle: {type: 'default'},
+                                color:'#86CFED',
+                            }
+                        },
                         data:tempValues,
                     }
                 ]

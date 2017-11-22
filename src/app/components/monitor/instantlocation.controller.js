@@ -68,7 +68,7 @@
                 var currentPosition = response.data.currentPosition;
                 var currentLocationName = response.data.currentLocationName;
                 var endPosition = response.data.endPosition;
-                var currentPositionMarker = MapService.addMarker(map)(currentPosition);
+                var currentPositionMarker = MapService.addMarker(map)(currentPosition,{notTranslate:true});
                 infoWindow(map, currentPositionMarker, "当前点: " + currentLocationName);
 
                 bounds.extend(currentPositionMarker.getPosition());
