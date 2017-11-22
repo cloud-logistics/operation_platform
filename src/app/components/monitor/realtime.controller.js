@@ -138,8 +138,8 @@
 
                 initTemp(vm.realtimeInfo.temperature.value);
                 initHumi(vm.realtimeInfo.humidity.value);
-                initBatt(20||vm.realtimeInfo.battery.value);
                 initSpeed(Math.round(vm.realtimeInfo.speed*100)/100);
+                initBatt(vm.realtimeInfo.battery.value);
             },function (err) {
                 console.log("Get RealtimeInfo Info Failed", err);
             });
@@ -149,7 +149,7 @@
         function initTemp(value) {
             var value_ = (100 - value) * 266 / 360;
 
-            tempChart = echarts.init(document.getElementById('temp-chart'));
+            tempChart = tempChart || echarts.init(document.getElementById('temp-chart'));
 
             tempOption = {
                 title: {
@@ -268,7 +268,7 @@
         function initHumi(value) {
             var value_ = (100 - value) * 266 / 360;
 
-            humiChart = echarts.init(document.getElementById('humi-chart'));
+            humiChart = humiChart ||echarts.init(document.getElementById('humi-chart'));
 
             humiOption = {
                 title: {
@@ -439,7 +439,7 @@
         }
 
         function initSpeed(value) {
-            speedChart = echarts.init(document.getElementById('speed-chart'));
+            speedChart = speedChart ||echarts.init(document.getElementById('speed-chart'));
             speedOption = {
                 tooltip: {
                     formatter: "{a} <br/>{c} {b}"
@@ -534,7 +534,7 @@
             var tempValues = R.map(R.prop("value"))(historyStatus);
 
             var dom = $('#bd-temp-chart')[0];
-            tempBarChart = echarts.init(dom);
+            tempBarChart = tempBarChart || echarts.init(dom);
 
             tempBarOption = {
                 tooltip : {
@@ -594,7 +594,7 @@
 
             var humiValues = R.map(R.prop("value"))(historyStatus);
 
-            humiLineChart = echarts.init(document.getElementById('bd-humi-chart'));
+            humiLineChart = humiLineChart || echarts.init(document.getElementById('bd-humi-chart'));
 
             humiLineOption = {
                 tooltip : {

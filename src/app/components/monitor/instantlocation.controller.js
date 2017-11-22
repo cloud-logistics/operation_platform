@@ -52,9 +52,7 @@
         getInstantlocationInfo(true);
 
         function getInstantlocationInfo(isNotFromClick) {
-            if(isNotFromClick){
-                return;
-            }else{
+            if(!isNotFromClick){
                 $scope.btnClicked = true;
             }
             if(!$scope.validationCheck()){
