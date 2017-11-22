@@ -129,15 +129,15 @@ var switchRecord = function (isShow) {
 
         function addMarkerWithInfo(siteInfo) {
             var position = {
-                lat: siteInfo.latitude,
-                lng: siteInfo.longitude
+                lat: parseFloat(siteInfo.latitude),
+                lng: parseFloat(siteInfo.longitude)
             };
 
             function showStatusHandler() {
                 console.log(siteInfo.site_code);
             }
 
-            var marker = MapService.addMarker(map, "warehouse")(position)
+            var marker = MapService.addMarker(map, "warehouse")(position,{notTranslate:true})
             var content = "<div class='wh_map'>" +
                 "<span class='wh_map_infowindow_name'>" + siteInfo.site_code + "</span><br/>" +
                 "<span class='wh_map_infowindow_address'>" + siteInfo.location + "</span><br/>" +

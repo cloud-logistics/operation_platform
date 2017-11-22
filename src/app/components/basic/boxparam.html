@@ -15,6 +15,7 @@
                                         <div style="display:inline-block">
                                             <input ng-model="box.interval_time"
                                                    style="width:170px;"
+                                                   maxlength="22"
                                                    ng-change="validationCheck(box,$index)"
                                                    ng-class="box.interval_time_class"
                                                    type="number" class="form-control"
@@ -35,12 +36,14 @@
                                         <div style="display:inline-block">
                                             <input ng-model="box.temperature_threshold_min"
                                                    type="number"
+                                                   maxlength="22"
                                                    ng-change="validationCheck(box,$index)"
                                                    ng-class="box.temperature_threshold_class + box.temperature_threshold_min_class"
                                                    class="form-control"
                                                    placeholder="请输入..."> -
                                             <input ng-model="box.temperature_threshold_max"
                                                    type="number" class="form-control"
+                                                   maxlength="22"
                                                    ng-change="validationCheck(box,$index)"
                                                    ng-class="box.temperature_threshold_class  + box.temperature_threshold_max_class"
                                                    placeholder="请输入...">
@@ -60,9 +63,11 @@
                                             <input ng-model="box.humidity_threshold_min"
                                                    ng-change="validationCheck(box,$index)"
                                                    ng-class="box.humidity_threshold_class  + box.humidity_threshold_min_class"
+                                                   maxlength="22"
                                                    type="number" class="form-control" placeholder="请输入..."> -
                                             <input ng-model="box.humidity_threshold_max"
                                                    ng-change="validationCheck(box,$index)"
+                                                   maxlength="22"
                                                    ng-class="box.humidity_threshold_class + box.humidity_threshold_max_class"
                                                    type="number" class="form-control" placeholder="请输入...">
                                             <div class="validation ml5" ng-show="box.humidity_threshold_msg">
@@ -82,10 +87,12 @@
                                         <div style="display:inline-block;">
                                             <input ng-model="box.operation_threshold_min"
                                                    ng-change="validationCheck(box,$index)"
+                                                   maxlength="22"
                                                    ng-class="box.operation_threshold_class + box.operation_min_little_than_0_class +  box.operation_threshold_min_class"
                                                    type="number" class="form-control" placeholder="请输入..."> -
                                             <input ng-model="box.operation_threshold_max"
                                                    ng-change="validationCheck(box,$index)"
+                                                   maxlength="22"
                                                    ng-class="box.operation_threshold_class +  box.operation_threshold_max_class"
                                                    type="number" class="form-control" placeholder="请输入...">
                                             <div class="validation ml5" ng-show="box.operation_min_little_than_0_msg">
@@ -105,10 +112,12 @@
                                         <label>碰撞次数</label>
                                         <div  style="display:inline-block;">
                                             <input ng-model="box.collision_threshold_min"
+                                                   maxlength="22"
                                                    ng-change="validationCheck(box,$index)"
                                                    ng-class="box.collision_threshold_class + box.collision_min_little_than_0_class  +  box.collision_threshold_min_class"
                                                    type="number" class="form-control" placeholder="请输入..."> -
                                             <input ng-model="box.collision_threshold_max"
+                                                   maxlength="22"
                                                    type="number" class="form-control"
                                                    ng-change="validationCheck(box,$index)"
                                                    ng-class="box.collision_threshold_class +  box.collision_threshold_max_class"
@@ -131,9 +140,11 @@
                                         <div style="display:inline-block">
                                             <input ng-model="box.battery_threshold_min"
                                                    ng-change="validationCheck(box,$index)"
+                                                   maxlength="22"
                                                    ng-class="box.battery_threshold_class +  box.battery_threshold_min_class"
                                                    type="number" class="form-control" placeholder="请输入..."> -
                                             <input ng-model="box.battery_threshold_max"
+                                                   maxlength="22"
                                                    ng-change="validationCheck(box,$index)"
                                                    ng-class="box.battery_threshold_class+  box.battery_threshold_max_class"
                                                    type="number" class="form-control" placeholder="请输入...">

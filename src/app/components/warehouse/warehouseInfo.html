@@ -67,6 +67,7 @@
                                     <div class="col-md-8">
                                         <input ng-model="vm.siteInfo.name" type="text"
                                                ng-change="validationCheck()"
+                                               maxlength="50"
                                                ng-class="name_class"
                                                class="form-control" placeholder="请输入仓库名称">
                                     </div>
@@ -78,6 +79,7 @@
                                     <div class="col-md-8">
                                         <input ng-model="vm.siteInfo.volume" type="text"
                                                ng-change="validationCheck()"
+                                               maxlength="22"
                                                ng-class="volume_class"
                                                class="form-control" placeholder="请输入容量">
                                     </div>
@@ -91,6 +93,7 @@
                                     <div class="col-md-10" style="padding-left:10px;">
                                         <input ng-model="vm.siteInfo.location" type="text"
                                                ng-class="location_class"
+                                               maxlength="50"
                                                ng-change="validationCheck()"
                                                class="form-control" placeholder="请输入位置">
                                     </div>

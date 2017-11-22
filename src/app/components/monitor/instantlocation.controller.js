@@ -29,32 +29,47 @@
         vm.getInstantlocationInfo = getInstantlocationInfo
 
         $scope.validationCheck = function(){
-            $scope.isContainerIdInvalida = vm.queryParams.containerId!= "" && !constdata['validation']['id'].test(vm.queryParams.containerId);
+            var flag = true;
+            if(!$scope.btnClicked){
+                return flag;
+            }
+            if(!vm.queryParams.containerId){
+                $scope.containerId_class = " areaRequire ";
+                flag = false;
+                $scope.isContainerIdInvalida = false;
+            }else if(!constdata['validation']['id'].test(vm.queryParams.containerId)){
+                flag = false;
+                $scope.isContainerIdInvalida = true;
+                $scope.containerId_class = " invalida-area "
+            }else{
+                $scope.isContainerIdInvalida = false;
+                $scope.containerId_class = "";
+            }
+            return flag;
         };
 
-        getInstantlocationInfo();
 
-        //var timer = $interval(function(){
-        //    getInstantlocationInfo();
-        //},constdata.refreshInterval, 500);
-        //
-        //$scope.$on("$destroy", function(){
-        //    $interval.cancel(timer);
-        //});
+        getInstantlocationInfo(true);
 
-        function getInstantlocationInfo() {
-            if(vm.queryParams.containerId != "" || $scope.isContainerIdInvalida){
+        function getInstantlocationInfo(isNotFromClick) {
+            if(isNotFromClick){
+                return;
+            }else{
+                $scope.btnClicked = true;
+            }
+            if(!$scope.validationCheck()){
+                console.log("校验失败.");
                 return;
             }
             ApiServer.getInstantlocationInfo(vm.queryParams, function (response) {
                 var bounds = new google.maps.LatLngBounds();
-                var containerInfo = response.data.containerInfo
-                var startPosition = response.data.startPosition
-                var currentPosition = response.data.currentPosition
+                var containerInfo = response.data.containerInfo;
+                var startPosition = response.data.startPosition;
+                var currentPosition = response.data.currentPosition;
                 var currentLocationName = response.data.currentLocationName;
-                var endPosition = response.data.endPosition
-                var currentPositionMarker = MapService.addMarker(map)(currentPosition)
-                infoWindow(map, currentPositionMarker, "当前点: " + currentLocationName)
+                var endPosition = response.data.endPosition;
+                var currentPositionMarker = MapService.addMarker(map)(currentPosition);
+                infoWindow(map, currentPositionMarker, "当前点: " + currentLocationName);
 
                 bounds.extend(currentPositionMarker.getPosition());
                 map.fitBounds(bounds);

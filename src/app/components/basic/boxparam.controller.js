@@ -20,7 +20,7 @@
 
         var setMsg = function(min,max,index,key,isOldThan0){
             var flag;
-            if(min > max){
+            if(min >= max){
                 flag = false;
                 vm.boxList[index][key] = "前者必须小于后者";
                 vm.boxList[index][key.replace("msg","class")] = "invalida-area";
