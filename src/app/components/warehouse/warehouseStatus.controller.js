@@ -102,6 +102,17 @@ var switchRecord = function (isShow) {
                 if (callback) {
                     callback()
                 }
+                ApiServer.getBoxbysite({
+                    "id":id,
+                    "limit": $scope.conf.itemsPerPage,
+                    "offset": ($scope.conf.currentPage - 1) * $scope.conf.itemsPerPage,
+                    "success": function (response) {
+                        $scope.conf.totalItems = response.data.data.count;
+                    },
+                    "error": function (err) {
+                        console.log("Get Stream Info Failed", err);
+                    }
+                });
             }, function (err) {
                 console.log("Get Stream Info Failed", err);
             });

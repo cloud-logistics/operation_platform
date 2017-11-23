@@ -1,12 +1,16 @@
 <div class="whStatus hbox hbox-auto-xs hbox-auto-sm"
      ng-controller="WarehouseStatusController as vm"
      ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
-    <div >
+    <div>
         <div id="warehouseStatus_map" class="mapview"></div>
     </div>
     <div id="whTable" style="display:none">
         <div class="whTable_title">
-            <span class="whTable_title_name">在库云箱</span>
+            <div class="whTable_title_container">
+                <span class="whTable_title_name">在库云箱</span>
+                <div class="whTable_title_divider">|</div>
+                <span class="whTable_title_count"> 在库总数 {{conf.totalItems}}</span>
+            </div>
             <span class="whTable_title_action" onclick="switchStatus()">X</span>
         </div>
         <div class="whTable_content">
@@ -41,7 +45,7 @@
                         <td>
                             <a ui-sref="app.realtime({
                                                 containerId: item.deviceid
-                                            })" class="whTable_content_table_detail">详情</a> 
+                                            })" class="whTable_content_table_detail">详情</a>
                         </td>
                     </tr>
                     </tbody>
@@ -53,7 +57,11 @@
     </div>
     <div id="whHistory" style="display:none;">
         <div class="whTable_title">
-            <span class="whTable_title_name">云箱出入记录</span>
+            <div class="whTable_title_container">
+                <span class="whTable_title_name">云箱出入记录</span>
+                <div class="whTable_title_divider">|</div>
+                <span class="whTable_title_count"> 在库总数 {{conf.totalItems}}</span>
+            </div>
             <span class="whTable_title_action" onclick="switchRecord()">X</span>
         </div>
         <div class="whTable_content" style="margin:0 15px; overflow-y:scroll;height:90%;">

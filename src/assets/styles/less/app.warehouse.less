@@ -50,17 +50,40 @@
     display: inline-block;
 
     .whTable_title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       height: 40px;
       padding: 0 12px;
       border-bottom: 1px solid #cccccc;
     }
-    .whTable_title_name {
-      float: left;
-      font-size: 16px;
-      color: #59B7E4;
+    .whTable_title_container{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .whTable_title_name,
+    .whTable_title_count {
+      display: flex;
+      align-items: center;
+      color: #4668E7;
       letter-spacing: 0;
       margin-top: 9px;
     }
+    .whTable_title_name{
+      font-size: 24px;
+    }
+    .whTable_title_count {
+      font-size: 18px;
+    }
+    .whTable_title_divider{
+      width: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #4668E7;
+    }
+
     .whTable_title_action {
       width: 40px;
       height: 40px;
