@@ -19,12 +19,13 @@
           containerId : $stateParams.containerId || constdata.defaultContainerId
         };
 
-        var mapCenter = {lat: 31.2891, lng: 121.4648}; 
+        var mapCenter = {lat: 31.2891, lng: 121.4648};
 
         var map = MapService.map_init("instantlocation", mapCenter, "terrain", 4);
 
         // 鼠标绘图工具
         var overlay = undefined;
+        var currentPositionMarker = undefined;
 
         vm.getInstantlocationInfo = getInstantlocationInfo
 
@@ -66,11 +67,17 @@
                 var currentPosition = response.data.currentPosition;
                 var currentLocationName = response.data.currentLocationName;
                 var endPosition = response.data.endPosition;
-                var currentPositionMarker = MapService.addMarker(map)(currentPosition,{notTranslate:true});
-                infoWindow(map, currentPositionMarker, "当前点: " + currentLocationName);
 
-                bounds.extend(currentPositionMarker.getPosition());
-                map.fitBounds(bounds);
+                if(R.equals({lng:0, lat:0}, currentPosition)){
+                    console.log("position: 0,0")
+                    infoWindow(map, currentPositionMarker, "当前点的位置信息有误，经纬度为（0，0）。请检查详情");
+                } else {
+                    currentPositionMarker = MapService.addMarker(map)(currentPosition,{notTranslate:true});
+                    infoWindow(map, currentPositionMarker, "当前点: " + currentLocationName);
+
+                    bounds.extend(currentPositionMarker.getPosition());
+                    map.fitBounds(bounds);
+                }
 
             },function (err) {
                 console.log("Get Historyview Info Failed", err);
