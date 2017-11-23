@@ -68,7 +68,6 @@
                 }else{
                     var adjusted_position = position_adjustment(position)
                 }
-                console.log(adjusted_position);
 
                 var marker = new google.maps.Marker({
                     map: map,
@@ -79,7 +78,7 @@
                 return marker
             }
         }
-        
+
         function addCircle(map) {
             return function (position) {
                 var circle = new google.maps.Circle({
@@ -143,8 +142,8 @@
 
             // https://github.com/wandergis/coordtransform/blob/master/index.js
             newPosition = coordtransform.wgs84togcj02(lng, lat)
-            adjusted_position.lng = newPosition[0] 
-            adjusted_position.lat = newPosition[1] 
+            adjusted_position.lng = newPosition[0]
+            adjusted_position.lat = newPosition[1]
 
             return adjusted_position
         }
