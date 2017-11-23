@@ -42,21 +42,29 @@
                 vm.boxList[index].interval_time_msg = "";
                 vm.boxList[index].interval_time_class = !(item.interval_time) && (item.interval_time != 0) ? " areaRequire" : "";
             }
-            if (item.operation_threshold_min < 0) {
-                vm.boxList[index].operation_min_little_than_0_msg = "最小开关门数必须大于0";
+            if (!/^[1-9][0-9]{0,21}$/.test(item.operation_threshold_max) && item.operation_threshold_max != null) {
+                vm.boxList[index].operation_min_little_than_0_msg = "开关门数应为非负整数。";
                 flag = false;
                 vm.boxList[index].operation_min_little_than_0_class = " invalida-area ";
             } else {
                 vm.boxList[index].operation_min_little_than_0_msg = "";
                 vm.boxList[index].operation_min_little_than_0_class = "";
             }
-            if (item.collision_threshold_min < 0) {
-                vm.boxList[index].collision_min_little_than_0_msg = "最小碰撞次数必须大于0";
+            if (!/^[1-9][0-9]{0,21}$/.test(item.collision_threshold_max) &&item.collision_threshold_max != null) {
+                vm.boxList[index].collision_min_little_than_0_msg = "碰撞次数应为非负整数。";
                 flag = false;
                 vm.boxList[index].collision_min_little_than_0_class = " invalida-area ";
             } else {
                 vm.boxList[index].collision_min_little_than_0_msg = "";
                 vm.boxList[index].collision_min_little_than_0_class = "";
+            }
+            if (!/^[1-9][0-9]{0,21}$/.test(item.battery_threshold_min) && item.battery_threshold_min != null) {
+                vm.boxList[index].battery_min_little_than_0_msg = "电池电量应为0到100的整数。";
+                flag = false;
+                vm.boxList[index].battery_min_little_than_0_class = " invalida-area ";
+            } else {
+                vm.boxList[index].battery_min_little_than_0_msg = "";
+                vm.boxList[index].battery_min_little_than_0_class = "";
             }
             var menu = [
                 "temperature_threshold_min",
@@ -65,7 +73,7 @@
                 "collision_threshold_min",
                 "battery_threshold_min"
             ];
-            for (var s = 0, len = menu.length; s < len; s++) {
+            for (var s = 0; s < 2; s++) {
                 flag = setMsg(item[menu[s]],
                         item[menu[s].replace("min", "max")],
                         index, menu[s].replace("min", 'msg')) && flag;
@@ -131,7 +139,6 @@
                 success: function (res) {
                     console.log(res.data);
                     vm.boxList = res.data.box_types;
-
                 },
                 error: function (err) {
                     console.log("获取所有安全测试设置失败", err);
@@ -140,12 +147,13 @@
         };
 
         vm.resetSafeSetting = function (box, index) {
-            console.log()
-
             if (!$scope.validationCheck(box, index)) {
                 console.log("校验失败", index);
                 return;
             }
+            box.operation_threshold_min = 0;
+            box.collision_threshold_min = 0;
+            box.battery_threshold_max = 100;
             ApiServer.resetSafeSetting({
                 params: {
                     id: box.id,

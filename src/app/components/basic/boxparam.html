@@ -83,23 +83,16 @@
                             <div class="col-md-4 m-b-md">
                                 <form class="form-inline">
                                     <div class="form-group">
-                                        <label>开关门数</label>
+                                        <label>开关门数  <</label>
                                         <div style="display:inline-block;">
-                                            <input ng-model="box.operation_threshold_min"
-                                                   ng-change="validationCheck(box,$index)"
-                                                   maxlength="22"
-                                                   ng-class="box.operation_threshold_class + box.operation_min_little_than_0_class +  box.operation_threshold_min_class"
-                                                   type="number" class="form-control" placeholder="请输入..."> -
                                             <input ng-model="box.operation_threshold_max"
                                                    ng-change="validationCheck(box,$index)"
                                                    maxlength="22"
-                                                   ng-class="box.operation_threshold_class +  box.operation_threshold_max_class"
+                                                   style="width:170px;margin-left: 18px;"
+                                                   ng-class="box.operation_min_little_than_0_class +  box.operation_threshold_max_class"
                                                    type="number" class="form-control" placeholder="请输入...">
-                                            <div class="validation ml5" ng-show="box.operation_min_little_than_0_msg">
+                                            <div class="validation ml25" ng-show="box.operation_min_little_than_0_msg">
                                                 {{box.operation_min_little_than_0_msg}}
-                                            </div>
-                                            <div class="validation ml5" ng-show="box.operation_threshold_msg">
-                                                {{box.operation_threshold_msg}}
                                             </div>
                                         </div>
                                         <label>次</label>
@@ -109,23 +102,16 @@
                             <div class="col-md-4 m-b-md">
                                 <form class="form-inline">
                                     <div class="form-group">
-                                        <label>碰撞次数</label>
+                                        <label>碰撞次数  <</label>
                                         <div  style="display:inline-block;">
-                                            <input ng-model="box.collision_threshold_min"
-                                                   maxlength="22"
-                                                   ng-change="validationCheck(box,$index)"
-                                                   ng-class="box.collision_threshold_class + box.collision_min_little_than_0_class  +  box.collision_threshold_min_class"
-                                                   type="number" class="form-control" placeholder="请输入..."> -
                                             <input ng-model="box.collision_threshold_max"
                                                    maxlength="22"
+                                                   style="width:170px;margin-left: 20px;"
                                                    type="number" class="form-control"
                                                    ng-change="validationCheck(box,$index)"
-                                                   ng-class="box.collision_threshold_class +  box.collision_threshold_max_class"
+                                                   ng-class="box.collision_min_little_than_0_class +  box.collision_threshold_max_class"
                                                    placeholder="请输入...">
-                                            <div class="validation ml5" ng-show="box.collision_threshold_msg">
-                                                {{box.collision_threshold_msg}}
-                                            </div>
-                                            <div class="validation ml5" ng-show="box.collision_min_little_than_0_msg">
+                                            <div class="validation ml25" ng-show="box.collision_min_little_than_0_msg">
                                                 {{box.collision_min_little_than_0_msg}}
                                             </div>
                                         </div>
@@ -136,20 +122,16 @@
                             <div class="col-md-4 m-b-md">
                                 <form class="form-inline">
                                     <div class="form-group">
-                                        <label>电池余量</label>
+                                        <label>电池余量  ></label>
                                         <div style="display:inline-block">
                                             <input ng-model="box.battery_threshold_min"
-                                                   ng-change="validationCheck(box,$index)"
                                                    maxlength="22"
-                                                   ng-class="box.battery_threshold_class +  box.battery_threshold_min_class"
-                                                   type="number" class="form-control" placeholder="请输入..."> -
-                                            <input ng-model="box.battery_threshold_max"
-                                                   maxlength="22"
+                                                   style="width:170px;margin-left: 20px;"
                                                    ng-change="validationCheck(box,$index)"
-                                                   ng-class="box.battery_threshold_class+  box.battery_threshold_max_class"
+                                                   ng-class="box.battery_min_little_than_0_class +  box.battery_threshold_min_class"
                                                    type="number" class="form-control" placeholder="请输入...">
-                                            <div class="validation ml5" ng-show="box.battery_threshold_msg">
-                                                {{box.battery_threshold_msg}}
+                                            <div class="validation ml25" ng-show="box.battery_min_little_than_0_msg">
+                                                {{box.battery_min_little_than_0_msg}}
                                             </div>
                                         </div>
                                         <label>%</label>

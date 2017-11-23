@@ -3,7 +3,7 @@
     <!-- main -->
     <div class="col">
 
-        <modal-dialog show='bbUpdate' width='659px' height='450px'>
+        <modal-dialog show='bbUpdate' width='659px' height='400px'>
             <div class="container-fluid">
                 <div class="row">
                     <div class="bm-update-header">
@@ -21,7 +21,7 @@
                                        ng-change="editValidationCheck()"
                                        placeholder="请输入RFID...">
                                 <div class="validation" ng-show="editValidation.RFIDInvalid">
-                                    请输入合法的RFID：A-Za-z0-9-
+                                    请输入合法的RFID.
                                 </div>
                             </div>
                         </div>
@@ -45,21 +45,6 @@
                 <div class="row bm-input m-b-md">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="col-md-4 control-label form-control-static">出厂日期</label>
-                            <div class="col-md-8">
-                                <input date-time
-                                       ng-model="vm.editBasicInfoConfig.date_of_production"
-                                       class="form-control m-b"
-                                       ng-class="{true:'areaRequire',false:''}[editValidation.date_of_production]"
-                                       ng-change="editValidationCheck()"
-                                       placeholder="请选择出厂日期"
-                                       min-view="date"
-                                        format="YYYY-MM-DD">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">生产厂家</label>
                             <div class="col-md-8">
                                 <select  ng-model="vm.editBasicInfoConfig.manufacturer_id" name="account"
@@ -72,9 +57,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="row bm-input m-b-md">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">生产地</label>
@@ -89,6 +71,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="row bm-input m-b-md">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="col-md-4 control-label form-control-static">电源信息</label>
@@ -103,10 +88,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="row bm-input m-b-md">
-
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="col-md-6 control-label form-control-static">智能硬件信息</label>

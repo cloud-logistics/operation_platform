@@ -43,20 +43,10 @@
 
             transformations = {
                 containerType: optionsTransFunc(vm.options.containerType),
-                carrier: optionsTransFunc(vm.options.carrier),
                 factory: optionsTransFunc(vm.options.factory),
                 factoryLocation: optionsTransFunc(vm.options.factoryLocation),
                 startTime: R.compose(R.toString, Date.parse),
                 endTime: R.compose(R.toString, Date.parse)
-            }
-
-            vm.queryParams = {
-                containerType : R.compose(R.prop("value"),R.head)(vm.options.containerType),
-                carrier : R.compose(R.prop("value"),R.head)(vm.options.carrier),
-                factory : R.compose(R.prop("value"),R.head)(vm.options.factory),
-                factoryLocation : R.compose(R.prop("value"),R.head)(vm.options.factoryLocation),
-                startTime: moment(new Date()),
-                endTime: moment(new Date())
             }
 
             getBasicInfo();
