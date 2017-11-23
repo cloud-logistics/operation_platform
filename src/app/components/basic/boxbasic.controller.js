@@ -214,7 +214,8 @@
                     max: inputTransFunc
                 }
             };
-            vm.MaxDate = moment()
+            vm.MaxDate = moment();
+            console.log('moment = ',moment())
             vm.newSecurityConfig = {
                 intervalTime: R.compose(R.prop("value"), R.head)(vm.options.intervalTime)
             };

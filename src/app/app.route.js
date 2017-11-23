@@ -129,11 +129,6 @@
                 url: 'boxparam',
                 templateUrl: 'app/components/basic/boxparam.html'
             })
-            //云箱管理  ---- 维修处理
-            .state('app.boxalert',{
-                url: 'boxalert',
-                templateUrl: 'app/components/basic/boxalert.html'
-            })
             //仓库信息
             .state('app.warehouseInfo', {
                 url: 'warehouseInfo/',
