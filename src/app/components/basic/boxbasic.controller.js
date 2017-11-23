@@ -129,7 +129,7 @@
                             }
                         },
                         error: function (err) {
-                            console.log("删除基础信息失败。", err);
+                            toastr.error(err.msg||"删除基础信息失败。");
                         }
                     })
                 }
@@ -306,7 +306,7 @@
                     }
                 },
                 error: function (err) {
-                    console.log("新增基础信息失败。", err);
+                    toastr.error(err.msg || "新增基础信息失败。");
                 }
             });
         }
@@ -339,7 +339,7 @@
                     }
                 },
                 error: function (err) {
-                    toastr.error("修改基础信息失败。");
+                    toastr.error(err.msg || "修改基础信息失败。");
                 }
             })
         }

@@ -8,19 +8,17 @@
 
     // REST service based on Restangular  that uses setFullResponse
     /** @ngInject */
-    function RestService(Restangular, StorageService,logger,constdata) {
+    function RestService(Restangular, StorageService,logger,constdata, $http) {
         return Restangular.withConfig(function (RestangularConfigurer) {
-            // var token = StorageService.get(constdata.token);
-            // if (token){
-            //     logger.debug(token);
-            //     token = 'Bearer ' + token;
-            //     RestangularConfigurer.setDefaultHeaders({Authorization:token});
-            // }
-            // else {
-            //     console.log('-----Set Authorization Null');
-            //     // RestangularConfigurer.setDefaultHeaders({Authorization:null});
-            // }
-            RestangularConfigurer.setFullResponse(true);
+            /*var token = StorageService.get(constdata.token);
+             console.log('........aaaa');
+             console.log(token);
+             if (token){
+             //token = 'Bearer ' + token;
+             RestangularConfigurer.setDefaultHeaders(token);
+             }*/
+            //RestangularConfigurer.setDefaultHeaders({'kxw':'ok', 'kxw2':'ok2'});
+            //RestangularConfigurer.setFullResponse(true);
         });
     }
 
@@ -30,13 +28,14 @@
         .factory('NetworkService', NetworkService);
 
     /** @ngInject */
-    function NetworkService(RestService,StorageService,logger,$rootScope,constdata) {
+    function NetworkService(RestService,StorageService,logger,$rootScope,constdata, $http) {
 
 
         var service = {
             post  : post,
             get   : get,
             put   : put,
+            putFile:putFile,
             delete: del
         };
 
@@ -44,15 +43,58 @@
 
         /////////////////
 
+
+
+        function putFile(path,body,successHandler,failedHandler) {
+            var formdata = new FormData();
+            console.log(body);
+            formdata.append('editormd-image-file',body);
+
+            /*var token = StorageService.get('iot.hnair.cloud.access_token');
+             token = 'Bearer ' + token;
+             var reg = RestService.one(path);
+
+             reg.withHttpConfig({transformRequest: angular.identity}).customPOST(formdata, undefined, undefined, {'Content-Type': undefined,'Authorization':token}).then(
+             successHandler,function (response) {
+             failedResponse(response,failedHandler,path);
+             }
+             );*/
+
+            //body.name = '';
+            var account = RestService.one(path);
+            console.log(body);
+
+            var imgUpload = '/';
+            if(constdata.debugMode){
+                imgUpload = 'http://106.2.20.186/';
+            }
+            var uploadPath = imgUpload + 'container/api/v1/cloudbox/rentservice/upload/';
+
+            $http.put(uploadPath + body.name, body).then(
+                function (response) {
+                    successResponse(response,successHandler);
+                },function (response) {
+                    failedResponse(response,failedHandler,uploadPath);
+                }
+            );
+
+
+
+            /*account.customPUT(formdata,"",null,{'Content-Type': undefined}).then(function (response) {
+             successResponse(response,successHandler);
+             },function (response) {
+             failedResponse(response,failedHandler,path);
+             });*/
+
+        };
+
         function post(path,param,successHandler,failedHandler) {
             var account = RestService.one(path);
             // var header = {};
             // if (path !== 'account/auth'){
             //     header = requestHeader();
             // }
-            account.customPOST(param,"","",requestHeader()
-            ).then(
-
+            account.customPOST(param,"","",requestHeader()).then(
                 function (response) {
                     successResponse(response,successHandler);
                 },function (response) {
@@ -72,7 +114,7 @@
 
         function put(path,param,successHandler,failedHandler) {
             var account = RestService.one(path);
-            account.customPUT(param,"","",requestHeader()).then(function (response) {
+            account.customPUT(param,"",param,requestHeader()).then(function (response) {
                 successResponse(response,successHandler);
             },function (response) {
                 failedResponse(response,failedHandler,path);
@@ -114,10 +156,15 @@
 
             var newResponse = {};
             newResponse.status = response.status;
-            if (response.data && response.data.Error){
-                newResponse.statusText = response.data.Error;
-            }else{
-                newResponse.statusText = '服务器出错了~';//未知错误，先显示成这样
+            newResponse.statusText = '服务器出错，请稍后再试';
+            if (response.data && response.data.message){
+                newResponse.statusText = response.data.message;
+            }
+            if (response.data && response.data.msg){
+                newResponse.msg = response.data.msg;
+            }
+            if (response.data && response.data.status){
+                newResponse.status = response.status;
             }
             if (failedHandler){
                 failedHandler(newResponse);
@@ -127,7 +174,7 @@
 
         function requestHeader() {
             var sessionInfo = StorageService.get(constdata.token);
-            if (sessionInfo && sessionInfo !== 'undefined'){
+            if (sessionInfo && sessionInfo != 'undefined'){
                 return sessionInfo;
             }
             return {};

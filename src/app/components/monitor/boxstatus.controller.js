@@ -88,7 +88,7 @@
                     $scope.conf.totalItems = response.data.count;
                 },
                 error: function (err) {
-                    console.log("获取状态汇总信息失败。", err);
+                    toastr.error(err.msg||"获取状态汇总信息失败。");
                 }
             });
         }

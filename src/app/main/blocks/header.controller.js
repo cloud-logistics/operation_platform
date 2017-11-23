@@ -49,7 +49,7 @@
                     vm.messages = obj;
                 },
                 error: function (err) {
-                    console.log("获取消息失败.",err);
+                    toastr.error(err.msg ||"获取消息失败.",err);
                 }
             });
         };

@@ -141,7 +141,7 @@
                     vm.boxList = res.data.box_types;
                 },
                 error: function (err) {
-                    console.log("获取所有安全测试设置失败", err);
+                    toastr.error(err.msg || "获取所有安全测试设置失败");
                 }
             });
         };
@@ -168,7 +168,7 @@
                     }
                 },
                 error: function (err) {
-                    toastr.error("设置失败");
+                    toastr.error(err.msg ||"设置失败.");
                 }
             });
         }
