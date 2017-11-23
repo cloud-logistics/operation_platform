@@ -90,10 +90,6 @@
                 days:vm.days
             }
             ApiServer.getContainerHistoryStatus(queryParams, function(response){
-                console.log(historyStatus);
-                console.log(requiredParam);
-                console.log(days);
-
                 if (requiredParam == "temperature") {
                     initTempBar(days, response.data.temperature);
                 } else if( requiredParam == "humidity" ) {
