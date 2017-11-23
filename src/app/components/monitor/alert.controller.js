@@ -31,6 +31,11 @@
             $scope.isContainerIdInvalida = vm.queryParams.containerId != "" &&!constdata['validation']['id'].test(vm.queryParams.containerId);
         };
         vm.getAlerts = getAlerts
+
+        vm.reset = reset
+        vm.poweroff = poweroff
+        vm.cancelcmd = cancelcmd
+
         var transformations = undefined;
 
         var requiredOptions = [
@@ -61,7 +66,7 @@
             }
             getAlerts();
         })
-        
+
         function getAlerts () {
             if($scope.isContainerIdInvalida){
                 return;
@@ -84,6 +89,52 @@
                     console.log("获取报警监控信息失败", err);
                 }
             });
+        }
+
+
+        function reset() {
+            vm.commandParams = R.merge(vm.commandParams, {
+                action: "reset"
+            })
+
+            deliverCmd()
+
+            cancelcmd()
+        }
+
+
+        function cancelcmd () {
+            $scope.resetShow = false;
+            $scope.shutShow = false;
+        }
+
+        function poweroff() {
+            vm.commandParams = R.merge(vm.commandParams, {
+                action: "poweroff"
+            })
+
+            deliverCmd()
+
+            cancelcmd()
+        }
+
+        function deliverCmd() {
+            ApiServer.command(vm.commandParams, function(response){
+                console.log(response.data);
+            },function (err) {
+                console.log("Get Historyview Info Failed", err);
+            })
+        }
+
+
+        $scope.resetShow = false;
+        $scope.resetClick = function () {
+            $scope.resetShow = !$scope.resetShow;
+        }
+
+        $scope.shutShow = false;
+        $scope.shutClick = function () {
+            $scope.shutShow = !$scope.shutShow;
         }
 
         $scope.$watchGroup(['conf.currentPage','conf.itemsPerPage'],getAlerts)

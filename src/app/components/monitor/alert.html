@@ -52,6 +52,7 @@
                             <th>云箱ID</th>
                             <th>报警时间</th>
                             <th>报警类别</th>
+                            <th>操作</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -60,20 +61,41 @@
                             <td style="vertical-align: middle;">{{item.deviceid}}</td>
                             <td style="vertical-align: middle;">{{item.timestamp | date:"yyyy-MM-dd hh:mm:ss"}}</td>
                             <td style="vertical-align: middle;">{{item.error_description}}</td>
-                            <td><a ui-sref="app.realtime({
+                            <td class="button-group">
+                                <div class="command-button-group">
+                                    <span class="comm-reset reset-command-button" ng-click="resetClick()"><i class="glyphicon glyphicon-repeat"></i>重置</span>
+                                    <span class="comm-shutdown poweroff-command-button" ng-click="shutClick()"><i class="glyphicon glyphicon-off"></i>关机</span>
+                                </div>
+                                <a ui-sref="app.realtime({
                                                 containerId: item.deviceid
-                                            })" class="btn-table-detail">查看详情</a> 
-                                <a ui-sref="app.command({
-                                                containerId: item.deviceid,
-                                                endpointId: item.endpointId
-                                            })"
-                                    class="btn-table-detail"
-                                    style="background-color: #c26b6b">报警处理</a>
+                                            })" class="btn-table-detail">查看详情</a>
                             </td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
+                <modal-dialog show='resetShow' width='400px' height='130px'>
+                    <div class="container-fluid">
+                        <div class="row confirm-header">
+                            <span class="pull-left">您是否确认重置该云箱?</span>
+                        </div>
+                        <div class="row confirm-bottom">
+                            <span class="pull-right confirm-ok"  ng-click="vm.reset()">确认</span>
+                            <span class="pull-right confirm-cancel" ng-click="vm.cancelcmd()">取消</span>
+                        </div>
+                    </div>
+                </modal-dialog>
+                <modal-dialog show='shutShow' width='400px' height='130px'>
+                    <div class="container-fluid">
+                        <div class="row confirm-header">
+                            <span class="pull-left">您是否确认关闭该云箱?</span>
+                        </div>
+                        <div class="row confirm-bottom">
+                            <span class="pull-right confirm-ok" ng-click="vm.poweroff()">确认</span>
+                            <span class="pull-right confirm-cancel" ng-click="vm.cancelcmd()">取消</span>
+                        </div>
+                    </div>
+                </modal-dialog>
                 <tm-pagination style="float:right;" conf="conf"></tm-pagination>
             </div>
         </div>
