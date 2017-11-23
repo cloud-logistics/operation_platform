@@ -11,6 +11,5 @@
     function AsideController($state, ApiServer,$scope, toastr, StorageService, constdata) {
         /* jshint validthis: true */
 
-
     }
 })();

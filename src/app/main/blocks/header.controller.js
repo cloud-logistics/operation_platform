@@ -20,7 +20,11 @@
         vm.jumpTo = function(url){
             $state.go(url);
         };
-
+        $scope.switchNav = function(flag){
+            setTimeout(function(){
+                $(".nav").find("li").removeClass("active")
+            },10)
+        };
         var getMessage = function(){
             ApiServer.messageGetByUserId({
                 success: function (res) {
