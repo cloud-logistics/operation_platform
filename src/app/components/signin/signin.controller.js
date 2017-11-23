@@ -32,7 +32,6 @@
         function loginAction() {
 
             if (!(vm.user.username && vm.user.password)){
-
                 return;
             }
 

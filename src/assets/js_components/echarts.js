@@ -10957,7 +10957,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var objShallow = {};
 	            var propertyCount = 0;
 	            for (var name in target) {
-	                if (!target.hasOwnProperty(name)) {
+	                if (!target.hasOwnProperty(name) || name == "style") {
 	                    continue;
 	                }
 

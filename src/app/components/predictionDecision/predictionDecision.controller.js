@@ -72,7 +72,6 @@
         };
         setHeatmap();
 
-
         $scope.updateMarker = function(bounds) {
             console.log("bounds",bounds);
             var remainContainer = [{
