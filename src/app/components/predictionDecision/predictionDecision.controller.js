@@ -111,6 +111,7 @@
                 },
                 success:function(res){
                     console.log("res = ",res.data.data);
+                    //res.data.data.results = res.data.data.results.concat(res.data.data.results).concat(res.data.data.results)
                     var menu = {
                         "undispatch":"待调度",
                         "dispatch":"进行中"
@@ -126,9 +127,9 @@
                                 lat:item.finish.latitude
                             },
                             status:menu[item.status],
-                            oAddress:item.start.location,
+                            oAddress:item.start.site_code,
                             count:item.count,
-                            tAddress:item.finish.location,
+                            tAddress:item.finish.site_code,
                         }
                     });
                     $scope.conf.currentPage = (res.data.data.offset / res.data.data.limit) + 1;
