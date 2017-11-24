@@ -9,7 +9,7 @@
         .constant('constdata', {
             debugMode: (location.hostname == "localhost"),//http://52.80.40.26:9090/
             logLevel: 111111,//控制log显示的级别（0不显示,1显示）,从左到右每位分别代表[error,warn,info,debug,log]
-            apiHost_ONLINE:  "http://" + location.host + "/container/api/v1/cloudbox/monservice/', //http://54.223.162.108:9090/ production1
+            apiHost_ONLINE:  "http://" + location.host + '/container/api/v1/cloudbox/monservice/', //http://54.223.162.108:9090/ production1
             apiHost_OFFLINE:'http://106.2.20.185/container/api/v1/cloudbox/monservice/', //http://54.223.162.108:9090/ production1
             //apiHost_OFFLINE:'http://localhost:4000/container/api/v1/cloudbox/',
             token:'airspc_access_authorization',
