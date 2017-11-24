@@ -47,15 +47,16 @@
                                     <span>所在仓库</span>
                                     <span style="display:inline" title="{{vm.realtimeInfo.siteName}}">{{vm.realtimeInfo.siteName}}</span>
                                 </p>
-                                <p ng-show="vm.realtimeInfo.currentStatus == 'leupmg'">
+                                <p ng-show="vm.realtimeInfo.currentStatus == '可用'">
                                     <span>当前所在地</span>
                                     <span style="display:inline" title="{{vm.realtimeInfo.locationName4Hover}}">{{vm.realtimeInfo.locationName}}</span>
                                 </p>
                             </div>
                             <div class="rt-img">
                                 <img src="images/realtime-box.png" class="">
-                                <div class="rt-status">
-                                    <span>{{vm.realtimeInfo.currentStatus}}</span>
+                                <div class="rt-status" >
+                                    <span ng-class="{true:'valiable',false:'unvaliable'}[vm.realtimeInfo.currentStatus == '可用']">
+                                        {{vm.realtimeInfo.currentStatus}}</span>
                                 </div>
                             </div>
                         </div>
