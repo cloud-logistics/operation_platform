@@ -36,33 +36,17 @@
         vm.poweroff = poweroff
         vm.cancelcmd = cancelcmd
 
-        var transformations = undefined;
+        var transformations = {alertType:[{"id": 0, "value": "\u5168\u90e8"}]};
 
         var requiredOptions = [
-                    "alertLevel",
-                    "alertCode",
                     "alertType"
                 ]
 
         ApiServer.getOptions(requiredOptions, function(options) {
             vm.options = options;
 
-            vm.options.alertCode = R.map(function(alertCode){
-                return {
-                    id: alertCode.id,
-                    value: alertCode.value.toString()
-                }
-            })(vm.options.alertCode)
-            transformations = {
-                alertCode: optionsTransFunc(vm.options.alertCode),
-                alertType: optionsTransFunc(vm.options.alertType),
-                alertLevel: optionsTransFunc(vm.options.alertLevel)
-            }
-
             vm.queryParams = {
-                alertCode : R.compose(R.prop("value"),R.head)(vm.options.alertCode),
-                alertLevel : R.compose(R.prop("value"),R.head)(vm.options.alertLevel),
-                alertType : R.compose(R.prop("value"),R.head)(vm.options.alertType)
+                alertType : R.compose(R.prop("id"),R.head)(vm.options.alertType)
             }
             getAlerts();
         })
@@ -71,10 +55,10 @@
             if($scope.isContainerIdInvalida){
                 return;
             }
-            var queryParams = R.evolve(transformations)(vm.queryParams)
+            var queryParams = vm.queryParams
             var data = {
                 container_id:queryParams.containerId || "all",
-                alert_type_id:queryParams.alertType,
+                alert_type_id:queryParams.alertType || 0,
                 limit:$scope.conf.itemsPerPage,
                 offset:($scope.conf.itemsPerPage * ($scope.conf.currentPage - 1))
             };

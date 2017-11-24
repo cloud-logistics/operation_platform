@@ -53,7 +53,7 @@
         })
 
         vm.getBasicInfo = getBasicInfo
-        
+
         function getBasicInfo () {
             if($scope.isContainerIdInvalida){
                 return;
@@ -70,7 +70,6 @@
             ApiServer.getBasicInfo(data, function (response) {
                 vm.containerlist = response.data.data.results;
                 $scope.conf.totalItems = response.data.data.count;
-                console.log(vm.containerlist);
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);
             });

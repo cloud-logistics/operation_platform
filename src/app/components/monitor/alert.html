@@ -32,7 +32,7 @@
                             <div class="form-group">
                                 <label>故障类型</label>
                                 <select class="form-control" ng-model="vm.queryParams.alertType">
-                                    <option ng-repeat="item in vm.options.alertType track by $index">{{item.value}}</option>
+                                    <option ng-repeat="item in vm.options.alertType track by $index" ng-value="item.id">{{item.value}}</option>
                                 </select>
                             </div>
                         </form>

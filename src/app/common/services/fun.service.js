@@ -29,8 +29,6 @@
     function optionsTransFunc() {
         return function (options) {
             return function(optionValue) {
-                console.log(options);
-                console.log(optionValue);
                 var optionId =
                     R.compose(
                         R.prop("id"),
@@ -77,7 +75,7 @@
             return containersAfterParse;
         }
     };
-    
+
     angular
         .module('smart_container')
         .filter('orderdesc', orderdesc);
@@ -1085,4 +1083,3 @@ Array.prototype.clone = function(){
 
 
 })();
-
