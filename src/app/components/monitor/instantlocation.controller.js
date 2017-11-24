@@ -26,6 +26,7 @@
         // 鼠标绘图工具
         var overlay = undefined;
         var currentPositionMarker = undefined;
+        var infowindow = undefined;
 
         vm.getInstantlocationInfo = getInstantlocationInfo
 
@@ -70,7 +71,7 @@
 
                 if(R.equals({lng:0, lat:0}, currentPosition)){
                     console.log("position: 0,0")
-                    infoWindow(map, currentPositionMarker, "当前云箱的位置信息有误，经纬度为（0，0）。请检查详情");
+                    infoWindow(map, currentPositionMarker, "当前搜索的云箱位置信息不正确，请查看详情");
                 } else {
                     currentPositionMarker = MapService.addMarker(map)(currentPosition,{notTranslate:true});
                     infoWindow(map, currentPositionMarker, "当前点: " + currentLocationName);
@@ -85,7 +86,10 @@
         }
 
         function infoWindow(map, marker, content) {
-          var infowindow = new google.maps.InfoWindow({
+          if(!R.isNil(infowindow)){
+              infowindow.close();
+          }
+          infowindow = new google.maps.InfoWindow({
             content: content
           });
 
