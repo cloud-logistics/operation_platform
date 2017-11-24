@@ -71,8 +71,7 @@
 
                 $state.go(appGo);
             },function (err) {
-                console.log(err);
-                toastr.error(err.msg);
+                toastr.error(err.msg || "用户名密码错误.");
                 vm.isLogining = false;
             });
 
