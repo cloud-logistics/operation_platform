@@ -86,7 +86,7 @@
                     $scope.conf.totalItems = response.data.data.count;
                 },
                 error: function (err) {
-                    console.log("获取报警监控信息失败", err);
+                    toastr.error(err.msg || "获取报警监控信息失败");
                 }
             });
         }

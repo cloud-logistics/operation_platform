@@ -119,6 +119,11 @@
             }else{
                 newResponse.statusText = '服务器出错了~';//未知错误，先显示成这样
             }
+            if (response.data && response.data.msg){
+                newResponse.msg = response.data.msg;
+            }else{
+                newResponse.msg = '服务器出错了~';//未知错误，先显示成这样
+            }
             if (failedHandler){
                 failedHandler(newResponse);
             }

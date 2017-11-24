@@ -61,8 +61,9 @@
             vm.classAnimation = '';
         }
         if(!$location.$$url){
-            $state.go('app.dashboard');
+            $state.go('app.siteoverview');
         }
+
         setTimeout(function(){
             $(".nav").find(".active").parent().parent().addClass("active")
         },500)

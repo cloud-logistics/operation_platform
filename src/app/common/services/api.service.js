@@ -254,8 +254,9 @@
                 StorageService.clear(authorizationKey);
                 StorageService.clear(userInfo);
                 StorageService.clear(constdata.token);
+                location.href = location.origin + '/#/access/signin';
             }, 60);
-            $state.go('access.signin');
+
         }
 
         ////////////用户

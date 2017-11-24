@@ -32,7 +32,6 @@
         function loginAction() {
 
             if (!(vm.user.username && vm.user.password)){
-
                 return;
             }
 
@@ -72,9 +71,7 @@
 
                 $state.go(appGo);
             },function (err) {
-                console.log(err);
-                var errInfo = '用户名密码错误。';
-                toastr.error(errInfo);
+                toastr.error(err.msg || "用户名密码错误.");
                 vm.isLogining = false;
             });
 

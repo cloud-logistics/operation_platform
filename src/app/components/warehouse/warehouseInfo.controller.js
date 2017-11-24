@@ -339,7 +339,7 @@
                     retrieveSiteInfo();
                 },
                 "error": function (err) {
-                    console.log("新增仓库失败", err);
+                    toastr.error(err.msg);
                 }
             });
         }
@@ -360,8 +360,8 @@
                             toastr.success(res.data.msg);
                             retrieveSiteInfo();
                         },
-                        "error": function (res) {
-                            toastr.error("删除仓库失败", res);
+                        "error": function (err) {
+                            toastr.error(err.msg||"删除仓库失败.");
                         }
                     })
                 }
@@ -393,7 +393,7 @@
                     retrieveSiteInfo();
                 },
                 "error": function (err) {
-                    console.log("新增仓库失败", err);
+                    toastr.error(err.msg || "更新仓库失败");
                 }
             });
         }
@@ -408,7 +408,7 @@
                     console.log("vm.siteInfoList", vm.siteInfoList)
                 },
                 "error": function (err) {
-                    console.log("获取仓库信息失败", err);
+                    toastr.error(err.msg ||"获取仓库信息失败");
                 }
             });
         }

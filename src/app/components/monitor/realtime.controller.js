@@ -96,9 +96,6 @@
                     initHumiLine(days, response.data.humidity);
                 }
 
-                //initSpeedLine();
-                //initBattLine();
-                //initStatusLine();
             }, function (err) {
                 console.log("Get ContainerHisfotyStatus Info Failed", err);
             })
@@ -135,7 +132,7 @@
                 initTemp(vm.realtimeInfo.temperature.value);
                 initHumi(vm.realtimeInfo.humidity.value);
                 initSpeed(Math.round(vm.realtimeInfo.speed*100)/100);
-                initBatt(vm.realtimeInfo.battery.value);
+
             },function (err) {
                 console.log("Get RealtimeInfo Info Failed", err);
             });
@@ -377,61 +374,6 @@
             };
 
             humiChart.setOption(humiOption);
-        }
-
-        function initBatt(value) {
-            battChart =  battChart || echarts.init(document.getElementById('batt-chart'));
-            battOption = {
-                series: [{
-                    type: 'liquidFill',
-                    data: [{
-                        value: value,
-                        itemStyle: {
-                            normal: {
-                                color: '#77CADA',
-                                opacity: 0.6
-                            },
-                            emphasis: {
-                                color: '#77CADA',
-                                opacity: 0.6
-                            }
-                        }
-                    }, {
-                        value: 0.4,
-                        itemStyle: {
-                            normal: {
-                                color: '#B8EDD7',
-                                opacity: 0.4
-                            },
-                            emphasis: {
-                                color: '#B8EDD7',
-                                opacity: 0.4
-                            }
-                        }
-                    }],
-                    radius: '90%',
-                    label: {
-                        normal: {
-                            formatter: function (param) {
-                                return param.value  + '%';
-                            },
-                            textStyle: {
-                                fontSize: 24,
-                                color: '#6DB988'
-                            }
-                        }
-
-                    },
-                    outline: {
-                        borderDistance: 0,
-                        itemStyle: {
-                            borderWidth: 1,
-                            borderColor: '#86cea0'
-                        }
-                    }
-                }]
-            };
-            battChart.setOption(battOption);
         }
 
         function initSpeed(value) {
