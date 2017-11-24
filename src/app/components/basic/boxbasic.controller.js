@@ -221,8 +221,6 @@
             };
             vm.newAlertConfig = {};
             vm.newIssueConfig = {};
-
-            console.log(options);
         },true);
 
         getBasicInfo();
