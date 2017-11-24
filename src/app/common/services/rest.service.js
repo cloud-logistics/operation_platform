@@ -8,7 +8,7 @@
 
     // REST service based on Restangular  that uses setFullResponse
     /** @ngInject */
-    function RestService(Restangular,$state,StorageService,logger,constdata) {
+    function RestService(Restangular,StorageService,logger,constdata) {
         return Restangular.withConfig(function (RestangularConfigurer) {
             // var token = StorageService.get(constdata.token);
             // if (token){
@@ -30,7 +30,7 @@
         .factory('NetworkService', NetworkService);
 
     /** @ngInject */
-    function NetworkService(RestService,StorageService,logger,$rootScope,constdata) {
+    function NetworkService(RestService,StorageService,$state,toastr,logger,$rootScope,constdata) {
 
 
         var service = {
