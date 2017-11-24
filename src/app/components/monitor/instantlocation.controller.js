@@ -70,7 +70,7 @@
 
                 if(R.equals({lng:0, lat:0}, currentPosition)){
                     console.log("position: 0,0")
-                    infoWindow(map, currentPositionMarker, "当前点的位置信息有误，经纬度为（0，0）。请检查详情");
+                    infoWindow(map, currentPositionMarker, "当前云箱的位置信息有误，经纬度为（0，0）。请检查详情");
                 } else {
                     currentPositionMarker = MapService.addMarker(map)(currentPosition,{notTranslate:true});
                     infoWindow(map, currentPositionMarker, "当前点: " + currentLocationName);
