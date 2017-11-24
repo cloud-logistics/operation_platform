@@ -30,41 +30,24 @@
         <!-- / buttons -->
 
         <!-- nabar right -->
-        <ul class="nav navbar-nav navbar-right dropdown">
+        <ul class="nav navbar-nav navbar-right header-controller-container">
+            <li id="header-button-container">
+                <div
+                      ng-click="vm.jumpTo(message.url)"
+                      ng-repeat="message in vm.messages"
+                      style="margin-right: 30px">{{message.name}}
+                      <span class="badge badge-sm up bg-danger pull-right-xs">{{message.count}}</span>
+                </div>
+            </li>
             <!--<li class="hidden-xs">-->
             <!--<a ui-fullscreen></a>-->
             <!--</li>-->
             <li class="dropdown">
-                <a href class="dropdown-toggle" data-toggle="dropdown" id="dropdownNoti">
-                    <i class="icon-bell fa-fw"></i>
-                    <span class="visible-xs-inline">Notifications</span>
-                    <span class="badge badge-sm up bg-danger pull-right-xs">{{vm.totalMessage}}</span>
-                </a>
-                <!-- dropdown -->
-                <div class="dropdown-menu w-xl animated fadeIn">
-                    <div class="panel bg-white">
-                        <div class="panel-heading b-light bg-light" >
-                            <strong>{{vm.messages.length > 0 ? '新的消息' : '尚未有任何通知信息'}}</strong>
-                        </div>
-                        <div class="list-group">
-                            <a href class="media list-group-item msg_list">
-                            <span class="media-body block m-b-none mst_list_item"
-                                  ng-click="vm.jumpTo(message.url)"
-                                  ng-repeat="message in vm.messages" style="height: 80px;width: 100%;">
-                                    {{"当前共有"}} <strong style="color:red;">{{message.count}}</strong> {{"条" + message.name + "。" }}
-                            </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- / dropdown -->
-            </li>
-            <li class="dropdown">
-                <a href class="dropdown-toggle clear" data-toggle="dropdown" id="dropdownProfile">
-              <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
-                <img src="images/a0.jpg" alt="...">
-                <i class="on md b-white bottom"></i>
-              </span>
+                <a href  data-toggle="dropdown" id="dropdownProfile">
+                    <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
+                      <img src="images/a0.jpg" alt="...">
+                      <i class="on md b-white bottom"></i>
+                    </span>
                     <span class="hidden-sm hidden-md">{{vm.infomation.username}}</span> <b class="caret"></b>
                 </a>
                 <!-- dropdown -->

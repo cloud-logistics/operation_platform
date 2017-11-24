@@ -30,7 +30,7 @@
                 success: function (res) {
                     console.log(res.data);
                     var dict = {
-                        "alarm_count":"告警信息",
+                        "alarm_count":"警告信息",
                         "undispach_count":"调度信息"
                     };
                     var obj = [
