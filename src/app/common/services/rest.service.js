@@ -8,7 +8,7 @@
 
     // REST service based on Restangular  that uses setFullResponse
     /** @ngInject */
-    function RestService(Restangular, StorageService,logger,constdata) {
+    function RestService(Restangular,$state,StorageService,logger,constdata) {
         return Restangular.withConfig(function (RestangularConfigurer) {
             // var token = StorageService.get(constdata.token);
             // if (token){
@@ -110,7 +110,10 @@
 
             console.log('-------' + path + '---------');
             console.log(response);
-
+            if(response && response.status == 401){
+                toastr.info('登录超时，请重新登录');
+                $state.go('access.signin');
+            }
 
             var newResponse = {};
             newResponse.status = response.status;

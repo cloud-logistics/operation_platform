@@ -6,7 +6,7 @@
             <div class="wrapper-md">
                 <div class="rt-head">
                     <div class="rt-head-left">
-                        <h3>实时状态</h3>
+                        <h3 class="common_panel_label">实时状态</h3>
                     </div>
                     <div class="rt-head-right">
                         <span class="rt-id rt-head-label">ID</span>
@@ -23,7 +23,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="rt-btn" ng-click="vm.getRealtimeInfo()">搜索报文</button>
+                        <button type="submit" class="rt-btn common_panel_btn" ng-click="vm.getRealtimeInfo()">搜索报文</button>
                     </div>
                 </div>
 
@@ -33,12 +33,6 @@
                             <h3>云箱</h3>
                         </div>
                         <div class="rt-brief-body">
-                            <div class="rt-img">
-                                <img src="images/realtime-box.png" class="">
-                                <div class="rt-status">
-                                    <span>{{vm.realtimeInfo.currentStatus}}</span>
-                                </div>
-                            </div>
 
                             <div class="rt-brief-content">
                                 <p>
@@ -49,10 +43,20 @@
                                     <span>云箱型号</span>
                                     <span style="color:#666666">{{vm.realtimeInfo.containerType}}</span>
                                 </p>
-                                <p >
+                                <p ng-show="vm.realtimeInfo.currentStatus != '在运'">
+                                    <span>所在仓库</span>
+                                    <span style="display:inline" title="{{vm.realtimeInfo.siteName}}">{{vm.realtimeInfo.siteName}}</span>
+                                </p>
+                                <p ng-show="vm.realtimeInfo.currentStatus == '在运'">
                                     <span>当前所在地</span>
                                     <span style="display:inline" title="{{vm.realtimeInfo.locationName4Hover}}">{{vm.realtimeInfo.locationName}}</span>
                                 </p>
+                            </div>
+                            <div class="rt-img">
+                                <img src="images/realtime-box.png" class="">
+                                <div class="rt-status">
+                                    <span>{{vm.realtimeInfo.currentStatus}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -121,18 +125,6 @@
 
                                 </div>
                             </uib-tab>
-                            <!-- 
-                            <uib-tab index="3" heading="电&nbsp;量"  select="changeRequiredParam('battery')" >
-                                <div class="bd-chart" id="bd-batt-chart">
-
-                                </div>
-                            </uib-tab>
-                            <uib-tab index="4" heading="箱体情况"  select="changeRequiredParam('boxStatus')">
-                                <div class="bd-chart" id="bd-status-chart">
-
-                                </div>
-                            </uib-tab>
-                            -->
                         </uib-tabset>
                     </div>
                 </div>

@@ -4,9 +4,9 @@
     <div class="col">
         <div class="" style="position: relative">
             <div class="floating-panel-his">
-                <span class="instTitleHis">历史轨迹</span>
+                <span class="instTitleHis common_panel_label" >历史轨迹</span>
                 <div class="instRightHis">
-                    <span class="instLabelHis instLabelHis-label" >ID</span>
+                    <span class="instLabelHis instLabelHis-label " >ID</span>
                     <div style="display:inline-block;float:left;">
                        <input ng-model="vm.queryParams.containerId"
                                type="text"
@@ -35,7 +35,7 @@
                            ng-keydown="preventBackpace($event)"
                            moment-picker
                            format="YYYY-MM-DD">
-                    <span class="instBtnHis"  ng-click="vm.getHistorylocationInfo()" >搜索位置</span>
+                    <span class="instBtnHis common_panel_btn"  ng-click="vm.getHistorylocationInfo()" >搜索位置</span>
                 </div>
             </div>
             <div id="histotylocation" class="mapview"></div>
