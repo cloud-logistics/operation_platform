@@ -19,6 +19,7 @@
                                 <input ng-model="vm.editBasicInfoConfig.tid"
                                        type="text" class="form-control {{editRfid}}"
                                        ng-change="editValidationCheck()"
+                                       maxlength="30"
                                        placeholder="请输入RFID...">
                                 <div class="validation" ng-show="editValidation.RFIDInvalid">
                                     请输入合法的RFID
@@ -132,7 +133,7 @@
                                                    style="margin-right:0;"
                                                    class="form-control rt-search {{rfid}}"
                                                    ng-change="validationCheck()"
-                                                   maxlength="22"
+                                                   maxlength="30"
                                                    placeholder="请输入RFID...">
                                             <div class="validation" ng-show="saveValidation.RFIDInvalid">
                                                 请输入合法的RFID
