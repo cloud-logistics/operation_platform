@@ -304,6 +304,9 @@
             };
             clearMarker();
             $scope.saveBtnClick = false;
+
+            vm.provinceList = [];
+            vm.cityList = [];
             var menu2 = [
                 'nation_class',
                 'province_class',
@@ -315,7 +318,7 @@
             for(var s = 0,len = menu2.length;s <len;s++){
                 $scope[menu2[s]] = "";
             }
-        }
+        };
 
         function addSiteInfo() {
             var data = {
@@ -343,7 +346,6 @@
                 }
             });
         }
-
 
         vm.deleteSiteInfo = function (site_id) {
             var opt = {
