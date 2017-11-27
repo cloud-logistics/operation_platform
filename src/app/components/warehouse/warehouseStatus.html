@@ -1,81 +1,93 @@
-<div class="whStatus hbox hbox-auto-xs hbox-auto-sm"
+<div class="whStatus hbox hbox-auto-xs hbox-auto-sm" style="position:relative"
      ng-controller="WarehouseStatusController as vm"
      ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
     <div>
         <div id="warehouseStatus_map" class="mapview"></div>
     </div>
-    <div id="whTable" style="display:none">
-        <div class="whTable_title">
-            <div class="whTable_title_container">
-                <span class="whTable_title_name">在库云箱</span>
-                <div class="whTable_title_divider">|</div>
-                <span class="whTable_title_count"> 在库总数 {{conf.totalItems}}</span>
+
+    <div class="infoMask1">
+        <div class="whTableMask"></div>
+        <div id="whTable" style="display:none">
+            <div class="whTable_title">
+                <div class="whTable_title_container">
+                    <span class="whTable_title_name">在库云箱</span>
+
+                    <div class="whTable_title_divider">|</div>
+                    <span class="whTable_title_count"> 在库总数 {{conf.totalItems}}</span>
+                </div>
+                <span class="whTable_title_action" onclick="switchStatus()">X</span>
             </div>
-            <span class="whTable_title_action" onclick="switchStatus()">X</span>
-        </div>
-        <div class="whTable_content">
-            <div class="bb-table">
-                <table class="table table-striped table-hover">
-                    <thead>
-                    <tr>
-                        <th>云箱ID</th>
-                        <th>云箱类型</th>
-                        <th>所在仓库</th>
-                        <th>智能终端</th>
-                        <th>电池信息</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="item in vm.whStatusData track by $index">
-                        <td>
-                            <span>{{item.deviceid}}</span>
-                        </td>
-                        <td>
-                            <span>{{item.type.box_type_name}}</span>
-                        </td>
-                        <td>
-                            <span>{{item.siteinfo.location}}</span>
-                        </td>
-                        <td>
-                            <span>{{item.hardware.hardware_detail}}</span>
-                        <td>
-                            <span>{{item.battery.battery_detail}}</span>
-                        </td>
-                        <td>
-                            <a ui-sref="app.realtime({
+            <div class="whTable_content">
+                <div class="bb-table">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>云箱ID</th>
+                            <th>云箱类型</th>
+                            <th>所在仓库</th>
+                            <th>智能终端</th>
+                            <th>电池信息</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in vm.whStatusData track by $index">
+                            <td>
+                                <span>{{item.deviceid}}</span>
+                            </td>
+                            <td>
+                                <span>{{item.type.box_type_name}}</span>
+                            </td>
+                            <td>
+                                <span>{{item.siteinfo.location}}</span>
+                            </td>
+                            <td>
+                                <span>{{item.hardware.hardware_detail}}</span>
+                            <td>
+                                <span>{{item.battery.battery_detail}}</span>
+                            </td>
+                            <td>
+                                <a ui-sref="app.realtime({
                                                 containerId: item.deviceid
                                             })" class="whTable_content_table_detail">详情</a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <tm-pagination style="float:right;" conf="conf"></tm-pagination>
-        </div>
-
-    </div>
-    <div id="whHistory" style="display:none;">
-        <div class="whTable_title">
-            <div class="whTable_title_container">
-                <span class="whTable_title_name">云箱出入记录</span>
-                <div class="whTable_title_divider">|</div>
-                <span class="whTable_title_count"> 在库总数 {{conf.totalItems}}</span>
-            </div>
-            <span class="whTable_title_action" onclick="switchRecord()">X</span>
-        </div>
-        <div class="whTable_content" style="margin:0 15px; overflow-y:scroll;height:90%;">
-            <div class="whTable_content_container"  ng-repeat="item in vm.recordList track by $index">
-                <div class="whTable_content_line1" ng-class="{true:'line1FC',false:''}[$index == 0]">
-                    <span class="whTable_content_line1_circle" ng-class="{true:'status_in',false:'status_out'}[item.type == '入库']"></span>
-                    <span class="whTable_content_line1_time">{{item.timestamp}}</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="whTable_content_line2">
-                    <span class="whTable_content_line2_status" ng-class="{true:'status_in',false:'status_out'}[item.type == '入库']">{{item.type}}</span>
-                    <span class="whTable_content_line2_id">云箱ID:{{item.box_id}}</span>
-                </div>
+                <tm-pagination style="float:right;" conf="conf"></tm-pagination>
             </div>
-
         </div>
     </div>
+    <div class="infoMask2">
+        <div class="whHistoryMask"></div>
+        <div id="whHistory" style="display:none;">
+            <div class="whTable_title">
+                <div class="whTable_title_container">
+                    <span class="whTable_title_name">云箱出入记录</span>
+
+                    <div class="whTable_title_divider">|</div>
+                    <span class="whTable_title_count"> 在库总数 {{conf.totalItems}}</span>
+                </div>
+                <span class="whTable_title_action" onclick="switchRecord()">X</span>
+            </div>
+            <div class="whTable_content">
+                <div class="whTable_content_container" ng-repeat="item in vm.recordList track by $index">
+                    <div class="whTable_content_line1" ng-class="{true:'line1FC',false:''}[$index == 0]">
+                    <span class="whTable_content_line1_circle"
+                          ng-class="{true:'status_in',false:'status_out'}[item.type == '入库']"></span>
+                        <span class="whTable_content_line1_time">{{item.timestamp}}</span>
+                    </div>
+                    <div class="whTable_content_line2">
+                    <span class="whTable_content_line2_status"
+                          ng-class="{true:'status_in',false:'status_out'}[item.type == '入库']">{{item.type}}</span>
+                        <span class="whTable_content_line2_id">云箱ID:{{item.box_id}}</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
 </div>

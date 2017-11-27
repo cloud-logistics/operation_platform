@@ -18,7 +18,6 @@
         $scope.switchShowAdd = function () {
             $scope.saveBtnClick = false;
             $scope.saveValidation = {
-                "rfid":"",
                 "containerType":"",
                 "factory":"",
                 "factoryLocation":"",
@@ -261,10 +260,10 @@
         function cancelBasicInfoConfig(isUseForAdd) {
             if (isUseForAdd) {
                 $scope.switchShowAdd();
-                $scope.saveValidation = {};
+
+
                 vm.newBasicInfoConfig = {
-                    "containerId":"",
-                    "RFID": "",
+                    "RFID": "请输入RFID...",
                     "containerType": "",
                     "factory": "",
                     "factoryLocation": "",
@@ -272,6 +271,11 @@
                     "hardwareInfo": "",
                     "manufactureTime":""
                 };
+                $scope.saveValidation = {};
+                //$scope.$digest();
+                setTimeout(function(){
+                    vm.newBasicInfoConfig['RFID'] = "";
+                },1)
             } else {
                 $scope.bbUpdate = false;
             }

@@ -14,6 +14,10 @@
 
         vm.logoutAction = logoutAction;
 
+        vm.infomation = {
+            username : "管理员"
+        };
+
         vm.messages = [];
         vm.title = '智能云箱';
 

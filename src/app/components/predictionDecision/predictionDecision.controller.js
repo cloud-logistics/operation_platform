@@ -113,7 +113,8 @@
                     //res.data.data.results = res.data.data.results.concat(res.data.data.results).concat(res.data.data.results)
                     var menu = {
                         "undispatch":"待调度",
-                        "dispatch":"进行中"
+                        "dispatching":"进行中",
+                        "dispatched":"已完成"
                     };
                     vm.pDData = _.map(res.data.data.results,function(item){
                         return {

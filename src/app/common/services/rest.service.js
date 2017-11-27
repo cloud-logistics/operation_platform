@@ -10,16 +10,6 @@
     /** @ngInject */
     function RestService(Restangular,StorageService,logger,constdata) {
         return Restangular.withConfig(function (RestangularConfigurer) {
-            // var token = StorageService.get(constdata.token);
-            // if (token){
-            //     logger.debug(token);
-            //     token = 'Bearer ' + token;
-            //     RestangularConfigurer.setDefaultHeaders({Authorization:token});
-            // }
-            // else {
-            //     console.log('-----Set Authorization Null');
-            //     // RestangularConfigurer.setDefaultHeaders({Authorization:null});
-            // }
             RestangularConfigurer.setFullResponse(true);
         });
     }
@@ -30,8 +20,8 @@
         .factory('NetworkService', NetworkService);
 
     /** @ngInject */
-    function NetworkService(RestService,StorageService,$state,toastr,logger,$rootScope,constdata) {
-
+    function NetworkService(RestService,StorageService,$state,toastr,$q,constdata) {
+        var canceler;
 
         var service = {
             post  : post,
@@ -46,10 +36,6 @@
 
         function post(path,param,successHandler,failedHandler) {
             var account = RestService.one(path);
-            // var header = {};
-            // if (path !== 'account/auth'){
-            //     header = requestHeader();
-            // }
             account.customPOST(param,"","",requestHeader()
             ).then(
 
@@ -110,27 +96,35 @@
 
             console.log('-------' + path + '---------');
             console.log(response);
-            if(response && response.status == 401){
-                toastr.info('登录超时，请重新登录');
-                $state.go('access.signin');
-            }
-
-            var newResponse = {};
-            newResponse.status = response.status;
-            if (response.data && response.data.Error){
-                newResponse.statusText = response.data.Error;
+            if(response && (response.status == 401 || response.status == -1)){
+                if (canceler){
+                    canceler.reject();
+                    canceler.resolve();
+                }else{
+                    canceler = $q.defer();
+                    toastr.info('登录超时，请重新登录');
+                    setTimeout(function(){
+                        canceler = null;
+                        $state.go('access.signin');
+                    },100);
+                }
             }else{
-                newResponse.statusText = '服务器出错了~';//未知错误，先显示成这样
+                var newResponse = {};
+                newResponse.status = response.status;
+                if (response.data && response.data.Error){
+                    newResponse.statusText = response.data.Error;
+                }else{
+                    newResponse.statusText = '服务器出错了~';//未知错误，先显示成这样
+                }
+                if (response.data && response.data.msg){
+                    newResponse.msg = response.data.msg;
+                }else{
+                    newResponse.msg = '服务器出错了~';//未知错误，先显示成这样
+                }
+                if (failedHandler){
+                    failedHandler(newResponse);
+                }
             }
-            if (response.data && response.data.msg){
-                newResponse.msg = response.data.msg;
-            }else{
-                newResponse.msg = '服务器出错了~';//未知错误，先显示成这样
-            }
-            if (failedHandler){
-                failedHandler(newResponse);
-            }
-
         }
 
         function requestHeader() {

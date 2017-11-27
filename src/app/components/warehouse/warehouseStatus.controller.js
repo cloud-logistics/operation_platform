@@ -22,15 +22,19 @@ var showRecord = function (id) {
 var switchStatus = function (isShow) {
     if (isShow) {
         $("#whTable").show();
+        $(".infoMask1").show();
     } else {
         $("#whTable").hide();
+        $(".infoMask1").hide();
     }
 };
 var switchRecord = function (isShow) {
     if (isShow) {
         $("#whHistory").show();
+        $(".infoMask2").show();
     } else {
         $("#whHistory").hide();
+        $(".infoMask2").hide();
     }
 };
 (function () {
@@ -99,15 +103,15 @@ var switchRecord = function (isShow) {
             ApiServer.getSiteStream(id, function (response) {
                 vm.recordList = response.data.siteHistory;
                 console.log(response.data.siteHistory);
-                if (callback) {
-                    callback()
-                }
                 ApiServer.getBoxbysite({
                     "id":id,
                     "limit": $scope.conf.itemsPerPage,
                     "offset": ($scope.conf.currentPage - 1) * $scope.conf.itemsPerPage,
                     "success": function (response) {
                         $scope.conf.totalItems = response.data.data.count;
+                        if (callback) {
+                            callback()
+                        }
                     },
                     "error": function (err) {
                         console.log("Get Stream Info Failed", err);
