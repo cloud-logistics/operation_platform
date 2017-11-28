@@ -92,6 +92,8 @@
                     return item;
                 })(response.data.path);
 
+                console.log(histData)
+
                 heatmap = new google.maps.visualization.HeatmapLayer({
                   data: histData,
                   map: map

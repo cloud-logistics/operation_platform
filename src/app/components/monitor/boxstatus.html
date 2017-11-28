@@ -71,13 +71,10 @@
                         <tr>
                             <th>云箱ID</th>
                             <th>当前状态</th>
-                            <th>当前所在地</th>
+                            <th>所在地</th>
                             <th>速度</th>
                             <th>温度</th>
                             <th>湿度</th>
-                            <th>碰撞次数</th>
-                            <th>开关箱门次数</th>
-                            <th>电量</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -89,9 +86,6 @@
                             <td style="vertical-align: middle;">{{item.speed}}</td>
                             <td style="vertical-align: middle;">{{item.temperature}}</td>
                             <td style="vertical-align: middle;">{{item.humidity}}%</td>
-                            <td style="vertical-align: middle;">{{item.collide}}</td>
-                            <td style="vertical-align: middle;">{{item.num_of_door_open}}</td>
-                            <td style="vertical-align: middle;">{{item.battery * 100}}%</td>
                             <td><a class="btn-table-detail" ui-sref="app.realtime({
                                 containerId: item.deviceid
                             })">查看详情</a></td>
