@@ -101,7 +101,7 @@ var switchRecord = function (isShow) {
         $scope.getSiteStream = function (id, callback) {
 
             ApiServer.getSiteStream(id, function (response) {
-                vm.recordList = response.data.siteHistory;
+                vm.recordList = response.data.siteHistory.reverse();
                 console.log(response.data.siteHistory);
                 ApiServer.getBoxbysite({
                     "id":id,

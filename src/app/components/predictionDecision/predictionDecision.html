@@ -17,16 +17,20 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="item in vm.pDData track by $index" ng-click="updateMarker(item)">
-                        <td ><span ng-class="{true:'table_status_to',false:'table_status_ing'}[item.status=='待调度']">{{item.status}}</span></td>
+                        <td >
+                            <span class="table_status {{item.table_status_class}}">
+                                {{item.status}}
+                            </span>
+                        </td>
                         <td class="table_oAddress">
                             <span>
                                 {{item.oAddress}}
                             </span>
                         </td>
                         <td class="table_td_count">
-                            <span  ng-class="{true:'table_count_undo',false:'table_count'}[item.status=='待调度']">{{item.count}}</span>
-                            <span  ng-class="{true:'table_bottomLine_undo',false:'table_bottomLine'}[item.status=='待调度']"></span>
-                            <span ng-class="{true:'table_bottomTriangle_undo',false:'table_bottomTriangle'}[item.status=='待调度']"></span>
+                            <span class="{{item.table_count_class}}">{{item.count}}</span>
+                            <span  class="table_bottomLine {{item.table_bottomLine_class}}"></span>
+                            <span class="table_bottomTriangle {{item.table_bottomTriangle_class}}"></span>
                         </td>
                         <td class="table_tAddress">{{item.tAddress}}</td>
                     </tr>
