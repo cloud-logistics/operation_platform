@@ -2,13 +2,14 @@
     ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
     <!-- main -->
     <div class="col">
-        <div class="" style="position: relative">
-            <div class="floating-panel-his">
+        <div class="" style="position: relative;min-width:1000px;">
+            <div style="background-color:white;min-width:950px;">
+                <div class="floating-panel-his" >
                 <span class="instTitleHis common_panel_label" >历史轨迹</span>
                 <div class="instRightHis">
                     <span class="instLabelHis instLabelHis-label " >ID</span>
                     <div style="display:inline-block;float:left;">
-                       <input ng-model="vm.queryParams.containerId"
+                        <input ng-model="vm.queryParams.containerId"
                                type="text"
                                style="margin-right:0;"
                                class="form-control rt-search {{containerId_class}}"
@@ -38,6 +39,9 @@
                     <span class="instBtnHis common_panel_btn"  ng-click="vm.getHistorylocationInfo()" >搜索位置</span>
                 </div>
             </div>
+
+            </div>
+
             <div id="histotylocation" class="mapview"></div>
         </div>
     </div>

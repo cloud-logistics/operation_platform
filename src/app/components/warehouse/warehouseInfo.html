@@ -3,13 +3,13 @@
     <!-- main -->
     <div class="col">
         <div id="whInfo" style="height: 100vh;">
-            <div class="wrapper-md">
-                <div class="row" style="background-color: #fff">
+            <div class="wrapper-md" style="padding-bottom:0;">
+                <div id="whSet" class="row whSet " ng-class="{true:'isShowMap',false:''}[showAdd]"  style="background-color: #fff">
                     <div class="bb-title wh-title">
                         <span class="common_panel_label">录入仓库基础信息</span>
                         <span class="bb-add" ng-show="!showAdd" ng-click="switchShowAdd()">添 加</span>
                     </div>
-                    <div class="bb-content" ng-show="showAdd" style="margin-top:15px;">
+                    <div class="bb-content" ng-show="showAdd" style="margin-top:15px;margin-left:0;">
                         <div class="row m-b">
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -41,7 +41,7 @@
                                             <option value="">-- 请选择 --</option>
                                         </select>
                                     </div>
-                                </div>
+                            </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">

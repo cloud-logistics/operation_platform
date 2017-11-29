@@ -79,13 +79,15 @@
             var data = {
                 container_id:vm.queryParams.containerId||'all',
                 container_type:vm.queryParams.containerType||0,
-                location_id:vm.queryParams.location||0
+                location_id:vm.queryParams.location||0,
+                limit:$scope.conf.itemsPerPage,
+                offset:($scope.conf.itemsPerPage * ($scope.conf.currentPage - 1))
             }
             ApiServer.getBoxStatus({
                 data: data,
                 success: function (response) {
                     vm.containerlist = response.data.data.results;
-                    $scope.conf.totalItems = response.data.count;
+                    $scope.conf.totalItems = response.data.data.count;
                 },
                 error: function (err) {
                     toastr.error(err.msg||"获取状态汇总信息失败。");
