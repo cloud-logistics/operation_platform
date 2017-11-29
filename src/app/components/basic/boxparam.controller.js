@@ -91,6 +91,28 @@
                 vm.boxList[index].humidity_threshold_msg = "";
                 vm.boxList[index].humidity_threshold_max_class = "";
             }
+            if ((!/^[1-9][0-9]{0,21}$/.test(item.temperature_threshold_min) && item.temperature_threshold_min != null)
+                || (item.temperature_threshold_min > 100
+                || item.temperature_threshold_min < 0))
+            {
+                vm.boxList[index].temperature_threshold_msg = "温度应为0到100。";
+                flag = false;
+                vm.boxList[index].temperature_threshold_min_class = " invalida-area ";
+            } else {
+                vm.boxList[index].temperature_threshold_msg = "";
+                vm.boxList[index].temperature_threshold_min_class = "";
+            }
+            if ((!/^[1-9][0-9]{0,21}$/.test(item.temperature_threshold_max) && item.temperature_threshold_max != null)
+                || (item.temperature_threshold_max > 100
+                || item.temperature_threshold_max < 0))
+            {
+                vm.boxList[index].temperature_threshold_msg = "温度应为0到100。";
+                flag = false;
+                vm.boxList[index].temperature_threshold_max_class = " invalida-area ";
+            } else {
+                vm.boxList[index].temperature_threshold_msg = "";
+                vm.boxList[index].temperature_threshold_max_class = "";
+            }
             var menu = [
                 "temperature_threshold_min",
                 "humidity_threshold_min",
