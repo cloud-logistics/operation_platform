@@ -47,7 +47,6 @@
                     value: alertCode.value.toString()
                 }
             })(vm.options.alertCode)
-            console.log(vm.options);
 
             transformations = {
                 containerType: optionsTransFunc(vm.options.containerType),
@@ -65,8 +64,6 @@
                 alertType: R.compose(R.prop("id"), R.head)(vm.options.alertType),
                 alertCode: R.compose(R.prop("id"), R.head)(vm.options.alertCode)
             }
-
-            console.log(vm.queryParams);
 
             getBoxStatus();
         });
