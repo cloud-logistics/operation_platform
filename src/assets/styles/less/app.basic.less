@@ -331,12 +331,18 @@
       text-align: left;
     }
     input {
-      width: 90px;
+      display: inline-block;
+      vertical-align: middle;
+      box-shadow:none;
       background: #f7f7f7;
       border-radius: 8px;
       height: 40px;
-      margin-right: 5px;
-      margin-left: 5px;
+      padding: 6px 12px;
+      font-size: 14px;
+      line-height: 1.42857143;
+      color: #555;
+      transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+      border:1px solid #ccc;
     }
     span {
       background: #6dc0a7;
@@ -452,7 +458,7 @@ select{
 .bb-content {
   margin: 30px 0 0 10px;
   label {
-    text-align: left;
+    text-align: center;
   }
   input {
     background: #f7f7f7;

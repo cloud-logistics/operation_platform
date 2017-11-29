@@ -2,7 +2,7 @@
     ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
     <!-- main -->
     <div class="col">
-        <div class="" style="position: relative">
+        <div class="il-main" style="">
             <div class="floating-panel">
                 <span class="instTitle common_panel_label">实时位置</span>
                 <div class="instRight">
@@ -22,7 +22,7 @@
                     <span class="instBtn common_panel_btn" style="float:right;" ng-click="vm.getInstantlocationInfo()" >搜索位置</span>
                 </div>
             </div>
-            <div id="instantlocation" class="mapview"></div>
+            <div id="instantlocation" class="mapview il-main-map"></div>
         </div>
     </div>
 </div>

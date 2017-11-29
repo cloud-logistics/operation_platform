@@ -35,7 +35,7 @@
         $scope.validationCheck = function (item, index) {
             var flag = true;
             if (item.interval_time > 200 || item.interval_time < 0) {
-                vm.boxList[index].interval_time_msg = "只能输入0-200之间的整数";
+                vm.boxList[index].interval_time_msg = "只能为0-200之间的整数";
                 flag = false;
                 vm.boxList[index].interval_time_class = "invalida-area";
             } else {
@@ -59,7 +59,7 @@
                 vm.boxList[index].collision_min_little_than_0_class = "";
             }
             if (!/^[1-9][0-9]{0,21}$/.test(item.battery_threshold_min) && item.battery_threshold_min != null) {
-                vm.boxList[index].battery_min_little_than_0_msg = "电池电量应为0到100的整数。";
+                vm.boxList[index].battery_min_little_than_0_msg = "电池电量应为0到100。";
                 flag = false;
                 vm.boxList[index].battery_min_little_than_0_class = " invalida-area ";
             } else {

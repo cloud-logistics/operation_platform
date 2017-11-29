@@ -66,10 +66,11 @@
                                 <div class="command-button-group">
                                     <span class="comm-reset reset-command-button" ng-click="resetClick()"><i class="glyphicon glyphicon-repeat"></i>重置</span>
                                     <span class="comm-shutdown poweroff-command-button" ng-click="shutClick()"><i class="glyphicon glyphicon-off"></i>关机</span>
-                                </div>
-                                <a ui-sref="app.realtime({
+                                    <a ui-sref="app.realtime({
                                                 containerId: item.deviceid
                                             })" class="btn-table-detail">查看详情</a>
+                                </div>
+
                             </td>
                         </tr>
                         </tbody>

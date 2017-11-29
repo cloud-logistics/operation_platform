@@ -96,7 +96,7 @@
 
             console.log('-------' + path + '---------');
             console.log(response);
-            if(response && (response.status == 401 || response.status == -1)){
+            if(response && (response.status == 401)){
                 if (canceler){
                     canceler.reject();
                     canceler.resolve();
