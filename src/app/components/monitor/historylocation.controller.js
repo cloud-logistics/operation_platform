@@ -75,7 +75,7 @@
             }
             var start_time = vm.queryParams.start_time.valueOf().toString().slice(0,10);
             var end_time = vm.queryParams.end_time.valueOf().toString().slice(0,10);
-          
+
             var queryParams = {
                 containerId: vm.queryParams.containerId,
                 start_time: start_time,
@@ -94,17 +94,18 @@
 
                 console.log(histData)
 
-                heatmap = new google.maps.visualization.HeatmapLayer({
-                  data: histData,
-                  map: map
-                });
+                if(!R.isEmpty(histData)){    
+                    heatmap = new google.maps.visualization.HeatmapLayer({
+                      data: histData,
+                      map: map
+                    });
 
-                histData.map(function (item) {
-                  bounds.extend(item);
-                })
+                    histData.map(function (item) {
+                      bounds.extend(item);
+                    })
 
-                map.fitBounds(bounds);
-
+                    map.fitBounds(bounds);
+                }
             },function (err) {
                 console.log("Get Historyview Info Failed", err);
             });

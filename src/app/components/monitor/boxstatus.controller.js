@@ -47,7 +47,6 @@
                     value: alertCode.value.toString()
                 }
             })(vm.options.alertCode)
-            console.log(vm.options);
 
             transformations = {
                 containerType: optionsTransFunc(vm.options.containerType),
@@ -66,8 +65,6 @@
                 alertCode: R.compose(R.prop("id"), R.head)(vm.options.alertCode)
             }
 
-            console.log(vm.queryParams);
-
             getBoxStatus();
         });
 
@@ -85,6 +82,7 @@
                 data: data,
                 success: function (response) {
                     vm.containerlist = response.data.data.results;
+                    console.log(vm.containerlist)
                     $scope.conf.totalItems = response.data.count;
                 },
                 error: function (err) {
