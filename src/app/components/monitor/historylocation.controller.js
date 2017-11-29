@@ -94,7 +94,9 @@
 
                 console.log(histData)
 
-                if(!R.isEmpty(histData)){    
+                if(R.isEmpty(histData)){
+                  toastr.info('搜索的云箱这段时间内没有历史位置信息，请重新查询');
+                }else {
                     heatmap = new google.maps.visualization.HeatmapLayer({
                       data: histData,
                       map: map
