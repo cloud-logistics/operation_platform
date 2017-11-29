@@ -18,6 +18,10 @@ var lazypipe = require('lazypipe');
 var browserSync = require('browser-sync');
 var wiredep = require('wiredep').stream;
 var _ = require('lodash');
+var intercept = require('gulp-intercept');
+// var lineReader = require('line-reader');
+var replace = require('gulp-replace-pro');
+var qiniu = require('gulp-qiniu');
 var $ = require('gulp-load-plugins')({
     pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
 });
@@ -241,7 +245,7 @@ gulp.task('build:all', ['build:rev'], function () {
         .pipe($.size({ title: 'build', gzip: true }));
 });
 
-gulp.task('build', ['build:clean', 'build:html', 'build:fonts', 'build:images', 'build:locales','build:js_components'], function () {
+gulp.task('build', ['build:clean', 'build:html', 'build:fonts', 'build:images', 'build:locales'], function () {
     //display the size of dist finally when gzip
     return gulp.src(path.join(conf.paths.build, '/**/*'))
         .pipe($.size({ title: 'build', gzip: true }));
@@ -268,5 +272,53 @@ gulp.task('dist', ['build:clean', 'build'], function () {
     return gulp.src(path.join(conf.paths.build, '/**/*'))
         .pipe($.zip(conf.pkg.name + "-" + conf.pkg.version + "-BUILD" + date + ".zip"))
         .pipe(gulp.dest(conf.paths.dist));
+});
+
+gulp.task('qiniu', function () {
+    fs.writeFileSync(conf.paths.tmp + '/tmp_path.txt', '');
+    return gulp.src([conf.paths.build + '/scripts/*.js', conf.paths.build + '/styles/*.css'])
+        .pipe(intercept(function (file) {
+            fs.appendFileSync(conf.paths.tmp + '/tmp_path.txt', file.path + '\r');
+            // console.log('OLD CONTENT: ' + file.contents.toString() );
+            // file.contents = new Buffer( "Hello!!!" );
+            // console.log('NEW CONTENT: ' + file.contents.toString() );
+            return file;
+        }))
+        .pipe(qiniu({
+            accessKey: "WlfLj84tEqH7_FX-GhAnj30OmhreeeUYtBYgwnCN",
+            secretKey: "O8efy3dIot_jv-xyh7kC_QBZ_2bUca5C4bdH7PXj",
+            bucket: "operation",
+            private: false
+        }, {
+            dir: 'assets/cdn',
+            concurrent: 10
+        }))
+});
+
+gulp.task('cdn', function () {
+    var replace_param = {};
+    console.log('cdn is start...');
+    var cdn_url = `http://p061ajqqc.bkt.clouddn.com/assets/cdn`;
+    // read all lines:
+
+    var text = fs.readFileSync(conf.paths.tmp + '/tmp_path.txt', 'utf8');
+
+    var text_arr = text.split('\r');
+
+    for (var i = 0; i < text_arr.length - 1; i++) {
+        console.log(text_arr[i]);
+        var tmp_arr = text_arr[i].split('/');
+        var tmp_reverse = tmp_arr.reverse();
+        var newline = tmp_reverse[1] + '/' + tmp_reverse[0];
+        replace_param[newline] = cdn_url + '/' + tmp_reverse[0];
+    }
+
+    console.log('the param is ' + replace_param);
+
+    gulp.src([conf.paths.build + '/index.html'])
+        .pipe(replace(replace_param))
+        .pipe(gulp.dest(conf.paths.build));
+
+
 });
 
