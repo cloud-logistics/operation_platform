@@ -21,7 +21,7 @@ var _ = require('lodash');
 var intercept = require('gulp-intercept');
 // var lineReader = require('line-reader');
 var replace = require('gulp-replace-pro');
-var qiniu = require('gulp-qiniu');
+var qiniu = require('gulp-qiniu-upload');
 var $ = require('gulp-load-plugins')({
     pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
 });
@@ -95,7 +95,7 @@ gulp.task('build:html', ['inject:jscss', 'inject:partials'], function () {
     return gulp.src(path.join(conf.paths.tmp, '/serve/*.html'))
         .pipe($.useref({}, lazypipe().pipe($.sourcemaps.init, { loadMaps: false })))//此参数设置为false可以减少包的体积,不知会否对其它有什么影响
         .pipe(gulpIf('!*.html', $.rev()))
-    //js
+        //js
         .pipe(jsFilter)
         .pipe($.ngAnnotate({
             //ref:
@@ -105,32 +105,32 @@ gulp.task('build:html', ['inject:jscss', 'inject:partials'], function () {
         }))
         .pipe($.uglify({ preserveComments: $.uglifySaveLicense })).on('error', conf.errorHandler('Uglify'))
         .pipe(jsFilter.restore)
-    //css
+        //css
         .pipe(cssFilter)
         .pipe($.replace('../../bower_components/bootstrap/fonts/', '../fonts/'))
         .pipe($.replace('../../bower_components/font-awesome/fonts/', '../fonts/'))
         .pipe($.replace('../../bower_components/simple-line-icons/fonts/', '../fonts/'))
-    //https://github.com/purifycss/purifycss/pull/62
-    // .pipe(
-    //     purify([
-    //         path.join(conf.paths.src, '/app/**/*.html'),
-    //         path.join(conf.paths.tmp, '/serve/app/**/*.html')
-    //     ])
-    //     )
-    //https://github.com/giakki/uncss/issues/49
-    //http://warambil.com/blog/2014/04/26/removing-unused-css/
-    // .pipe($.uncss({
-    //     ignore: ['.browsehappy'],
-    //     html: [
-    //         path.join(conf.paths.src, '/app/**/*.html'),
-    //         path.join(conf.paths.tmp, '/serve/app/**/*.html')
-    //     ]
-    // }))
+        //https://github.com/purifycss/purifycss/pull/62
+        // .pipe(
+        //     purify([
+        //         path.join(conf.paths.src, '/app/**/*.html'),
+        //         path.join(conf.paths.tmp, '/serve/app/**/*.html')
+        //     ])
+        //     )
+        //https://github.com/giakki/uncss/issues/49
+        //http://warambil.com/blog/2014/04/26/removing-unused-css/
+        // .pipe($.uncss({
+        //     ignore: ['.browsehappy'],
+        //     html: [
+        //         path.join(conf.paths.src, '/app/**/*.html'),
+        //         path.join(conf.paths.tmp, '/serve/app/**/*.html')
+        //     ]
+        // }))
         .pipe($.minifyCss({ processImport: false }))
         .pipe(cssFilter.restore)
         .pipe($.sourcemaps.write('maps'))
         .pipe($.revReplace())//.pipe($.revReplace({manifest: manifest, replaceInExtensions: ['.js', '.css', '.html', '.hbs', '.styl']}))
-    // html
+        // html
 
         .pipe(htmlFilter)
         .pipe($.minifyHtml({
@@ -139,23 +139,23 @@ gulp.task('build:html', ['inject:jscss', 'inject:partials'], function () {
             quotes: true,
             conditionals: true
         }))
-    // self-rev-replace
-    /*
-        .pipe($.replace(/(styles|scripts)\/([^\.]+\.(css|js))/g, function (match, dir, filename, extname) {
-            // rename file BUT also need rename the real file in styles & script dir
-            //dir: styles|scripts
-            //filename:  xxx.js | xxx.css
-            //extname:  css |  js
-            var resourceDir = path.join(__dirname, '..', conf.paths.build, dir);
-            var filebasename = path.basename(filename, '.' + extname);
-            var revFilename = filebasename + revision + '.' + extname;
-            //console.log(path.join(dir, revFilename));
-            return path.join(dir, revFilename);
-        })).on('error', conf.errorHandler('Revision'))
-        */
+        // self-rev-replace
+        /*
+         .pipe($.replace(/(styles|scripts)\/([^\.]+\.(css|js))/g, function (match, dir, filename, extname) {
+         // rename file BUT also need rename the real file in styles & script dir
+         //dir: styles|scripts
+         //filename:  xxx.js | xxx.css
+         //extname:  css |  js
+         var resourceDir = path.join(__dirname, '..', conf.paths.build, dir);
+         var filebasename = path.basename(filename, '.' + extname);
+         var revFilename = filebasename + revision + '.' + extname;
+         //console.log(path.join(dir, revFilename));
+         return path.join(dir, revFilename);
+         })).on('error', conf.errorHandler('Revision'))
+         */
         .pipe(htmlFilter.restore)
-//--> Enable gzip when production
-//        .pipe(gulpIf('!*.html', $.gzip(gzipConfg)))
+        //--> Enable gzip when production
+        //        .pipe(gulpIf('!*.html', $.gzip(gzipConfg)))
         .pipe(gulp.dest(path.join(conf.paths.build, '/')))
         .pipe($.size({ title: path.join(conf.paths.build, '/'), showFiles: true }));
 });
@@ -191,8 +191,8 @@ gulp.task('build:images', function () {
  */
 gulp.task('build:js_components', function () {
     return gulp.src([
-            path.join(conf.paths.src, '/assets/js_components/**/*')
-        ]).pipe(gulp.dest(path.join(conf.paths.build, '/js_components')));
+        path.join(conf.paths.src, '/assets/js_components/**/*')
+    ]).pipe(gulp.dest(path.join(conf.paths.build, '/js_components')));
 });
 /**
  * Build locales (minify and copy to the target build folder)
@@ -274,11 +274,11 @@ gulp.task('dist', ['build:clean', 'build'], function () {
         .pipe(gulp.dest(conf.paths.dist));
 });
 
-gulp.task('qiniu', function () {
-    fs.writeFileSync(conf.paths.tmp + '/tmp_path.txt', '');
+gulp.task('qiniu-186', function () {
+    fs.writeFileSync(conf.paths.tmp + '/tmp_path_186.txt', '');
     return gulp.src([conf.paths.build + '/scripts/*.js', conf.paths.build + '/styles/*.css'])
         .pipe(intercept(function (file) {
-            fs.appendFileSync(conf.paths.tmp + '/tmp_path.txt', file.path + '\r');
+            fs.appendFileSync(conf.paths.tmp + '/tmp_path_186.txt', file.path + '\r');
             // console.log('OLD CONTENT: ' + file.contents.toString() );
             // file.contents = new Buffer( "Hello!!!" );
             // console.log('NEW CONTENT: ' + file.contents.toString() );
@@ -290,18 +290,18 @@ gulp.task('qiniu', function () {
             bucket: "operation",
             private: false
         }, {
-            dir: 'assets/cdn',
+            dir: 'assets/186',
             concurrent: 10
         }))
 });
 
-gulp.task('cdn', function () {
+gulp.task('cdn-186', function () {
     var replace_param = {};
     console.log('cdn is start...');
-    var cdn_url = `http://p061ajqqc.bkt.clouddn.com/assets/cdn`;
+    var cdn_url = 'http://p061ajqqc.bkt.clouddn.com/assets/186';
     // read all lines:
 
-    var text = fs.readFileSync(conf.paths.tmp + '/tmp_path.txt', 'utf8');
+    var text = fs.readFileSync(conf.paths.tmp + '/tmp_path_186.txt', 'utf8');
 
     var text_arr = text.split('\r');
 
@@ -322,3 +322,67 @@ gulp.task('cdn', function () {
 
 });
 
+gulp.task('build-186',  function(cb) {
+    runSequence(
+        'build',
+        'qiniu-186',
+        'cdn-186',
+        cb);
+});
+
+/* 185 - dev */
+gulp.task('qiniu-185', function () {
+    fs.writeFileSync(conf.paths.tmp + '/tmp_path_185.txt', '');
+    return gulp.src([conf.paths.build + '/scripts/*.js', conf.paths.build + '/styles/*.css'])
+        .pipe(intercept(function (file) {
+            fs.appendFileSync(conf.paths.tmp + '/tmp_path_185.txt', file.path + '\r');
+            // console.log('OLD CONTENT: ' + file.contents.toString() );
+            // file.contents = new Buffer( "Hello!!!" );
+            // console.log('NEW CONTENT: ' + file.contents.toString() );
+            return file;
+        }))
+        .pipe(qiniu({
+            accessKey: "WlfLj84tEqH7_FX-GhAnj30OmhreeeUYtBYgwnCN",
+            secretKey: "O8efy3dIot_jv-xyh7kC_QBZ_2bUca5C4bdH7PXj",
+            bucket: "operation",
+            private: false
+        }, {
+            dir: 'assets/185',
+            concurrent: 10
+        }))
+});
+
+gulp.task('cdn-185', function () {
+    var replace_param = {};
+    console.log('cdn is start...');
+    var cdn_url = 'http://p061ajqqc.bkt.clouddn.com/assets/185';
+    // read all lines:
+
+    var text = fs.readFileSync(conf.paths.tmp + '/tmp_path_185.txt', 'utf8');
+
+    var text_arr = text.split('\r');
+
+    for (var i = 0; i < text_arr.length - 1; i++) {
+        console.log(text_arr[i]);
+        var tmp_arr = text_arr[i].split('/');
+        var tmp_reverse = tmp_arr.reverse();
+        var newline = tmp_reverse[1] + '/' + tmp_reverse[0];
+        replace_param[newline] = cdn_url + '/' + tmp_reverse[0];
+    }
+
+    console.log('the param is ' + replace_param);
+
+    gulp.src([conf.paths.build + '/index.html'])
+        .pipe(replace(replace_param))
+        .pipe(gulp.dest(conf.paths.build));
+
+
+});
+
+gulp.task('build-185',  function(cb) {
+    runSequence(
+        'build',
+        'qiniu-185',
+        'cdn-185',
+        cb);
+});
