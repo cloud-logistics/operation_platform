@@ -19,6 +19,11 @@
         var mapCenter = {lat: 31.2891, lng: 121.4648};
 
         var map = MapService.map_init("siteoverview", mapCenter, "terrain", 4);
+
+
+        google.maps.event.addListener(map,"move",function(e){
+            console.log("e = ",e);
+        });
         var heatmap = undefined;
         $scope.site_num = undefined;
 

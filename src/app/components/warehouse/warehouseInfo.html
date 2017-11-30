@@ -67,7 +67,7 @@
                                     <div class="col-md-8">
                                         <input ng-model="vm.siteInfo.name" type="text"
                                                ng-change="validationCheck()"
-                                               maxlength="50"
+                                               maxlength="22"
                                                ng-class="name_class"
                                                class="form-control" placeholder="请输入仓库名称">
                                     </div>
@@ -79,9 +79,12 @@
                                     <div class="col-md-8">
                                         <input ng-model="vm.siteInfo.volume" type="number"
                                                ng-change="validationCheck()"
-                                               maxlength="22"
-                                               ng-class="volume_class"
+                                               ng-keydown="validationLength(vm.siteInfo.volume,4)"
+                                               ng-class="volume_class + volume_invalid_class"
                                                class="form-control" placeholder="请输入容量">
+                                        <div class="validation" ng-show="volume_invalid_msg">
+                                            {{volume_invalid_msg}}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -141,7 +144,7 @@
                             <td style="vertical-align: middle;">{{item.nation.nation_name}}</td>
                             <td style="vertical-align: middle;">{{item.province.province_name}}</td>
                             <td style="vertical-align: middle;">{{item.city.city_name}}</td>
-                            <td style="vertical-align: middle;">{{item.longitude +","+item.latitude }}</td>
+                            <td style="vertical-align: middle;">{{item.location}}</td>
                             <td style="vertical-align: middle;">{{item.volume}}</td>
                             <td style="vertical-align: middle;">
                                 <span class="bb-edit-btn" ng-click="vm.edit(item,true)">编辑</span>

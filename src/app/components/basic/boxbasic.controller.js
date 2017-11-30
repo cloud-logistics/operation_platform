@@ -111,7 +111,7 @@
                 is_insert: false
             });
             $scope.bbUpdate = !$scope.bbUpdate;
-
+            $("body").scrollTop(0);
         };
 
         $scope.deleteBoxBasic = function(item){
@@ -133,6 +133,7 @@
                     })
                 }
             };
+            $("body").scrollTop(0);
             $scope.$emit('showDelMsg',opt);
         };
 

@@ -473,7 +473,7 @@
 
             var dom = $('#bd-temp-chart')[0];
             tempBarChart = tempBarChart || echarts.init(dom);
-
+            //tempValues[1] = undefined;
             tempBarOption = {
                 tooltip : {
                     trigger: 'axis',
@@ -513,6 +513,7 @@
                     {
                         name:'温度',
                         type:'line',
+                        //symble:'none',
                         itemStyle: {
                             normal: {
                                 areaStyle: {type: 'default'},
@@ -538,7 +539,11 @@
                 tooltip : {
                     trigger: 'axis',
                     formatter:function(item){
-                        var str = item[0].name + "</br>" + "平均湿度: " + item[0].value + " %"
+                        if(item[0].value == 'NA'){
+                            var str = null;
+                        }else{
+                            var str = item[0].name + "</br>" + "平均湿度: " + item[0].value + " %"
+                        }
                         return str;
                     }
                 },

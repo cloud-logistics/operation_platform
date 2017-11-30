@@ -9,6 +9,7 @@
     function WarehouseInfoController($scope, ApiServer,toastr, MapService, optionsTransFunc) {
         var vm = this;
         var map;
+        var mapCenter = {lat: 31.2891, lng: 121.4648};
         vm.reports = [];
         var marker;
         $scope.cityDataBack;
@@ -23,11 +24,9 @@
             province:{}
         };
         var initialMap = function () {
-            var width = document.body.clientWidth;
-            var height = document.body.clientHeight;
-            var mapCenter = {lat: 31.2891, lng: 121.4648};
             vm.mapSize = {"width": '200px', "height": '100px'};
             map = MapService.map_init("warehouseInfo_map", mapCenter, "terrain", 3.5);
+
         };
         $scope.showAdd = false;
         $scope.switchShowAdd = function () {
@@ -146,6 +145,7 @@
                 lng: parseFloat(vm.siteInfo.longitude),
                 lat: parseFloat(vm.siteInfo.latitude)
             };
+            changeMapState(point.lng,point.lat,15);
             marker = MapService.addMarker(map)(point, {draggable: true,notTranslate:true});
             google.maps.event.addListener(marker, 'dragend', function (MouseEvent) {
                 console.log("移动后的经纬度", MouseEvent.latLng.lng() + " " + MouseEvent.latLng.lat());
@@ -229,6 +229,15 @@
             }
         };
 
+        var changeMapState = function(lng,lat,zoom){
+            map.setCenter({
+                lat:lat,
+                lng:lng
+            });
+            map.setZoom(10)
+        };
+
+
         $scope.validationCheck = function(){
             if(!$scope.saveBtnClick){
                 return;
@@ -269,6 +278,15 @@
                 }
             }
 
+            if(vm.siteInfo.volume < 0 || vm.siteInfo.volume > 10000){
+                $scope.volume_invalid_msg = "仓库容量应该为(0,10000]的整数";
+                $scope['volume_invalid_class'] = "invalida-area";
+                flag = false;
+            }else{
+                $scope['volume_invalid_class'] = "";
+                $scope.volume_invalid_msg = "";
+            }
+
             return flag;
         };
 
@@ -303,6 +321,8 @@
                 province:{}
             };
             clearMarker();
+            map.setCenter(mapCenter);
+            map.setZoom(3);
             $scope.saveBtnClick = false;
 
             vm.provinceList = [];
@@ -414,6 +434,12 @@
                 }
             });
         }
+
+        $scope.validationLength = function(value,len){
+            if(((value+"").length > len ||value>1000)&& event.keyCode!=8 && value != null){
+                event.preventDefault();
+            }
+        };
 
         retrieveSiteInfo();
 

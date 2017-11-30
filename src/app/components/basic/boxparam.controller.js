@@ -143,7 +143,7 @@
                     item[menu2[s] + '___class'] = " ";
                 }
             }
-            console.log("box = ", item);
+            //console.log("box = ", item);
             return flag;
         };
 
