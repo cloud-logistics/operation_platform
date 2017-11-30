@@ -76,6 +76,7 @@
                 vm.boxList[index].humidity_threshold_min_msg = "湿度应[0,100]";
                 flag = false;
                 vm.boxList[index].humidity_threshold_min_class = " invalida-area ";
+                console.log(vm.boxList[index].humidity_threshold_min_class)
             } else {
                 vm.boxList[index].humidity_threshold_min_msg = "";
                 vm.boxList[index].humidity_threshold_min_class = "";
