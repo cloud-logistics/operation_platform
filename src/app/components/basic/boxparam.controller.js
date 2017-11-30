@@ -32,88 +32,95 @@
             return flag;
         };
 
+        $scope.validationLength = function(value,len){
+            if((value+"").length > len && event.keyCode!=8 && value != null){
+                event.preventDefault();
+            }
+        };
+
         $scope.validationCheck = function (item, index) {
             var flag = true;
+            //GPS [0,200]
             if (item.interval_time > 200 || item.interval_time < 0) {
-                vm.boxList[index].interval_time_msg = "只能为0-200之间的整数";
+                vm.boxList[index].interval_time_msg = "只能输入0-200之间的整数";
                 flag = false;
                 vm.boxList[index].interval_time_class = "invalida-area";
             } else {
                 vm.boxList[index].interval_time_msg = "";
                 vm.boxList[index].interval_time_class = !(item.interval_time) && (item.interval_time != 0) ? " areaRequire" : "";
             }
-            if (!/^[1-9][0-9]{0,21}$/.test(item.operation_threshold_max) && item.operation_threshold_max != null) {
-                vm.boxList[index].operation_min_little_than_0_msg = "开关门数应为非负整数。";
+            //温度[-55,85]
+            if ((!/^-[1-4][0-9]{0,1}$|^-5[0-5]{0,1}$|^[-]{0,1}[0-9]$|^[1-7][0-9]{0,1}$|^8[0-5]{0,1}$/.test(item.temperature_threshold_min) && item.temperature_threshold_min != null))
+            {
+                vm.boxList[index].temperature_threshold_min_msg = "温度应为(-55,85)";
+                flag = false;
+                vm.boxList[index].temperature_threshold_min_class = " invalida-area ";
+            } else {
+                vm.boxList[index].temperature_threshold_min_msg = "";
+                vm.boxList[index].temperature_threshold_min_class = "";
+            }
+            //温度[-55,85]
+            if ((!/^-[1-4][0-9]{0,1}$|^-5[0-5]{0,1}$|^[1-7][0-9]{0,1}$|^8[0-5]{0,1}$|^[-]{0,1}[0-9]$/.test(item.temperature_threshold_max) && item.temperature_threshold_max != null))
+            {
+                vm.boxList[index].temperature_threshold_max_msg = "温度应为(-55,85)";
+                flag = false;
+                vm.boxList[index].temperature_threshold_max_class = " invalida-area ";
+            } else {
+                vm.boxList[index].temperature_threshold_max_msg = "";
+                vm.boxList[index].temperature_threshold_max_class = "";
+            }
+
+            //湿度
+            if ((!/^[1-9][0-9]{0,1}$|^100$|^[0-9]$/.test(item.humidity_threshold_min) && item.humidity_threshold_min != null))
+            {
+                vm.boxList[index].humidity_threshold_min_msg = "湿度应[0,100]";
+                flag = false;
+                vm.boxList[index].humidity_threshold_min_class = " invalida-area ";
+                console.log(vm.boxList[index].humidity_threshold_min_class)
+            } else {
+                vm.boxList[index].humidity_threshold_min_msg = "";
+                vm.boxList[index].humidity_threshold_min_class = "";
+            }
+            //湿度
+            if ((!/^[1-9][0-9]{0,1}$|^100$|^[0-9]$/.test(item.humidity_threshold_max) && item.humidity_threshold_max != null))
+            {
+                vm.boxList[index].humidity_threshold_max_msg = "湿度应为[0,100]";
+                flag = false;
+                vm.boxList[index].humidity_threshold_max_class = " invalida-area ";
+            } else {
+                vm.boxList[index].humidity_threshold_max_msg = "";
+                vm.boxList[index].humidity_threshold_max_class = "";
+            }
+            //开关门次数 (0,1000)
+            if (!/^[1-9][0-9]{0,2}$/.test(item.operation_threshold_max) && item.operation_threshold_max != null) {
+                vm.boxList[index].operation_min_little_than_0_msg = "开关门数应为(0,1000)的整数";
                 flag = false;
                 vm.boxList[index].operation_min_little_than_0_class = " invalida-area ";
             } else {
                 vm.boxList[index].operation_min_little_than_0_msg = "";
                 vm.boxList[index].operation_min_little_than_0_class = "";
             }
-            if (!/^[1-9][0-9]{0,21}$/.test(item.collision_threshold_max) &&item.collision_threshold_max != null) {
-                vm.boxList[index].collision_min_little_than_0_msg = "碰撞次数应为非负整数。";
+            //碰撞次数 (0,1000)
+            if (!/^[1-9][0-9]{0,2}$/.test(item.collision_threshold_max) &&item.collision_threshold_max != null) {
+                vm.boxList[index].collision_min_little_than_0_msg = "碰撞次数应为(0,1000)的整数";
                 flag = false;
                 vm.boxList[index].collision_min_little_than_0_class = " invalida-area ";
             } else {
                 vm.boxList[index].collision_min_little_than_0_msg = "";
                 vm.boxList[index].collision_min_little_than_0_class = "";
             }
-            if ((!/^[1-9][0-9]{0,21}$/.test(item.battery_threshold_min) && item.battery_threshold_min != null)
-                || (item.battery_threshold_min > 100
-                || item.battery_threshold_min < 0))
+            //电池余量 (0,99)
+            if ((!/^[1-8][0-9]{0,1}$|^9[0-8]{0,1}$/.test(item.battery_threshold_min) && item.battery_threshold_min != null))
             {
-                vm.boxList[index].battery_min_little_than_0_msg = "电池电量应为0到100。";
+                vm.boxList[index].battery_min_little_than_0_msg = "电池余量应为(0,99)的整数";
                 flag = false;
                 vm.boxList[index].battery_min_little_than_0_class = " invalida-area ";
             } else {
                 vm.boxList[index].battery_min_little_than_0_msg = "";
                 vm.boxList[index].battery_min_little_than_0_class = "";
             }
-            if ((!/^[1-9][0-9]{0,21}$/.test(item.humidity_threshold_min) && item.humidity_threshold_min != null)
-                || (item.humidity_threshold_min > 100
-                || item.humidity_threshold_min < 0))
-            {
-                vm.boxList[index].humidity_threshold_msg = "湿度应为0到100。";
-                flag = false;
-                vm.boxList[index].humidity_threshold_min_class = " invalida-area ";
-                console.log(vm.boxList[index].humidity_threshold_min_class)
-            } else {
-                vm.boxList[index].humidity_threshold_msg = "";
-                vm.boxList[index].humidity_threshold_min_class = "";
-            }
-            if ((!/^[1-9][0-9]{0,21}$/.test(item.humidity_threshold_max) && item.humidity_threshold_max != null)
-                || (item.humidity_threshold_max > 100
-                || item.humidity_threshold_max < 0))
-            {
-                vm.boxList[index].humidity_threshold_msg = "湿度应为0到100。";
-                flag = false;
-                vm.boxList[index].humidity_threshold_max_class = " invalida-area ";
-            } else {
-                vm.boxList[index].humidity_threshold_msg = "";
-                vm.boxList[index].humidity_threshold_max_class = "";
-            }
-            if ((!/^[1-9][0-9]{0,21}$/.test(item.temperature_threshold_min) && item.temperature_threshold_min != null)
-                || (item.temperature_threshold_min > 100
-                || item.temperature_threshold_min < 0))
-            {
-                vm.boxList[index].temperature_threshold_msg = "温度应为0到100。";
-                flag = false;
-                vm.boxList[index].temperature_threshold_min_class = " invalida-area ";
-            } else {
-                vm.boxList[index].temperature_threshold_msg = "";
-                vm.boxList[index].temperature_threshold_min_class = "";
-            }
-            if ((!/^[1-9][0-9]{0,21}$/.test(item.temperature_threshold_max) && item.temperature_threshold_max != null)
-                || (item.temperature_threshold_max > 100
-                || item.temperature_threshold_max < 0))
-            {
-                vm.boxList[index].temperature_threshold_msg = "温度应为0到100。";
-                flag = false;
-                vm.boxList[index].temperature_threshold_max_class = " invalida-area ";
-            } else {
-                vm.boxList[index].temperature_threshold_msg = "";
-                vm.boxList[index].temperature_threshold_max_class = "";
-            }
+
+
             var menu = [
                 "temperature_threshold_min",
                 "humidity_threshold_min",
@@ -132,9 +139,9 @@
             for (var s = 0, len = menu2.length; s < len; s++) {
                 if (!(item[menu2[s]]) && (item[menu2[s]] != 0)) {
                     flag = false;
-                    item[menu2[s] + '_class'] = " areaRequire";
+                    item[menu2[s] + '___class'] = " areaRequire";
                 } else {
-                    item[menu2[s] + '_class'] = " ";
+                    item[menu2[s] + '___class'] = " ";
                 }
             }
             console.log("box = ", item);

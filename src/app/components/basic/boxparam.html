@@ -20,7 +20,7 @@
                                                 <div class="col-md-10" style="padding-right:0;">
                                                     <input ng-model="box.interval_time"
                                                            style="width:100%;"
-                                                           maxlength="22"
+                                                           ng-keydown="validationLength(box.interval_time,2)"
                                                            ng-change="validationCheck(box,$index)"
                                                            ng-class="box.interval_time_class"
                                                            type="number" class=""
@@ -45,22 +45,25 @@
                                             <div class="row">
                                                 <input ng-model="box.temperature_threshold_min"
                                                        type="number"
-                                                       maxlength="22"
+                                                       ng-keydown="validationLength(box.temperature_threshold_min,2)"
                                                        ng-change="validationCheck(box,$index)"
-                                                       ng-class=" box.temperature_threshold_class + box.temperature_threshold_min_class"
+                                                       ng-class="box.temperature_threshold_min___class + box.temperature_threshold_min_class"
                                                        class="col-md-4"
                                                        placeholder="请输入...">
                                                 <i class="col-md-2" style="line-height: 40px;text-align:center;">-</i>
                                                 <input ng-model="box.temperature_threshold_max"
                                                        type="number" class="col-md-4"
-                                                       maxlength="22"
+                                                       ng-keydown="validationLength(box.temperature_threshold_max,2)"
                                                        ng-change="validationCheck(box,$index)"
-                                                       ng-class="box.temperature_threshold_class  + box.temperature_threshold_max_class"
+                                                       ng-class="box.temperature_threshold_max___class  + box.temperature_threshold_max_class"
                                                        placeholder="请输入...">
                                                 <label class="col-md-1">℃</label>
                                             </div>
                                             <div class="validation" style="margin-left:-15px;" ng-show="box.temperature_threshold_msg">
                                                 {{box.temperature_threshold_msg}}
+                                            </div>
+                                            <div class="validation" style="margin-left:-15px;" ng-show="box.temperature_threshold_max_msg||box.temperature_threshold_min_msg">
+                                                {{box.temperature_threshold_min_msg||box.temperature_threshold_max_msg}}
                                             </div>
                                         </div>
 
@@ -77,18 +80,21 @@
                                                 <input ng-model="box.humidity_threshold_min"
                                                        ng-change="validationCheck(box,$index)"
                                                        ng-class="box.humidity_threshold_class  + box.humidity_threshold_min_class"
-                                                       maxlength="22"
+                                                       ng-keydown="validationLength(box.humidity_threshold_min,2)"
                                                        type="number" class="col-md-4" placeholder="请输入...">
                                                 <i class="col-md-2" style="line-height: 40px;text-align: center;">-</i>
                                                 <input ng-model="box.humidity_threshold_max"
                                                        ng-change="validationCheck(box,$index)"
-                                                       maxlength="22"
+                                                       ng-keydown="validationLength(box.humidity_threshold_max,2)"
                                                        ng-class="box.humidity_threshold_class + box.humidity_threshold_max_class"
                                                        type="number" class="col-md-4" placeholder="请输入...">
                                                 <label class="col-md-1">%</label>
                                             </div>
                                             <div class="validation"  style="margin-left:-15px;"  ng-show="box.humidity_threshold_msg">
                                                 {{box.humidity_threshold_msg}}
+                                            </div>
+                                            <div class="validation"  style="margin-left:-15px;"  ng-show="box.humidity_threshold_min_msg||box.humidity_threshold_max_msg">
+                                                {{box.humidity_threshold_min_msg||box.humidity_threshold_max_msg}}
                                             </div>
                                         </div>
                                     </div>
@@ -107,7 +113,7 @@
                                                 <div class="col-md-10" style="padding-right:0;" style="display:inline-block;">
                                                     <input ng-model="box.operation_threshold_max"
                                                            ng-change="validationCheck(box,$index)"
-                                                           maxlength="22"
+                                                           ng-keydown="validationLength(box.operation_threshold_max,3)"
                                                            style="width:100%;"
                                                            ng-class="box.operation_min_little_than_0_class +  box.operation_threshold_max_class"
                                                            type="number"  placeholder="请输入...">
@@ -132,8 +138,8 @@
                                             <div class="row">
                                                 <div class="col-md-10" style="padding-right:0;">
                                                     <input ng-model="box.collision_threshold_max"
-                                                           maxlength="22"
                                                            style="width:100%;"
+                                                           ng-keydown="validationLength(box.collision_threshold_max,3)"
                                                            type="number" class="col"
                                                            ng-change="validationCheck(box,$index)"
                                                            ng-class="box.collision_min_little_than_0_class +  box.collision_threshold_max_class"
@@ -157,8 +163,8 @@
                                             <div class="row">
                                                 <div class="col-md-10" style="padding-right:0;" style="">
                                                     <input ng-model="box.battery_threshold_min"
-                                                           maxlength="22"
                                                            style="width:100%;"
+                                                           ng-keydown="validationLength(box.battery_threshold_min,2)"
                                                            ng-change="validationCheck(box,$index)"
                                                            ng-class="box.battery_min_little_than_0_class +  box.battery_threshold_min_class"
                                                            type="number" placeholder="请输入...">

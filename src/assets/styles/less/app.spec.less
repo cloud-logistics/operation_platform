@@ -534,24 +534,33 @@
   background-color: #fff;
   position: relative;
   .rt-speed-content {
-    height: 251px;
-    width: 341px;
-  }
-  .rt-speed-status {
-    position: absolute;
-    bottom: 48px;
-    left: 42%;
-    span {
-      display: inline-block;
-      background: #8cda94;
-      border-radius: 16px;
-      width: 55px;
-      height: 23px;
-      line-height: 23px;
-      color: #fff;
-      text-align: center;
+    display:inline-block;
+    text-align: center;
+    position:relative;
+    //padding:10px;
+    width:100%;
+    .rt-speed-chart{
+      height: 251px;
+      width: 341px;
+      display:inline-block;
+    }
+    .rt-speed-status {
+      position: absolute;
+      bottom: 48px;
+      left: 44%;
+      span {
+        display: inline-block;
+        background: #8cda94;
+        border-radius: 16px;
+        width: 55px;
+        height: 23px;
+        line-height: 23px;
+        color: #fff;
+        text-align: center;
+      }
     }
   }
+
 
 }
 
@@ -612,14 +621,17 @@
   text-align: center;
   position:relative;
   padding:10px;
+  display:inline-block;
+  width:100%;
   .rt-temp-chart {
     width: 321px;
     height: 231px;
+    display:inline-block;
   }
   .rt-temp-status {
     position: absolute;
     bottom: 48px;
-    left: 43%;
+    left: 45%;
     span {
       display: inline-block;
       width: 55px;
@@ -643,14 +655,17 @@
   text-align: center;
   position:relative;
   padding:10px;
+  display:inline-block;
+  width:100%;
   .rt-humi-chart {
     width: 321px;
     height: 231px;
+    display:inline-block;
   }
   .rt-humi-status {
     position: absolute;
     bottom: 48px;
-    left: 43%;
+    left: 45%;
     span {
       display: inline-block;
       width: 55px;
