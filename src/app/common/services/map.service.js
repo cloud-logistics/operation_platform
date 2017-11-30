@@ -32,7 +32,8 @@
             'container': "images/icon_box_blue.svg",
             'satellite': "images/satellite3.svg",
             'warehouse': "images/icon_warehouse.svg",
-            'redBox': "images/icon_box_red.svg"
+            'redBox': "images/icon_box_red.svg",
+            'transparent':"images/transparent1x1.png"
         };
 
         return service;

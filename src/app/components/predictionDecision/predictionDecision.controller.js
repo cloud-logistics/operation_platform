@@ -78,9 +78,10 @@
             console.log('path  = ', path);
             flightPath = new google.maps.Polyline({
                 path: path,
-                strokeColor: '#FF0000',
+                useGradient:true,
+                strokeColor: ['#FF0000','#00FF00'],
                 strokeOpacity: 1.0,
-                strokeWeight: 2
+                strokeWeight: 4
             });
             flightPath.setMap(map);
         };
@@ -91,7 +92,7 @@
                 "lng": bounds['oPoint'].lng,
                 "lat": bounds['oPoint'].lat
             },{draggable: false,notTranslate:true}))
-            markers.push(MapService.addMarker(map, "redBox")({
+            markers.push(MapService.addMarker(map, "transparent")({
                 "lng": bounds['tPoint'].lng,
                 "lat": bounds['tPoint'].lat
             },{draggable: false,notTranslate:true}))
@@ -99,14 +100,15 @@
 
         var setText = function(opt){
             var boxText = document.createElement("div");
-            boxText.style.cssText = "border: 1px solid black;color:white; background: "+ opt.color +";";
+            boxText.id = opt.id;
+            boxText.style.cssText = "padding:2px;border: 1px solid "+ opt.borderColor +";color:" + opt.color +"; background: "+ opt.bgColor +";";
             boxText.innerHTML = opt.text;
 
             var ib = new InfoBox({
                 content: boxText
                 ,disableAutoPan: false
                 ,maxWidth: 0
-                ,pixelOffset: new google.maps.Size(0, 0)
+                ,pixelOffset: opt.offset ? new google.maps.Size(opt.offset.x,opt.offset.y) : new google.maps.Size(0, 0)
                 ,zIndex: null
                 ,boxStyle: {
                     opacity: 1
@@ -120,6 +122,7 @@
                 ,enableEventPropagation: false
             });
             ib.open(map, opt.marker);
+            infoList.push(ib);
         };
 
         $scope.updateMarker = function (bounds) {
@@ -135,14 +138,32 @@
             setMarker(_.clone(data));
             setLine(data.oPoint, data.tPoint, map);
             setText({
-                color:"#FD4C30",
+                bgColor:"#FD4C30",
+                color:"white",
+                borderColor:"black",
+                id:"oPlace",
                 text :data.oAddress,
                 marker:markers[0]
             });
             setText({
-                color:"#3737E7",
-                text :data.tAddress,
+                bgColor:"#3737E7",
+                color:"white",
+                borderColor:"black",
+                id:"tPlace",
+                text :data.oAddress,
                 marker:markers[1]
+            });
+            setText({
+                bgColor:"white",
+                color:"#FC1D1F",
+                borderColor:"#F9262D",
+                id:"transportCount",
+                text :data.count,
+                offset:{
+                   x:0,
+                   y:-60
+                },
+                marker:markers[0]
             });
         };
 
@@ -151,6 +172,16 @@
                 marker.setMap(null)
             })
             markers = [];
+            if(document.getElementById("oPlace")){
+                document.getElementById("oPlace").remove();
+            }
+            if(document.getElementById("tPlace")){
+                document.getElementById("tPlace").remove();
+            }
+            if(document.getElementById("transportCount")){
+                document.getElementById("transportCount").remove();
+            }
+            infoList = [];
             if (flightPath) {
                 flightPath.setPath([]);
             }
