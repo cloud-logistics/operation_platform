@@ -145,7 +145,8 @@
                 lng: parseFloat(vm.siteInfo.longitude),
                 lat: parseFloat(vm.siteInfo.latitude)
             };
-            changeMapState(point.lng,point.lat,15);
+            changeMapState(point.lng,point.lat,8);
+            console.log("point-==",point);
             marker = MapService.addMarker(map)(point, {draggable: true,notTranslate:true});
             google.maps.event.addListener(marker, 'dragend', function (MouseEvent) {
                 console.log("移动后的经纬度", MouseEvent.latLng.lng() + " " + MouseEvent.latLng.lat());
@@ -230,11 +231,13 @@
         };
 
         var changeMapState = function(lng,lat,zoom){
+            console.log("lng = ",lng)
+            console.log("lat = ",lat)
             map.setCenter({
                 lat:lat,
                 lng:lng
             });
-            map.setZoom(10)
+            map.setZoom(zoom)
         };
 
 

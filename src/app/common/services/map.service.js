@@ -59,8 +59,8 @@
 
             // bounds of the desired area
             var allowedBounds = new google.maps.LatLngBounds(
-                 new google.maps.LatLng(18.751704, -101.762375),
-                 new google.maps.LatLng(39.042108, 234.981746)
+                 new google.maps.LatLng(-80.751704, -101.762375),
+                 new google.maps.LatLng(80.042108, 234.981746)
             );
 
             var lastValidCenter = map.getCenter();
