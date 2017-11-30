@@ -57,6 +57,26 @@
                 zoom: zoomLevel | 3
             });
 
+            // bounds of the desired area
+            var allowedBounds = new google.maps.LatLngBounds(
+                 new google.maps.LatLng(18.751704, -101.762375),
+                 new google.maps.LatLng(39.042108, 234.981746)
+            );
+
+            var lastValidCenter = map.getCenter();
+
+            google.maps.event.addListener(map, 'center_changed', function() {
+                console.log(allowedBounds.contains(map.getCenter()));
+                if (allowedBounds.contains(map.getCenter())) {
+                    // still within valid bounds, so save the last valid position
+                    lastValidCenter = map.getCenter();
+                    return;
+                }
+
+                // not valid anymore => return to last valid position
+                map.panTo(lastValidCenter);
+            });
+
             return map
         }
 
