@@ -27,7 +27,7 @@
 
         vm.queryParams = {
             containerId: $stateParams.containerId || constdata.defaultContainerId,
-            start_time: moment(new Date()),
+            start_time: moment(new Date()).subtract(7, 'days'),
             end_time: moment(new Date())
         };
 
