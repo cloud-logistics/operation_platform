@@ -45,7 +45,6 @@
                  new google.maps.LatLng(-50.751704, -101.762375),
                  new google.maps.LatLng(50.042108, 234.981746)
             );
-
             var bounds3 = new google.maps.LatLngBounds(
                  new google.maps.LatLng(-50.751704, -101.762375),
                  new google.maps.LatLng(72.042108, 234.981746)

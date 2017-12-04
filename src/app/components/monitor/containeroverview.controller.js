@@ -57,20 +57,22 @@
                     R.prop("data")
                 )(response)
 
-                console.log(containers)
-
                 var bounds = new google.maps.LatLngBounds();
 
-                heatmap = new google.maps.visualization.HeatmapLayer({
-                  data: containers,
-                  map: map
-                });
+                if(R.isEmpty(containers)){
+                  toastr.error('未查询到云箱信息，请联系管理员！');
+                }else {
+                    heatmap = new google.maps.visualization.HeatmapLayer({
+                      data: containers,
+                      map: map
+                    });
 
-                containers.map(function (item) {
-                  bounds.extend(item);
-                })
+                    containers.map(function (item) {
+                      bounds.extend(item);
+                    })
 
-                map.fitBounds(bounds);
+                    map.fitBounds(bounds);
+                }
 
             },function (err) {
                 console.log("Get Historyview Info Failed", err);
