@@ -41,6 +41,43 @@
         ////////////信息
 
         function map_init(id, center, mapType, zoomLevel) {
+            var bounds2 = new google.maps.LatLngBounds(
+                 new google.maps.LatLng(-50.751704, -101.762375),
+                 new google.maps.LatLng(50.042108, 234.981746)
+            );
+            var bounds3 = new google.maps.LatLngBounds(
+                 new google.maps.LatLng(-50.751704, -101.762375),
+                 new google.maps.LatLng(72.042108, 234.981746)
+            );
+            var bounds4 = new google.maps.LatLngBounds(
+                 new google.maps.LatLng(-70.751704, -101.762375),
+                 new google.maps.LatLng(77.042108, 234.981746)
+            );
+            var bounds8 = new google.maps.LatLngBounds(
+                 new google.maps.LatLng(-80.751704, -101.762375),
+                 new google.maps.LatLng(80.042108, 234.981746)
+            );
+
+            var bounds = [
+              bounds2,    // 0
+              bounds2,
+              bounds2,    // 2
+              bounds3,
+              bounds4,
+              bounds8,
+              bounds8,
+              bounds8,
+              bounds8,     // 8
+              bounds8,
+              bounds8,
+              bounds8,
+              bounds8,
+              bounds8,
+              bounds8,
+              bounds8,
+              bounds8,
+              bounds8
+            ]
             // Create a map object and specify the DOM element for display.
             var map = new google.maps.Map(document.getElementById(id), {
                 center: center,
@@ -58,15 +95,11 @@
             });
 
             // bounds of the desired area
-            var allowedBounds = new google.maps.LatLngBounds(
-                 new google.maps.LatLng(-80.751704, -101.762375),
-                 new google.maps.LatLng(80.042108, 234.981746)
-            );
+            var allowedBounds = bounds[zoomLevel];
 
             var lastValidCenter = map.getCenter();
 
             google.maps.event.addListener(map, 'center_changed', function() {
-                console.log(allowedBounds.contains(map.getCenter()));
                 if (allowedBounds.contains(map.getCenter())) {
                     // still within valid bounds, so save the last valid position
                     lastValidCenter = map.getCenter();
@@ -75,6 +108,14 @@
 
                 // not valid anymore => return to last valid position
                 map.panTo(lastValidCenter);
+            });
+
+            google.maps.event.addListener(map, 'zoom_changed', function() {
+                var level = map.getZoom();
+
+                console.log(level)
+
+                allowedBounds = bounds[level];
             });
 
             return map
