@@ -73,6 +73,13 @@
         };
         setHeatmap();
 
+        vm.table = [
+            {"name":"状态", width:"20%"},
+            {"name":"起始地", width:"30%"},
+            {"name":"数量", width:"20%"},
+            {"name":"目的地", width:"30%"}
+        ];
+
         var setLine = function (oPoint, tPoint, map) {
             var path = [oPoint, tPoint];
             console.log('path  = ', path);

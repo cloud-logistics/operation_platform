@@ -1,0 +1,67 @@
+.ngToast{
+    min-width:180px;
+    width:auto;
+    height:50px;
+    position:fixed;
+    color:white;
+    z-index:1001;
+    pointer-events:auto;
+    border-radius: 5px;
+    background: #FFFFFF;
+}
+
+.ngToast-icon{
+    opacity:0.7;
+    line-height:48px;
+    text-align: center;
+    width:50px;
+    height:50px;
+    display:inline-block;
+    float:left;
+}
+.ngToast-icon-success{
+    border-right: 1px solid #67B930;
+}
+
+.ngToast-icon-error{
+    border-right: 1px solid #DB4437;
+}
+
+.ngToast-icon-info{
+    border-right: 1px solid #2196F3;
+}
+.ngToast_success{
+    border: 1px solid #67B930;
+    box-shadow: 0 4px 8px 0 rgba(103,185,48,0.20);
+}
+.ngToast_error{
+    border: 1px solid #DB4437;
+    box-shadow: 0 4px 8px 0 rgba(219,68,55,0.20);
+}
+.ngToast_info{
+    border: 1px solid #2196F3;
+    box-shadow: 0 4px 8px 0 rgba(33,150,243,0.20);
+}
+.ngToast_text{
+    display:inline-block;
+    float:left;
+    color: #354052;
+    line-height: 50px;
+    padding:0 19px;
+}
+.ngToast_success_text{
+    display:inline-block;
+    float:left;
+}
+.ngToast_error_text{
+
+}
+.ngToast_info_text{
+
+}
+
+
+.ngToast-bottom-left{
+    bottom:12px;
+    left:10px;
+}

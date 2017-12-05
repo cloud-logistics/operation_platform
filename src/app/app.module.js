@@ -24,14 +24,15 @@
             'ui.slimscroll',
             'yaru22.angular-timeago',
             'monospaced.elastic',
-            'toastr',
             'pascalprecht.translate',
             'restangular',
             'base64',
             'w5c.validator',
             'datePicker',
             'moment-picker',
-            'ngPagination'
+            'ngPagination',
+            "angular-md5",
+                'toastr'
     ]);
 
 })();

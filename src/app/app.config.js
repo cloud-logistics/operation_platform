@@ -14,7 +14,7 @@
         .config(config);
 
     /** @ngInject */
-    function config($translateProvider,timeAgoSettings, $logProvider, toastrConfig, RestangularProvider,constdata) {
+    function config($translateProvider,timeAgoSettings, $logProvider, RestangularProvider,constdata) {
         // Enable log
         $logProvider.debugEnabled(true);
 
@@ -24,11 +24,11 @@
         }
 
         // Set options third-party lib of toastr
-        toastrConfig.allowHtml = true;
-        toastrConfig.timeOut = 3000;
-        toastrConfig.positionClass = 'toast-top-right';
-        toastrConfig.preventDuplicates = false;
-        toastrConfig.progressBar = false;
+        //toastrConfig.allowHtml = true;
+        //toastrConfig.timeOut = 3000;
+        //toastrConfig.positionClass = 'toast-top-right';
+        //toastrConfig.preventDuplicates = false;
+        //toastrConfig.progressBar = false;
 
 
         // config i18n

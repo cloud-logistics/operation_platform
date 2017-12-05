@@ -52,7 +52,7 @@
             //温度[-55,85]
             if ((!/^-[1-4][0-9]{0,1}$|^-5[0-5]{0,1}$|^[-]{0,1}[0-9]$|^[1-7][0-9]{0,1}$|^8[0-5]{0,1}$/.test(item.temperature_threshold_min) && item.temperature_threshold_min != null))
             {
-                vm.boxList[index].temperature_threshold_min_msg = "温度应为(-55,85)";
+                vm.boxList[index].temperature_threshold_min_msg = "温度应为(-55,85)的整数";
                 flag = false;
                 vm.boxList[index].temperature_threshold_min_class = " invalida-area ";
             } else {
@@ -62,7 +62,7 @@
             //温度[-55,85]
             if ((!/^-[1-4][0-9]{0,1}$|^-5[0-5]{0,1}$|^[1-7][0-9]{0,1}$|^8[0-5]{0,1}$|^[-]{0,1}[0-9]$/.test(item.temperature_threshold_max) && item.temperature_threshold_max != null))
             {
-                vm.boxList[index].temperature_threshold_max_msg = "温度应为(-55,85)";
+                vm.boxList[index].temperature_threshold_max_msg = "温度应为(-55,85)的整数";
                 flag = false;
                 vm.boxList[index].temperature_threshold_max_class = " invalida-area ";
             } else {
@@ -73,7 +73,7 @@
             //湿度
             if ((!/^[1-9][0-9]{0,1}$|^100$|^[0-9]$/.test(item.humidity_threshold_min) && item.humidity_threshold_min != null))
             {
-                vm.boxList[index].humidity_threshold_min_msg = "湿度应[0,100]";
+                vm.boxList[index].humidity_threshold_min_msg = "湿度应[0,100]的整数";
                 flag = false;
                 vm.boxList[index].humidity_threshold_min_class = " invalida-area ";
                 console.log(vm.boxList[index].humidity_threshold_min_class)
@@ -84,7 +84,7 @@
             //湿度
             if ((!/^[1-9][0-9]{0,1}$|^100$|^[0-9]$/.test(item.humidity_threshold_max) && item.humidity_threshold_max != null))
             {
-                vm.boxList[index].humidity_threshold_max_msg = "湿度应为[0,100]";
+                vm.boxList[index].humidity_threshold_max_msg = "湿度应为[0,100]的整数";
                 flag = false;
                 vm.boxList[index].humidity_threshold_max_class = " invalida-area ";
             } else {

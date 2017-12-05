@@ -9,30 +9,28 @@
                 <table style="text-align: center;margin-bottom:0;" st-table="vm.items" st-safe-src="vm.items" class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th>状态</th>
-                        <th>起始地</th>
-                        <th>数量</th>
-                        <th>目的地</th>
+                        <th style="width:{{row['width']}}" ng-repeat="row in vm.table">{{row.name}}</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="item in vm.pDData track by $index" ng-click="updateMarker(item)">
-                        <td >
+                        <td style="width:{{vm.table[0]['width']}}" title="{{item.status}}">
                             <span class="table_status {{item.table_status_class}}">
                                 {{item.status}}
                             </span>
                         </td>
-                        <td class="table_oAddress">
+                        <td class="table_oAddress" style="width:{{vm.table[1]['width']}}" title="{{item.oAddress}}">
                             <span>
                                 {{item.oAddress}}
                             </span>
                         </td>
-                        <td class="table_td_count">
+                        <td class="table_td_count" style="width:{{vm.table[2]['width']}}" title="{{item.count}}">
                             <span class="{{item.table_count_class}}">{{item.count}}</span>
                             <span  class="table_bottomLine {{item.table_bottomLine_class}}"></span>
                             <span class="table_bottomTriangle {{item.table_bottomTriangle_class}}"></span>
                         </td>
-                        <td class="table_tAddress">{{item.tAddress}}</td>
+                        <td class="table_tAddress" style="width:{{vm.table[3]['width']}}" title="{{item.tAddress}}">
+                            {{item.tAddress}}</td>
                     </tr>
                     </tbody>
                 </table>
