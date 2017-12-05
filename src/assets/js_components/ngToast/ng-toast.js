@@ -7,16 +7,12 @@
 
     toastr.$inject = ['$animate', '$rootScope','$q'];
     function toastr($animate,$rootScope,$q){
-        console.log("aaa");
-
         var containerDefer = $q.defer();
-
         var toasts = [];
-
         var toast = {
             error:error,
             success:success,
-            info:info,
+            info:info
         };
         return toast;
 
@@ -38,6 +34,7 @@
         function remove(id){
             var child = document.getElementById(id) ;
             if(child){
+                console.log("remove")
                 child.parentNode.removeChild(child);
             }
         }
@@ -61,11 +58,11 @@
         function error(msg){
             container = angular.element(tpl('error',msg));
             container.attr('id', "ngToastError");
+            toasts.push(ngToastError)
             var target = angular.element(document.querySelector("body"));
             if ( ! target || ! target.length) {
                 throw 'Target for toasts doesn\'t exist';
             }
-
             $animate.enter(container, target).then(function() {
                 var hidden =function(){
                     $animate.leave(document.getElementById('ngToastError')).then(function(){
