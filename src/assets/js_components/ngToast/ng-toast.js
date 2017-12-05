@@ -49,26 +49,24 @@
 
             $animate.enter(container, target).then(function() {
                 setTimeout(function(){
-                    $animate.leave(document.getElementById('ngToastSuccess')).then(function(){
-                       remove('ngToastSuccess');
-                    })
+                    $animate.leave(document.getElementById('ngToastSuccess'))
+                    remove('ngToastSuccess');
                 },3000)
             });
         }
         function error(msg){
             container = angular.element(tpl('error',msg));
             container.attr('id', "ngToastError");
-            toasts.push(ngToastError)
+            toasts.push('ngToastError');
             var target = angular.element(document.querySelector("body"));
             if ( ! target || ! target.length) {
                 throw 'Target for toasts doesn\'t exist';
             }
             $animate.enter(container, target).then(function() {
                 var hidden =function(){
-                    $animate.leave(document.getElementById('ngToastError')).then(function(){
-                        remove('ngToastError');
-                    })
-                }  ;
+                    $animate.leave(document.getElementById('ngToastError'))
+                    remove('ngToastError');
+                };
                 setTimeout(hidden,3000)
             });
         }
@@ -82,12 +80,12 @@
             }
 
             $animate.enter(container, target).then(function() {
-                var hidden =function(){
-                    $animate.leave(document.getElementById('ngToastInfo')).then(function(){
-                       remove('ngToastInfo');
-                    })
-                }  ;
-                setTimeout(hidden,3000)
+                //var hidden =  ;
+                setTimeout(function(){
+                    console.log("info---")
+                    $animate.leave(document.getElementById('ngToastInfo'));
+                    remove('ngToastInfo');
+                },3000)
             });
         }
     }
