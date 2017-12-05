@@ -8,7 +8,7 @@
     toastr.$inject = ['$animate', '$rootScope','$q'];
     function toastr($animate,$rootScope,$q){
         var containerDefer = $q.defer();
-        var toasts = [];
+        var toastsNum = "0";
         var toast = {
             error:error,
             success:success,
@@ -22,26 +22,29 @@
                 "error":"error",
                 "info":"info"
             };
-            var html = '<div class="ngToast ngToast_' + typeMenu[type]  +' ngToast-bottom-left">'+
-                '<div class="ngToast-icon ngToast-icon-' + typeMenu[type] + '">'+
-                    '<img src="images/icon_alert_' + typeMenu[type] +'.svg">'+
-                '</div>'+
-                '<div class="ngToast_text">'+ msg +
-                '</div>'+
-            '</div>';
+            var html = '<div class="ngToast ngToast_' + typeMenu[type]  +' ngToast-bottom-left-' + toastsNum +'">'+
+                            '<div class="ngToast-icon ngToast-icon-' + typeMenu[type] + '">'+
+                                '<img src="images/icon_alert_' + typeMenu[type] +'.svg">'+
+                            '</div>'+
+                            '<div class="ngToast_text">'+ msg +
+                            '</div>'+
+                        '</div>';
+            toastsNum++;
+            console.log(html)
             return html;
         }
         function remove(id){
             var child = document.getElementById(id) ;
             if(child){
-                console.log("remove")
+                toastsNum--;
                 child.parentNode.removeChild(child);
             }
         }
 
         function success(msg){
             container = angular.element(tpl('success',msg));
-            container.attr('id', "ngToastSuccess");
+            var id = "ngToastSuccess" + new Date().getTime();
+            container.attr('id', id);
             var target = angular.element(document.querySelector("body"));
             if ( ! target || ! target.length) {
                 throw 'Target for toasts doesn\'t exist';
@@ -49,30 +52,31 @@
 
             $animate.enter(container, target).then(function() {
                 setTimeout(function(){
-                    $animate.leave(document.getElementById('ngToastSuccess'))
-                    remove('ngToastSuccess');
+                    $animate.leave(document.getElementById(id))
+                    remove(id);
                 },3000)
             });
         }
         function error(msg){
             container = angular.element(tpl('error',msg));
-            container.attr('id', "ngToastError");
-            toasts.push('ngToastError');
+            var id = "ngToastError" + new Date().getTime();
+            container.attr('id', id);
             var target = angular.element(document.querySelector("body"));
             if ( ! target || ! target.length) {
                 throw 'Target for toasts doesn\'t exist';
             }
             $animate.enter(container, target).then(function() {
                 var hidden =function(){
-                    $animate.leave(document.getElementById('ngToastError'))
-                    remove('ngToastError');
+                    $animate.leave(document.getElementById(id))
+                    remove(id);
                 };
                 setTimeout(hidden,3000)
             });
         }
         function info(msg){
             container = angular.element(tpl('info',msg));
-            container.attr('id', "ngToastInfo");
+            var id = "ngToastInfo" + new Date().getTime();
+            container.attr('id', id);
             var target = angular.element(document.querySelector("body"));
 
             if ( ! target || ! target.length) {
@@ -83,8 +87,8 @@
                 //var hidden =  ;
                 setTimeout(function(){
                     console.log("info---")
-                    $animate.leave(document.getElementById('ngToastInfo'));
-                    remove('ngToastInfo');
+                    $animate.leave(document.getElementById(id));
+                    remove(id);
                 },3000)
             });
         }

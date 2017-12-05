@@ -61,7 +61,31 @@
 }
 
 
-.ngToast-bottom-left{
+.ngToast-bottom-left-0{
     bottom:12px;
+    left:10px;
+}
+
+.ngToast-bottom-left-1{
+    bottom:72px;
+    left:10px;
+}
+
+.ngToast-bottom-left-2{
+    bottom:132px;
+    left:10px;
+}
+
+.ngToast-bottom-left-3{
+    bottom:192px;
+    left:10px;
+}
+
+.ngToast-bottom-left-4{
+    bottom:252px;
+    left:10px;
+}
+.ngToast-bottom-left-5{
+    bottom:312px;
     left:10px;
 }
