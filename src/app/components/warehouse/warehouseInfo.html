@@ -127,26 +127,19 @@
                     <table st-table="vm.items" st-safe-src="vm.items" class="table table-striped table-hover m-t">
                         <thead>
                         <tr>
-                            <th>仓库名称</th>
-                            <th>仓库ID</th>
-                            <th>国家</th>
-                            <th>省</th>
-                            <th>市</th>
-                            <th>位置</th>
-                            <th>容量</th>
-                            <th></th>
+                            <th style="width:{{row['width']}}" ng-repeat="row in vm.table">{{row.name}}</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr ng-repeat="item in vm.siteInfoList track by $index">
-                            <td style="vertical-align: middle;">{{item.name}}</td>
-                            <td style="vertical-align: middle;">{{item.site_code}}</td>
-                            <td style="vertical-align: middle;">{{item.nation.nation_name}}</td>
-                            <td style="vertical-align: middle;">{{item.province.province_name}}</td>
-                            <td style="vertical-align: middle;">{{item.city.city_name}}</td>
-                            <td style="vertical-align: middle;">{{item.location}}</td>
-                            <td style="vertical-align: middle;">{{item.volume}}</td>
-                            <td style="vertical-align: middle;">
+                            <td style="width:{{vm.table[0]['width']}}" >{{item.name}}</td>
+                            <td style="width:{{vm.table[1]['width']}}">{{item.site_code}}</td>
+                            <td style="width:{{vm.table[2]['width']}}">{{item.nation.nation_name}}</td>
+                            <td style="width:{{vm.table[3]['width']}}">{{item.province.province_name}}</td>
+                            <td style="width:{{vm.table[4]['width']}}">{{item.city.city_name}}</td>
+                            <td style="width:{{vm.table[5]['width']}}">{{item.location}}</td>
+                            <td style="width:{{vm.table[6]['width']}}">{{item.volume}}</td>
+                            <td style="width:{{vm.table[7]['width']}}">
                                 <span class="bb-edit-btn" ng-click="vm.edit(item,true)">编辑</span>
                                 <span class="bb-del-btn" ng-click="vm.deleteSiteInfo(item.id)">删除</span>
                             </td>

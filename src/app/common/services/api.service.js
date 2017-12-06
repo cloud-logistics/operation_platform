@@ -247,15 +247,8 @@
             }
         }
 
-        function logoutAction() {
-            var authorizationKey = constdata.token;
-            var userInfo = constdata.informationKey;
-            $timeout(function () {
-                StorageService.clear(authorizationKey);
-                StorageService.clear(userInfo);
-                StorageService.clear(constdata.token);
-                $state.go('access.signin');
-            }, 60);
+        function logoutAction(opt) {
+            NetworkService.post(constdata.api.logout,opt.params||{},opt.success,opt.error)
 
         }
 

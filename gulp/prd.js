@@ -245,7 +245,7 @@ gulp.task('build:all', ['build:rev'], function () {
         .pipe($.size({ title: 'build', gzip: true }));
 });
 
-gulp.task('build', ['build:clean', 'build:html', 'build:fonts', 'build:images', 'build:locales'], function () {
+gulp.task('build', ['build:clean', 'build:html', 'build:fonts', 'build:images', 'build:locales','build:js_components'], function () {
     //display the size of dist finally when gzip
     return gulp.src(path.join(conf.paths.build, '/**/*'))
         .pipe($.size({ title: 'build', gzip: true }));

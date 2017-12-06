@@ -73,6 +73,13 @@
         };
         setHeatmap();
 
+        vm.table = [
+            {"name":"状态", width:"20%"},
+            {"name":"起始地", width:"30%"},
+            {"name":"数量", width:"20%"},
+            {"name":"目的地", width:"30%"}
+        ];
+
         var setLine = function (oPoint, tPoint, map) {
             var path = [oPoint, tPoint];
             console.log('path  = ', path);
@@ -187,12 +194,31 @@
             }
         }
 
+        var isCPValid = function(currentPage,totalCount){
+            return currentPage >= 1 && currentPage <=  Math.ceil(totalCount/10);
+        };
+        $scope.queryPageChange = function(e){
+            if(e.keyCode == 8){
+                return;
+            }
+            $scope.jumpPageNum = parseInt(($scope.jumpPageNum + "").replace(/[^0-9]/g, ''));
+            if ($scope.jumpPageNum !== '' && isCPValid($scope.jumpPageNum,$scope.conf.totalItems)) {
+
+            }else{
+                $scope.jumpPageNum =   Math.ceil($scope.conf.totalItems/10);
+
+            }
+        };
+
         $scope.getData = function (flag) {
             if (flag == 1) {
                 $scope.conf.currentPage++;
             } else if (flag == -1) {
                 $scope.conf.currentPage--;
+            }else{
+                $scope.conf.currentPage = $scope.jumpPageNum || 1;
             }
+
             ApiServer.getDispatchData({
                 data: {
                     limit: $scope.conf.itemsPerPage,
@@ -231,7 +257,9 @@
                             tAddress: item.finish.site_code,
                         }
                     });
-                    $scope.conf.currentPage = (res.data.data.offset / res.data.data.limit) + 1;
+                    $scope.conf.currentPage = parseInt(res.data.data.offset / res.data.data.limit) + 1;
+                    $scope.conf.totalPage = parseInt(res.data.data.count / res.data.data.limit) + 1;
+                    $scope.conf.totalItems = res.data.data.count;
                     $scope.conf.pagePreEnabled = $scope.conf.currentPage > 1;
                     $scope.conf.pageNextEnabled = (res.data.data.count / res.data.data.limit) > $scope.conf.currentPage;
 

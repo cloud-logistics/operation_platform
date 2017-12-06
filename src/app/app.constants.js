@@ -30,6 +30,7 @@
                     alertLevel:"alertLevel"
                 },
                 auth:'auth',
+                logout:'logout',
                 containerhistory : "containerhistory",
                 containerInstantInfo : "containerInstantInfo",
                 containerReportHistory : "containerReportHistory",

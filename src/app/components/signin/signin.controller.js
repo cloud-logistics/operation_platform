@@ -8,7 +8,7 @@
     angular.module('smart_container').controller('SigninController', SigninController);
 
     /** @ngInject */
-    function SigninController(logger,toastr,StorageService,$timeout,$state,constdata,$rootScope,iotUtil,$translate,ApiServer) {
+    function SigninController(logger,toastr,StorageService,$timeout,$state,constdata,$rootScope,iotUtil,$translate,ApiServer,md5) {
         /* jshint validthis: true */
         var vm = this;
         var authorizationKey = constdata.token;
@@ -37,14 +37,16 @@
 
             vm.isLogining = true;
             StorageService.remove(constdata.token);
+            var now = new Date;
+            now = parseInt(now / 1000);
 
             var user = {
                     username: vm.user.username,
-                    password: vm.user.password
-                }
+                    password: md5.createHash(md5.createHash(vm.user.password)+now),
+                    timestamp:now
+            }
 
             ApiServer.userLogin(user,function (response) {
-
                 console.log('login success');
                 console.log(response);
                 var result = response.data;

@@ -6,7 +6,7 @@
     angular.module('smart_container').controller('WarehouseInfoController', WarehouseInfoController);
 
     /** @ngInject */
-    function WarehouseInfoController($scope, ApiServer,toastr, MapService, optionsTransFunc) {
+    function WarehouseInfoController($scope, ApiServer,toastr, MapService) {
         var vm = this;
         var map;
         var mapCenter = {lat: 31.2891, lng: 121.4648};
@@ -28,6 +28,16 @@
             map = MapService.map_init("warehouseInfo_map", mapCenter, "terrain", 3.5);
 
         };
+        vm.table = [
+            {"name":"仓库名称", width:"13%"},
+            {"name":"仓库ID", width:"12%"},
+            {"name":"国家", width:"8%"},
+            {"name":"省", width:"10%"},
+            {"name":"市", width:"10%"},
+            {"name":"位置", width:"24%"},
+            {"name":"容量", width:"8%"},
+            {"name":"", width:"15%"}
+        ];
         $scope.showAdd = false;
         $scope.switchShowAdd = function () {
             $scope.showAdd = !$scope.showAdd;
@@ -281,8 +291,8 @@
                 }
             }
 
-            if(vm.siteInfo.volume < 0 || vm.siteInfo.volume > 10000){
-                $scope.volume_invalid_msg = "仓库容量应该为(0,10000]的整数";
+            if(vm.siteInfo.volume < 1000 || vm.siteInfo.volume > 10000){
+                $scope.volume_invalid_msg = "仓库容量应该为[1000,10000]的整数";
                 $scope['volume_invalid_class'] = "invalida-area";
                 flag = false;
             }else{
@@ -336,7 +346,9 @@
                 'city_class',
                 'name_class',
                 'volume_class',
-                'location_class'
+                'location_class',
+                'volume_invalid_class',
+                'volume_invalid_msg'
             ];
             for(var s = 0,len = menu2.length;s <len;s++){
                 $scope[menu2[s]] = "";
@@ -371,6 +383,7 @@
         }
 
         vm.deleteSiteInfo = function (site_id) {
+            $("body").scrollTop(0);
             var opt = {
                 okFn:function(){
                     console.log("del site_code :", site_id);

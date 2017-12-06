@@ -8,7 +8,7 @@
     angular.module('smart_container').controller('HeaderController', AsideController);
 
     /** @ngInject */
-    function AsideController($state, ApiServer,$scope, toastr, $interval, constdata) {
+    function AsideController($state, ApiServer,$scope, toastr, $interval,StorageService, constdata,$timeout) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -68,7 +68,18 @@
         });
 
         function logoutAction() {
-            ApiServer.logoutAction();
+            ApiServer.logoutAction({
+                success:function(){
+                    var authorizationKey = constdata.token;
+                    var userInfo = constdata.informationKey;
+                    $timeout(function () {
+                        StorageService.clear(authorizationKey);
+                        StorageService.clear(userInfo);
+                        StorageService.clear(constdata.token);
+                        $state.go('access.signin');
+                    }, 60);
+                }
+            });
         }
     }
 })();
