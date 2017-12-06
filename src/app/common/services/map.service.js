@@ -42,8 +42,8 @@
 
         function map_init(id, center, mapType, zoomLevel) {
             var bounds2 = new google.maps.LatLngBounds(
-                 new google.maps.LatLng(-50.751704, -101.762375),
-                 new google.maps.LatLng(50.042108, 234.981746)
+                 new google.maps.LatLng(-45.751704, -101.762375),
+                 new google.maps.LatLng(45.042108, 234.981746)
             );
             var bounds3 = new google.maps.LatLngBounds(
                  new google.maps.LatLng(-50.751704, -101.762375),
@@ -94,8 +94,9 @@
                 zoom: zoomLevel | 3
             });
 
+
             // bounds of the desired area
-            var allowedBounds = bounds[zoomLevel];
+            var allowedBounds = bounds[Math.ceil(zoomLevel)];
 
             var lastValidCenter = map.getCenter();
 

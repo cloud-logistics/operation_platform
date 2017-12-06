@@ -386,3 +386,61 @@ gulp.task('build-185',  function(cb) {
         'cdn-185',
         cb);
 });
+
+
+/* 187 - dev */
+gulp.task('qiniu-187', function () {
+    fs.writeFileSync(conf.paths.tmp + '/tmp_path_187.txt', '');
+    return gulp.src([conf.paths.build + '/scripts/*.js', conf.paths.build + '/styles/*.css'])
+        .pipe(intercept(function (file) {
+            fs.appendFileSync(conf.paths.tmp + '/tmp_path_187.txt', file.path + '\r');
+            // console.log('OLD CONTENT: ' + file.contents.toString() );
+            // file.contents = new Buffer( "Hello!!!" );
+            // console.log('NEW CONTENT: ' + file.contents.toString() );
+            return file;
+        }))
+        .pipe(qiniu({
+            accessKey: "WlfLj84tEqH7_FX-GhAnj30OmhreeeUYtBYgwnCN",
+            secretKey: "O8efy3dIot_jv-xyh7kC_QBZ_2bUca5C4bdH7PXj",
+            bucket: "operation",
+            private: false
+        }, {
+            dir: 'assets/187',
+            concurrent: 10
+        }))
+});
+
+gulp.task('cdn-187', function () {
+    var replace_param = {};
+    console.log('cdn is start...');
+    var cdn_url = 'http://p061ajqqc.bkt.clouddn.com/assets/187';
+    // read all lines:
+
+    var text = fs.readFileSync(conf.paths.tmp + '/tmp_path_187.txt', 'utf8');
+
+    var text_arr = text.split('\r');
+
+    for (var i = 0; i < text_arr.length - 1; i++) {
+        console.log(text_arr[i]);
+        var tmp_arr = text_arr[i].split('/');
+        var tmp_reverse = tmp_arr.reverse();
+        var newline = tmp_reverse[1] + '/' + tmp_reverse[0];
+        replace_param[newline] = cdn_url + '/' + tmp_reverse[0];
+    }
+
+    console.log('the param is ' + replace_param);
+
+    gulp.src([conf.paths.build + '/index.html'])
+        .pipe(replace(replace_param))
+        .pipe(gulp.dest(conf.paths.build));
+
+
+});
+
+gulp.task('build-187',  function(cb) {
+    runSequence(
+        'build',
+        'qiniu-187',
+        'cdn-187',
+        cb);
+});
