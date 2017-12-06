@@ -3,12 +3,12 @@
 <html lang="en" ng-app='smart_container'>
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="description" content="IOT,M2M,MQTT,HNA" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta charset="utf-8"/>
+    <meta name="description" content="IOT,M2M,MQTT,HNA"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <title>Smart Container</title>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link rel="icon" type="image/x-icon" href="images/favicon.jpg?v=0.1.0" />
+    <link rel="icon" type="image/x-icon" href="images/favicon.jpg?v=0.1.0"/>
     <!--
     <link rel="icon" href="_/img/favicon.png">
     <link rel="icon" href="http://sstatic.net/so/favicon.ico">
@@ -25,44 +25,50 @@
     <!-- endinject -->
     <!-- endbuild -->
 
-    <style>[ng-cloak] {display: none;}</style>
+    <style>[ng-cloak] {
+        display: none;
+    }</style>
 
 </head>
 
-<body  ng-cloak>
+<body ng-cloak>
 
-    <!--[if lt IE 10]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-    <div class="app" id="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}" ui-view></div>
-    <!-- build:js(src) scripts/vendor.js -->
-    <!-- bower:js -->
-    <!-- run `gulp inject` to automatically populate bower script dependencies -->
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:js({tmp/serve,tmp/partials,src}) scripts/app.js -->
-    <!-- inject:js -->
-    <!-- js files will be automatically insert here -->
-    <!-- endinject -->
-    <!-- inject:partials -->
-    <!-- angular templates will be automatically converted in js and inserted here -->
-    <!-- endinject -->
-    <!-- endbuild -->
+<!--[if lt IE 10]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+<div class="app" id="app"
+     ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}"
+     ui-view></div>
+<!-- build:js(src) scripts/vendor.js -->
+<!-- bower:js -->
+<!-- run `gulp inject` to automatically populate bower script dependencies -->
+<!-- endbower -->
+<!-- endbuild -->
+<!-- build:js({tmp/serve,tmp/partials,src}) scripts/app.js -->
+<!-- inject:js -->
+<!-- js files will be automatically insert here -->
+<!-- endinject -->
+<!-- inject:partials -->
+<!-- angular templates will be automatically converted in js and inserted here -->
+<!-- endinject -->
+<!-- endbuild -->
 
-    <script src="https://cdn.bootcss.com/jquery.textcomplete/1.8.0/jquery.textcomplete.js"></script>
-    <script src="http://maps.google.cn/maps/api/js?region=cn&language=zh-CN&key=AIzaSyBlTpe56P1HR770Ym0R-nLePpsdaDshO14&libraries=drawing&libraries=visualization">
-    </script>
-    <script type="text/javascript" src="http://p061ajqqc.bkt.clouddn.com/components/infobox.js"></script>
-    <script type="text/javascript" src="//cdn.bootcss.com/ramda/0.23.0/ramda.min.js"></script>
-    <script src="https://cdn.bootcss.com/echarts/3.7.1/echarts.min.js"></script>
-    <script type="text/javascript" src="http://p061ajqqc.bkt.clouddn.com/components/coordtransform.js"></script>
-    <script type="text/javascript" src="http://p061ajqqc.bkt.clouddn.com/components//moment-with-locales.js"></script>
-    <script type="text/javascript" src="http://p061ajqqc.bkt.clouddn.com/components/angular-moment-picker.min.js"></script>
-    <script type="text/javascript" src="http://p061ajqqc.bkt.clouddn.com/components/ngPage/ng-pagination.js"></script>
-    <script type="text/javascript" src="./assets/js_components/ngToast/ng-toast.js"></script>
-    <link href="http://p061ajqqc.bkt.clouddn.com/components/angular-moment-picker.min.css" rel="stylesheet">
-    <link href="http://p061ajqqc.bkt.clouddn.com/components/ngPage/pagination.css" rel="stylesheet">
-    <link href="./assets/js_components/ngToast/toast.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/jquery.textcomplete/1.8.0/jquery.textcomplete.js"></script>
+<script src="http://maps.google.cn/maps/api/js?region=cn&language=zh-CN&key=AIzaSyBlTpe56P1HR770Ym0R-nLePpsdaDshO14&libraries=drawing&libraries=visualization">
+</script>
+<script type="text/javascript" src="http://p061ajqqc.bkt.clouddn.com/components/infobox.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/ramda/0.23.0/ramda.min.js"></script>
+<script src="https://cdn.bootcss.com/echarts/3.7.1/echarts.min.js"></script>
+<script type="text/javascript" src="http://p061ajqqc.bkt.clouddn.com/components/coordtransform.js"></script>
+<script type="text/javascript" src="http://p061ajqqc.bkt.clouddn.com/components//moment-with-locales.js"></script>
+<script type="text/javascript" src="http://p061ajqqc.bkt.clouddn.com/components/angular-moment-picker.min.js"></script>
+<script type="text/javascript" src="http://p061ajqqc.bkt.clouddn.com/components/ngPage/ng-pagination.js"></script>
+<script type="text/javascript" src="js_components/ngToast/ng-toast.js"></script>
+<link href="http://p061ajqqc.bkt.clouddn.com/components/angular-moment-picker.min.css" rel="stylesheet">
+<!--<link href="http://p061ajqqc.bkt.clouddn.com/components/ngPage/pagination.css" rel="stylesheet">-->
+<link href="js_components/ngPage/pagination.css" rel="stylesheet">
+<link href="js_components/ngToast/toast.css" rel="stylesheet">
 </body>
 
 </html>

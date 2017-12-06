@@ -36,10 +36,18 @@
                 </table>
             </div>
 
-            <div class="btn-group pagination pull-right padder-lg">
-                <button type="button" class="btn btn-default" ng-click="getData(-1)" ng-disabled="!conf.pagePreEnabled" >上一页</button>
-                <button type="button" class="btn btn-default ng-binding" ng-disabled="true" disabled="disabled">{{conf.currentPage}}</button>
-                <button type="button" class="btn btn-default" ng-click="getData(1)" ng-disabled="!conf.pageNextEnabled" >下一页</button>
+            <div class="btn-group pagination w100 p20">
+                <div class="pagination_left">
+                    <span class="">{{conf.currentPage + "/" + conf.totalPage}}</span>
+                    <span>到</span>
+                    <input class="pagination_page" ng-keyup="queryPageChange($event)" type="text" ng-model="jumpPageNum" />
+                    <span>页</span>
+                    <span class="pagination_go" ng-click="getData()">go</span>
+                </div>
+                <div class="pagination_right pTop6">
+                    <button class="pagination_previous btn btn-default" ng-click="getData(-1)" ng-disabled="!conf.pagePreEnabled" ><</button>
+                    <button class="pagination_next btn btn-default" ng-click="getData(1)" ng-disabled="!conf.pageNextEnabled" >></button>
+                </div>
             </div>
         </div>
     </div>

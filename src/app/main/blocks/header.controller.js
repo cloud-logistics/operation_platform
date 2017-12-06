@@ -8,7 +8,7 @@
     angular.module('smart_container').controller('HeaderController', AsideController);
 
     /** @ngInject */
-    function AsideController($state, ApiServer,$scope, toastr, $interval, constdata,$timeout) {
+    function AsideController($state, ApiServer,$scope, toastr, $interval,StorageService, constdata,$timeout) {
         /* jshint validthis: true */
         var vm = this;
 
