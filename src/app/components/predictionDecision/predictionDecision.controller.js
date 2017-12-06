@@ -80,15 +80,13 @@
             {"name":"目的地", width:"30%"}
         ];
 
-        var setLine = function (oPoint, tPoint, map) {
+        var setLine = function (oPoint, tPoint, map,color,width) {
             var path = [oPoint, tPoint];
-            console.log('path  = ', path);
             flightPath = new google.maps.Polyline({
                 path: path,
-                useGradient:true,
-                strokeColor: ['#FF0000','#00FF00'],
-                strokeOpacity: 1.0,
-                strokeWeight: 4
+                strokeColor: color || '#FF0000',
+                strokeOpacity: 0.02,
+                strokeWeight: width
             });
             flightPath.setMap(map);
         };
@@ -143,7 +141,7 @@
             }
             clearMarker();
             setMarker(_.clone(data));
-            setLine(data.oPoint, data.tPoint, map);
+            //setLine(data.oPoint, data.tPoint, map);
             setText({
                 bgColor:"#FD4C30",
                 color:"white",
@@ -157,7 +155,7 @@
                 color:"white",
                 borderColor:"black",
                 id:"tPlace",
-                text :data.oAddress,
+                text :data.tAddress,
                 marker:markers[1]
             });
             setText({
@@ -172,6 +170,7 @@
                 },
                 marker:markers[0]
             });
+            drawEllipse(data.oPoint,data.tPoint,5000,"#FD4C30","#3737E7")
         };
 
         function clearMarker() {
@@ -194,6 +193,77 @@
             }
         }
 
+
+        var parseColor = function (hexStr) {
+            return hexStr.length === 4 ? hexStr.substr(1).split('').map(function (s) { return 0x11 * parseInt(s, 16); }) : [hexStr.substr(1, 2), hexStr.substr(3, 2), hexStr.substr(5, 2)].map(function (s) { return parseInt(s, 16); })
+        };
+
+        // zero-pad 1 digit to 2
+        var pad = function (s) {
+            return (s.length === 1) ? '0' + s : s;
+        };
+
+        var gradientColors = function (start, end, steps, gamma) {
+                var i, j, ms, me, output = [], so = [];
+                gamma = gamma || 1;
+                var normalize = function (channel) {
+                    return Math.pow(channel / 255, gamma);
+                };
+                start = parseColor(start).map(normalize);
+                end = parseColor(end).map(normalize);
+                for (i = 0; i < steps; i++) {
+                    ms = i / (steps - 1);
+                    me = 1 - ms;
+                    for (j = 0; j < 3; j++) {
+                        so[j] = pad(Math.round(Math.pow(start[j] * me + end[j] * ms, 1 / gamma) * 255).toString(16));
+                    }
+                    output.push('#' + so.join(''));
+                }
+                return output;
+            };
+
+
+        //椭圆的参数方程
+        function drawEllipse(a,b,len,sColor,eColor){
+            console.log("a = ",a)
+            console.log("b = ",b)
+            var points = [];
+            var thetaMin;
+            var lngCenter;
+            var latCenter;
+            var A = Math.abs(a.lat - b.lat);
+            var B = Math.abs(a.lng - b.lng);
+            if(a.lng < b.lng && a.lat > b.lat){ //第一象限
+                thetaMin  = 0;
+                lngCenter = a.lng;
+                latCenter = b.lat;
+            }else if(a.lng < b.lng && a.lat < b.lat){//第四象限
+                thetaMin  = 3*Math.PI/2;
+                lngCenter = a.lng;
+                latCenter = b.lat;
+            }else if(a.lng > b.lng && a.lat > b.lat){//第二象限
+                thetaMin  = Math.PI/2;
+                lngCenter = a.lng;
+                latCenter = b.lat;
+            }else if(a.lng > b.lng && a.lat < b.lat){//第三象限
+                thetaMin  = Math.PI;
+                lngCenter = b.lng;
+                latCenter = b.lat;
+            }
+            var colorArray = gradientColors(sColor,eColor,len);
+            for(var s = 0;s <= len;s++){
+                points.push({
+                    "lng":lngCenter + B*Math.cos(thetaMin +  Math.PI/(2*len)*s),
+                    "lat":latCenter + A*Math.sin(thetaMin + Math.PI/(2*len)*s),
+                    "color":colorArray[s]
+                })
+            }
+            for(var s = 0;s < len;s++){
+                setLine(points[s],points[s+1],map,points[s].color,Math.floor(s/20)*0.1+1);
+            }
+        };
+
+        //判断查询页码是否在1-totalPage里面
         var isCPValid = function(currentPage,totalCount){
             return currentPage >= 1 && currentPage <=  Math.ceil(totalCount/10);
         };
