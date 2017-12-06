@@ -32,7 +32,8 @@
             'moment-picker',
             'ngPagination',
             "angular-md5",
-                'toastr'
+            "toastr",
+            "ngGrid"
     ]);
 
 })();

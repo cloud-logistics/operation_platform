@@ -100,7 +100,7 @@
             var lastValidCenter = map.getCenter();
 
             google.maps.event.addListener(map, 'center_changed', function() {
-                if (allowedBounds.contains(map.getCenter())) {
+                if (allowedBounds && allowedBounds.contains(map.getCenter())) {
                     // still within valid bounds, so save the last valid position
                     lastValidCenter = map.getCenter();
                     return;

@@ -58,6 +58,17 @@
         $scope.cancel = cancel;
         vm.options = {};
 
+        //vm.tableConfig = {
+        //    col:[{"name":"仓库名称", width:"13%"},
+        //        {"name":"仓库ID", width:"12%"},
+        //        {"name":"国家", width:"8%"},
+        //        {"name":"省", width:"10%"},
+        //        {"name":"市", width:"10%"},
+        //        {"name":"位置", width:"24%"},
+        //        {"name":"容量", width:"8%"},
+        //        {"name":"", width:"15%"}]
+        //}
+
         function clearMarker() {
             if (marker) {
                 marker.setMap(null)
@@ -249,7 +260,6 @@
             });
             map.setZoom(zoom)
         };
-
 
         $scope.validationCheck = function(){
             if(!$scope.saveBtnClick){
