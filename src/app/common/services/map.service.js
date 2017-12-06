@@ -114,8 +114,6 @@
             google.maps.event.addListener(map, 'zoom_changed', function() {
                 var level = map.getZoom();
 
-                console.log(level)
-
                 allowedBounds = bounds[level];
             });
 
