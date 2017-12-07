@@ -4,7 +4,7 @@
     <div class="col">
         <div id="content" style="height: 100vh;">
             <div class="wrapper-md">
-                <div class="row col-md bs-contents" style="background-color: #fff;padding:20px;">
+                <div class="row col-md bs-contents" style="background-color: #fff;padding:10px;">
                     <div class="row m-l m-r" style="background-color: #fff">
                         <div class="alert-title-posi">
                             <h3 class="boxstatus-title common_panel_label">云箱状态汇总</h3>
@@ -49,8 +49,6 @@
                         </div>
                     </div>
                     <!-- line2 -->
-
-
                     <div class="row m-l m-r" style="background-color: #fff;">
                         <div class="col-md-offset-8 col-md-4 m-b">
                             <div class="form-group">
@@ -64,7 +62,11 @@
                     </div>
                 </div>
 
-                <div class="row" style="background-color: #fff;margin-top: 30px">
+                <div ng-show="!vm.containerlist.length" style="margin-top:80px;">
+                    <ng-no-data-fount  conf="'filter'"></ng-no-data-fount>
+                </div>
+                <div class="row" ng-show="vm.containerlist.length"
+                     style="background-color: #fff;margin-top: 30px">
                     <table st-table="vm.items" st-safe-src="vm.items"
                            class="table table-striped table-hover m-t">
                         <thead>

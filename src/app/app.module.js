@@ -33,7 +33,8 @@
             'ngPagination',
             "angular-md5",
             "toastr",
-            "ngGrid"
+            "ngGrid",
+            "ngNoDataFount"
     ]);
 
 })();

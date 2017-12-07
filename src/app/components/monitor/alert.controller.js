@@ -66,7 +66,7 @@
                 data: data,
                 success: function (response) {
                     vm.alerts = response.data.data.results;
-                    console.log(vm.alerts);
+                    console.log(vm.alerts.length);
                     $scope.conf.totalItems = response.data.data.count;
                 },
                 error: function (err) {
