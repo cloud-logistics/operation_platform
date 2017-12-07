@@ -12,7 +12,8 @@
         var toast = {
             error:error,
             success:success,
-            info:info
+            info:info,
+            noDataFound:noDataFound
         };
         return toast;
 
@@ -20,15 +21,29 @@
             var typeMenu = {
                 "success":"success",
                 "error":"error",
-                "info":"info"
+                "info":"info",
+                "noDataFound":"noDataFound"
             };
-            var html = '<div class="ngToast ngToast_' + typeMenu[type]  +' ngToast-bottom-left-' + toastsNum +'">'+
-                            '<div class="ngToast-icon ngToast-icon-' + typeMenu[type] + '">'+
+            if(type == "noDataFound"){
+                var html = '<div class="ngToast ngToast_noDataFound">'+
+                    '<div class="ngToast_noDataFound_icon">'+
+                        '<img src="images/img_other_nothing_01.png">'+
+                    '</div>'+
+                    '<div class="ngToast_noDataFound_text">'+
+                        '<span class="ngToast_noDataFound_text1">抱歉,没有找到...</span>'+
+                        '<span class="ngToast_noDataFound_text2">换个关键词试试吧</span>'+
+                    '</div>'+
+                '</div>';
+            }else{
+                var html = '<div class="ngToast ngToast_' + typeMenu[type]  +' ngToast-bottom-left-' + toastsNum +'">'+
+                                '<div class="ngToast-icon ngToast-icon-' + typeMenu[type] + '">'+
                                 '<img src="images/icon_alert_' + typeMenu[type] +'.svg">'+
-                            '</div>'+
-                            '<div class="ngToast_text">'+ msg +
-                            '</div>'+
-                        '</div>';
+                                '</div>'+
+                                '<div class="ngToast_text">'+ msg +
+                                '</div>'+
+                            '</div>';     
+            }
+           
             toastsNum++;
             console.log(html)
             return html;
@@ -76,6 +91,25 @@
         function info(msg){
             container = angular.element(tpl('info',msg));
             var id = "ngToastInfo" + new Date().getTime();
+            container.attr('id', id);
+            var target = angular.element(document.querySelector("body"));
+
+            if ( ! target || ! target.length) {
+                throw 'Target for toasts doesn\'t exist';
+            }
+
+            $animate.enter(container, target).then(function() {
+                //var hidden =  ;
+                setTimeout(function(){
+                    console.log("info---")
+                    $animate.leave(document.getElementById(id));
+                    remove(id);
+                },3000)
+            });
+        }
+        function noDataFound(msg){
+            container = angular.element(tpl('noDataFound',msg));
+            var id = "ngToastNoDataFound" + new Date().getTime();
             container.attr('id', id);
             var target = angular.element(document.querySelector("body"));
 

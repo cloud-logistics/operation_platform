@@ -40,7 +40,11 @@
             ).then(
 
                 function (response) {
-                    successResponse(response,successHandler);
+                    if(response.data['status'] == 'NoDataFound'){
+                        toastr.noDataFound();
+                    }else{
+
+                        successResponse(response,successHandler);}
                 },function (response) {
                     failedResponse(response,failedHandler,path);
                 }
@@ -50,7 +54,11 @@
         function get(path,param,successHandler,failedHandler) {
             var account = RestService.one(path);
             account.customGET("",param,requestHeader()).then(function (response) {
-                successResponse(response,successHandler);
+                if(response.data['status'] == 'NoDataFound'){
+                    toastr.noDataFound();
+                }else{
+                    successResponse(response,successHandler);
+                }
             },function (response) {
                 failedResponse(response,failedHandler,path);
             });

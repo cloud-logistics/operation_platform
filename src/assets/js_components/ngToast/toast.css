@@ -9,6 +9,40 @@
     border-radius: 5px;
     background: #FFFFFF;
 }
+.ngToast_noDataFound{
+    width:300px;
+    height:300px;
+    background: #FFFFFF;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.15);
+    border-radius: 10px;
+    left:40%;
+    top:100px;
+}
+.ngToast_noDataFound_icon{
+    text-align: center;
+    margin: 40px 40px 15px 40px;
+}
+.ngToast_noDataFound_text{
+    text-align: center;
+}
+.ngToast_noDataFound_text1{
+    font-size: 18px;
+    color: #999999;
+    letter-spacing: 0;
+    display:inline-block;
+    width:100%;
+    padding:5px 10px;
+    font-family: PingFangSC-Medium;
+}
+.ngToast_noDataFound_text2{
+    font-size: 14px;
+    color: #999999;
+    letter-spacing: 0;
+    display:inline-block;
+    width:100%;
+    padding:5px 10px;
+    font-family: PingFangSC-Regular;
+}
 
 .ngToast-icon{
     opacity:0.7;
@@ -19,6 +53,7 @@
     display:inline-block;
     float:left;
 }
+
 .ngToast-icon-success{
     border-right: 1px solid #67B930;
 }
@@ -89,3 +124,5 @@
     bottom:312px;
     left:10px;
 }
+
+

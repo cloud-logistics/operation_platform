@@ -36,7 +36,6 @@ angular.module('ngPagination',[]).directive('tmPagination', [function () {
             callback: "&"
         },
         link: function (scope, element, attrs) {
-
             //scope.$watchGroup(['conf.currentPage','conf.itemsPerPage'], function (newData) {
             //    scope.callback();
             //});

@@ -1,0 +1,31 @@
+.ngGrid_thead >span{
+    display:inline-block;
+    text-align: center;
+    line-height:40px;
+    padding: 8px 15px;
+    border-bottom: 1px solid #eaeff0;
+    color: #999;
+    font-weight: 400;
+
+}
+.ngGird_tr{
+    width:100%;
+}
+.ngGird_tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+.ngGird_tr>span{
+    display:inline-block;
+    text-align: center;
+    line-height:40px;
+    padding: 8px 15px;
+    border-top: 1px solid #eaeff0;
+    vertical-align: top;
+    color: #666;
+    font-weight: 400;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}

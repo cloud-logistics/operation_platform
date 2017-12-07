@@ -118,7 +118,6 @@
             };
             ApiServer.getRealtimeInfo(queryParams, function (response) {
                 var locationName = undefined;
-
                 if(response.data&&response.data['locationName']){
                     response.data['locationName4Hover'] = response.data['locationName'];
                     response.data['locationName'] = response.data['locationName'].split(' ')[0];

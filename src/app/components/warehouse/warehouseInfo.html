@@ -3,7 +3,7 @@
     <!-- main -->
     <div class="col">
         <div id="whInfo" style="height: 100vh;">
-            <div class="wrapper-md" style="padding-bottom:0;">
+            <div class="wrapper-md">
                 <div id="whSet" class="row whSet " ng-class="{true:'isShowMap',false:''}[showAdd]"  style="background-color: #fff">
                     <div class="bb-title wh-title">
                         <span class="common_panel_label">录入仓库基础信息</span>
@@ -88,6 +88,21 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label form-control-static">联系电话</label>
+                                    <div class="col-md-8">
+                                        <input ng-model="vm.siteInfo.telephone" type="text"
+                                               ng-change="validationCheck()"
+                                               ng-keydown="validationLength(vm.siteInfo.telephone,11)"
+                                               ng-class="telephone_class + telephone_invalid_class"
+                                               class="form-control" placeholder="请输入电话号码">
+                                        <div class="validation" ng-show="telephone_invalid_msg">
+                                            {{telephone_invalid_msg}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="row m-b">
                             <div class="col-md-8">
@@ -139,7 +154,8 @@
                             <td style="width:{{vm.table[4]['width']}}">{{item.city.city_name}}</td>
                             <td style="width:{{vm.table[5]['width']}}">{{item.location}}</td>
                             <td style="width:{{vm.table[6]['width']}}">{{item.volume}}</td>
-                            <td style="width:{{vm.table[7]['width']}}">
+                            <td style="width:{{vm.table[7]['width']}}">{{item.telephone}}</td>
+                            <td style="width:{{vm.table[8]['width']}}">
                                 <span class="bb-edit-btn" ng-click="vm.edit(item,true)">编辑</span>
                                 <span class="bb-del-btn" ng-click="vm.deleteSiteInfo(item.id)">删除</span>
                             </td>
@@ -147,7 +163,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <!--<ng-grid tableConfig="vm.tableConfig"></ng-grid>-->
+                    <ng-grid tableConfig="vm.tableConfig"></ng-grid>
                     <tm-pagination style="float:right;" conf="conf"></tm-pagination>
                 </div>
                 </div>
