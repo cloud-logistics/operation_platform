@@ -74,9 +74,9 @@
                             <th>云箱ID</th>
                             <th>当前状态</th>
                             <th>所在地</th>
-                            <th>速度</th>
-                            <th>温度</th>
-                            <th>湿度</th>
+                            <th>速度(km/h)</th>
+                            <th>温度(℃)</th>
+                            <th>湿度(%)</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -87,7 +87,7 @@
                             <td style="vertical-align: middle;">{{item.location_name}}</td>
                             <td style="vertical-align: middle;">{{item.speed}}</td>
                             <td style="vertical-align: middle;">{{item.temperature}}</td>
-                            <td style="vertical-align: middle;">{{item.humidity}}%</td>
+                            <td style="vertical-align: middle;">{{item.humidity}}</td>
                             <td><a class="btn-table-detail" ui-sref="app.realtime({
                                 containerId: item.deviceid
                             })">查看详情</a></td>

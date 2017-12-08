@@ -45,7 +45,6 @@
             }
            
             toastsNum++;
-            console.log(html)
             return html;
         }
         function remove(id){
@@ -101,7 +100,6 @@
             $animate.enter(container, target).then(function() {
                 //var hidden =  ;
                 setTimeout(function(){
-                    console.log("info---")
                     $animate.leave(document.getElementById(id));
                     remove(id);
                 },3000)
@@ -120,7 +118,6 @@
             $animate.enter(container, target).then(function() {
                 //var hidden =  ;
                 setTimeout(function(){
-                    console.log("info---")
                     $animate.leave(document.getElementById(id));
                     remove(id);
                 },3000)
