@@ -74,7 +74,10 @@
                     infoWindow(map, currentPositionMarker, "当前搜索的云箱位置信息不正确，请查看详情");
                 } else {
                     currentPositionMarker = MapService.addMarker(map)(currentPosition,{notTranslate:true});
-                    infoWindow(map, currentPositionMarker, "当前点: " + currentLocationName);
+                    google.maps.event.addListener(currentPositionMarker, 'click', function (event) {
+                        infoWindow(map, currentPositionMarker, "当前位置: " + currentLocationName);
+                    });
+                    infoWindow(map, currentPositionMarker, "当前位置: " + currentLocationName);
 
                     bounds.extend(currentPositionMarker.getPosition());
                     map.fitBounds(bounds);

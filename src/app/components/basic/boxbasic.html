@@ -34,6 +34,7 @@
                                 <select ng-model="vm.editBasicInfoConfig.box_type_id"
                                         ng-class="{true:'areaRequire',false:''}[editValidation.box_type_id]"
                                         ng-change="editValidationCheck()"
+                                        disabled
                                         name="account" class="form-control">
                                     <option value="">-- 请选择 --</option>
                                     <option ng-repeat="item in vm.options.containerType track by $index" ng-value="item.id">{{item.value}}</option>

@@ -208,6 +208,7 @@
                 },
                 site_code:vm.siteInfo.site_code,
                 volume:vm.siteInfo.volume,
+                telephone:vm.siteInfo.telephone,
                 name:vm.siteInfo.name
             };
             vm.edit(obj);

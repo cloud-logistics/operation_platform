@@ -7,7 +7,7 @@
         .directive('ngNoDataFount',[function(){
             return {
                 restrict: 'EA',
-                templateUrl: './assets/js_components/ngNDF/ng-noDataFount.html',
+                templateUrl: 'js_components/ngNDF/ng-noDataFount.html',
                 replace: true,
                 scope: {
                     conf: '='
