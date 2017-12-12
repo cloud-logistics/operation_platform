@@ -179,6 +179,7 @@
                 lng: parseFloat(vm.siteInfo.longitude),
                 lat: parseFloat(vm.siteInfo.latitude)
             };
+            getAddressByLngLat(vm.siteInfo.longitude,vm.siteInfo.latitude,true);
             changeMapState(point.lng,point.lat,8);
             console.log("point-==",point);
             marker = MapService.addMarker(map)(point, {draggable: true,notTranslate:true});
@@ -214,7 +215,7 @@
             vm.edit(obj);
         };
 
-        var getAddressByLngLat = function (lng, lat) {
+        var getAddressByLngLat = function (lng, lat,notNeedResetLocation) {
             vm.siteInfo.longitude = lng;
             vm.siteInfo.latitude = lat;
             ApiServer.getAddressByLngLat({
@@ -228,7 +229,9 @@
                         toastr.info(res.data.msg);
                     }else{
                         vm.siteInfo.location = res.data.position_name;
-                        resetLocation(_.extend(res.data,{id:vm.siteInfo.id}),lng,lat);
+                        if(!notNeedResetLocation){
+                            resetLocation(_.extend(res.data,{id:vm.siteInfo.id}),lng,lat);
+                        }
                     }
                 },
                 "error": function (res) {
