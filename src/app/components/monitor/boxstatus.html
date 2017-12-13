@@ -11,11 +11,11 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label form-control-static">ID</label>
+                                <label class="col-md-4 control-label form-control-static" style="text-align: center;">ID</label>
                                 <div class="col-md-8" style="display:inline-block;">
                                     <input ng-model="vm.queryParams.containerId"
                                            type="text"
-                                           style="margin-right:0;"
+                                           style="margin-right:0;height:34px;"
                                            class="form-control rt-search"
                                            ng-change="validationCheck()"
                                            maxlength="22"
@@ -29,7 +29,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label form-control-static">云箱型号</label>
+                                <label class="col-md-4 control-label form-control-static" style="text-align: center;">云箱型号</label>
                                 <div class="col-md-8">
                                     <select name="account" class="form-control m-b" ng-model="vm.queryParams.containerType" >
                                         <option ng-repeat="item in vm.options.containerType track by $index" ng-value="item.id">{{item.value}}</option>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label form-control-static">当前所在地</label>
+                                <label class="col-md-4 control-label form-control-static" style="text-align: center;">当前所在地</label>
                                 <div class="col-md-8">
                                     <select name="account" class="form-control m-b" ng-model="vm.queryParams.location">
                                         <option ng-repeat="item in vm.options.location track by $index" ng-value="item.id">{{item.value}}</option>
@@ -54,7 +54,7 @@
                             <div class="form-group">
                                 <div class="col-md-offset-4 col-md-8">
                                     <button type="submit" class="btn common_panel_btn btn-sm btn-block btn-boxstatus"
-                                            ng-click="vm.getBoxStatus()">搜索总汇
+                                            ng-click="vm.getBoxStatus()">搜索汇总
                                     </button>
                                 </div>
                             </div>

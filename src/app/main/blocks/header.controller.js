@@ -72,12 +72,11 @@
                 success:function(){
                     var authorizationKey = constdata.token;
                     var userInfo = constdata.informationKey;
-                    $timeout(function () {
-                        StorageService.clear(authorizationKey);
-                        StorageService.clear(userInfo);
-                        StorageService.clear(constdata.token);
-                        $state.go('access.signin');
-                    }, 60);
+                    StorageService.clear(authorizationKey);
+                    StorageService.clear(userInfo);
+                    StorageService.clear(constdata.token);
+                    $state.go('access.signin');
+
                 }
             });
         }

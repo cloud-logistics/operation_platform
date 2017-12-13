@@ -117,6 +117,7 @@ angular.module('ngPagination',[]).directive('tmPagination', [function () {
                     // 总页数大于分页长度（此时分为三种情况：1.左边没有...2.右边没有...3.左右都有...）
                     // 计算中心偏移量
                     var offset = (scope.conf.pagesLength - 1) / 2;
+                    console.log(" offset = ",offset);
                     if (scope.conf.currentPage <= offset) {
                         // 左边没有...
                         for (i = 1; i <= offset + 1; i++) {

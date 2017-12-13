@@ -87,7 +87,7 @@ var switchRecord = function (isShow) {
                 "offset": ($scope.conf.currentPage - 1) * $scope.conf.itemsPerPage,
                 "success": function (response) {
                     vm.whStatusData = response.data.data.results;
-                    $scope.conf.totalItems = response.data.data.count;
+                    $scope.conf.totalItems = response.data.data.count ;
                     if (callback) {
                         callback()
                     }
@@ -126,7 +126,7 @@ var switchRecord = function (isShow) {
             currentPage: 1,
             itemsPerPage: 10,
             totalItems: 0,
-            pagesLength: 15,
+            pagesLength: 7,
             perPageOptions: [10, 20, 30, 40, 50],
             onChange: function () {
             }
