@@ -35,29 +35,38 @@
                 data:"",
                 success:function(res){
                     var bounds = new google.maps.LatLngBounds();
+                    var weight = 1;
 
                     var histData = R.map(function(item){
                         var lng = parseFloat(item.longitude);
                         var lat = parseFloat(item.latitude);
+
+                        if(item.box_num != 0) {
+                          weight = item.box_num;
+                        }
+
                         var res = {
                             location: new google.maps.LatLng(lat, lng),
-                            weight: item.box_num
+                            weight: 1
                         };
                         return res;
                     })(res.data.sites);
-                    console.log(histData);
 
-                    heatmap = new google.maps.visualization.HeatmapLayer({
-                      data: histData,
-                      radius: 20,
-                      map: map
-                    });
+                    if(R.isEmpty(histData)){
+                      toastr.error('未查询到仓库信息，请联系管理员！');
+                    }else {
+                        heatmap = new google.maps.visualization.HeatmapLayer({
+                          data: histData,
+                          radius: 20,
+                          map: map
+                        });
 
-                    histData.map(function (item) {
-                      bounds.extend(item.location);
-                    })
+                        histData.map(function (item) {
+                          bounds.extend(item.location);
+                        })
 
-                    map.fitBounds(bounds);
+                        map.fitBounds(bounds);
+                    }
                 },
                 error:function(err){
                     console.log("获取仓库分布失败.");
