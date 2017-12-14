@@ -73,8 +73,8 @@
                 console.log("校验失败.");
                 return;
             }
-            var start_time = vm.queryParams.start_time.valueOf().toString().slice(0,10);
-            var end_time = vm.queryParams.end_time.valueOf().toString().slice(0,10);
+            var start_time =vm.queryParams.start_time.valueOf().toString().slice(0,10);
+            var end_time =  parseInt(vm.queryParams.end_time.valueOf().toString().slice(0,10)) + 60*60*24 + "" ;
 
             var queryParams = {
                 containerId: vm.queryParams.containerId,

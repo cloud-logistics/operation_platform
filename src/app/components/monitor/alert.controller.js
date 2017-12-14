@@ -48,7 +48,7 @@
             vm.queryParams = {
                 alertType : R.compose(R.prop("id"),R.head)(vm.options.alertType)
             }
-            getAlerts();
+
         })
 
         function getAlerts () {
