@@ -112,6 +112,9 @@
                     //canceler.reject();
                 }else{
                     toastr.info('登录超时，请重新登录');
+
+                    canceler.resolve('user cancel');
+                    canceler.reject();
                     canceler = null;
                     $state.go('access.signin');
                 }

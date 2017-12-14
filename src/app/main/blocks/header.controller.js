@@ -77,6 +77,14 @@
                     StorageService.clear(constdata.token);
                     $state.go('access.signin');
 
+                },
+                error:function() {
+                    //var authorizationKey = constdata.token;
+                    //var userInfo = constdata.informationKey;
+                    //StorageService.clear(authorizationKey);
+                    //StorageService.clear(userInfo);
+                    //StorageService.clear(constdata.token);
+                    //$state.go('access.signin');
                 }
             });
         }
