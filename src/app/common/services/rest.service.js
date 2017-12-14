@@ -8,7 +8,9 @@
 
     // REST service based on Restangular  that uses setFullResponse
     /** @ngInject */
-    function RestService(Restangular,StorageService,logger,constdata) {
+    function RestService(Restangular,StorageService,logger,constdata,$q) {
+        console.log('sss==',Restangular)
+        $q.resolve();
         return Restangular.withConfig(function (RestangularConfigurer) {
             RestangularConfigurer.setFullResponse(true);
         });
@@ -21,7 +23,7 @@
 
     /** @ngInject */
     function NetworkService(RestService,StorageService,$state,toastr,$q,constdata) {
-        var canceler;
+        var canceler = $q.defer();
 
         var service = {
             post  : post,
@@ -40,7 +42,11 @@
             ).then(
 
                 function (response) {
-                    successResponse(response,successHandler);
+                    if(response.data['status'] == 'NoDataFound'){
+                        toastr.noDataFound();
+                    }else{
+
+                        successResponse(response,successHandler);}
                 },function (response) {
                     failedResponse(response,failedHandler,path);
                 }
@@ -50,7 +56,11 @@
         function get(path,param,successHandler,failedHandler) {
             var account = RestService.one(path);
             account.customGET("",param,requestHeader()).then(function (response) {
-                successResponse(response,successHandler);
+                if(response.data['status'] == 'NoDataFound'){
+                    toastr.noDataFound();
+                }else{
+                    successResponse(response,successHandler);
+                }
             },function (response) {
                 failedResponse(response,failedHandler,path);
             });
@@ -96,17 +106,14 @@
 
             console.log('-------' + path + '---------');
             console.log(response);
-            if(response && (response.status == 401)){
-                if (canceler){
-                    canceler.reject();
-                    canceler.resolve();
+            if(response && (response.status == 401 || response.status == -1)){
+                if (!canceler){
+                    //canceler.resolve('user cancel');
+                    //canceler.reject();
                 }else{
-                    canceler = $q.defer();
                     toastr.info('登录超时，请重新登录');
-                    setTimeout(function(){
-                        canceler = null;
-                        $state.go('access.signin');
-                    },100);
+                    canceler = null;
+                    $state.go('access.signin');
                 }
             }else{
                 var newResponse = {};

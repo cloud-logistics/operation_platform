@@ -29,14 +29,15 @@
 
         };
         vm.table = [
-            {"name":"仓库名称", width:"13%"},
+            {"name":"仓库名称", width:"12%"},
             {"name":"仓库ID", width:"12%"},
             {"name":"国家", width:"8%"},
-            {"name":"省", width:"10%"},
-            {"name":"市", width:"10%"},
-            {"name":"位置", width:"24%"},
+            {"name":"省", width:"8%"},
+            {"name":"市", width:"8%"},
+            {"name":"位置", width:"20%"},
             {"name":"容量", width:"8%"},
-            {"name":"", width:"15%"}
+            {"name":"联系电话", width:"8%"},
+            {"name":"", width:"16%"}
         ];
         $scope.showAdd = false;
         $scope.switchShowAdd = function () {
@@ -58,22 +59,34 @@
         $scope.cancel = cancel;
         vm.options = {};
 
-        //vm.tableConfig = {
-        //    col:[{"name":"仓库名称", width:"13%"},
-        //        {"name":"仓库ID", width:"12%"},
-        //        {"name":"国家", width:"8%"},
-        //        {"name":"省", width:"10%"},
-        //        {"name":"市", width:"10%"},
-        //        {"name":"位置", width:"24%"},
-        //        {"name":"容量", width:"8%"},
-        //        {"name":"", width:"15%"}]
-        //}
+        $scope.tableConfig = {
+            col:[{"name":"仓库名称", width:"13%",model:"name"},
+                {"name":"仓库ID", width:"12%",model:"site_code"},
+                {"name":"国家", width:"8%",model:"nation.nation_name",formatter:function(tr){
+                    return tr['nation']['nation_name'];
+                }},
+                {"name":"省", width:"10%",model:"province.province_name",formatter:function(tr){
+                    return tr['province']['province_name'];
+                }},
+                {"name":"市", width:"10%",model:"city.city_name",formatter:function(tr){
+                    return tr['city']['city_name'];
+                }},
+                {"name":"位置", width:"24%",model:"location"},
+                {"name":"容量", width:"8%",model:"volume"},
+                {"name":"操作", width:"15%",model:"",formatter:function(tr,that){
+                    console.log("that",that)
+                    return '<a class="bb-edit-btn" ng-click="vm.edit(tr,true)">编辑</a>' +
+                        '<a class="bb-del-btn" ng-click="vm.deleteSiteInfo(tr.id)">删除</a>'
+                }}]
+        };
 
         function clearMarker() {
             if (marker) {
                 marker.setMap(null)
             }
         }
+
+
 
         $scope.conf = {
             currentPage: 1,
@@ -166,6 +179,7 @@
                 lng: parseFloat(vm.siteInfo.longitude),
                 lat: parseFloat(vm.siteInfo.latitude)
             };
+            getAddressByLngLat(vm.siteInfo.longitude,vm.siteInfo.latitude,true);
             changeMapState(point.lng,point.lat,8);
             console.log("point-==",point);
             marker = MapService.addMarker(map)(point, {draggable: true,notTranslate:true});
@@ -195,12 +209,13 @@
                 },
                 site_code:vm.siteInfo.site_code,
                 volume:vm.siteInfo.volume,
+                telephone:vm.siteInfo.telephone,
                 name:vm.siteInfo.name
             };
             vm.edit(obj);
         };
 
-        var getAddressByLngLat = function (lng, lat) {
+        var getAddressByLngLat = function (lng, lat,notNeedResetLocation) {
             vm.siteInfo.longitude = lng;
             vm.siteInfo.latitude = lat;
             ApiServer.getAddressByLngLat({
@@ -214,7 +229,9 @@
                         toastr.info(res.data.msg);
                     }else{
                         vm.siteInfo.location = res.data.position_name;
-                        resetLocation(_.extend(res.data,{id:vm.siteInfo.id}),lng,lat);
+                        if(!notNeedResetLocation){
+                            resetLocation(_.extend(res.data,{id:vm.siteInfo.id}),lng,lat);
+                        }
                     }
                 },
                 "error": function (res) {
@@ -272,7 +289,8 @@
                 'city.city_id',
                 'name',
                 'volume',
-                'location'
+                'location',
+                'telephone'
             ];
             var menu2 = [
                 'nation_class',
@@ -280,7 +298,8 @@
                 'city_class',
                 'name_class',
                 'volume_class',
-                'location_class'
+                'location_class',
+                'telephone_class'
             ];
             for(var s = 0,len = menu1.length;s<3;s++){
                 if(!(vm.siteInfo[menu1[s].split(".")[0]][menu1[s].split(".")[1]])){
@@ -308,6 +327,14 @@
             }else{
                 $scope['volume_invalid_class'] = "";
                 $scope.volume_invalid_msg = "";
+            }
+            if(!/^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$/.test(vm.siteInfo.telephone)){
+                $scope.telephone_invalid_msg = "请输入合法电话号码";
+                $scope['telephone_invalid_class'] = "invalida-area";
+                flag = false;
+            }else{
+                $scope['telephone_invalid_class'] = "";
+                $scope.telephone_invalid_msg = "";
             }
 
             return flag;
@@ -339,6 +366,7 @@
                 "latitude": "",
                 "site_code": "",
                 "volume": "",
+                "telephone":"",
                 "city":{},
                 "nation":{},
                 province:{}
@@ -358,7 +386,9 @@
                 'volume_class',
                 'location_class',
                 'volume_invalid_class',
-                'volume_invalid_msg'
+                'telephone_invalid_class',
+                'volume_invalid_msg',
+                'telephone_invalid_msg'
             ];
             for(var s = 0,len = menu2.length;s <len;s++){
                 $scope[menu2[s]] = "";
@@ -373,6 +403,7 @@
                 "site_code": vm.siteInfo.site_code || "1111",
                 "volume": vm.siteInfo.volume||0,
                 "name":vm.siteInfo.name,
+                "telephone":vm.siteInfo.telephone,
                 "city_id": vm.siteInfo.city.city_id,
                 "province_id": vm.siteInfo.province.province_id,
                 "nation_id": vm.siteInfo.nation.nation_id
@@ -425,6 +456,7 @@
                 "latitude": vm.siteInfo.latitude,
                 "site_code": vm.siteInfo.site_code || "1111",
                 "volume": vm.siteInfo.volume,
+                "telephone":vm.siteInfo.telephone,
                 "name":vm.siteInfo.name,
                 "city_id": vm.siteInfo.city.city_id,
                 "province_id": vm.siteInfo.province.province_id,
@@ -452,6 +484,7 @@
                 "offset": ($scope.conf.currentPage - 1)*$scope.conf.itemsPerPage,
                 "success": function (res) {
                     vm.siteInfoList = res.data.data.results;
+                    $scope.tableConfig.data = res.data.data.results;
                     $scope.conf.totalItems = res.data.data.count;
                     console.log("vm.siteInfoList", vm.siteInfoList)
                 },
@@ -462,7 +495,7 @@
         }
 
         $scope.validationLength = function(value,len){
-            if(((value+"").length > len ||value>1000)&& event.keyCode!=8 && value != null){
+            if(((value+"").length > len ||(value> Math.pow(10,len)))&& event.keyCode!=8 && value != null){
                 event.preventDefault();
             }
         };

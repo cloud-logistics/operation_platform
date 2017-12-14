@@ -1,0 +1,24 @@
+.nDF{
+    text-align: center;
+}
+.nDF_img{
+}
+.nDF_text{
+    margin:20px 0;
+}
+.nDF_text1{
+    display:inline-block;
+    width:100%;
+    font-family: PingFangSC-Medium;
+    font-size: 18px;
+    color: #999999;
+    letter-spacing: 0;
+}
+.nDF_text2{
+    display:inline-block;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #999999;
+    letter-spacing: 0;
+    margin:10px 0;
+}

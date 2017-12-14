@@ -10,11 +10,15 @@
           templateUrl: './assets/js_components/ngGrid/ng-grid.html',
           replace: true,
           scope: {
-             tableConfig: '='
+             conf: '='
           },
           link: function (scope, element, attrs) {
-             console.log("scope",scope);
-          }
+             console.log("scope",scope.conf);
+          },
+            controller:function($scope){
+
+                console.log("scope",$scope);
+            }
        }
     }])
 }());

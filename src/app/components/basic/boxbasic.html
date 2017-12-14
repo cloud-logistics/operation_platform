@@ -34,6 +34,7 @@
                                 <select ng-model="vm.editBasicInfoConfig.box_type_id"
                                         ng-class="{true:'areaRequire',false:''}[editValidation.box_type_id]"
                                         ng-change="editValidationCheck()"
+                                        disabled
                                         name="account" class="form-control">
                                     <option value="">-- 请选择 --</option>
                                     <option ng-repeat="item in vm.options.containerType track by $index" ng-value="item.id">{{item.value}}</option>
@@ -245,8 +246,10 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="row bb-table" style="background-color: #fff;margin-top: 30px">
+                <div ng-show="!vm.basicInfoManage.length" style="margin-top:80px;">
+                    <ng-no-data-fount  conf="'search'"></ng-no-data-fount>
+                </div>
+                <div class="row bb-table" ng-show="vm.basicInfoManage.length" style="background-color: #fff;margin-top: 30px">
                     <table st-table="vm.items" st-safe-src="vm.items" class="table table-striped table-hover m-t">
                         <thead>
                         <tr>
@@ -257,7 +260,6 @@
                             <th>生产厂家</th>
                             <th>出厂日期</th>
                             <th>电源信息</th>
-                            <th></th>
                             <th></th>
                         </tr>
                         </thead>

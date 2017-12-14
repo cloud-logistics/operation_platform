@@ -36,7 +36,7 @@
         var overlay = undefined;
 
         var heatmap = undefined;
-        var flightPath;
+        var flightPath = [];
         var setHeatmap = function () {
             ApiServer.getDistribution({
                 data: "",
@@ -82,13 +82,15 @@
 
         var setLine = function (oPoint, tPoint, map,color,width) {
             var path = [oPoint, tPoint];
-            flightPath = new google.maps.Polyline({
+            var tempPath = new google.maps.Polyline({
                 path: path,
                 strokeColor: color || '#FF0000',
                 strokeOpacity: 0.02,
                 strokeWeight: width
             });
-            flightPath.setMap(map);
+            tempPath.setMap(map);
+
+            flightPath.push(tempPath);
         };
 
         var setMarker = function (bounds) {
@@ -189,10 +191,12 @@
             }
             infoList = [];
             if (flightPath) {
-                flightPath.setPath([]);
+                _.map(flightPath,function(item){
+                    item.setPath([]);
+                });
+                flightPath = [];
             }
         }
-
 
         var parseColor = function (hexStr) {
             return hexStr.length === 4 ? hexStr.substr(1).split('').map(function (s) { return 0x11 * parseInt(s, 16); }) : [hexStr.substr(1, 2), hexStr.substr(3, 2), hexStr.substr(5, 2)].map(function (s) { return parseInt(s, 16); })
@@ -234,20 +238,24 @@
             var A = Math.abs(a.lat - b.lat);
             var B = Math.abs(a.lng - b.lng);
             if(a.lng < b.lng && a.lat > b.lat){ //第一象限
+                console.log("第一象限")
                 thetaMin  = 0;
                 lngCenter = a.lng;
                 latCenter = b.lat;
             }else if(a.lng < b.lng && a.lat < b.lat){//第四象限
+                console.log("第四象限")
                 thetaMin  = 3*Math.PI/2;
                 lngCenter = a.lng;
                 latCenter = b.lat;
             }else if(a.lng > b.lng && a.lat > b.lat){//第二象限
+                console.log("第二象限")
                 thetaMin  = Math.PI/2;
                 lngCenter = a.lng;
                 latCenter = b.lat;
             }else if(a.lng > b.lng && a.lat < b.lat){//第三象限
+                console.log("第三象限")
                 thetaMin  = Math.PI;
-                lngCenter = b.lng;
+                lngCenter = a.lng;
                 latCenter = b.lat;
             }
             var colorArray = gradientColors(sColor,eColor,len);

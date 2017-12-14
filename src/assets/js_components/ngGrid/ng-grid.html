@@ -1,8 +1,10 @@
 <div class="ngGrid_table">
     <div class="ngGrid_thead">
-        <span ng-repeat="td in tableConfig.col">{{td.name}}</span>
+        <span style="width:{{th.width}};" ng-repeat="th in conf.col">{{th.name}}</span>
     </div>
     <div class="ngGird_tbody">
-
+        <div class="ngGird_tr" ng-repeat="tr in conf.data">
+            <span style="width:{{td.width}}" ng-repeat="td in conf.col">{{td.formatter ? td.formatter(tr,this):tr[td.model]}}</span>
+        </div>
     </div>
 </div>

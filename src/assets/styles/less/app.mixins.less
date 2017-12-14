@@ -18,7 +18,7 @@
 	}
   &.bg,
   .bg{
-    background-color: @bg-color;
+
   }
 }
 
@@ -32,10 +32,8 @@
   @hover-color: #fff;
   color: @font-color;
 	a {
-		color: @link-color;
-		&:hover{
-			color: @hover-color;
-		}
+		color: inherit;
+
 		&.list-group-item{
 			&:hover,
 			&:focus{
@@ -49,8 +47,9 @@
       &:focus,
       &.active{
         > a{
-          color: @hover-color;
+          color:inherit;
           .color-schema(@bg-color, 5%, 2.5%);
+          background-color:#1F3151;
         }
       }
 			> a{
