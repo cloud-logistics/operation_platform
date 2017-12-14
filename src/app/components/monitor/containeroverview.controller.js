@@ -45,6 +45,7 @@
             ApiServer.getContainerOverviewInfo(function (response) {
                 var containers = R.compose(
                     R.map(function(item){
+                        console.log(item);
                         return new google.maps.LatLng(item.lat, item.lng);
                     }),
                     R.filter(
