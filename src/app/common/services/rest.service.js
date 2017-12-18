@@ -9,7 +9,7 @@
     // REST service based on Restangular  that uses setFullResponse
     /** @ngInject */
     function RestService(Restangular,StorageService,logger,constdata,$q) {
-        console.log('sss==',Restangular)
+        // console.log('sss==',Restangular)
         $q.resolve();
         return Restangular.withConfig(function (RestangularConfigurer) {
             RestangularConfigurer.setFullResponse(true);

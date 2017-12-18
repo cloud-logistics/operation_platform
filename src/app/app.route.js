@@ -161,11 +161,11 @@
                 templateUrl: 'app/components/predictionDecision/predictionDecision.html'
             })
             .state('access.signin', {
-                url: '/signin',
+                url: 'signin',
                 templateUrl: 'app/components/signin/signin.html'
             })
             .state('access.signup', {
-                url: '/signup',
+                url: 'signup',
                 templateUrl: 'app/components/signin/signup.html'
             })
 
@@ -176,7 +176,7 @@
 
             /** LOGIN **/
             .state('access', {
-                url: '/access',
+                url: '/access/',
                 templateUrl: 'signin.html',
                 controller: 'SigninController',
                 controllerAs: 'vm'
