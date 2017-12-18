@@ -5,22 +5,33 @@
     angular
         .module('smart_container')
         .config(routeConfig)
-        .run(function($rootScope, $state, $stateParams,constdata,$location) {
+        .run(function ($rootScope, $state, $stateParams, constdata, $location,StorageService) {
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
             $rootScope.pageRoutes = [];
             var count = 0;
 
-            $rootScope.$on("$stateChangeSuccess",  function(event, toState, toParams, fromState, fromParams) {
+            $rootScope.$on("$stateChangeSuccess", function (event, toState, toParams, fromState, fromParams) {
                 // to be used for back button //won't work when page is reloaded.
                 var findedIndex = -1;
                 $rootScope.previousState_name = fromState.name;
                 $rootScope.previousState_params = fromParams;
+
+                $rootScope.$on('$stateChangeStart',
+                    function (event, toState, toParams, fromState, fromParams, options) {
+                        if (toState.name != 'access.signin') {
+                            if (StorageService.get(constdata.token) == null) {
+                                event.preventDefault();
+                                $state.go('access.signin');
+                            }
+                        }
+                    })
+
                 var myUrl = constdata.routeName[toState.name];
                 var routeObj = {
-                url : myUrl,
-                name : toState.name,
-                params : toParams
+                    url: myUrl,
+                    name: toState.name,
+                    params: toParams
                 }
 
                 var firstLevelNav = [
@@ -30,7 +41,7 @@
                 ];
 
                 //点击一级把一级和后面所有的route全部去掉
-                if ( R.any(R.equals(routeObj.name))(firstLevelNav) ) {
+                if (R.any(R.equals(routeObj.name))(firstLevelNav)) {
                     // have to use splice, otherwise, nav works abnormal, do not know why...
                     $rootScope.pageRoutes.splice(0);
                 } else {
@@ -50,27 +61,27 @@
 
                 //数组去重处理函数
                 function checkLastTwoRoute(arr) {
-                var arrLen = arr.length;
-                if(arrLen>=2) {
-                    //后两个重复处理
-                    if(arr[arrLen-1].url == arr[arrLen-2].url) {
-                    arr.splice(arrLen-1,1);
-                    return;
+                    var arrLen = arr.length;
+                    if (arrLen >= 2) {
+                        //后两个重复处理
+                        if (arr[arrLen - 1].url == arr[arrLen - 2].url) {
+                            arr.splice(arrLen - 1, 1);
+                            return;
+                        }
+                        //最后一个和前面的某一个重复处理
+                        var arrExceptLast = arr.slice(0, arrLen - 2);
+                        var urlArrExceptLast = [];
+                        arrExceptLast.forEach(function (item, index) {
+                            urlArrExceptLast.push(item.url);
+                        });
+                        var findIndex = urlArrExceptLast.indexOf(arr[arrLen - 1].url);
+                        findIndex >= 0 ? arr.splice(findIndex + 1) : console.log();
                     }
-                    //最后一个和前面的某一个重复处理
-                    var arrExceptLast = arr.slice(0, arrLen-2);
-                    var urlArrExceptLast = [];
-                    arrExceptLast.forEach(function(item, index) {
-                    urlArrExceptLast.push(item.url);
-                    });
-                    var findIndex = urlArrExceptLast.indexOf(arr[arrLen-1].url);
-                    findIndex>=0 ? arr.splice(findIndex+1) : console.log();
-                }
                 }
             });
             //back button function called from back button's ng-click="backPre()"
-            $rootScope.backPre = function() {//实现返回的函数
-                $state.go($rootScope.previousState_name,$rootScope.previousState_params);
+            $rootScope.backPre = function () {//实现返回的函数
+                $state.go($rootScope.previousState_name, $rootScope.previousState_params);
             };
         });
 
@@ -90,42 +101,42 @@
                 templateUrl: 'app/components/monitor/siteoverview.html'
             })
             //实时报文详情
-            .state('app.realtime',{
+            .state('app.realtime', {
                 url: 'realtime/:containerId',
                 templateUrl: 'app/components/monitor/realtime.html'
             })
             //实时位置
-            .state('app.instantlocation',{
+            .state('app.instantlocation', {
                 url: 'instantlocation/:containerId',
                 templateUrl: 'app/components/monitor/instantlocation.html'
             })
             //历史轨迹
-            .state('app.historylocation',{
+            .state('app.historylocation', {
                 url: 'historylocation/:containerId/:startTime/:endTime',
                 templateUrl: 'app/components/monitor/historylocation.html'
             })
             //告警详情
-            .state('app.alert',{
+            .state('app.alert', {
                 url: 'alert/:containerId/:alertLevel/:alertType/:alertCode',
                 templateUrl: 'app/components/monitor/alert.html'
             })
             //基础信息查询
-            .state('app.basicinfo',{
+            .state('app.basicinfo', {
                 url: 'basicinfo/:containerId/:containerType/:factory',
                 templateUrl: 'app/components/monitor/basicinfo.html'
             })
             //状态汇总
-            .state('app.boxstatus',{
+            .state('app.boxstatus', {
                 url: 'boxstatus/:containerId/:alertLevel/:alertType',
                 templateUrl: 'app/components/monitor/boxstatus.html'
             })
             //云箱管理 ---- 云箱信息
-            .state('app.boxbasic',{
+            .state('app.boxbasic', {
                 url: 'boxbasic',
                 templateUrl: 'app/components/basic/boxbasic.html'
             })
             //云箱管理  ----  安全参数
-            .state('app.boxparam',{
+            .state('app.boxparam', {
                 url: 'boxparam',
                 templateUrl: 'app/components/basic/boxparam.html'
             })
@@ -141,7 +152,7 @@
             })
 
             //云箱信息查询
-            .state('app.boxdetail',{
+            .state('app.boxdetail', {
                 url: 'boxdetail',
                 templateUrl: 'app/components/monitor/boxDetail.html'
             })
@@ -158,7 +169,7 @@
                 templateUrl: 'app/components/signin/signup.html'
             })
 
-            .state('app.command',{
+            .state('app.command', {
                 url: 'command/:containerId/:endpointId',
                 templateUrl: 'app/components/monitor/command.html'
             })
