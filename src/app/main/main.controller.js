@@ -24,7 +24,7 @@
         };
         // config
         $scope.app = {
-            name: 'air cc',
+            name: 'airswitchNav cc',
             version: '0.0.1',
             // for chart colors
             color: {
