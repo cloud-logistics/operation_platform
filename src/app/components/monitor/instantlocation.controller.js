@@ -75,6 +75,7 @@
 
                 if(R.equals({lng:0, lat:0}, currentPosition)){
                     console.log("position: 0,0")
+                    currentPositionMarker = MapService.addMarker(map)(currentPosition,{notTranslate:true});
                     infoWindow(map, currentPositionMarker, "当前搜索的云箱位置信息不正确，请查看详情");
                 } else {
                     currentPositionMarker = MapService.addMarker(map)(currentPosition,{notTranslate:true});
