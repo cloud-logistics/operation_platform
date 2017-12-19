@@ -123,11 +123,13 @@
         // 编写自定义函数,创建标注
         function addMarker(map, type){
             return function (position,opt) {
+                var adjusted_position = undefined;
+
                 //如果当前坐标是google则不需要转换 请设置opt的notTranslate为True
                 if(opt && opt.notTranslate){
-                    var adjusted_position = position;
+                    adjusted_position = position;
                 }else{
-                    var adjusted_position = position_adjustment(position)
+                    adjusted_position = position_adjustment(position)
                 }
 
                 var marker = new google.maps.Marker({
