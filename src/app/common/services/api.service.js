@@ -33,6 +33,7 @@
             getBasicInfo: getBasicInfo,
             getBoxStatus: getBoxStatus,
             getRealtimeInfo: getRealtimeInfo,
+            getDeviceIds :getDeviceIds,
             getOptions: getOptions,
             getCarriers: getCarriers,
             getMyContainers: getMyContainers,
@@ -334,6 +335,14 @@
         //
         function getBoxStatus(opt) {
             NetworkService.get(constdata.api.boxStatus,
+                opt.data,
+                opt.success,
+                opt.error);
+        }
+
+        function getDeviceIds(opt){
+            NetworkService.get(
+                constdata.api.getDeviceIds,
                 opt.data,
                 opt.success,
                 opt.error);

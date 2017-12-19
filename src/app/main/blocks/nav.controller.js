@@ -13,9 +13,6 @@
         var vm = this;
         var height = document.body.clientHeight + 'px';
         vm.navStyle = {'height': height};
-
-
-
         vm.role = "carrier" || StorageService.get(constdata.informationKey).role;
 
     }

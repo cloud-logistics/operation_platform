@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('InstantlocationController', InstantlocationController);
 
     /** @ngInject */
-    function InstantlocationController($stateParams,ApiServer,MapService,toastr,$state,$timeout,constdata, $interval,$scope) {
+    function InstantlocationController($stateParams,ApiServer,MapService,toastr,constdata,MainServer,$scope) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -29,6 +29,10 @@
         var infowindow = undefined;
 
         vm.getInstantlocationInfo = getInstantlocationInfo
+
+        MainServer.setSelect2Fn('deviceId',function(val){
+            vm.queryParams.containerId = val;
+        });
 
         $scope.validationCheck = function(){
             var flag = true;

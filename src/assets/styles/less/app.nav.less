@@ -12,7 +12,6 @@
 .navi {
   ul.nav {
     li {
-      display: block;
       position: relative;
       ul{
         display:none;
@@ -59,9 +58,19 @@
       }
     }
 
-    li.active ul{
-       display:block;
+    li.active,li.hover{
+      ul{
+        display:inline-block!important;
+      }
+      img{
+        display:none;
+      }
+      span.font-bold{
+        display:block!important;
+        min-width: 30px;
+      }
     }
+
     li.active1, li.active1:hover, li.active1.focus {
       color: #F05E5E !important;
     }

@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('RealtimeController', RealtimeController);
 
     /** @ngInject */
-    function RealtimeController(NetworkService, MapService, $stateParams, ApiServer, toastr, $state, $timeout, constdata, $interval, $scope) {
+    function RealtimeController(MainServer, $stateParams, ApiServer, toastr, constdata, $scope) {
         /* jshint validthis: true */
         var vm = this;
         var tempOption;
@@ -39,32 +39,33 @@
         vm.title = '实时报文';
         vm.containerlists = [];
         vm.getRealtimeInfo = getRealtimeInfo;
-        vm.containerId =  $stateParams.containerId || constdata.defaultContainerId;
+        vm.containerId = $stateParams.containerId || constdata.defaultContainerId;
         vm.realtimeInfo = {};
         vm.speedStatus = "";
         vm.days = 1;
         vm.requiredParam = "temperature";
         var historyStatus = {
-            speed:[],
+            speed: [],
             temperature: [],
             humidity: [],
             battery: [],
-            boxStatus:[]
+            boxStatus: []
         };
-        $scope.validationCheck = function(){
+        $scope.validationCheck = function () {
+            return true;
             var flag = true;
-            if(!$scope.btnClicked){
+            if (!$scope.btnClicked) {
                 return flag;
             }
-            if(!vm.containerId){
+            if (!vm.containerId) {
                 $scope.containerId_class = " areaRequire ";
                 flag = false;
                 $scope.isContainerIdInvalida = false;
-            }else if(!constdata['validation']['id'].test(vm.containerId)){
+            } else if (!constdata['validation']['id'].test(vm.containerId)) {
                 flag = false;
                 $scope.isContainerIdInvalida = true;
                 $scope.containerId_class = " invalida-area "
-            }else{
+            } else {
                 $scope.isContainerIdInvalida = false;
                 $scope.containerId_class = "";
             }
@@ -73,26 +74,26 @@
 
         getRealtimeInfo(true);
 
-        $scope.changeTimeRange = function(days){
+        $scope.changeTimeRange = function (days) {
             vm.days = days || 1;
             getContainerHistoryStatus(days, vm.requiredParam);
         };
 
-        $scope.changeRequiredParam = function(requiredParam){
+        $scope.changeRequiredParam = function (requiredParam) {
             vm.requiredParam = requiredParam;
             getContainerHistoryStatus(vm.days, requiredParam);
         };
 
-        function getContainerHistoryStatus (days, requiredParam) {
+        function getContainerHistoryStatus(days, requiredParam) {
             var queryParams = {
                 requiredParam: requiredParam,
-                containerId : vm.containerId,
-                days:vm.days
+                containerId: vm.containerId,
+                days: vm.days
             }
-            ApiServer.getContainerHistoryStatus(queryParams, function(response){
+            ApiServer.getContainerHistoryStatus(queryParams, function (response) {
                 if (requiredParam == "temperature") {
                     initTempBar(days, response.data.temperature);
-                } else if( requiredParam == "humidity" ) {
+                } else if (requiredParam == "humidity") {
                     initHumiLine(days, response.data.humidity);
                 }
 
@@ -103,22 +104,27 @@
             return status;
         }
 
-        function getRealtimeInfo (isNotFromClick) {
-            if(!isNotFromClick){
+        MainServer.setSelect2Fn('deviceId',function(val){
+            vm.containerId = val;
+        });
+
+        function getRealtimeInfo(isNotFromClick) {
+            if (!isNotFromClick) {
                 $scope.btnClicked = true;
             }
-            if(!$scope.validationCheck()){
+            if (!$scope.validationCheck()) {
                 console.log("校验失败.");
                 return;
             }
             getContainerHistoryStatus(vm.days, vm.requiredParam);
 
+            console.log("vm ====",vm)
             var queryParams = {
                 containerId: vm.containerId
             };
             ApiServer.getRealtimeInfo(queryParams, function (response) {
                 var locationName = undefined;
-                if(response.data&&response.data['locationName']){
+                if (response.data && response.data['locationName']) {
                     response.data['locationName4Hover'] = response.data['locationName'];
                     response.data['locationName'] = response.data['locationName'].split(' ')[0];
                 }
@@ -130,9 +136,9 @@
 
                 initTemp(vm.realtimeInfo.temperature.value);
                 initHumi(vm.realtimeInfo.humidity.value);
-                initSpeed(Math.round(vm.realtimeInfo.speed*100)/100);
+                initSpeed(Math.round(vm.realtimeInfo.speed * 100) / 100);
 
-            },function (err) {
+            }, function (err) {
                 console.log("Get RealtimeInfo Info Failed", err);
             });
         }
@@ -260,7 +266,7 @@
         function initHumi(value) {
             var value_ = (100 - value) * 266 / 360;
 
-            humiChart = humiChart ||echarts.init(document.getElementById('humi-chart'));
+            humiChart = humiChart || echarts.init(document.getElementById('humi-chart'));
 
             humiOption = {
                 title: {
@@ -376,7 +382,7 @@
         }
 
         function initSpeed(value) {
-            speedChart = speedChart ||echarts.init(document.getElementById('speed-chart'));
+            speedChart = speedChart || echarts.init(document.getElementById('speed-chart'));
             speedOption = {
                 tooltip: {
                     formatter: "{a} <br/>{c} {b}"
@@ -440,7 +446,7 @@
                                 color: '#000'
                             },
                             offsetCenter: [0, '90%'],
-                            detail: {formatter:'{value}km/h'}
+                            detail: {formatter: '{value}km/h'}
                         },
                         data: [{value: value, name: 'km/h'}]
                     }
@@ -450,19 +456,19 @@
         }
 
         var intervalMenu = {
-            1:1,
-            3:24,
-            7:24,
+            1: 1,
+            3: 24,
+            7: 24,
         };
 
-        var stringTruncation = function(value,index,type){
-            if(true || index % type == 0){
-                if(vm.days == 1){
-                    var str = value.split("~")[0].substring(11,16);
-                }else{
-                    var str = value.split("~")[0].substring(5,10);
+        var stringTruncation = function (value, index, type) {
+            if (true || index % type == 0) {
+                if (vm.days == 1) {
+                    var str = value.split("~")[0].substring(11, 16);
+                } else {
+                    var str = value.split("~")[0].substring(5, 10);
                 }
-            }else{
+            } else {
                 var str = null;
             }
             return str;
@@ -483,53 +489,53 @@
             tempBarChart = tempBarChart || echarts.init(dom);
             //tempValues[1] = undefined;
             tempBarOption = {
-                tooltip : {
+                tooltip: {
                     trigger: 'axis',
-                    formatter:function(item){
+                    formatter: function (item) {
                         var str = item[0].name + "</br>" + "平均温度: " + item[0].value + " °C"
                         return str;
                     }
                 },
                 toolbox: {
-                    show : false,
+                    show: false,
                 },
-                calculable : true,
-                xAxis : [
+                calculable: true,
+                xAxis: [
                     {
-                        type : 'category',
-                        data : xData,
-                        splitLine:{show: false},//去除网格线
-                        splitArea : {show : false},//保留网格区域，
-                        axisLabel:{
+                        type: 'category',
+                        data: xData,
+                        splitLine: {show: false},//去除网格线
+                        splitArea: {show: false},//保留网格区域，
+                        axisLabel: {
                             formatter: function (value, index) {
-                                return stringTruncation(value,index,intervalMenu[vm.days]);
+                                return stringTruncation(value, index, intervalMenu[vm.days]);
                             },
                             interval: intervalMenu[vm.days]
                         }
                     }
                 ],
-                yAxis : [
+                yAxis: [
                     {
-                        type : 'value',
-                        axisLabel : {
+                        type: 'value',
+                        axisLabel: {
                             formatter: '{value} °C'
                         },
-                        splitLine:{show: false},//去除网格线
-                        splitArea : {show : false}//保留网格区域
+                        splitLine: {show: false},//去除网格线
+                        splitArea: {show: false}//保留网格区域
                     }
                 ],
-                series : [
+                series: [
                     {
-                        name:'温度',
-                        type:'line',
-                        symble:'none',
+                        name: '温度',
+                        type: 'line',
+                        symble: 'none',
                         itemStyle: {
                             normal: {
                                 areaStyle: {type: 'default'},
-                                color:'#86CFED',
+                                color: '#86CFED',
                             }
                         },
-                        data:tempValues,
+                        data: tempValues,
                     }
                 ]
             };
@@ -547,27 +553,27 @@
             humiLineChart = humiLineChart || echarts.init(document.getElementById('bd-humi-chart'));
 
             humiLineOption = {
-                tooltip : {
+                tooltip: {
                     trigger: 'axis',
-                    formatter:function(item){
-                        if(item[0].value == 'NA'){
+                    formatter: function (item) {
+                        if (item[0].value == 'NA') {
                             var str = null;
-                        }else{
+                        } else {
                             var str = item[0].name + "</br>" + "平均湿度: " + item[0].value + " %"
                         }
                         return str;
                     }
                 },
                 toolbox: {
-                    show : false,
+                    show: false,
                 },
-                xAxis : [
+                xAxis: [
                     {
-                        type : 'category',
-                        data : xData,
-                        splitLine:{show: false},//去除网格线
-                        splitArea : {show : false},//保留网格区域
-                        axisLabel:{
+                        type: 'category',
+                        data: xData,
+                        splitLine: {show: false},//去除网格线
+                        splitArea: {show: false},//保留网格区域
+                        axisLabel: {
                             formatter: function (value, index) {
                                 return stringTruncation(value);
                             },
@@ -575,25 +581,25 @@
                         }
                     }
                 ],
-                yAxis : [
+                yAxis: [
                     {
-                        type : 'value',
-                        axisLabel : {
+                        type: 'value',
+                        axisLabel: {
                             formatter: '{value} %'
                         },
-                        splitLine:{show: false},//去除网格线
-                        splitArea : {show : false}//保留网格区域
+                        splitLine: {show: false},//去除网格线
+                        splitArea: {show: false}//保留网格区域
                     }
                 ],
-                series : [
+                series: [
                     {
-                        name:'湿度',
-                        type:'line',
-                        data:humiValues,
+                        name: '湿度',
+                        type: 'line',
+                        data: humiValues,
                         itemStyle: {
                             normal: {
                                 areaStyle: {type: 'default'},
-                                color:'#86CFED',
+                                color: '#86CFED',
                             }
                         }
                     }

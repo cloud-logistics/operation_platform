@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('HistorylocationController', HistorylocationController);
 
     /** @ngInject */
-    function HistorylocationController($stateParams, constdata, ApiServer,MapService,toastr,$state,$timeout,$interval,$scope) {
+    function HistorylocationController($stateParams, constdata, ApiServer,MapService,toastr,MainServer,$scope) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -25,12 +25,15 @@
 
         vm.getHistorylocationInfo = getHistorylocationInfo
 
+
         vm.queryParams = {
             containerId: $stateParams.containerId || constdata.defaultContainerId,
             start_time: moment(new Date()).subtract(7, 'days'),
             end_time: moment(new Date())
         };
-
+        MainServer.setSelect2Fn('deviceId',function(val){
+            vm.queryParams.containerId = val;
+        });
         $scope.validationCheck = function(){
             var flag = true;
             if(!$scope.btnClicked){

@@ -11,16 +11,12 @@
                     <div class="rt-head-right">
                         <span class="rt-id rt-head-label">ID</span>
                         <div style="display:inline-block;">
-                            <input ng-model="vm.containerId"
-                                   type="text"
-                                   style="margin-right:0;"
-                                   class="form-control rt-search {{containerId_class}}"
-                                   ng-change="validationCheck()"
-                                   maxlength="22"
-                                   placeholder="请输入云箱ID...">
-                            <div class="validation" ng-show="isContainerIdInvalida">
-                                请输入合法的云箱ID
-                            </div>
+
+                            <select style="margin-right:0;display:none;"
+                                    class="form-control rt-search {{containerId_class}}"
+                                    id="deviceId">
+                                <option></option>
+                            </select>
                         </div>
 
                         <button type="submit" class="rt-btn common_panel_btn" ng-click="vm.getRealtimeInfo()">搜索报文</button>
@@ -43,11 +39,11 @@
                                     <span>云箱型号</span>
                                     <span style="color:#666666">{{vm.realtimeInfo.containerType}}</span>
                                 </p>
-                                <p ng-show="vm.realtimeInfo.currentStatus != '可用'">
+                                <p ng-show="vm.realtimeInfo.currentStatus == '可用'">
                                     <span>所在仓库</span>
                                     <span style="display:inline" title="{{vm.realtimeInfo.siteName}}">{{vm.realtimeInfo.siteName}}</span>
                                 </p>
-                                <p ng-show="vm.realtimeInfo.currentStatus == '可用'">
+                                <p ng-show="vm.realtimeInfo.currentStatus != '可用'">
                                     <span>当前所在地</span>
                                     <span style="display:inline" title="{{vm.realtimeInfo.locationName4Hover}}">{{vm.realtimeInfo.locationName}}</span>
                                 </p>
