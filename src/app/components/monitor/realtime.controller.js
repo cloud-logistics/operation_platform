@@ -145,13 +145,15 @@
 
         /* 温度chart初始化 */
         function initTemp(value) {
+            console.log("value=  ",value)
+            value  = 40;
             var value_ = (100 - value) * 266 / 360;
 
             tempChart = tempChart || echarts.init(document.getElementById('temp-chart'));
 
             tempOption = {
                 title: {
-                    "text": value + "℃",
+                    "text": value  + "℃",
                     "x": '48%',
                     "y": '50%',
                     textAlign: "center",
@@ -255,7 +257,6 @@
                         }
                         ]
                     }
-
                 ]
             };
 
