@@ -134,8 +134,8 @@
                 vm.speedStatus = "正常";
                 console.log(vm.realtimeInfo);
 
-                initTemp(vm.realtimeInfo.temperature.value);
-                initHumi(vm.realtimeInfo.humidity.value);
+                initTemp(vm.realtimeInfo.temperature.value,vm.realtimeInfo.temperature.status=="正常");
+                initHumi(vm.realtimeInfo.humidity.value,vm.realtimeInfo.humidity.status == '正常');
                 initSpeed(Math.round(vm.realtimeInfo.speed * 100) / 100);
 
             }, function (err) {
@@ -143,135 +143,22 @@
             });
         }
 
-        /* 温度chart初始化 */
-        function initTemp(value) {
-            console.log("value=  ",value)
-            value  = 40;
-            var value_ = (100 - value) * 266 / 360;
 
-            tempChart = tempChart || echarts.init(document.getElementById('temp-chart'));
-
-            tempOption = {
+        var tempHumiOption = function(normal,value,value_min,value_max){
+            var valueMin = value_min || 0;
+            var valueMax = value_max || 100;
+            //将[-40,100]映射到[0,100]区间
+            var value_ = (100 - ((value - valueMin)/(valueMax - valueMin)*100) ) * 266 / 360;
+            if(normal){
+                var color1 = "#968CEA";
+                var color2 = "#9BE7F1";
+            }else{
+                var color1 = "#D56FB1";
+                var color2 = "#F1C89B";
+            }
+            return {
                 title: {
-                    "text": value  + "℃",
-                    "x": '48%',
-                    "y": '50%',
-                    textAlign: "center",
-                    "textStyle": {
-                        "fontWeight": 'lighter',
-                        "fontSize": 24,
-                        "color": '#F9694F'
-                    },
-                    "subtextStyle": {
-                        "fontWeight": 'lighter',
-                        "fontSize": 32,
-                        "color": '#3ea1ff'
-                    }
-                },
-                series: [
-                    {
-                        "name": ' ',
-                        "type": 'pie',
-                        "radius": ['85%', '100%'],
-                        "avoidLabelOverlap": false,
-                        "startAngle": 225,
-                        "color": [new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                            offset: 0, color: '#D56FB1'
-                        }, {
-                            offset: 1, color: '#F1C89B'
-                        }], false), "transparent"],
-                        "hoverAnimation": false,
-                        "legendHoverLink": false,
-                        "label": {
-                            "normal": {
-                                "show": false,
-                                "position": 'center'
-                            },
-                            "emphasis": {
-                                "show": true,
-                                "textStyle": {
-                                    "fontSize": '30',
-                                    "fontWeight": 'bold'
-                                }
-                            }
-                        },
-                        "labelLine": {
-                            "normal": {
-                                "show": false
-                            }
-                        },
-                        "data": [{
-                            "value": 75,
-                            "name": '1'
-                        }, {
-                            "value": 25,
-                            "name": '2'
-                        }]
-                    },
-                    {
-                        "name": '',
-                        "type": 'pie',
-                        "radius": ['86%', '99%'],
-                        "avoidLabelOverlap": false,
-                        "startAngle": 316,
-                        "color": ["#fff", "transparent"],
-                        "hoverAnimation": false,
-                        "legendHoverLink": false,
-                        "clockwise": false,
-                        "itemStyle": {
-                            "normal": {
-                                "borderColor": "transparent",
-                                "borderWidth": "20"
-                            },
-                            "emphasis": {
-                                "borderColor": "transparent",
-                                "borderWidth": "20"
-                            }
-                        }
-                        ,
-                        "z": 10,
-                        "label": {
-                            "normal": {
-                                "show": false,
-                                "position": 'center'
-                            },
-                            "emphasis": {
-                                "show": true,
-                                "textStyle": {
-                                    "fontSize": '30',
-                                    "fontWeight": 'bold'
-                                }
-                            }
-                        },
-                        "labelLine": {
-                            "normal": {
-                                "show": false
-                            }
-                        },
-                        "data": [{
-                            "value": value_,
-                            "name": ''
-                        }, {
-                            "value": 100 - value_,
-                            "name": ''
-                        }
-                        ]
-                    }
-                ]
-            };
-
-            tempChart.setOption(tempOption);
-        }
-
-        /*初始化湿度chart*/
-        function initHumi(value) {
-            var value_ = (100 - value) * 266 / 360;
-
-            humiChart = humiChart || echarts.init(document.getElementById('humi-chart'));
-
-            humiOption = {
-                title: {
-                    "text": value + "%",
+                    "text": value + (value_max ? "℃": "%"),
                     "x": '48%',
                     "y": '50%',
                     textAlign: "center",
@@ -294,9 +181,9 @@
                         "avoidLabelOverlap": false,
                         "startAngle": 225,
                         "color": [new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                            offset: 0, color: '#968CEA'
+                            offset: 0, color: color1
                         }, {
-                            offset: 1, color: '#9BE7F1'
+                            offset: 1, color: color2
                         }], false), "transparent"],
                         "hoverAnimation": false,
                         "legendHoverLink": false,
@@ -378,6 +265,24 @@
 
                 ]
             };
+        }
+
+        /* 温度chart初始化 */
+        function initTemp(value,isNormal) {
+
+            tempChart = tempChart || echarts.init(document.getElementById('temp-chart'));
+
+            tempOption =  tempHumiOption(isNormal,value,-40,100);
+
+            tempChart.setOption(tempOption);
+        }
+
+        /*初始化湿度chart*/
+        function initHumi(value,isNormal) {
+
+            humiChart = humiChart || echarts.init(document.getElementById('humi-chart'));
+
+            humiOption = tempHumiOption(isNormal,value);
 
             humiChart.setOption(humiOption);
         }
