@@ -34,7 +34,9 @@
             $("#"+domId).select2({
                 placeholder: "请输入云箱ID...",
                 ajax: {
-                    url: "http://106.2.20.185/container/api/v1/cloudbox/monservice/fuzzyDeviceid",
+                    url:location.href.indexOf("localhost") > -1 ?
+                        constdata.apiHost_OFFLINE + "fuzzyDeviceid"
+                        : "/container/api/v1/cloudbox/monservice/fuzzyDeviceid",
                     dataType: 'json',
                     delay: 250,
                     headers:{

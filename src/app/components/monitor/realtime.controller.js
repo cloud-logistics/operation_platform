@@ -189,7 +189,7 @@
                         "legendHoverLink": false,
                         "label": {
                             "normal": {
-                                "show": false,
+                                "show": true,
                                 "position": 'center'
                             },
                             "emphasis": {
