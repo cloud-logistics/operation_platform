@@ -144,8 +144,8 @@
             NetworkService.get(url, null,opt.success, opt.error);
         }
 
-        function getSiteStream(id , successHandler, failedHandler) {
-            NetworkService.get(constdata.api.warehouse.siteStream + id, null, successHandler, failedHandler);
+        function getSiteStream(opt , successHandler, failedHandler) {
+            NetworkService.get(constdata.api.warehouse.siteStream + opt.id, opt.data, successHandler, failedHandler);
         }
 
         //获取分布信息数据
@@ -221,6 +221,13 @@
         //查询仓库
         function retrieveSiteInfo(opt){
             var url = constdata.api.warehouse.retrieve.replace("{limit}",opt.limit).replace("{offset}",opt.offset);
+            if(opt.data){
+                for(var s in opt.data){
+                    if(opt.data[s]){
+                        url += "&" + s + "=" + opt.data[s];
+                    }
+                }
+            }
             NetworkService.get(url, null, opt.success, opt.error);
         }
 

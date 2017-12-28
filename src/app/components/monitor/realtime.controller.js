@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('RealtimeController', RealtimeController);
 
     /** @ngInject */
-    function RealtimeController(MainServer, $stateParams, ApiServer, toastr, constdata, $scope) {
+    function RealtimeController(MainServer, $stateParams, ApiServer,MapService, toastr, constdata, $scope) {
         /* jshint validthis: true */
         var vm = this;
         var tempOption;
@@ -15,27 +15,14 @@
 
         var humiChart;
         var humiOption;
-
-        var battChart;
-        var battOption;
-
         var speedChart;
         var speedOption;
-
-        var speedLineChart;
-        var speedLineOption;
-
         var tempBarChart;
         var tempBarOption;
-
         var humiLineChart;
         var humiLineOption;
 
-        var battLineChart;
-        var battLineOption;
-
-        var statusLineChart;
-        var statusLineOption;
+        var currentPositionMarker = undefined;
         vm.title = '实时报文';
         vm.containerlists = [];
         vm.getRealtimeInfo = getRealtimeInfo;
@@ -141,6 +128,7 @@
             }, function (err) {
                 console.log("Get RealtimeInfo Info Failed", err);
             });
+            getInstantlocationInfo(true);
         }
 
 
@@ -189,7 +177,7 @@
                         "legendHoverLink": false,
                         "label": {
                             "normal": {
-                                "show": true,
+                                "show": false,
                                 "position": 'center'
                             },
                             "emphasis": {
@@ -514,6 +502,25 @@
 
             humiLineChart.setOption(humiLineOption);
         }
+
+        var mapCenter = {lat: 31.2891, lng: 121.4648};
+
+        var map = MapService.map_init("instantlocation", mapCenter, "terrain", 4);
+        function getInstantlocationInfo(isNotFromClick) {
+
+            ApiServer.getInstantlocationInfo({
+                containerId:vm.containerId
+            }, function (response) {
+                var bounds = new google.maps.LatLngBounds();
+                var currentPosition = response.data.currentPosition;
+                currentPositionMarker = MapService.addMarker(map)(currentPosition,{notTranslate:true});
+                bounds.extend(currentPositionMarker.getPosition());
+                map.fitBounds(bounds);
+            },function (err) {
+                console.log("Get Historyview Info Failed", err);
+            });
+        }
+
     }
 
 })();

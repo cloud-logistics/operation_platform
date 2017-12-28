@@ -105,11 +105,11 @@
                 url: 'realtime/:containerId',
                 templateUrl: 'app/components/monitor/realtime.html'
             })
-            //实时位置
-            .state('app.instantlocation', {
-                url: 'instantlocation/:containerId',
-                templateUrl: 'app/components/monitor/instantlocation.html'
-            })
+            ////实时位置
+            //.state('app.instantlocation', {
+            //    url: 'instantlocation/:containerId',
+            //    templateUrl: 'app/components/monitor/instantlocation.html'
+            //})
             //历史轨迹
             .state('app.historylocation', {
                 url: 'historylocation/:containerId/:startTime/:endTime',
@@ -145,10 +145,11 @@
                 url: 'warehouseInfo/',
                 templateUrl: 'app/components/warehouse/warehouseInfo.html'
             })
-            //仓库状态
-            .state('app.warehouseStatus', {
-                url: 'warehouseStatus/',
-                templateUrl: 'app/components/warehouse/warehouseStatus.html'
+
+            //在库云箱--
+            .state('app.warehouseIn', {
+                url: 'warehouseIn/:containerId',
+                templateUrl: 'app/components/warehouse/warehouseIn.html'
             })
 
             //云箱信息查询

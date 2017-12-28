@@ -41,11 +41,11 @@
                         <span>实时状态</span>
                     </a>
                 </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="app.instantlocation" class="active2">
-                        <span>实时位置</span>
-                    </a>
-                </li>
+                <!--<li ui-sref-active="active">-->
+                    <!--<a ui-sref="app.instantlocation" class="active2">-->
+                        <!--<span>实时位置</span>-->
+                    <!--</a>-->
+                <!--</li>-->
                 <li ui-sref-active="active">
                     <a ui-sref="app.historylocation" class="active2">
                         <span>历史轨迹</span>
@@ -92,7 +92,7 @@
             </ul>
         </li>
         <li class="active4">
-            <a href class="auto" >
+            <a href ui-sref="app.warehouseInfo" class="active4" >
                   <span class="pull-right text-muted hidden-folded">
                     <i class="fa fa-fw fa-angle-right text"></i>
                     <i class="fa fa-fw fa-angle-down text-active"></i>
@@ -100,21 +100,10 @@
                 <img src="images/icon_ckgl.svg" width="20px" height="20px" style="margin-right: 10px"/>
                 <span class="font-bold hidden-folded">仓库管理</span>
             </a>
-            <ul class="nav"  style="display:none;">
-                <li ui-sref-active="active">
-                    <a ui-sref="app.warehouseInfo" class="active4">
-                        <span>仓库信息</span>
-                    </a>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="app.warehouseStatus" class="active4">
-                        <span>仓库状态</span>
-                    </a>
-                </li>
-            </ul>
+
         </li>
         <li class="active5">
-            <a href class="auto">
+            <a ui-sref="app.prediction"  class="active5">
                   <span class="pull-right text-muted hidden-folded">
                     <i class="fa fa-fw fa-angle-right text"></i>
                     <i class="fa fa-fw fa-angle-down text-active"></i>
@@ -123,13 +112,7 @@
                 <img src="images/icon_ana.svg" width="20px" height="20px" style="margin-right: 10px"/>
                 <span class="font-bold hidden-folded">预测分析</span>
             </a>
-            <ul class="nav" style="display:none;">
-                <li ui-sref-active="active">
-                    <a ui-sref="app.prediction" class="active5">
-                        <span>数据预测及决策</span>
-                    </a>
-                </li>
-            </ul>
+
         </li>
     </div>
     <div class="" ng-switch-default>加载中...</div>
