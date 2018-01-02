@@ -162,10 +162,10 @@ var switchRecord = function (isShow) {
             var data = {};
             console.log("ss===",$scope.queryParams);
             if($scope.queryParams.start_time){
-                data['begin_time'] = $scope.queryParams.start_time.valueOf().toString().slice(0,10);
+                data['begin_time'] = new Date($scope.queryParams.start_time.format("YYYY-MM-DD")).getTime()/1000;
             }
             if($scope.queryParams.end_time){
-                data['end_time'] = parseInt($scope.queryParams.end_time.valueOf().toString().slice(0,10)) + 60*60*24 + "";
+                data['end_time'] = new Date($scope.queryParams.end_time.format("YYYY-MM-DD").getTime())/1000 + 60*60*24 + "";
             }
             $scope.getSiteStream($scope.currentId,null,data)
         };
