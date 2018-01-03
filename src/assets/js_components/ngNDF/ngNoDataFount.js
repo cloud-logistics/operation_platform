@@ -28,7 +28,7 @@
                             src:"images/img_other_nothing_02.png"
                         },
                         "noDataFound":{
-                            text1:"暂无出入记录",
+                            text1:"当前仓库无出入库记录",
                             text2:"",
                             src:"images/img_other_nothing_02.png"
                         }
