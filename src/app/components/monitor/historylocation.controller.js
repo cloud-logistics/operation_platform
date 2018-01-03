@@ -13,8 +13,7 @@
 
         var width = document.body.clientWidth;
         var height = document.body.clientHeight;
-        var histories = [];
-        var routes = [];
+
         vm.mapSize = {"width":width + 'px',"height":height + 'px'};
         var mapCenter = {lat: 31.2891, lng: 121.4648};
 
@@ -24,7 +23,7 @@
         console.log($stateParams);
 
         vm.getHistorylocationInfo = getHistorylocationInfo
-
+        vm.containerId = $stateParams.containerId || constdata.defaultContainerId;
 
         vm.queryParams = {
             containerId: $stateParams.containerId || constdata.defaultContainerId,
@@ -32,8 +31,15 @@
             end_time: moment(new Date())
         };
         MainServer.setSelect2Fn('deviceId',function(val){
-            vm.queryParams.containerId = val;
-        });
+            if(val != "请输入云箱ID..."){
+                vm.queryParams.containerId = val;
+            }
+            else{
+                vm.queryParams.containerId = "";
+            }
+        }, vm.queryParams.containerId
+        );
+
         $scope.validationCheck = function(){
             var flag = true;
             if(!$scope.btnClicked){
@@ -59,7 +65,7 @@
             if(event.key == "Backspace"){
                 event.preventDefault();
             }
-        }
+        };
 
         // 鼠标绘图工具
         var overlay = undefined;

@@ -26,7 +26,13 @@
                             text1:"抱歉，没搜到",
                             text2:"换个关键词试试吧",
                             src:"images/img_other_nothing_02.png"
+                        },
+                        "noDataFound":{
+                            text1:"暂无出入记录",
+                            text2:"",
+                            src:"images/img_other_nothing_02.png"
                         }
+
                     }
                     $scope.model = menu[$scope.conf];
                 }

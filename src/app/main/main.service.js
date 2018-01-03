@@ -30,9 +30,9 @@
             NetworkService.post( constdata.api.query, param, successHandler, failedHandler);
         }
 
-        function setSelect2Fn(domId,selectionCallback){
+        function setSelect2Fn(domId,selectionCallback,initialValue){
             $("#"+domId).select2({
-                placeholder: "请输入云箱ID...",
+                placeholder: initialValue,
                 ajax: {
                     url:location.href.indexOf("localhost") > -1 ?
                         constdata.apiHost_OFFLINE + "fuzzyDeviceid"

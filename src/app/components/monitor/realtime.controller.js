@@ -92,8 +92,8 @@
         }
 
         MainServer.setSelect2Fn('deviceId',function(val){
-            vm.containerId = val;
-        });
+            vm.containerId = constdata.defaultContainerId;
+        },vm.containerId);
 
         function getRealtimeInfo(isNotFromClick) {
             if (!isNotFromClick) {
