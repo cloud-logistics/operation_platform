@@ -27,8 +27,13 @@
                             text2:"换个关键词试试吧",
                             src:"images/img_other_nothing_02.png"
                         },
-                        "noDataFound":{
+                        "noFlowData":{
                             text1:"当前仓库无出入库记录",
+                            text2:"",
+                            src:"images/img_other_nothing_02.png"
+                        },
+                        "noDataFound":{
+                            text1:"当前仓库无在库云箱",
                             text2:"",
                             src:"images/img_other_nothing_02.png"
                         }

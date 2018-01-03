@@ -227,7 +227,7 @@
                 </div>
                 <span class="whTable_title_action" onclick="switchStatus()">X</span>
             </div>
-            <div class="whTable_content" style="margin:0">
+            <div class="whTable_content" style="margin:0" ng-show="vm.whStatusData.length">
                 <div class="bb-table">
                     <table class="table table-striped table-hover">
                         <thead>
@@ -267,7 +267,11 @@
                 </div>
                 <tm-pagination style="float:right;" conf="conf"></tm-pagination>
             </div>
+            <div ng-show="!vm.recordList.length" style="margin-top:80px;">
+                <ng-no-data-fount conf="'noDataFound'"></ng-no-data-fount>
+            </div>
         </div>
+
     </div>
     <div class="infoMask2">
         <div class="whHistoryMask"></div>
@@ -313,7 +317,7 @@
                     </div>
                 </div>
                 <div ng-show="!vm.recordList.length" style="margin-top:80px;">
-                    <ng-no-data-fount conf="'noDataFound'"></ng-no-data-fount>
+                    <ng-no-data-fount conf="'noFlowData'"></ng-no-data-fount>
                 </div>
             </div>
         </div>
