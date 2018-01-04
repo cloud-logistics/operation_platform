@@ -107,7 +107,7 @@
     .whTable_content {
       margin:0 15px;
       overflow-y:scroll;
-      height:78%;
+      height:85%;
       padding-bottom:20px;
     }
     .whTable_content_table_detail {
@@ -184,7 +184,14 @@
       padding-top: 0;
     }
     .whTable_content_container:last-child{
-      border:none;
+      border:none!important;
+      padding-top:0;
+      .whTable_content_line1_circle{
+        margin-left:-5px;
+      }
+    }
+    .bn{
+      border:none!important;
       padding-top:0;
       .whTable_content_line1_circle{
         margin-left:-5px;
@@ -315,9 +322,7 @@
     cursor:pointer;
   }
 }
-.bb-add{
-  float:none!important;
-}
+
 
 .stream_filter_btn{
   border: 1px solid #4668E7;

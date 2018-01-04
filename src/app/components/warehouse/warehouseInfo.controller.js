@@ -20,7 +20,10 @@ var switchRecord = function (isShow) {
         $(".infoMask2").hide();
         var dom = document.getElementById("whTable");
         var scope = angular.element(dom).scope();
-        scope['queryParams']={}
+        scope['queryParams']={
+            start_time: moment(new Date()).subtract(7, 'days'),
+            end_time: moment(new Date())
+        }
     }
 };
 (function () {
@@ -51,7 +54,10 @@ var switchRecord = function (isShow) {
             volume: {},
             keyword: ""
         };
-        $scope.queryParams = {};
+        $scope.queryParams = {
+            start_time: moment(new Date()).subtract(7, 'days'),
+            end_time: moment(new Date())
+        };
         var initialMap = function () {
             vm.mapSize = {"width": '200px', "height": '100px'};
             map = MapService.map_init("warehouseInfo_map", mapCenter, "terrain", 3.5);
@@ -130,26 +136,19 @@ var switchRecord = function (isShow) {
             var opt = {
                 id:id
             };
-            if(data){
-                opt['data'] = data;
+            var data = {};
+            if($scope.queryParams.start_time){
+                data['begin_time'] = new Date($scope.queryParams.start_time.format("YYYY-MM-DD")).getTime()/1000;
             }
+            if($scope.queryParams.end_time){
+                data['end_time'] = new Date($scope.queryParams.end_time.format("YYYY-MM-DD")).getTime()/1000 + 60*60*24 + "";
+            }
+            opt['data'] = data;
             ApiServer.getSiteStream(opt, function (response) {
                 vm.recordList = response.data.siteHistory.reverse();
-                console.log(response.data.siteHistory);
-                ApiServer.getBoxbysite({
-                    "id": id,
-                    "limit": $scope.conf.itemsPerPage,
-                    "offset": ($scope.conf.currentPage - 1) * $scope.conf.itemsPerPage,
-                    "success": function (response) {
-                        $scope.conf.totalItems = response.data.data.count;
-                        if (callback) {
-                            callback()
-                        }
-                    },
-                    "error": function (err) {
-                        console.log("Get Stream Info Failed", err);
-                    }
-                });
+                if (callback) {
+                    callback()
+                }
             }, function (err) {
                 console.log("Get Stream Info Failed", err);
             });
@@ -165,8 +164,9 @@ var switchRecord = function (isShow) {
                 data['begin_time'] = new Date($scope.queryParams.start_time.format("YYYY-MM-DD")).getTime()/1000;
             }
             if($scope.queryParams.end_time){
-                data['end_time'] = new Date($scope.queryParams.end_time.format("YYYY-MM-DD").getTime())/1000 + 60*60*24 + "";
+                data['end_time'] = new Date($scope.queryParams.end_time.format("YYYY-MM-DD")).getTime()/1000 + 60*60*24 + "";
             }
+            console.log()
             $scope.getSiteStream($scope.currentId,null,data)
         };
         vm.save = save;
@@ -232,9 +232,9 @@ var switchRecord = function (isShow) {
                     console.log("res = ", res)
                     if (callback) {
                         callback(res);
-                    } else {
-                        vm.provinceList = res.data;
                     }
+                    vm.provinceList = res.data;
+
                     $scope.validationCheck();
                 },
                 "error": function () {
@@ -419,6 +419,7 @@ var switchRecord = function (isShow) {
             });
             if (isNeedSwitchShowAdd) {
                 $scope.switchShowAdd();
+                $scope.currentId = obj.id;
             }
         };
 
@@ -508,9 +509,11 @@ var switchRecord = function (isShow) {
         }
 
         function cancel() {
+            $scope.conf.currentPage = 1;
             clearMarker();
             emptyInfo();
             $scope.switchShowAdd();
+            $scope.currentId = null;
         }
 
         var emptyInfo = function () {
@@ -566,7 +569,7 @@ var switchRecord = function (isShow) {
                 "param": data,
                 "success": function (response) {
                     toastr.success(response.data.msg);
-                    console.log(response.data.code);
+                    $scope.conf.currentPage = 1;
                     $scope.switchShowAdd();
                     emptyInfo();
                     retrieveSiteInfo();
@@ -577,19 +580,22 @@ var switchRecord = function (isShow) {
             });
         }
 
-        vm.deleteSiteInfo = function (site_id) {
+        vm.deleteSiteInfo = function () {
+            if(!$scope.currentId){
+                return;
+            }
             $("body").scrollTop(0);
             var opt = {
                 okFn: function () {
-                    console.log("del site_code :", site_id);
-                    if (!site_id) {
+                    if (!$scope.currentId) {
                         console.log("site_id为空")
                         return;
                     }
                     ApiServer.deleteSiteInfo({
-                        "param": site_id,
-                        "site_code": site_id,
+                        "param": $scope.currentId,
+                        "site_code": $scope.currentId,
                         "success": function (res) {
+                            vm.cancel();
                             toastr.success(res.data.msg);
                             retrieveSiteInfo();
                         },
@@ -621,7 +627,7 @@ var switchRecord = function (isShow) {
                 "site_code": vm.siteInfo.id,
                 "success": function (response) {
                     toastr.success(response.data.msg);
-                    console.log(response.data.code);
+                    $scope.conf.currentPage = 1;
                     emptyInfo();
                     $scope.switchShowAdd();
                     retrieveSiteInfo();

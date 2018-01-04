@@ -92,7 +92,7 @@
         }
 
         MainServer.setSelect2Fn('deviceId',function(val){
-            vm.containerId = constdata.defaultContainerId;
+            vm.containerId = val;
         },vm.containerId);
 
         function getRealtimeInfo(isNotFromClick) {
@@ -505,7 +505,9 @@
 
         var mapCenter = {lat: 31.2891, lng: 121.4648};
 
-        var map = MapService.map_init("instantlocation", mapCenter, "terrain", 4);
+        var map = MapService.map_init("instantlocation", mapCenter, "terrain", 9);
+
+
         function getInstantlocationInfo(isNotFromClick) {
 
             ApiServer.getInstantlocationInfo({

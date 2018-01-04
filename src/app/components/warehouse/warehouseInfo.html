@@ -161,11 +161,13 @@
                         </div>
                         <!-- line3 -->
                         <div class="row m-b" style="margin-top:20px;">
-                            <div class="col-md-4" style="float:right;">
+                            <div class="col-md-12" style="float:right;">
                                 <div class="pull-right bb-btn">
                                     <div class="bm-input-bottom">
                                         <span class="pull-right bm-save common_panel_btn"
                                               ng-click="vm.save(true)">保  存</span>
+                                        <span ng-show="true" class="pull-right bm-save common_panel_btn"
+                                              ng-click="vm.deleteSiteInfo()">删  除</span>
                                         <span class="pull-right bm-cancel common_panel_btn_cancel"
                                               style="background:#96a1b8;" ng-click="vm.cancel(true)">取  消</span>
                                     </div>
@@ -304,7 +306,7 @@
                 <span class="stream_filter_btn" ng-click="vm.filterSiteStream()">查询</span>
             </div>
             <div class="whTable_content">
-                <div class="whTable_content_container" ng-repeat="item in vm.recordList track by $index">
+                <div class="whTable_content_container" ng-class="{true:'bn',false:''}[$index == (vm.recordList.length -1)]" ng-repeat="item in vm.recordList track by $index">
                     <div class="whTable_content_line1" ng-class="{true:'line1FC',false:''}[$index == 0]">
                     <span class="whTable_content_line1_circle"
                           ng-class="{true:'status_in',false:'status_out'}[item.type == '入库']"></span>

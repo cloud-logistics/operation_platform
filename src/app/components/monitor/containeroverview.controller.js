@@ -36,8 +36,6 @@
         // 鼠标绘图工具
         $scope.container_num = undefined;
 
-        vm.getHistorylocationInfo = getHistorylocationInfo;
-
         getHistorylocationInfo();
         getOperationOverview();
 
