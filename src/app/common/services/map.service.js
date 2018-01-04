@@ -91,9 +91,8 @@
                 disableDefaultUI:true,
                 maxZoom: 17,
                 minZoom: 2,
-                zoom: zoomLevel | 3
+                zoom: zoomLevel || 3
             });
-
 
             // bounds of the desired area
             var allowedBounds = bounds[Math.ceil(zoomLevel)];
