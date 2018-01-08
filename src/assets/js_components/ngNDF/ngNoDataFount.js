@@ -36,6 +36,11 @@
                             text1:"当前仓库无在库云箱",
                             text2:"",
                             src:"images/img_other_nothing_02.png"
+                        },
+                        "noDispatch":{
+                            text1:"暂无调度数据",
+                            text2:"",
+                            src:"images/img_other_nothing_01.png"
                         }
 
                     }

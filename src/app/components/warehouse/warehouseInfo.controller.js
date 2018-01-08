@@ -8,6 +8,10 @@ var switchStatus = function (isShow) {
     } else {
         $("#whTable").hide();
         $(".infoMask1").hide();
+        var dom = document.getElementById("whTable");
+        var scope = angular.element(dom).scope();
+        scope['conf']= _.clone(scope['confBack']);
+        scope.$apply()
     }
 };
 var switchRecord = function (isShow) {
@@ -122,6 +126,7 @@ var switchRecord = function (isShow) {
                 "success": function (response) {
                     vm.whStatusData = response.data.data.results;
                     $scope.conf.totalItems = response.data.data.count;
+                    $scope.conf.pagesLength = 7;
                     if (callback) {
                         callback()
                     }
@@ -205,7 +210,6 @@ var switchRecord = function (isShow) {
             onChange: function () {
             }
         };
-
         vm.getCountryList = function (callback) {
             ApiServer.getCountryList({
                 "success": function (res) {
@@ -648,7 +652,7 @@ var switchRecord = function (isShow) {
                     vm.siteInfoList = res.data.data.results;
                     $scope.tableConfig.data = res.data.data.results;
                     $scope.conf.totalItems = res.data.data.count;
-                    console.log("vm.siteInfoList", vm.siteInfoList)
+                    $scope.confBack = _.clone($scope.conf);
                 },
                 "error": function (err) {
                     toastr.error(err.msg || "获取仓库信息失败");
