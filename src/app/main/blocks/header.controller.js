@@ -27,7 +27,8 @@
         $scope.switchNav = function(flag){
             setTimeout(function(){
                 $(".nav").find("li").removeClass("active")
-            },10)
+            },10);
+            $scope.$emit("mapResize");
         };
         var getMessage = function(){
             ApiServer.messageGetByUserId({

@@ -81,7 +81,11 @@
               console.log("Get getOperationOverview  Info Failed", err);
           });
         }
-
+        $scope.$on("mapResize_from_main_to_children",function(){
+           setTimeout(function(){
+                google.maps.event.trigger(map, 'resize')
+            },100);
+        })
     }
 
 })();
