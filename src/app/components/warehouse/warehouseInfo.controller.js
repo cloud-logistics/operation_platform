@@ -1,7 +1,7 @@
 /**
  * Created by xianZJ on 2017/10/31.
  */
-var switchStatus = function (isShow) {
+var switchStatus = function (isShow,isNotApply) {
     if (isShow) {
         $("#whTable").show();
         $(".infoMask1").show();
@@ -11,7 +11,9 @@ var switchStatus = function (isShow) {
         var dom = document.getElementById("whTable");
         var scope = angular.element(dom).scope();
         scope['conf']= _.clone(scope['confBack']);
-        scope.$apply()
+        if(!isNotApply){
+            scope.$apply()
+        }
     }
 };
 var switchRecord = function (isShow) {
@@ -42,6 +44,7 @@ var switchRecord = function (isShow) {
         vm.reports = [];
         var marker;
         $scope.cityDataBack;
+        $scope.queryParams = {};
         vm.maxDate = moment().format("YYYY-MM-DD");
         vm.siteInfo = {
             "location": "",
@@ -95,7 +98,7 @@ var switchRecord = function (isShow) {
             var scope = angular.element(dom).scope();
             scope['getBoxbysite'](id, function () {
                 switchRecord(false);
-                switchStatus(true);
+                switchStatus(true,true);
             })
         };
 
@@ -104,7 +107,7 @@ var switchRecord = function (isShow) {
             var scope = angular.element(dom).scope();
             scope['getSiteStream'](id, function () {
                 switchRecord(true);
-                switchStatus(false);
+                switchStatus(false,true);
             })
         };
 
