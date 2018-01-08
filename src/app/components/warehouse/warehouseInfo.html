@@ -293,6 +293,7 @@
                 <input ng-model="queryParams.start_time"
                        min-view="days"
                        placeholder="请选择..."
+                       max-date='vm.maxDate'
                        ng-keydown="preventBackpace($event)"
                        moment-picker
                        format="YYYY-MM-DD">
@@ -302,6 +303,7 @@
                        placeholder="请选择..."
                        ng-keydown="preventBackpace($event)"
                        moment-picker
+                       max-date='vm.maxDate'
                        format="YYYY-MM-DD">
                 <span class="stream_filter_btn" ng-click="vm.filterSiteStream()">查询</span>
             </div>

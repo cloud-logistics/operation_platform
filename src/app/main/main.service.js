@@ -31,6 +31,7 @@
         }
 
         function setSelect2Fn(domId,selectionCallback,initialValue){
+
             $("#"+domId).select2({
                 placeholder: initialValue,
                 ajax: {
@@ -58,7 +59,7 @@
                             results: data
                         };
                     },
-                    cache: true
+                    cache: false
                 },
                 escapeMarkup: function (markup) {
                     return markup;

@@ -31,13 +31,14 @@ var switchRecord = function (isShow) {
     angular.module('smart_container').controller('WarehouseInfoController', WarehouseInfoController);
 
     /** @ngInject */
-    function WarehouseInfoController($scope, ApiServer, toastr, $state, MapService) {
+    function WarehouseInfoController($scope, ApiServer, toastr, $state, MapService,moment) {
         var vm = this;
         var map;
         var mapCenter = {lat: 31.2891, lng: 121.4648};
         vm.reports = [];
         var marker;
         $scope.cityDataBack;
+        vm.maxDate = moment().format("YYYY-MM-DD");
         vm.siteInfo = {
             "location": "",
             "longitude": "",
@@ -54,7 +55,7 @@ var switchRecord = function (isShow) {
             volume: {},
             keyword: ""
         };
-        $scope.queryParams = {
+        $scope.queryPswitchNavarams = {
             start_time: moment(new Date()).subtract(7, 'days'),
             end_time: moment(new Date())
         };

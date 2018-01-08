@@ -19,18 +19,24 @@
 
                     <span class="instLabelHis" style="margin-left: 10px">时间</span>
                     <input ng-model="vm.queryParams.start_time"
+                           locale="zh-cn"
                            min-view="hours"
                            placeholder="请选择..."
                            ng-keydown="preventBackpace($event)"
                            moment-picker
+                           max-date='vm.maxDate'
                            format="YYYY-MM-DD">
                     -
                     <input ng-model="vm.queryParams.end_time"
+                           class=""
                            min-view="hours"
                            placeholder="请选择..."
                            ng-keydown="preventBackpace($event)"
+                           locale="zh-cn"
                            moment-picker
-                           format="YYYY-MM-DD">
+                           max-date='vm.maxDate'
+                           format="YYYY-MM-DD"
+                           >
                     <span class="instBtnHis common_panel_btn"  ng-click="vm.getHistorylocationInfo()" >搜索位置</span>
                 </div>
             </div>

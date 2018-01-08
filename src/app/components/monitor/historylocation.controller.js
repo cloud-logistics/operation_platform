@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('HistorylocationController', HistorylocationController);
 
     /** @ngInject */
-    function HistorylocationController($stateParams, constdata, ApiServer,MapService,toastr,MainServer,$scope) {
+    function HistorylocationController($stateParams, constdata, ApiServer,MapService,toastr,MainServer,$scope,moment) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -15,6 +15,7 @@
         var height = document.body.clientHeight;
 
         vm.mapSize = {"width":width + 'px',"height":height + 'px'};
+        vm.maxDate = moment().format("YYYY-MM-DD")
         var mapCenter = {lat: 31.2891, lng: 121.4648};
 
         var map = MapService.map_init("histotylocation", mapCenter, "terrain", 4);

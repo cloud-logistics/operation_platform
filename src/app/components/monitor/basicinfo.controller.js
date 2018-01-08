@@ -7,11 +7,12 @@
     angular.module('smart_container').controller('BasicinfoController', BasicinfoController);
 
     /** @ngInject */
-    function BasicinfoController(constdata, NetworkService, $stateParams, ApiServer, toastr, $state, $timeout, $interval,$scope, optionsTransFunc) {
+    function BasicinfoController(constdata, moment, $stateParams, ApiServer, toastr, $state, $timeout, $interval,$scope, optionsTransFunc) {
         /* jshint validthis: true */
         var vm = this;
 
         vm.title = '报警监控';
+        vm.maxDate = moment().format("YYYY-MM-DD");
         vm.containerlist = [];
         vm.queryParams = _.extend($stateParams,{
             containerType :0,

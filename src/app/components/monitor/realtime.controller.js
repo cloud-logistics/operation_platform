@@ -93,6 +93,7 @@
 
         MainServer.setSelect2Fn('deviceId',function(val){
             vm.containerId = val;
+            console.log('val = ',val)
         },vm.containerId);
 
         function getRealtimeInfo(isNotFromClick) {
