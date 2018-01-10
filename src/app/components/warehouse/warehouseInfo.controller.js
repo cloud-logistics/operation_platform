@@ -5,12 +5,19 @@ var switchStatus = function (isShow,isNotApply) {
     if (isShow) {
         $("#whTable").show();
         $(".infoMask1").show();
+        $("body").scrollTop(0);
+        var dom = document.getElementById("whTable");
+        var scope = angular.element(dom).scope();
+        scope['switchWatcher'](true);
+        if(!isNotApply){
+            scope.$apply()
+        }
     } else {
         $("#whTable").hide();
         $(".infoMask1").hide();
         var dom = document.getElementById("whTable");
         var scope = angular.element(dom).scope();
-        scope['conf']= _.clone(scope['confBack']);
+        scope['switchWatcher'](false);
         if(!isNotApply){
             scope.$apply()
         }
@@ -183,7 +190,6 @@ var switchRecord = function (isShow) {
         $scope.save = save;
         $scope.cancel = cancel;
         vm.options = {};
-
         $scope.tableConfig = {
             col: [{"name": "仓库名称", width: "13%", model: "name"},
                 {"name": "仓库ID", width: "12%", model: "site_code"},
@@ -210,8 +216,7 @@ var switchRecord = function (isShow) {
             totalItems: 0,
             pagesLength: 15,
             perPageOptions: [10, 20, 30, 40, 50],
-            onChange: function () {
-            }
+            onChange: retrieveSiteInfo
         };
         vm.getCountryList = function (callback) {
             ApiServer.getCountryList({
@@ -549,6 +554,7 @@ var switchRecord = function (isShow) {
                 'city_class',
                 'name_class',
                 'volume_class',
+                "telephone_class",
                 'location_class',
                 'volume_invalid_class',
                 'telephone_invalid_class',
@@ -695,6 +701,27 @@ var switchRecord = function (isShow) {
             }
         };
 
-        $scope.$watchGroup(['conf.currentPage', 'conf.itemsPerPage'], retrieveSiteInfo)
+        $scope.switchWatcher = function(flag){
+
+            if(!flag){
+                $scope.conf = $scope.confBack ?  _.clone($scope['confBack']) : {
+                    currentPage: 1,
+                    itemsPerPage: 10,
+                    totalItems: 0,
+                    pagesLength: 15,
+                    perPageOptions: [10, 20, 30, 40, 50],
+                    onChange: retrieveSiteInfo
+                };
+            }else{
+                $scope.conf = {
+                    currentPage: 1,
+                    itemsPerPage: 10,
+                    totalItems: 0,
+                    pagesLength: 7,
+                    perPageOptions: [10, 20, 30, 40, 50],
+                    onChange: $scope.getBoxbysite
+                };
+            }
+        }
     }
 })();

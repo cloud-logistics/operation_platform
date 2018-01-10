@@ -506,7 +506,13 @@
 
         var mapCenter = {lat: 31.2891, lng: 121.4648};
 
-        var map = MapService.map_init("instantlocation", mapCenter, "terrain", 10);
+        var map = MapService.map_init("instantlocation", mapCenter, "terrain", 9);
+
+        function clearMarker() {
+            if (currentPositionMarker) {
+                currentPositionMarker.setMap(null)
+            }
+        }
 
         function getInstantlocationInfo(isNotFromClick) {
             ApiServer.getInstantlocationInfo({
@@ -514,10 +520,9 @@
             }, function (response) {
                 var bounds = new google.maps.LatLngBounds();
                 var currentPosition = response.data.currentPosition;
+                clearMarker();
                 currentPositionMarker = MapService.addMarker(map)(currentPosition,{notTranslate:true});
-                map.setCenter(currentPosition)
-                //bounds.extend(currentPositionMarker.getPosition());
-                //map.fitBounds(bounds);
+                map.setCenter(currentPosition);
             },function (err) {
                 console.log("Get Historyview Info Failed", err);
             });

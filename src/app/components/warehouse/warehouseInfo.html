@@ -210,7 +210,7 @@
                         </tbody>
                     </table>
                     <!--<ng-grid tableConfig="vm.tableConfig"></ng-grid>-->
-                    <tm-pagination style="float:right;" conf="conf"></tm-pagination>
+                    <tm-pagination style="float:right;" conf="conf" callback="vm.retrieveSiteInfo"></tm-pagination>
                 </div>
             </div>
 
@@ -282,8 +282,8 @@
                 <div class="whTable_title_container">
                     <span class="whTable_title_name">云箱出入记录</span>
 
-                    <div class="whTable_title_divider">|</div>
-                    <span class="whTable_title_count"> 在库总数 {{conf.totalItems}}</span>
+                    <!--<div class="whTable_title_divider">|</div>-->
+                    <!--<span class="whTable_title_count"> 在库总数 {{conf.totalItems}}</span>-->
                 </div>
                 <span class="whTable_title_action" onclick="switchRecord()">X</span>
 
