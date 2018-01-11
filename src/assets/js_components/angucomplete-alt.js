@@ -486,7 +486,8 @@
         params.timeout = httpCanceller.promise;
         httpCallInProgress = true;
         console.log("=====",localStorage.getItem("airspc_access_authorization"))
-        $http.get(url, params)
+        var host =  location.host.indexOf("localhost") > -1? "http://106.2.20.187" : "http://" +location.host;
+        $http.get( host+ url, params)
           .then(httpSuccessCallbackGen(str))
           .catch(httpErrorCallback)
           .finally(function(){httpCallInProgress=false;});
