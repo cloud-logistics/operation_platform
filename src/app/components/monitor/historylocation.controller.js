@@ -31,15 +31,7 @@
             start_time: moment(new Date()).subtract(7, 'days'),
             end_time: moment(new Date())
         };
-        MainServer.setSelect2Fn('deviceId',function(val){
-            if(val != "请输入云箱ID..."){
-                vm.queryParams.containerId = val;
-            }
-            else{
-                vm.queryParams.containerId = "";
-            }
-        }, vm.queryParams.containerId
-        );
+
 
         $scope.validationCheck = function(){
             var flag = true;
@@ -128,5 +120,29 @@
                 google.maps.event.trigger(map, 'resize')
             },100);
         })
+
+
+        $scope.remoteUrlRequestFn = function(str) {
+            return {deviceid: str};
+        };
+        $scope.remoteUrlResponse = function(data){
+            return {
+                items:_.map(data.data,function(value,key){
+                    return {
+                        id:key,
+                        name:value,
+                        full_name:value
+                    }
+                })
+            }
+        }
+        $scope.selectedProject = function(data){
+            if(data && data.title){
+                vm.queryParams.containerId = data.title;
+            }
+        }
+        $scope.inputChanged = function(newVal){
+            vm.queryParams.containerId = newVal;
+        }
     }
 })();

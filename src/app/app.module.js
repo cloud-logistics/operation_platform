@@ -34,7 +34,8 @@
             "angular-md5",
             "toastr",
             "ngGrid",
-            "ngNoDataFount"
+            "ngNoDataFount",
+            "angucomplete-alt"
     ]);
 
 })();

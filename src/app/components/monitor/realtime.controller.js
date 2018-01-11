@@ -91,11 +91,6 @@
             return status;
         }
 
-        MainServer.setSelect2Fn('deviceId',function(val){
-            vm.containerId = val;
-            console.log('val = ',val)
-        },vm.containerId);
-
         function getRealtimeInfo(isNotFromClick) {
             if (!isNotFromClick) {
                 $scope.btnClicked = true;
@@ -528,6 +523,29 @@
             });
         }
 
+        $scope.remoteUrlRequestFn = function(str) {
+            return {deviceid: str};
+        };
+        $scope.remoteUrlResponse = function(data){
+            return {
+                items:_.map(data.data,function(value,key){
+                    return {
+                        id:key,
+                        name:value,
+                        full_name:value
+                    }
+                })
+            }
+        }
+        $scope.selectedProject = function(data){
+            if(data && data.title){
+                vm.containerId = data.title;
+            }
+        };
+        $scope.inputChanged = function(newVal){
+            console.log("newVal = ",newVal)
+            vm.containerId = newVal;
+        }
     }
 
 })();

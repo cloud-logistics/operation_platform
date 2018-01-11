@@ -13,16 +13,19 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label form-control-static" style="text-align: center;">ID</label>
                                 <div class="col-md-8" style="display:inline-block;">
-                                    <input ng-model="vm.queryParams.containerId"
-                                           type="text"
-                                           style="margin-right:0;height:34px;width:auto;"
-                                           class="form-control rt-search"
-                                           ng-change="validationCheck()"
-                                           maxlength="22"
-                                           ng-class="{true:'invalida-area',false:''}[isContainerIdInvalida]"
-                                           placeholder="请输入云箱ID...">
-                                    <div class="validation" ng-show="isContainerIdInvalida">
-                                        请输入合法的云箱ID
+                                    <div angucomplete-alt id="containerId" placeholder="请选择containerID"
+                                         pause="500"
+                                         selected-object="selectedProject"
+                                         remote-url="http://106.2.20.187/container/api/v1/cloudbox/monservice/fuzzyDeviceid?"
+                                         remote-url-request-formatter="remoteUrlRequestFn"
+                                         remote-url-response-formatter="remoteUrlResponse"
+                                         remote-url-data-field="items"
+                                         title-field="name"
+                                         description-field="description"
+                                         input-changed="inputChanged"
+                                         minlength="1"
+                                         input-class="form-control form-control-small"
+                                         match-class="highlight">
                                     </div>
                                 </div>
                             </div>

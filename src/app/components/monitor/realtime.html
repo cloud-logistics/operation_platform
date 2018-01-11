@@ -12,11 +12,22 @@
                         <span class="rt-id rt-head-label">ID</span>
                         <div style="display:inline-block;">
 
-                            <select style="margin-right:0;display:none;"
-                                    class="form-control rt-search {{containerId_class}}"
-                                    id="deviceId">
-                                <option></option>
-                            </select>
+                            <div class="padded-row">
+                                <div angucomplete-alt id="containerId" placeholder="请选择containerID"
+                                     pause="500"
+                                     selected-object="selectedProject"
+                                     remote-url="http://106.2.20.187/container/api/v1/cloudbox/monservice/fuzzyDeviceid?"
+                                     remote-url-request-formatter="remoteUrlRequestFn"
+                                     remote-url-response-formatter="remoteUrlResponse"
+                                     remote-url-data-field="items"
+                                     title-field="name"
+                                     description-field="description"
+                                     input-changed="inputChanged"
+                                     minlength="1"
+                                     input-class="form-control form-control-small"
+                                     match-class="highlight">
+                                </div>
+                            </div>
                         </div>
 
                         <button type="submit" class="rt-btn common_panel_btn" ng-click="vm.getRealtimeInfo()">搜索报文</button>

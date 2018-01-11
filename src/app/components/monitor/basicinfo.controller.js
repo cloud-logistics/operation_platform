@@ -77,6 +77,30 @@
         }
 
         $scope.$watchGroup(['conf.currentPage','conf.itemsPerPage'],getBasicInfo)
+
+
+        $scope.remoteUrlRequestFn = function(str) {
+            return {deviceid: str};
+        };
+        $scope.remoteUrlResponse = function(data){
+            return {
+                items:_.map(data.data,function(value,key){
+                    return {
+                        id:key,
+                        name:value,
+                        full_name:value
+                    }
+                })
+            }
+        }
+        $scope.selectedProject = function(data){
+            if(data && data.title){
+                vm.queryParams.containerId = data.title;
+            }
+        }
+        $scope.inputChanged = function(newVal){
+            vm.queryParams.containerId = newVal;
+        }
     }
 
 })();
