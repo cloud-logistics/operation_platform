@@ -9,7 +9,7 @@
                 <div class="instRightHis">
                     <span class="instLabelHis instLabelHis-label " >ID</span>
                     <div style="display:inline-block;float:left;">
-                        <div angucomplete-alt id="containerId" placeholder="请选择containerID"
+                        <div angucomplete-alt id="containerId" placeholder="请输入云箱ID..."
                              pause="500"
                              selected-object="selectedProject"
                              remote-url="/container/api/v1/cloudbox/monservice/fuzzyDeviceid?"
@@ -30,7 +30,7 @@
                     <input ng-model="vm.queryParams.start_time"
                            locale="zh-cn"
                            min-view="hours"
-                           placeholder="请选择..."
+                           placeholder="--请选择--"
                            ng-keydown="preventBackpace($event)"
                            moment-picker
                            max-date='vm.maxDate'
@@ -39,7 +39,7 @@
                     <input ng-model="vm.queryParams.end_time"
                            class=""
                            min-view="hours"
-                           placeholder="请选择..."
+                           placeholder="--请选择--"
                            ng-keydown="preventBackpace($event)"
                            locale="zh-cn"
                            moment-picker

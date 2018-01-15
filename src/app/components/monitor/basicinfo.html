@@ -15,7 +15,7 @@
 
                             <div class="col-md-9" style="padding:0;">
                                 <div style="display:inline-block;">
-                                    <div angucomplete-alt id="containerId" placeholder="请选择containerID"
+                                    <div angucomplete-alt id="containerId" placeholder="请输入云箱ID..."
                                          pause="500"
                                          selected-object="selectedProject"
                                          remote-url="/container/api/v1/cloudbox/monservice/fuzzyDeviceid?"
@@ -66,7 +66,7 @@
                                     <input ng-model="vm.queryParams.startTime"
                                            class=" form-control"
                                            min-view="hours"
-                                           placeholder="请选择..."
+                                           placeholder="--请选择--"
                                            moment-picker
                                            max-date='vm.maxDate'
                                            format="YYYY-MM-DD"
@@ -80,7 +80,7 @@
                                     <input ng-model="vm.queryParams.endTime"
                                            class="form-control"
                                            min-view="hours"
-                                           placeholder="请选择..."
+                                           placeholder="--请选择--"
                                            moment-picker
                                            format="YYYY-MM-DD"
                                            max-date='vm.maxDate'

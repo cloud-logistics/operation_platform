@@ -34,8 +34,8 @@ var switchRecord = function (isShow) {
         var dom = document.getElementById("whTable");
         var scope = angular.element(dom).scope();
         scope['queryParams']={
-            start_time: moment(new Date()).subtract(7, 'days'),
-            end_time: moment(new Date())
+            start_time: "",
+            end_time: ""
         }
     }
 };
@@ -75,8 +75,7 @@ var switchRecord = function (isShow) {
         };
         var initialMap = function () {
             vm.mapSize = {"width": '200px', "height": '100px'};
-            map = MapService.map_init("warehouseInfo_map", mapCenter, "terrain", 3.5);
-
+            map = MapService.map_init("warehouseInfo_map", mapCenter, "terrain", 4);
         };
         vm.table = [
             {"name": "仓库名称", width: "17%"},
@@ -89,6 +88,11 @@ var switchRecord = function (isShow) {
         $scope.showAdd = false;
         $scope.switchShowAdd = function () {
             $scope.showAdd = !$scope.showAdd;
+            if($scope.showAdd){
+                setTimeout(function(){
+                    initialMap();
+                },10)
+            }
         };
         $scope.basicUpdate = function () {
             vm.options = R.merge(vm.options, {
@@ -153,12 +157,6 @@ var switchRecord = function (isShow) {
                 id:id
             };
             var data = {};
-            if($scope.queryParams.start_time){
-                data['begin_time'] = new Date($scope.queryParams.start_time.format("YYYY-MM-DD")).getTime()/1000;
-            }
-            if($scope.queryParams.end_time){
-                data['end_time'] = new Date($scope.queryParams.end_time.format("YYYY-MM-DD")).getTime()/1000 + 60*60*24 + "";
-            }
             opt['data'] = data;
             ApiServer.getSiteStream(opt, function (response) {
                 vm.recordList = response.data.siteHistory.reverse();
@@ -324,7 +322,6 @@ var switchRecord = function (isShow) {
                 min_value: 5000,
                 max_value: ""
             }]
-        initialMap();
 
         vm.setPointer = function (point) {
             clearMarker();

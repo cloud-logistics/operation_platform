@@ -86,12 +86,12 @@
           });
         }
 
-        //$scope.$on("mapResize_from_main_to_children",function(){
-        //    console.log("mapResize in children",map);
-        //    setTimeout(function(){
-        //        google.maps.event.trigger(map, 'resize')
-        //    },100);
-        //})
+        $scope.$on("mapResize_from_main_to_children",function(){
+            console.log("mapResize in children",map);
+            setTimeout(function(){
+                google.maps.event.trigger(map, 'resize')
+            },100);
+        })
     }
 
 })();
