@@ -25,7 +25,7 @@
   angular.module('angucomplete-alt', [])
       .config(function($httpProvider){
         //为请求头添加Authorization属性为'code_bunny'
-        $httpProvider.defaults.headers.common['Authorization'] = JSON.parse(localStorage.getItem("airspc_access_authorization")).val.Authorization;
+        $httpProvider.defaults.headers.common['Authorization'] = localStorage.getItem("airspc_access_authorization") ? JSON.parse(localStorage.getItem("airspc_access_authorization")).val.Authorization :"";
       })
       .directive('angucompleteAlt', ['$q', '$parse', '$http', '$sce', '$timeout', '$templateCache', '$interpolate', function ($q, $parse, $http, $sce, $timeout, $templateCache, $interpolate) {
     // keyboard events
