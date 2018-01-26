@@ -137,6 +137,17 @@
             $scope.$emit('showDelMsg',opt);
         };
 
+        vm.table = [
+            {"name": "云箱ID", width: "13%"},
+            {"name": "RFID", width: "13%"},
+            {"name": "云箱型号", width: "8%"},
+            {"name": "生产地", width: "12%"},
+            {"name": "生产厂家", width: "18%"},
+            {"name": "出厂日期", width: "8%"},
+            {"name": "电源信息", width: "8%"},
+            {"name": "操作", width: "20%"}
+        ];
+
         $scope.conf = {
             currentPage: 1,
             itemsPerPage: 10,
@@ -161,6 +172,7 @@
             alertConfig: {},
             issueConfig: {}
         };
+
 
         vm.saveBasicInfoConfig = saveBasicInfoConfig;
         vm.cancelBasicInfoConfig = cancelBasicInfoConfig;
@@ -226,6 +238,7 @@
         getBasicInfo();
 
         function getBasicInfo() {
+            vm.gettingData = true;
             var data = {
                 container_id: 'all',
                 container_type: 0,
@@ -238,8 +251,10 @@
             ApiServer.getBasicInfo(data, function (response) {
                 vm.basicInfoManage = response.data.data.results;
                 $scope.conf.totalItems = response.data.data.count;
+                vm.gettingData = false;
             }, function (err) {
                 console.log("Get ContainerOverview Info Failed", err);
+                vm.gettingData = false;
             });
         }
 

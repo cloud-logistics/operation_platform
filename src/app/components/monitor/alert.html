@@ -12,6 +12,7 @@
                         <form class="form-inline">
                             <div class="form-group">
                                 <label class="rt-head-label">ID</label>
+
                                 <div style="display:inline-block;">
                                     <div angucomplete-alt id="containerId" placeholder="请输入云箱ID..."
                                          pause="500"
@@ -37,75 +38,91 @@
                             <div class="form-group">
                                 <label>故障类型</label>
                                 <select class="form-control" ng-model="vm.queryParams.alertType">
-                                    <option ng-repeat="item in vm.options.alertType track by $index" ng-value="item.id">{{item.value}}</option>
+                                    <option ng-repeat="item in vm.options.alertType track by $index" ng-value="item.id">
+                                        {{item.value}}
+                                    </option>
                                 </select>
                             </div>
                         </form>
                     </div>
                     <div class=" col-md-4 m-b">
                         <div class="form-group" style="margin-top:-2.5px;">
-                                <span type="submit" class="btn btn-sm btn-alert common_panel_btn" ng-click="vm.getAlerts()">查询监控
+                                <span type="submit" class="btn btn-sm btn-alert common_panel_btn"
+                                      ng-click="vm.getAlerts()">查询监控
                                 </span>
                         </div>
                     </div>
                 </div>
-                <div ng-show="!vm.alerts.length" style="margin-top:80px;">
-                    <ng-no-data-fount  conf="'filter'"></ng-no-data-fount>
-                </div>
-                <div class="row" style="background-color: #fff;margin-top: 30px" ng-show="vm.alerts.length">
-                    <table st-table="vm.items" st-safe-src="vm.items" class="table table-striped table-hover m-t">
-                        <thead>
-                        <tr>
-                            <th>云箱ID</th>
-                            <th>报警时间</th>
-                            <th>报警类别</th>
-                            <th>操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="item in vm.alerts track by $index">
-                            <td style="vertical-align: middle;">{{item.deviceid}}</td>
-                            <td style="vertical-align: middle;">{{item.timestamp | date:"yyyy-MM-dd HH:mm:ss"}}</td>
-                            <td style="vertical-align: middle;">{{item.error_description}}</td>
-                            <td class="button-group">
-                                <div class="command-button-group">
-                                    <span class="comm-reset reset-command-button" ng-click="resetClick()"><i class="glyphicon glyphicon-repeat"></i>重置</span>
-                                    <span class="comm-shutdown poweroff-command-button" ng-click="shutClick()"><i class="glyphicon glyphicon-off"></i>关机</span>
-                                    <a ui-sref="app.realtime({
+
+                <div style="margin-top:30px;">
+                    <div ng-show="vm.gettingData" class="grid_gettingData" style="padding:150px;">
+                        <span class="ngGrid_loading_mask"></span>
+                        <img class="ngGrid_loading_img" src="images/drop.gif"/>
+                    </div>
+                    <div class="row" ng-show="!vm.gettingData" style="background-color: #fff;">
+                        <div ng-show="!vm.alerts.length" style="margin-top:80px;">
+                            <ng-no-data-fount conf="'filter'"></ng-no-data-fount>
+                        </div>
+                        <div   ng-show="vm.alerts.length">
+                            <div class="grid_tr">
+                                <div class="grid_th" style="width:{{row['width']}}" ng-repeat="row in vm.table">
+                                    {{row.name}}
+                                </div>
+                            </div>
+
+                            <div class="grid_tr" ng-repeat="item in vm.alerts track by $index">
+                                <div class="grid_td" style="width:{{vm.table[0]['width']}}">{{item.deviceid}}</div>
+                                <div class="grid_td" style="width:{{vm.table[1]['width']}}">{{item.timestamp | date:"yyyy-MM-dd HH:mm:ss"}}</div>
+                                <div class="grid_td" style="width:{{vm.table[2]['width']}}">{{item.error_description}}</div>
+                                <div class="grid_td" style="width:{{vm.table[3]['width']}}" class="button-group">
+                                    <div  class="command-button-group">
+                                    <span class="comm-reset reset-command-button" ng-click="resetClick()"><i
+                                            class="glyphicon glyphicon-repeat"></i>重置</span>
+                                    <span class="comm-shudivown poweroff-command-button" ng-click="shutClick()"><i
+                                            class="glyphicon glyphicon-off"></i>关机</span>
+                                        <a ui-sref="app.realtime({
                                                 containerId: item.deviceid
                                             })" class="btn-table-detail">查看详情</a>
+                                    </div>
+
                                 </div>
 
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <tm-pagination style="float:right;" conf="conf"></tm-pagination>
+                            </div>
+
+                        </div>
+
+                        <tm-pagination style="float:right;" conf="conf"></tm-pagination>
+                    </div>
                 </div>
-                <modal-dialog show='resetShow' width='400px' height='130px'>
-                    <div class="container-fluid">
-                        <div class="row confirm-header">
-                            <span class="pull-left">您是否确认重置该云箱?</span>
-                        </div>
-                        <div class="row confirm-bottom">
-                            <span class="pull-right confirm-ok"  ng-click="vm.reset()">确认</span>
-                            <span class="pull-right confirm-cancel" ng-click="vm.cancelcmd()">取消</span>
-                        </div>
-                    </div>
-                </modal-dialog>
-                <modal-dialog show='shutShow' width='400px' height='130px'>
-                    <div class="container-fluid">
-                        <div class="row confirm-header">
-                            <span class="pull-left">您是否确认关闭该云箱?</span>
-                        </div>
-                        <div class="row confirm-bottom">
-                            <span class="pull-right confirm-ok" ng-click="vm.poweroff()">确认</span>
-                            <span class="pull-right confirm-cancel" ng-click="vm.cancelcmd()">取消</span>
-                        </div>
-                    </div>
-                </modal-dialog>
+
 
             </div>
+
+
+            <modal-dialog show='resetShow' width='400px' height='130px'>
+                <div class="container-fluid">
+                    <div class="row confirm-header">
+                        <span class="pull-left">您是否确认重置该云箱?</span>
+                    </div>
+                    <div class="row confirm-bottom">
+                        <span class="pull-right confirm-ok" ng-click="vm.reset()">确认</span>
+                        <span class="pull-right confirm-cancel" ng-click="vm.cancelcmd()">取消</span>
+                    </div>
+                </div>
+            </modal-dialog>
+            <modal-dialog show='shutShow' width='400px' height='130px'>
+                <div class="container-fluid">
+                    <div class="row confirm-header">
+                        <span class="pull-left">您是否确认关闭该云箱?</span>
+                    </div>
+                    <div class="row confirm-bottom">
+                        <span class="pull-right confirm-ok" ng-click="vm.poweroff()">确认</span>
+                        <span class="pull-right confirm-cancel" ng-click="vm.cancelcmd()">取消</span>
+                    </div>
+                </div>
+            </modal-dialog>
+
         </div>
     </div>
+</div>
 </div>

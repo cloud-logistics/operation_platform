@@ -32,7 +32,7 @@
             return flag;
         };
 
-        $scope.validationLength = function(value,len){
+        $scope.validationLength = function(value,len,event){
             if((value+"").length > len && event.keyCode!=8 && value != null){
                 event.preventDefault();
             }
@@ -45,9 +45,13 @@
                 vm.boxList[index].interval_time_msg = "只能输入0-200之间的整数";
                 flag = false;
                 vm.boxList[index].interval_time_class = "invalida-area";
-            } else {
+            } else if(!(item.interval_time)){
+                flag = false;
                 vm.boxList[index].interval_time_msg = "";
-                vm.boxList[index].interval_time_class = !(item.interval_time) && (item.interval_time != 0) ? " areaRequire" : "";
+                vm.boxList[index].interval_time_class = " areaRequire";
+            }else {
+                vm.boxList[index].interval_time_msg = "";
+                vm.boxList[index].interval_time_class = (item.interval_time == 0) ? " areaRequire" : "";
             }
             //温度[-55,85]
             if ((!/^-[1-4][0-9]{0,1}$|^-5[0-5]{0,1}$|^[-]{0,1}[0-9]$|^[1-7][0-9]{0,1}$|^8[0-5]{0,1}$/.test(item.temperature_threshold_min) && item.temperature_threshold_min != null))
@@ -183,8 +187,6 @@
                 intervalTime: R.compose(R.prop("value"), R.head)(vm.options.intervalTime)
             };
 
-            console.log(options);
-
             getAllSafeSetting();
         })
 
@@ -192,8 +194,20 @@
             ApiServer.getAllSafeSetting({
                 params: {},
                 success: function (res) {
-                    console.log(res.data);
                     vm.boxList = res.data.box_types;
+                    if(!(constdata.isChrome())){
+                        var compateToFirefox_IE = function (){
+                            var oInput = $("input[type='number']");
+                            oInput.on('mouseout',function(e){
+                                if(!(e.target.value) || isNaN(e.target.value)){
+                                    e.target.value = "";
+                                }
+                            })
+                        }
+                        setTimeout(function(){
+                            compateToFirefox_IE();
+                        },100);
+                    }
                 },
                 error: function (err) {
                     toastr.error(err.msg || "获取所有安全测试设置失败");
@@ -231,7 +245,5 @@
         function inputTransFunc(num) {
             return parseInt(num, 10)
         }
-
     }
-
 })();

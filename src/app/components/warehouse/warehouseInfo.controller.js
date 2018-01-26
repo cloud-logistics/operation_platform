@@ -1,7 +1,7 @@
 /**
  * Created by xianZJ on 2017/10/31.
  */
-var switchStatus = function (isShow,isNotApply) {
+var switchStatus = function (isShow, isNotApply) {
     if (isShow) {
         $("#whTable").show();
         $(".infoMask1").show();
@@ -9,7 +9,7 @@ var switchStatus = function (isShow,isNotApply) {
         var dom = document.getElementById("whTable");
         var scope = angular.element(dom).scope();
         scope['switchWatcher'](true);
-        if(!isNotApply){
+        if (!isNotApply) {
             scope.$apply()
         }
     } else {
@@ -18,12 +18,14 @@ var switchStatus = function (isShow,isNotApply) {
         var dom = document.getElementById("whTable");
         var scope = angular.element(dom).scope();
         scope['switchWatcher'](false);
-        if(!isNotApply){
+        if (!isNotApply) {
             scope.$apply()
         }
     }
 };
 var switchRecord = function (isShow) {
+    var dom = document.getElementById("whTable");
+    var scope = angular.element(dom).scope();
     if (isShow) {
         $("#whHistory").show();
         $(".infoMask2").show();
@@ -31,9 +33,8 @@ var switchRecord = function (isShow) {
     } else {
         $("#whHistory").hide();
         $(".infoMask2").hide();
-        var dom = document.getElementById("whTable");
-        var scope = angular.element(dom).scope();
-        scope['queryParams']={
+
+        scope['queryParams'] = {
             start_time: "",
             end_time: ""
         }
@@ -44,7 +45,7 @@ var switchRecord = function (isShow) {
     angular.module('smart_container').controller('WarehouseInfoController', WarehouseInfoController);
 
     /** @ngInject */
-    function WarehouseInfoController($scope, ApiServer, toastr, $state, MapService,moment) {
+    function WarehouseInfoController($scope, ApiServer, toastr, $state, MapService, moment) {
         var vm = this;
         var map;
         var mapCenter = {lat: 31.2891, lng: 121.4648};
@@ -79,19 +80,19 @@ var switchRecord = function (isShow) {
         };
         vm.table = [
             {"name": "仓库名称", width: "17%"},
-            {"name": "仓库ID", width: "17%"},
-            {"name": "位置", width: "20%"},
+            {"name": "仓库ID", width: "15%"},
+            {"name": "位置", width: "25%"},
             {"name": "容量", width: "8%"},
-            {"name": "联系电话", width: "8%"},
-            {"name": "", width: "30%"}
+            {"name": "联系电话", width: "10%"},
+            {"name": "操作", width: "25%"}
         ];
         $scope.showAdd = false;
         $scope.switchShowAdd = function () {
             $scope.showAdd = !$scope.showAdd;
-            if($scope.showAdd){
-                setTimeout(function(){
+            if ($scope.showAdd) {
+                setTimeout(function () {
                     initialMap();
-                },10)
+                }, 10)
             }
         };
         $scope.basicUpdate = function () {
@@ -103,22 +104,20 @@ var switchRecord = function (isShow) {
             $scope.bbUpdate = !$scope.bbUpdate;
             // $scope.modalUpdate = !$scope.modalUpdate;
         };
-
         $scope.showStatus = function (id) {
             var dom = document.getElementById("whTable");
             var scope = angular.element(dom).scope();
             scope['getBoxbysite'](id, function () {
                 switchRecord(false);
-                switchStatus(true,true);
+                switchStatus(true, true);
             })
         };
-
         $scope.showRecord = function (id) {
             var dom = document.getElementById("whTable");
             var scope = angular.element(dom).scope();
             scope['getSiteStream'](id, function () {
                 switchRecord(true);
-                switchStatus(false,true);
+                switchStatus(false, true);
             })
         };
 
@@ -151,10 +150,10 @@ var switchRecord = function (isShow) {
             });
         }
 
-        $scope.getSiteStream = function (id, callback,data) {
+        $scope.getSiteStream = function (id, callback, data) {
             $scope.currentId = id;
             var opt = {
-                id:id
+                id: id
             };
             var data = {};
             opt['data'] = data;
@@ -168,20 +167,20 @@ var switchRecord = function (isShow) {
             });
         };
 
-        vm.filterSiteStream = function(){
-            if(!$scope.currentId){
+        vm.filterSiteStream = function () {
+            if (!$scope.currentId) {
                 return;
             }
             var data = {};
-            console.log("ss===",$scope.queryParams);
-            if($scope.queryParams.start_time){
-                data['begin_time'] = new Date($scope.queryParams.start_time.format("YYYY-MM-DD")).getTime()/1000;
+            console.log("ss===", $scope.queryParams);
+            if ($scope.queryParams.start_time) {
+                data['begin_time'] = new Date($scope.queryParams.start_time.format("YYYY-MM-DD")).getTime() / 1000;
             }
-            if($scope.queryParams.end_time){
-                data['end_time'] = new Date($scope.queryParams.end_time.format("YYYY-MM-DD")).getTime()/1000 + 60*60*24 + "";
+            if ($scope.queryParams.end_time) {
+                data['end_time'] = new Date($scope.queryParams.end_time.format("YYYY-MM-DD")).getTime() / 1000 + 60 * 60 * 24 + "";
             }
             console.log()
-            $scope.getSiteStream($scope.currentId,null,data)
+            $scope.getSiteStream($scope.currentId, null, data)
         };
         vm.save = save;
         vm.cancel = cancel;
@@ -214,7 +213,7 @@ var switchRecord = function (isShow) {
             totalItems: 0,
             pagesLength: 15,
             perPageOptions: [10, 20, 30, 40, 50],
-            onChange: retrieveSiteInfo
+            onChange: null
         };
         vm.getCountryList = function (callback) {
             ApiServer.getCountryList({
@@ -266,7 +265,6 @@ var switchRecord = function (isShow) {
                     if (callback) {
                         callback();
                     }
-
                     $scope.validationCheck();
                 },
                 "error": function () {
@@ -592,7 +590,7 @@ var switchRecord = function (isShow) {
         }
 
         vm.deleteSiteInfo = function () {
-            if(!$scope.currentId){
+            if (!$scope.currentId) {
                 return;
             }
             $("body").scrollTop(0);
@@ -650,6 +648,7 @@ var switchRecord = function (isShow) {
         }
 
         function retrieveSiteInfo(filter) {
+            vm.gettingData = true;
             ApiServer.retrieveSiteInfo({
                 "limit": $scope.conf.itemsPerPage,
                 "offset": ($scope.conf.currentPage - 1) * $scope.conf.itemsPerPage,
@@ -659,9 +658,11 @@ var switchRecord = function (isShow) {
                     $scope.tableConfig.data = res.data.data.results;
                     $scope.conf.totalItems = res.data.data.count;
                     $scope.confBack = _.clone($scope.conf);
+                    vm.gettingData = false;
                 },
                 "error": function (err) {
                     toastr.error(err.msg || "获取仓库信息失败");
+                    vm.gettingData = false;
                 }
             });
         }
@@ -673,8 +674,7 @@ var switchRecord = function (isShow) {
         };
 
         vm.retrieveSiteInfoByFilter = function () {
-            console.log("sss==========", vm.siteInfoFilter);
-            var min_value, max_value;
+           var min_value, max_value;
             var index = vm.siteInfoFilter.volume.volume_id;
             if (index != undefined) {
                 min_value = vm.filterVolumeList[index].min_value;
@@ -698,34 +698,41 @@ var switchRecord = function (isShow) {
             }
         };
 
-        $scope.switchWatcher = function(flag){
-
-            if(!flag){
-                $scope.conf = $scope.confBack ?  _.clone($scope['confBack']) : {
+        $scope.switchWatcher = function (flag) {
+            if (!flag) {
+                $scope.conf = $scope.confBack ? _.clone($scope['confBack']) : {
                     currentPage: 1,
                     itemsPerPage: 10,
                     totalItems: 0,
                     pagesLength: 15,
                     perPageOptions: [10, 20, 30, 40, 50],
-                    onChange: retrieveSiteInfo
+                    onChange: null
                 };
-            }else{
+            } else {
                 $scope.conf = {
                     currentPage: 1,
                     itemsPerPage: 10,
                     totalItems: 0,
                     pagesLength: 7,
                     perPageOptions: [10, 20, 30, 40, 50],
-                    onChange: $scope.getBoxbysite
+                    onChange: null
                 };
             }
         }
 
-        $scope.$on("mapResize_from_main_to_children",function(){
-            console.log("mapResize in children",map);
-            setTimeout(function(){
+        $scope.$watchGroup(['conf.currentPage', 'conf.itemsPerPage'], function(){
+            if($(".infoMask1").css("display") == "none"){
+                retrieveSiteInfo();
+            }else{
+                $scope.getSiteStream();
+            }
+        })
+
+        $scope.$on("mapResize_from_main_to_children", function () {
+            console.log("mapResize in children", map);
+            setTimeout(function () {
                 google.maps.event.trigger(map, 'resize')
-            },100);
+            }, 100);
         })
     }
 })();

@@ -477,7 +477,6 @@ blockquote{
   > tfoot {
     > tr {
       > td {
-        padding:8px 15px;
         border-top: 1px solid @table-border-color;
       }
     }
@@ -697,4 +696,13 @@ blockquote{
 
 .form-control-static {
   padding:7px 0!important;
+}
+
+input[type=number] {
+  -moz-appearance:textfield;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

@@ -37,7 +37,16 @@
                     "carrier",
                     "factory",
                     "factoryLocation"
-                ]
+                ];
+
+        vm.table = [
+            {"name": "云箱ID", width: "15%"},
+            {"name": "云箱型号", width: "15%"},
+            {"name": "生产地", width: "18%"},
+            {"name": "生产厂家", width: "20%"},
+            {"name": "出厂日期", width: "7%"},
+            {"name": "操作", width: "25%"}
+        ];
 
         ApiServer.getOptions(requiredOptions, function(options) {
             vm.options = options
@@ -59,6 +68,7 @@
             if($scope.isContainerIdInvalida){
                 return;
             }
+            vm.gettingData = true;
             var data = {
                 container_id:vm.queryParams.containerId ||'all',
                 container_type:vm.queryParams.containerType || 0,
@@ -71,8 +81,10 @@
             ApiServer.getBasicInfo(data, function (response) {
                 vm.containerlist = response.data.data.results;
                 $scope.conf.totalItems = response.data.data.count;
+                vm.gettingData = false;
             },function (err) {
                 console.log("Get ContainerOverview Info Failed", err);
+                vm.gettingData = false;
             });
         }
 

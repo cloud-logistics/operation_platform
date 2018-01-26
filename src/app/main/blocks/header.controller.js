@@ -26,7 +26,7 @@
         };
         $scope.switchNav = function(flag){
             setTimeout(function(){
-                $(".nav").find("li").removeClass("active")
+                $("#navList").find("li").removeClass("active")
             },10);
             $scope.$emit("mapResize");
         };
@@ -59,10 +59,11 @@
             });
         };
 
-        getMessage();
-        var timer = $interval(function(){
-            getMessage();
-        },constdata.refreshInterval);
+        //getMessage();
+        //var timer = $interval(function(){
+        //
+        //    //getMessage();
+        //},constdata.refreshInterval);
 
         $scope.$on("$destroy", function(){
             $interval.cancel(timer);

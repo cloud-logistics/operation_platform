@@ -99,6 +99,12 @@
             validation:{
                 'id' : /^[A-Za-z0-9-]+$/,
                 'rfid':/^[A-Za-z0-9-_]+$/
+            },
+            isChrome:function(){
+                var UA = window.navigator.userAgent.toLowerCase();
+                var isEdge = UA && UA.indexOf('edge/') > 0;
+                var isChrome = UA && /chrome\/\d+/.test(UA) && !isEdge;
+                return isChrome;
             }
         });
 })();

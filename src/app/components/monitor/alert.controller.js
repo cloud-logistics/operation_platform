@@ -27,6 +27,14 @@
             onChange: function () {
             }
         };
+
+        vm.table = [
+            {"name": "云箱ID", width: "23%"},
+            {"name": "报警时间", width: "23%"},
+            {"name": "报警类别", width: "23%"},
+            {"name": "操作", width: "31%"}
+        ];
+
         $scope.validationCheck = function(){
             $scope.isContainerIdInvalida = vm.queryParams.containerId != "" &&!constdata['validation']['id'].test(vm.queryParams.containerId);
         };
@@ -55,6 +63,7 @@
             if($scope.isContainerIdInvalida){
                 return;
             }
+            vm.gettingData = true;
             var queryParams = vm.queryParams
             var data = {
                 container_id:queryParams.containerId || "all",
@@ -68,9 +77,11 @@
                     vm.alerts = response.data.data.results;
                     console.log(vm.alerts.length);
                     $scope.conf.totalItems = response.data.data.count;
+                    vm.gettingData = false;
                 },
                 error: function (err) {
                     toastr.error(err.msg || "获取报警监控信息失败");
+                    vm.gettingData = false;
                 }
             });
         }

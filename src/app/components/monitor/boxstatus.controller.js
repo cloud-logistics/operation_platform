@@ -38,6 +38,16 @@
             "carrier"
         ]
 
+        vm.table = [
+            {"name": "云箱ID", width: "15%"},
+            {"name": "当前状态", width: "12%"},
+            {"name": "所在地", width: "12%"},
+            {"name": "速度(km/h)", width: "12%"},
+            {"name": "温度(℃)", width: "12%"},
+            {"name": "湿度(%)", width: "12%"},
+            {"name": "操作", width: "25%"}
+        ];
+
         ApiServer.getOptions(requiredOptions, function (options) {
             vm.options = options
 
@@ -73,6 +83,7 @@
             if($scope.isContainerIdInvalida){
                 return;
             }
+            vm.gettingData = true;
             var data = {
                 container_id:vm.queryParams.containerId||'all',
                 container_type:vm.queryParams.containerType||0,
@@ -85,9 +96,11 @@
                 success: function (response) {
                     vm.containerlist = response.data.data.results;
                     $scope.conf.totalItems = response.data.data.count;
+                    vm.gettingData = false;
                 },
                 error: function (err) {
                     toastr.error(err.msg||"获取状态汇总信息失败。");
+                    vm.gettingData = false;
                 }
             });
         }
