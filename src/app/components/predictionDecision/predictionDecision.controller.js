@@ -94,15 +94,14 @@
         };
 
         var setMarker = function (bounds) {
-
             markers.push(MapService.addMarker(map, "redBox")({
                 "lng": bounds['oPoint'].lng,
                 "lat": bounds['oPoint'].lat
-            },{draggable: false,notTranslate:true}))
+            },{draggable: false,notTranslate:true}));
             markers.push(MapService.addMarker(map, "transparent")({
                 "lng": bounds['tPoint'].lng,
                 "lat": bounds['tPoint'].lat
-            },{draggable: false,notTranslate:true}))
+            },{draggable: false,notTranslate:true}));
         };
 
         var setText = function(opt){
@@ -141,6 +140,7 @@
             for (var s in bounds.tPoint) {
                 data.tPoint[s] = parseFloat(data.tPoint[s]);
             }
+            console.log("data=",data)
             clearMarker();
             setMarker(_.clone(data));
             //setLine(data.oPoint, data.tPoint, map);
@@ -350,7 +350,6 @@
         };
 
         $scope.getData();
-
 
         $scope.$on("mapResize_from_main_to_children",function(){
             setTimeout(function(){

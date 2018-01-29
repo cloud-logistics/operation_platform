@@ -404,6 +404,7 @@ var switchRecord = function (isShow) {
 
         vm.edit = function (obj, isNeedSwitchShowAdd) {
             console.log("obj =", obj);
+            vm.showDelBtn = true;
             vm.getCountryList(function () {
                 vm.siteInfo.nation.nation_id = obj.nation.nation_id;
 
@@ -520,6 +521,7 @@ var switchRecord = function (isShow) {
             $scope.conf.currentPage = 1;
             clearMarker();
             emptyInfo();
+            vm.showDelBtn = false;
             $scope.switchShowAdd();
             $scope.currentId = null;
         }

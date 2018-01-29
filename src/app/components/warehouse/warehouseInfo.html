@@ -167,7 +167,7 @@
                                     <div class="bm-input-bottom">
                                         <span class="pull-right bm-save common_panel_btn"
                                               ng-click="vm.save(true)">保  存</span>
-                                        <span ng-show="true" class="pull-right bm-save common_panel_btn"
+                                        <span ng-if="vm.showDelBtn" class="pull-right bm-save common_panel_btn"
                                               ng-click="vm.deleteSiteInfo()">删  除</span>
                                         <span class="pull-right bm-cancel common_panel_btn_cancel"
                                               style="background:#96a1b8;" ng-click="vm.cancel(true)">取  消</span>
