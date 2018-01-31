@@ -100,6 +100,11 @@
                 'id' : /^[A-Za-z0-9-]+$/,
                 'rfid':/^[A-Za-z0-9-_]+$/
             },
+            isIE:function(){
+                var UA = window.navigator.userAgent.toLowerCase();
+                var isIe = UA && /msie|trident/.test(UA);
+                return isIe;
+            },
             isChrome:function(){
                 var UA = window.navigator.userAgent.toLowerCase();
                 var isEdge = UA && UA.indexOf('edge/') > 0;

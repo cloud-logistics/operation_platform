@@ -6,7 +6,7 @@
     angular.module('smart_container').controller('PredictionDecisionController', PredictionDecisionController);
 
     /** @ngInject */
-    function PredictionDecisionController($scope, ApiServer, MapService, $interval) {
+    function PredictionDecisionController($scope, ApiServer, MapService, $interval,constdata) {
         var vm = this;
         /* jshint validthis: true */
         var width = document.body.clientWidth;
@@ -289,6 +289,7 @@
         };
 
         $scope.getData = function (flag) {
+            vm.gettingData = true;
             if (flag == 1) {
                 $scope.conf.currentPage++;
             } else if (flag == -1) {
@@ -340,11 +341,18 @@
                     $scope.conf.totalItems = res.data.data.count;
                     $scope.conf.pagePreEnabled = $scope.conf.currentPage > 1;
                     $scope.conf.pageNextEnabled = (res.data.data.count / res.data.data.limit) > $scope.conf.currentPage;
-
+                    vm.gettingData = false;
                     console.log(vm.pDData)
+                    if(constdata.isIE){
+                        setTimeout(function(){
+                            $("#zj").css("height",window.innerHeight-40)
+                        },10)
+                    }
+
                 },
                 error: function (res) {
                     console.log("获取调度信息失败 = ", res);
+                    vm.gettingData = false;
                 }
             })
         };

@@ -251,9 +251,26 @@
             };
         }
 
+        var colorMap = {
+            //[0][1]外侧渐变色 [2]表示bottomLine底色 [3]
+            high:["#E45E6A","#FFD2A0","#E75E71",""],
+            normal:["#34C4B6","#97E7A1","#4CCC74",""],
+            lower:["#ED871C","#FFF8B6","#F68365",""]
+        };
+
         /* 温度chart初始化 */
         function initTemp(value,isNormal) {
-
+            var canvas = document.getElementById("temp-chart");
+            var context = canvas.getContext("2d");
+            var dv = new dataV(context,{
+                outerCircleStartColor: colorMap['high'][0],
+                outerCircleEndColor:colorMap['high'][1],
+                bottomLineStrokeStyle:colorMap['high'][2],
+                centerTextFillStyle:colorMap['high'][2],
+                value:value
+            });
+            dv.render();
+            return;
             tempChart = tempChart || echarts.init(document.getElementById('temp-chart'));
 
             tempOption =  tempHumiOption(isNormal,value,-40,100);
@@ -263,7 +280,20 @@
 
         /*初始化湿度chart*/
         function initHumi(value,isNormal) {
+            console.log("value  =",value)
+            var canvas = document.getElementById("humi-chart");
+            var context = canvas.getContext("2d");
 
+            var dv = new dataV(context,{
+                outerCircleStartColor: colorMap['normal'][0],
+                outerCircleEndColor:colorMap['normal'][1],
+                bottomLineStrokeStyle:colorMap['normal'][2],
+                centerTextFillStyle:colorMap['normal'][2],
+                value:value,
+                unit:"%"
+            });
+            dv.render();
+            return;
             humiChart = humiChart || echarts.init(document.getElementById('humi-chart'));
 
             humiOption = tempHumiOption(isNormal,value);
