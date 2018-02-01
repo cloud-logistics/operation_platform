@@ -47,6 +47,12 @@
             {"name": "出厂日期", width: "7%"},
             {"name": "操作", width: "25%"}
         ];
+        //ie11 下不支持style="width：{{}}"写法 为了兼容它
+        _.map(vm.table,function(item){
+            item.style = {
+                width:item['width']
+            }
+        });
 
         ApiServer.getOptions(requiredOptions, function(options) {
             vm.options = options

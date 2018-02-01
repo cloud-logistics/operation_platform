@@ -34,7 +34,12 @@
             {"name": "报警类别", width: "23%"},
             {"name": "操作", width: "31%"}
         ];
-
+        //ie11 下不支持style="width：{{}}"写法 为了兼容它
+        _.map(vm.table,function(item){
+            item.style = {
+                width:item['width']
+            }
+        });
         $scope.validationCheck = function(){
             $scope.isContainerIdInvalida = vm.queryParams.containerId != "" &&!constdata['validation']['id'].test(vm.queryParams.containerId);
         };

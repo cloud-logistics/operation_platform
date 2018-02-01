@@ -114,17 +114,17 @@
                         </div>
                         <div  ng-show="vm.containerlist.length" >
                             <div class="grid_tr">
-                                <div class="grid_th" style="width:{{row['width']}}" ng-repeat="row in vm.table">{{row.name}}</div>
+                                <div class="grid_th" ng-style="row.style" ng-repeat="row in vm.table">{{row.name}}</div>
                             </div>
 
                             <div class="grid_tr" ng-repeat="item in vm.containerlist track by $index">
 
-                                <div class="grid_td" style="width:{{vm.table[0]['width']}}">{{item.deviceid}}</div>
-                                <div class="grid_td" style="width:{{vm.table[1]['width']}}">{{item.box_type_name}}</div>
-                                <div class="grid_td" style="width:{{vm.table[2]['width']}}">{{item.produce_area}}</div>
-                                <div class="grid_td" style="width:{{vm.table[3]['width']}}">{{item.manufacturer}}</div>
-                                <div class="grid_td" style="width:{{vm.table[4]['width']}}">{{item.date_of_production | date:"yyyy-MM-dd"}}</div>
-                                <div class="grid_td" style="width:{{vm.table[5]['width']}}"><a class="btn-table-detail" ui-sref="app.realtime({
+                                <div class="grid_td" ng-style="vm.table[0].style">{{item.deviceid}}</div>
+                                <div class="grid_td" ng-style="vm.table[1].style">{{item.box_type_name}}</div>
+                                <div class="grid_td" ng-style="vm.table[2].style">{{item.produce_area}}</div>
+                                <div class="grid_td" ng-style="vm.table[3].style">{{item.manufacturer}}</div>
+                                <div class="grid_td" ng-style="vm.table[4].style">{{item.date_of_production | date:"yyyy-MM-dd"}}</div>
+                                <div class="grid_td" ng-style="vm.table[5].style"><a class="btn-table-detail" ui-sref="app.realtime({
                                         containerId: item.deviceid 
                                     })">查看更多</a>
                                 </div>

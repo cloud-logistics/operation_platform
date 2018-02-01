@@ -65,18 +65,19 @@
                         </div>
                         <div   ng-show="vm.alerts.length">
                             <div class="grid_tr">
-                                <div class="grid_th" style="width:{{row['width']}}" ng-repeat="row in vm.table">
+                                <div class="grid_th" ng-style="row.style" ng-repeat="row in vm.table">
                                     {{row.name}}
                                 </div>
                             </div>
 
                             <div class="grid_tr" ng-repeat="item in vm.alerts track by $index">
-                                <div class="grid_td" style="width:{{vm.table[0]['width']}}">{{item.deviceid}}</div>
-                                <div class="grid_td" style="width:{{vm.table[1]['width']}}">{{item.timestamp | date:"yyyy-MM-dd HH:mm:ss"}}</div>
-                                <div class="grid_td" style="width:{{vm.table[2]['width']}}">{{item.error_description}}</div>
-                                <div class="grid_td" style="width:{{vm.table[3]['width']}}" class="button-group">
+                                <div class="grid_td" ng-style="vm.table[0].style">{{item.deviceid}}</div>
+                                <div class="grid_td" ng-style="vm.table[1].style">{{item.timestamp | date:"yyyy-MM-dd HH:mm:ss"}}</div>
+                                <div class="grid_td" ng-style="vm.table[2].style">{{item.error_description}}</div>
+                                <div class="grid_td" ng-style="vm.table[3].style" class="button-group">
                                     <div  class="command-button-group">
-                                    <span class="comm-reset reset-command-button" ng-click="resetClick()"><i
+                                    <span class="comm-reset reset-command-button"
+                                          ng-click="resetClick()"><i
                                             class="glyphicon glyphicon-repeat"></i>重置</span>
                                     <span class="comm-shudivown poweroff-command-button" ng-click="shutClick()"><i
                                             class="glyphicon glyphicon-off"></i>关机</span>

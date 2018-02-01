@@ -293,33 +293,33 @@
                     </div>
                     <div ng-show="vm.basicInfoManage.length">
                         <div class="grid_tr">
-                            <div class="grid_th" style="width:{{row['width']}}" ng-repeat="row in vm.table">{{row.name}}
+                            <div class="grid_th" ng-style="row.style" ng-repeat="row in vm.table">{{row.name}}
                             </div>
                         </div>
                         <div class="grid_tr" ng-repeat="item in vm.basicInfoManage track by $index">
-                            <div class="grid_td" style="width:{{vm.table[0]['width']}}" title="{{item.deviceid}}">
+                            <div class="grid_td"  ng-style="vm.table[0].style" title="{{item.deviceid}}">
                                 {{item.deviceid}}
                             </div>
-                            <div class="grid_td" style="width:{{vm.table[1]['width']}}" title="{{item.tid}}">
+                            <div class="grid_td"  ng-style="vm.table[1].style" title="{{item.tid}}">
                                 {{item.tid}}
                             </div>
-                            <div class="grid_td" style="width:{{vm.table[2]['width']}}" title="{{item.box_type_name}}">
+                            <div class="grid_td"  ng-style="vm.table[2].style" title="{{item.box_type_name}}">
                                 {{item.box_type_name}}
                             </div>
-                            <div class="grid_td" style="width:{{vm.table[3]['width']}}" title="{{item.produce_area}}">
+                            <div class="grid_td"  ng-style="vm.table[3].style" title="{{item.produce_area}}">
                                 {{item.produce_area}}
                             </div>
-                            <div class="grid_td" style="width:{{vm.table[4]['width']}}" title="{{item.manufacturer}}">
+                            <div class="grid_td"  ng-style="vm.table[4].style" title="{{item.manufacturer}}">
                                 {{item.manufacturer}}
                             </div>
-                            <div class="grid_td" style="width:{{vm.table[5]['width']}}"
+                            <div class="grid_td"  ng-style="vm.table[5].style"
                                  title="{{item.date_of_production | date:' yyyy-MM-dd'}}">
                                 {{item.date_of_production | date:"yyyy-MM-dd"}}
                             </div>
-                            <div class="grid_td" style="width:{{vm.table[6]['width']}}" title="{{item.battery_detail}}">
+                            <div class="grid_td"  ng-style="vm.table[6].style" title="{{item.battery_detail}}">
                                 {{item.battery_detail}}
                             </div>
-                            <div class="grid_td" style="width:{{vm.table[7]['width']}}" class="button-group">
+                            <div class="grid_td"  ng-style="vm.table[7].style" class="button-group">
                                 <span class="bb-edit-btn" ng-click="basicUpdate(item)">编辑</span>
                                 <span class="bb-del-btn" ng-click="deleteBoxBasic(item)">删除</span>
                             </div>

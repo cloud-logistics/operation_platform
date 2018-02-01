@@ -147,6 +147,12 @@
             {"name": "电源信息", width: "8%"},
             {"name": "操作", width: "20%"}
         ];
+        //ie11 下不支持style="width：{{}}"写法 为了兼容它
+        _.map(vm.table,function(item){
+            item.style = {
+                width:item['width']
+            }
+        });
 
         $scope.conf = {
             currentPage: 1,

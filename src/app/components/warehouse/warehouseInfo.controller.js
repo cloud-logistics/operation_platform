@@ -86,6 +86,13 @@ var switchRecord = function (isShow) {
             {"name": "联系电话", width: "10%"},
             {"name": "操作", width: "25%"}
         ];
+        //ie11 下不支持style="width：{{}}"写法 为了兼容它
+        _.map(vm.table,function(item){
+            item.style = {
+                width:item['width']
+            }
+        });
+
         $scope.showAdd = false;
         $scope.switchShowAdd = function () {
             $scope.showAdd = !$scope.showAdd;
@@ -187,19 +194,6 @@ var switchRecord = function (isShow) {
         $scope.save = save;
         $scope.cancel = cancel;
         vm.options = {};
-        $scope.tableConfig = {
-            col: [{"name": "仓库名称", width: "13%", model: "name"},
-                {"name": "仓库ID", width: "12%", model: "site_code"},
-                {"name": "位置", width: "24%", model: "location"},
-                {"name": "容量", width: "8%", model: "volume"},
-                {
-                    "name": "操作", width: "15%", model: "", formatter: function (tr, that) {
-                    console.log("that", that)
-                    return '<a class="bb-edit-btn" ng-click="vm.edit(tr,true)">编辑</a>' +
-                        '<a class="bb-del-btn" ng-click="vm.deleteSiteInfo(tr.id)">删除</a>'
-                }
-                }]
-        };
 
         function clearMarker() {
             if (marker) {
@@ -404,7 +398,7 @@ var switchRecord = function (isShow) {
 
         vm.edit = function (obj, isNeedSwitchShowAdd) {
             console.log("obj =", obj);
-            vm.showDelBtn = true;
+
             vm.getCountryList(function () {
                 vm.siteInfo.nation.nation_id = obj.nation.nation_id;
 
@@ -428,6 +422,7 @@ var switchRecord = function (isShow) {
             });
             if (isNeedSwitchShowAdd) {
                 $scope.switchShowAdd();
+                vm.showDelBtn = true;
                 $scope.currentId = obj.id;
             }
         };
@@ -657,7 +652,7 @@ var switchRecord = function (isShow) {
                 "data": filter,
                 "success": function (res) {
                     vm.siteInfoList = res.data.data.results;
-                    $scope.tableConfig.data = res.data.data.results;
+
                     $scope.conf.totalItems = res.data.data.count;
                     $scope.confBack = _.clone($scope.conf);
                     vm.gettingData = false;

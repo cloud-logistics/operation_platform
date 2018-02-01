@@ -86,18 +86,18 @@
                         <div ng-show="vm.containerlist.length">
 
                             <div class="grid_tr">
-                                <div class="grid_th" style="width:{{row['width']}}" ng-repeat="row in vm.table">
+                                <div class="grid_th"  ng-style="row.style" ng-repeat="row in vm.table">
                                     {{row.name}}
                                 </div>
                             </div>
                             <div class="grid_tr" ng-repeat="item in vm.containerlist track by $index">
-                                <div class="grid_td" style="width:{{vm.table[0]['width']}}" title="{{item.deviceid}}">{{item.deviceid}}</div>
-                                <div class="grid_td" style="width:{{vm.table[1]['width']}}" title="{{item.available_status}}">{{item.available_status}}</div>
-                                <div class="grid_td" style="width:{{vm.table[2]['width']}}" title="{{item.location_name}}">{{item.location_name}}</div>
-                                <div class="grid_td" style="width:{{vm.table[3]['width']}}" title="{{item.speed}}">{{item.speed}}</div>
-                                <div class="grid_td" style="width:{{vm.table[4]['width']}}" title="{{item.temperature}}">{{item.temperature}}</div>
-                                <div class="grid_td" style="width:{{vm.table[5]['width']}}" title="{{item.humidity}}">{{item.humidity}}</div>
-                                <div class="grid_td" style="width:{{vm.table[6]['width']}}"><a class="btn-table-detail"
+                                <div class="grid_td" ng-style="vm.table[0].style" title="{{item.deviceid}}">{{item.deviceid}}</div>
+                                <div class="grid_td" ng-style="vm.table[1].style" title="{{item.available_status}}">{{item.available_status}}</div>
+                                <div class="grid_td" ng-style="vm.table[2].style" title="{{item.location_name}}">{{item.location_name}}</div>
+                                <div class="grid_td" ng-style="vm.table[3].style" title="{{item.speed}}">{{item.speed}}</div>
+                                <div class="grid_td" ng-style="vm.table[4].style" title="{{item.temperature}}">{{item.temperature}}</div>
+                                <div class="grid_td" ng-style="vm.table[5].style" title="{{item.humidity}}">{{item.humidity}}</div>
+                                <div class="grid_td" ng-style="vm.table[6].style"><a class="btn-table-detail"
                                                                                                ui-sref="app.realtime({
                                 containerId: item.deviceid
                             })">查看详情</a></div>
