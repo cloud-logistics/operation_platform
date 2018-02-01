@@ -62,6 +62,9 @@
         getRealtimeInfo(true);
 
         $scope.changeTimeRange = function (days) {
+            if(vm.days == days){
+                return;
+            }
             vm.days = days || 1;
             getContainerHistoryStatus(days, vm.requiredParam);
         };

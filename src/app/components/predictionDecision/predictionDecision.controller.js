@@ -336,6 +336,7 @@
                             tAddress: item.finish.site_code,
                         }
                     });
+
                     $scope.conf.currentPage = parseInt(res.data.data.offset / res.data.data.limit) + 1;
                     $scope.conf.totalPage = parseInt(res.data.data.count / res.data.data.limit) + 1;
                     $scope.conf.totalItems = res.data.data.count;

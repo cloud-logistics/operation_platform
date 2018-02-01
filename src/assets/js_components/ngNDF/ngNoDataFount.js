@@ -44,6 +44,7 @@
                         }
 
                     }
+                    console.log("model = ",$scope.conf)
                     $scope.model = menu[$scope.conf];
                 }
             }

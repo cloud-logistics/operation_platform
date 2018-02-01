@@ -1,0 +1,410 @@
+.mapview {
+  min-height: calc(90vh);
+  min-width: 750px;
+  overflow-x: scroll;
+}
+.embeded_mapview {
+  min-height: 400px;
+}
+.floating-panel {
+  position: absolute;
+  width: 90%;
+  margin: 5%;
+  min-height: 70px;
+  display: inline-block;
+  vertical-align: middle;
+  z-index: 5;
+  border: 1px solid #999;
+  font-family: 'Roboto', 'sans-serif';
+  line-height: 30px;
+  background: #ffffff;
+  box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.25);
+}
+.floating-panel span.instTitle {
+  display: inline-block;
+  margin-left: 10px;
+  height: 22px;
+  line-height: 22px;
+  color: #7e8ad2;
+  font-family: PingFangSC-Semibold;
+  font-size: 24px;
+  letter-spacing: 0;
+  text-align: left;
+  margin-top: 20px;
+}
+.floating-panel .instRight {
+  float: right;
+  margin-top: 10px;
+}
+.floating-panel .instRight span.instlabel {
+  font-family: PingFangSC-Regular;
+  font-size: 16px;
+  color: #666666;
+  letter-spacing: 0;
+  text-align: left;
+  display: inline-block;
+}
+.floating-panel .instRight input {
+  background: #f7f7f7;
+  border-radius: 8px;
+  width: 200px;
+  height: 40px;
+  border: none;
+}
+.floating-panel .instRight span.instBtn {
+  display: inline-block;
+  vertical-align: middle;
+  background: #7e8ad2;
+  border-radius: 8px;
+  width: 120px;
+  height: 40px;
+  font-family: PingFangSC-Semibold;
+  font-size: 18px;
+  color: #ffffff;
+  letter-spacing: 0;
+  line-height: 40px;
+  margin-left: 30px;
+  margin-right: 20px;
+  text-align: center;
+}
+.floating-panel .instLabel {
+  line-height: 40px;
+  float: left;
+  width: 40px;
+  text-align: center;
+}
+.floating-panel-his {
+  position: absolute;
+  width: 95%;
+  margin: 2.5%;
+  display: inline-block;
+  min-height: 70px;
+  vertical-align: middle;
+  z-index: 5;
+  padding: 5px;
+  border: 1px solid #999;
+  font-family: 'Roboto', 'sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
+  background: #ffffff;
+  box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.25);
+}
+.floating-panel-his span.instTitleHis {
+  display: inline-block;
+  margin-left: 10px;
+  height: 22px;
+  line-height: 22px;
+  color: #e19149;
+  font-family: PingFangSC-Semibold;
+  font-size: 24px;
+  letter-spacing: 0;
+  text-align: left;
+  margin-top: 20px;
+}
+.floating-panel-his .instRightHis {
+  float: right;
+  margin-top: 10px;
+}
+.floating-panel-his .instRightHis .instLabelHis-label {
+  float: left;
+  width: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+.floating-panel-his .instRightHis span.instlabelHis {
+  font-family: PingFangSC-Regular;
+  font-size: 16px;
+  color: #666666;
+  letter-spacing: 0;
+  text-align: left;
+  display: inline-block;
+}
+.floating-panel-his .instRightHis input {
+  background: #f7f7f7;
+  border-radius: 8px;
+  width: 180px;
+  height: 40px;
+  padding-left: 10px;
+  border: none;
+}
+.floating-panel-his .instRightHis span.instBtnHis {
+  display: inline-block;
+  vertical-align: middle;
+  background: #e19149;
+  border-radius: 8px;
+  width: 120px;
+  height: 40px;
+  font-family: PingFangSC-Semibold;
+  font-size: 18px;
+  color: #ffffff;
+  letter-spacing: 0;
+  line-height: 40px;
+  margin-left: 30px;
+  margin-right: 20px;
+  text-align: center;
+}
+.floating-panel-comm {
+  position: absolute;
+  width: 90%;
+  height: 70px;
+  top: 40px;
+  left: 5%;
+  vertical-align: middle;
+  z-index: 5;
+  padding: 5px;
+  border: 1px solid #999;
+  font-family: 'Roboto', 'sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
+  opacity: 0.9;
+  background: #13263f;
+  box-shadow: 0 0 5px 0 #6697fe;
+}
+.floating-panel-comm span.comm-title {
+  display: inline-block;
+  margin-left: 10px;
+  height: 22px;
+  line-height: 22px;
+  color: #4668e7;
+  font-family: PingFangSC-Semibold;
+  font-size: 24px;
+  letter-spacing: 0;
+  text-align: left;
+  margin-top: 20px;
+}
+.floating-panel-comm span.bread-1 {
+  display: inline-block;
+  opacity: 0.6;
+  font-family: PingFangSC-Regular;
+  font-size: 16px;
+  color: #ffffff;
+  letter-spacing: 0;
+  text-align: left;
+  margin-left: 20px;
+}
+.floating-panel-comm span.bread-symbol {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+  font-size: 16px;
+}
+.floating-panel-comm span.bread-2 {
+  display: inline-block;
+  margin-left: 5px;
+  font-family: PingFangSC-Regular;
+  font-size: 16px;
+  color: #ffffff;
+  letter-spacing: 0;
+  text-align: left;
+}
+.floating-panel-comm .comm-right {
+  float: right;
+  margin-top: 10px;
+}
+.floating-panel-comm .comm-right span.comm-detail {
+  cursor: pointer;
+  font-family: PingFangSC-Regular;
+  font-size: 16px;
+  color: #72c68a;
+  letter-spacing: 0;
+  text-align: center;
+  display: inline-block;
+  height: 40px;
+  width: 90px;
+  border: 2px solid #6fbe86;
+  border-radius: 6px;
+  line-height: 36px;
+}
+.floating-panel-comm .comm-right span.comm-reset {
+  cursor: pointer;
+  display: inline-block;
+  background: #8c70e0;
+  border-radius: 8px;
+  width: 90px;
+  height: 40px;
+  font-family: PingFangSC-Semibold;
+  font-size: 18px;
+  color: #ffffff;
+  letter-spacing: 0;
+  line-height: 40px;
+  margin-left: 30px;
+  text-align: center;
+}
+.floating-panel-comm .comm-right span.comm-reset i {
+  color: #fff;
+  font-size: 18px;
+  margin-right: 5px;
+  margin-bottom: 4px;
+  vertical-align: middle;
+}
+.floating-panel-comm .comm-right span.comm-shutdown {
+  cursor: pointer;
+  display: inline-block;
+  background: #c26b6b;
+  border-radius: 8px;
+  width: 90px;
+  height: 40px;
+  font-family: PingFangSC-Semibold;
+  font-size: 18px;
+  color: #ffffff;
+  letter-spacing: 0;
+  line-height: 40px;
+  margin-left: 30px;
+  margin-right: 20px;
+  text-align: center;
+}
+.floating-panel-comm .comm-right span.comm-shutdown i {
+  color: #fff;
+  font-size: 20px;
+  margin-right: 5px;
+  margin-bottom: 4px;
+  vertical-align: middle;
+}
+.confirm-header {
+  height: 60px;
+  margin-top: -5px;
+}
+.confirm-header span {
+  display: inline-block;
+  height: 20px;
+  font-family: PingFangSC-Medium;
+  font-size: 16px;
+  color: #5080d2;
+  letter-spacing: 0;
+  text-align: left;
+  line-height: 20px;
+  margin: 28px 0 0 33px;
+}
+.confirm-bottom {
+  margin: 12px 0px 0 0;
+}
+.confirm-bottom span.confirm-ok {
+  display: inline-block;
+  height: 40px;
+  width: 90px;
+  font-family: PingFangSC-Medium;
+  font-size: 16px;
+  color: #72c68a;
+  letter-spacing: 0;
+  text-align: center;
+  line-height: 40px;
+  border: 1px solid #72c68a;
+  border-radius: 8px;
+  margin: 0 0 0 10px;
+}
+.confirm-bottom span.confirm-cancel {
+  display: inline-block;
+  height: 40px;
+  width: 90px;
+  font-family: PingFangSC-Medium;
+  font-size: 16px;
+  color: #c26b6b;
+  letter-spacing: 0;
+  text-align: center;
+  line-height: 40px;
+  border: 1px solid #c26b6b;
+  border-radius: 8px;
+}
+.map-marker {
+  width: 100%;
+}
+.map-marker .marker-content {
+  width: 300px;
+  height: 160px;
+  background: #4668e7;
+  border-radius: 13px 13px 0 0;
+}
+.map-marker .marker-content .content-left {
+  width: 140px;
+  display: inline-block;
+  padding: 20px 0 0 30px;
+}
+.map-marker .marker-content .content-left span {
+  display: inline-block;
+  opacity: 0.6;
+  font-family: PingFangSC-Regular;
+  font-size: 16px;
+  color: #ffffff;
+  letter-spacing: 0;
+  text-align: left;
+}
+.map-marker .marker-content .content-right {
+  width: 160px;
+  display: inline-block;
+  float: right;
+  margin-top: 5px;
+}
+.map-marker .marker-content .content-right span {
+  width: 140px;
+  height: 22px;
+  line-height: 22px;
+  display: inline-block;
+  font-family: PingFangSC-Regular;
+  font-size: 16px;
+  color: #ffffff;
+  letter-spacing: 0;
+  text-align: left;
+  margin-top: 15px;
+}
+.map-marker .marker-bottom {
+  height: 80px;
+  width: 300px;
+  opacity: 0.8;
+  background: #122341;
+  box-shadow: 0 0 17px 0 #4a90ed;
+}
+.map-marker .marker-bottom .bottom-text {
+  box-sizing: border-box;
+}
+.map-marker .marker-bottom .bottom-text p {
+  font-family: PingFangSC-Regular;
+  font-size: 16px;
+  color: #ffffff;
+  letter-spacing: 0;
+  text-align: center;
+  padding-top: 20px;
+}
+.map-marker .marker-bottom .marker-line {
+  margin: 0 auto;
+  height: 3px;
+  width: 220px;
+  background: linear-gradient(90deg, #3e83ee, #9d75e2);
+  position: relative;
+}
+.map-marker .marker-bottom .marker-line:before {
+  content: '';
+  display: block;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  background: #3e83ee;
+  z-index: -1;
+  border-radius: 50%;
+  top: -7px;
+  left: -5px;
+}
+.map-marker .marker-bottom .marker-line:after {
+  content: '';
+  display: block;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  background: #9d75e2;
+  z-index: -1;
+  border-radius: 50%;
+  top: -7px;
+  right: -5px;
+}
+.map-marker .marker-point {
+  content: "";
+  width: 0;
+  height: 0;
+  border: 18px solid;
+  border-color: transparent;
+  border-top-color: #122341;
+  margin: 0 auto;
+}
+.il-main {
+  position: relative;
+  min-width: 800px;
+}

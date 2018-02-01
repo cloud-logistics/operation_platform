@@ -282,7 +282,7 @@ var Directive = (function () {
                 };
                 if(flag){
                     if(str.indexOf(" ")>-1){
-                        return menu[str.split(" ")[0]] + " " + str.split(" ")[1]
+                        return menu[str.split(" ")[0]] ? menu[str.split(" ")[0]] + " " + str.split(" ")[1] : str;
                     }
                     return str;
                 }else{

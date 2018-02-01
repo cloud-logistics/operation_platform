@@ -111,7 +111,10 @@
                 is_insert: false
             });
             $scope.bbUpdate = !$scope.bbUpdate;
-            $("body").scrollTop(0);
+            $("body").scrollTop(0);                    //chrome
+            document.documentElement.scrollTop = 0;   //firefox
+            window.pageYOffset = 0;                   //safari
+            window.pageYOffset || document.body.scroll
         };
 
         $scope.deleteBoxBasic = function(item){
