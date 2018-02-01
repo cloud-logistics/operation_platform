@@ -117,8 +117,8 @@
                 vm.speedStatus = "正常";
                 console.log(vm.realtimeInfo);
 
-                initTemp(vm.realtimeInfo.temperature.value,vm.realtimeInfo.temperature.status=="正常");
-                initHumi(vm.realtimeInfo.humidity.value,vm.realtimeInfo.humidity.status == '正常');
+                initTemp(vm.realtimeInfo.temperature);
+                initHumi(vm.realtimeInfo.humidity);
                 initSpeed(Math.round(vm.realtimeInfo.speed * 100) / 100);
 
             }, function (err) {
@@ -259,46 +259,50 @@
         };
 
         /* 温度chart初始化 */
-        function initTemp(value,isNormal) {
+        function initTemp(opt) {
             var canvas = document.getElementById("temp-chart");
             var context = canvas.getContext("2d");
+            var key = opt.temperature_diff > 0 ? "high" : opt.temperature_diff == 0 ? "normal" : "lower";
             var dv = new dataV(context,{
-                outerCircleStartColor: colorMap['high'][0],
-                outerCircleEndColor:colorMap['high'][1],
-                bottomLineStrokeStyle:colorMap['high'][2],
-                centerTextFillStyle:colorMap['high'][2],
-                value:value
+                outerCircleStartColor: colorMap[key][0],
+                outerCircleEndColor:colorMap[key][1],
+                bottomLineStrokeStyle:colorMap[key][2],
+                centerTextFillStyle:colorMap[key][2],
+                minThreshold:opt.temperature_threshold_min,
+                maxThreshold:opt.temperature_threshold_max,
+                value:opt.value
             });
             dv.render();
-            return;
-            tempChart = tempChart || echarts.init(document.getElementById('temp-chart'));
-
-            tempOption =  tempHumiOption(isNormal,value,-40,100);
-
-            tempChart.setOption(tempOption);
         }
 
         /*初始化湿度chart*/
-        function initHumi(value,isNormal) {
-            console.log("value  =",value)
+        function initHumi(opt) {
             var canvas = document.getElementById("humi-chart");
             var context = canvas.getContext("2d");
-
+            if(opt.humidity_diff > 0){
+                var key = "high";
+                var text = "偏高 " + opt.humidity_diff;
+            }else if(opt.humidity_diff == 0){
+                var key = "normal";
+                var text = "正常"
+            }else{
+                var key = "lower";
+                var text = "偏低 " + (opt.humidity_diff+"").split(1,(opt.humidity_diff+"").length);
+            }
             var dv = new dataV(context,{
-                outerCircleStartColor: colorMap['normal'][0],
-                outerCircleEndColor:colorMap['normal'][1],
-                bottomLineStrokeStyle:colorMap['normal'][2],
-                centerTextFillStyle:colorMap['normal'][2],
-                value:value,
+                outerCircleStartColor: colorMap[key][0],
+                outerCircleEndColor:colorMap[key][1],
+                bottomLineStrokeStyle:colorMap[key][2],
+                centerTextFillStyle:colorMap[key][2],
+                minThreshold:opt.humidity_threshold_min,
+                maxThreshold:opt.humidity_threshold_max,
+                bottomText:text,
+                minValue:0,
+                maxValue:100,
+                value:opt.value,
                 unit:"%"
             });
             dv.render();
-            return;
-            humiChart = humiChart || echarts.init(document.getElementById('humi-chart'));
-
-            humiOption = tempHumiOption(isNormal,value);
-
-            humiChart.setOption(humiOption);
         }
 
         function initSpeed(value) {

@@ -32,10 +32,10 @@ function dataV(ctx,conf) {
         value:5,
         centerTextFillStyle :"red",
         centerTextFont :"30px Source Sans Pro",
-        bottomText:"偏高 +2°",
+        bottomText:"偏高 +2",
         bottomTextFillStyle:"white",
         bottomTextFont:"10px Source Sans Pro",
-        bottomLineWidth:20,
+        bottomLineWidth:24,
         bottomLineStrokeStyle:"#e75e71",
 
         arcTextFillStyle : "#b4b4b4",
@@ -109,7 +109,7 @@ dataV.prototype = {
         this.context.fillStyle = this.conf.bottomTextFillStyle;
         this.context.font = this.conf.bottomTextFont;
         this.context.textAlign = "center";
-        this.context.fillText(this.conf.bottomText, this.conf.innerCircleCenter.x, 1.5*(this.conf.innerCircleCenter.y));
+        this.context.fillText(this.conf.bottomText == "正常" ? this.conf.bottomText : this.conf.bottomText + this.conf.unit, this.conf.innerCircleCenter.x, 1.5*(this.conf.innerCircleCenter.y));
         this.context.stroke();
     },
     drawBottomLine: function () {
