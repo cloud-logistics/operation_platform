@@ -99,7 +99,7 @@ var switchRecord = function (isShow) {
             if ($scope.showAdd) {
                 setTimeout(function () {
                     initialMap();
-                }, 10)
+                }, 100)
             }
         };
         $scope.basicUpdate = function () {
