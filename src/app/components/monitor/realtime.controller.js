@@ -265,14 +265,27 @@
         function initTemp(opt) {
             var canvas = document.getElementById("temp-chart");
             var context = canvas.getContext("2d");
-            var key = opt.temperature_diff > 0 ? "high" : opt.temperature_diff == 0 ? "normal" : "lower";
-            var dv = new dataV(context,{
+            if(opt.temperature_diff > 0){
+                var key = "high";
+                var text = "偏高 " + opt.temperature_diff;
+            }else if(opt.temperature_diff == 0){
+                var key = "normal";
+                var text = "正常"
+            }else{
+                var key = "lower";
+                var text = "偏低 " + Math.abs(opt.temperature_diff);
+            }
+            var dv = new dataV(canvas,context,{
                 outerCircleStartColor: colorMap[key][0],
                 outerCircleEndColor:colorMap[key][1],
                 bottomLineStrokeStyle:colorMap[key][2],
                 centerTextFillStyle:colorMap[key][2],
                 minThreshold:opt.temperature_threshold_min,
                 maxThreshold:opt.temperature_threshold_max,
+                bottomText:text,
+                minValue: -55,
+                maxValue: 85,
+                unit: "°",
                 value:opt.value
             });
             dv.render();
@@ -290,9 +303,9 @@
                 var text = "正常"
             }else{
                 var key = "lower";
-                var text = "偏低 " + (opt.humidity_diff+"").split(1,(opt.humidity_diff+"").length);
+                var text = "偏低 " + Math.abs(opt.humidity_diff);
             }
-            var dv = new dataV(context,{
+            var dv = new dataV(canvas,context,{
                 outerCircleStartColor: colorMap[key][0],
                 outerCircleEndColor:colorMap[key][1],
                 bottomLineStrokeStyle:colorMap[key][2],

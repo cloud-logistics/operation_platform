@@ -246,7 +246,6 @@
             return output;
         };
 
-
         //椭圆的参数方程
         function drawEllipse(a, b, len, sColor, eColor) {
             console.log("a = ", a)
@@ -257,37 +256,56 @@
             var latCenter;
             var A = Math.abs(a.lat - b.lat);
             var B = Math.abs(a.lng - b.lng);
+            var IsOntOrThree = null;
             if (a.lng < b.lng && a.lat > b.lat) { //第一象限
-                console.log("第一象限")
+                console.log("第一象限");
+                IsOntOrThree = true;
                 thetaMin = 0;
                 lngCenter = a.lng;
                 latCenter = b.lat;
             } else if (a.lng < b.lng && a.lat < b.lat) {//第四象限
-                console.log("第四象限")
+                console.log("第四象限");
                 thetaMin = 3 * Math.PI / 2;
                 lngCenter = a.lng;
                 latCenter = b.lat;
             } else if (a.lng > b.lng && a.lat > b.lat) {//第二象限
-                console.log("第二象限")
+                console.log("第二象限");
+
                 thetaMin = Math.PI / 2;
                 lngCenter = a.lng;
                 latCenter = b.lat;
             } else if (a.lng > b.lng && a.lat < b.lat) {//第三象限
-                console.log("第三象限")
+                console.log("第三象限");
+                IsOntOrThree = true;
                 thetaMin = Math.PI;
                 lngCenter = a.lng;
                 latCenter = b.lat;
             }
-            var colorArray = gradientColors(sColor, eColor, len);
-            for (var s = 0; s <= len; s++) {
-                points.push({
-                    "lng": lngCenter + B * Math.cos(thetaMin + Math.PI / (2 * len) * s),
-                    "lat": latCenter + A * Math.sin(thetaMin + Math.PI / (2 * len) * s),
-                    "color": colorArray[s]
-                })
-            }
-            for (var s = 0; s < len; s++) {
-                setLine(points[s], points[s + 1], map, points[s].color, Math.floor(s / 20) * 0.1 + 1);
+
+            if(IsOntOrThree){
+                var colorArray = gradientColors(eColor, sColor, len);
+                for (var s = 0; s <= len; s++) {
+                    points.push({
+                        "lng": lngCenter + B * Math.cos(thetaMin + Math.PI / (2 * len) * s),
+                        "lat": latCenter + A * Math.sin(thetaMin + Math.PI / (2 * len) * s),
+                        "color": colorArray[s]
+                    })
+                }
+                for (var s = 0; s < len; s++) {
+                    setLine(points[s], points[s + 1], map, points[s].color, 26 - Math.floor(s / 20) * 0.1);
+                }
+            }else{
+                var colorArray = gradientColors(sColor, eColor, len);
+                for (var s = 0; s <= len; s++) {
+                    points.push({
+                        "lng": lngCenter + B * Math.cos(thetaMin + Math.PI / (2 * len) * s),
+                        "lat": latCenter + A * Math.sin(thetaMin + Math.PI / (2 * len) * s),
+                        "color": colorArray[s]
+                    })
+                }
+                for (var s = 0; s < len; s++) {
+                    setLine(points[s], points[s + 1], map, points[s].color, Math.floor(s / 20) * 0.1 + 1);
+                }
             }
         };
 
@@ -358,7 +376,7 @@
                     });
 
                     $scope.conf.currentPage = parseInt(res.data.data.offset / res.data.data.limit) + 1;
-                    $scope.conf.totalPage = parseInt(res.data.data.count / res.data.data.limit) + 1;
+                    $scope.conf.totalPage = Math.ceil(res.data.data.count / res.data.data.limit);
                     $scope.conf.totalItems = res.data.data.count;
                     $scope.conf.pagePreEnabled = $scope.conf.currentPage > 1;
                     $scope.conf.pageNextEnabled = (res.data.data.count / res.data.data.limit) > $scope.conf.currentPage;
