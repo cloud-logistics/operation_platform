@@ -5,10 +5,11 @@ var switchStatus = function (isShow, isNotApply) {
     if (isShow) {
         $("#whTable").show();
         $(".infoMask1").show();
-        $("body").scrollTop(0);
+
         var dom = document.getElementById("whTable");
         var scope = angular.element(dom).scope();
         scope['switchWatcher'](true);
+        scope.$emit("scrollTop");
         if (!isNotApply) {
             scope.$apply()
         }
@@ -29,11 +30,10 @@ var switchRecord = function (isShow) {
     if (isShow) {
         $("#whHistory").show();
         $(".infoMask2").show();
-        $("body").scrollTop(0)
+        scope.$emit("scrollTop");
     } else {
         $("#whHistory").hide();
         $(".infoMask2").hide();
-
         scope['queryParams'] = {
             start_time: "",
             end_time: ""
@@ -397,8 +397,6 @@ var switchRecord = function (isShow) {
         };
 
         vm.edit = function (obj, isNeedSwitchShowAdd) {
-            console.log("obj =", obj);
-
             vm.getCountryList(function () {
                 vm.siteInfo.nation.nation_id = obj.nation.nation_id;
 
@@ -423,6 +421,7 @@ var switchRecord = function (isShow) {
             if (isNeedSwitchShowAdd) {
                 $scope.switchShowAdd();
                 vm.showDelBtn = true;
+                $scope.$emit("scrollTop");
                 $scope.currentId = obj.id;
             }
         };
@@ -590,7 +589,6 @@ var switchRecord = function (isShow) {
             if (!$scope.currentId) {
                 return;
             }
-            $("body").scrollTop(0);
             var opt = {
                 okFn: function () {
                     if (!$scope.currentId) {

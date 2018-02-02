@@ -110,6 +110,11 @@
                 var isEdge = UA && UA.indexOf('edge/') > 0;
                 var isChrome = UA && /chrome\/\d+/.test(UA) && !isEdge;
                 return isChrome;
+            },
+            isFirefox:function(){
+                var UA = window.navigator.userAgent.toLowerCase();
+                var isFirefox = UA.indexOf("firefox") > -1;
+                return isFirefox;
             }
         });
 })();

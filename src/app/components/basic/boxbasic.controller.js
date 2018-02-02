@@ -111,10 +111,7 @@
                 is_insert: false
             });
             $scope.bbUpdate = !$scope.bbUpdate;
-            $("body").scrollTop(0);                    //chrome
-            document.documentElement.scrollTop = 0;   //firefox
-            window.pageYOffset = 0;                   //safari
-            window.pageYOffset || document.body.scroll
+            $scope.$emit("scrollTop");
         };
 
         $scope.deleteBoxBasic = function(item){
@@ -136,9 +133,10 @@
                     })
                 }
             };
-            $("body").scrollTop(0);
             $scope.$emit('showDelMsg',opt);
         };
+
+
 
         vm.table = [
             {"name": "云箱ID", width: "13%"},

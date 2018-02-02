@@ -35,19 +35,13 @@
                 data:"",
                 success:function(res){
                     var bounds = new google.maps.LatLngBounds();
-                    var weight = 1;
-
                     var histData = R.map(function(item){
                         var lng = parseFloat(item.longitude);
                         var lat = parseFloat(item.latitude);
 
-                        if(item.box_num != 0) {
-                          weight = item.box_num;
-                        }
-
                         var res = {
                             location: new google.maps.LatLng(lat, lng),
-                            weight: 1
+                            weight:  item.box_num
                         };
                         return res;
                     })(res.data.sites);

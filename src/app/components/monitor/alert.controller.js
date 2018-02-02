@@ -129,11 +129,13 @@
 
         $scope.resetShow = false;
         $scope.resetClick = function () {
+            $scope.$emit("scrollTop");
             $scope.resetShow = !$scope.resetShow;
-        }
+        };
 
         $scope.shutShow = false;
         $scope.shutClick = function () {
+            $scope.$emit("scrollTop");
             $scope.shutShow = !$scope.shutShow;
         }
 

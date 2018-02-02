@@ -7,7 +7,7 @@
     angular.module('smart_container').controller('MainController', MainController);
 
     /** @ngInject */
-    function MainController($rootScope, $translate, $location, ApiServer,$state, toastr, $scope) {
+    function MainController($rootScope, $translate, $location, constdata,$state, toastr, $scope) {
         /* jshint validthis: true */
         var vm = this;
         var url = $location.absUrl();
@@ -70,6 +70,7 @@
 
 
         $scope.$on('showDelMsg',function(d,opt){
+            $scope.$emit("scrollTop");
             $scope.showDelMsg = true;
             $scope.okFn = function(){
                 opt.okFn();
@@ -78,8 +79,17 @@
             $scope.cancelFn = opt.cancelFn || function(){
                 $scope.showDelMsg = false;
             };
+        });
 
-        })
+        $scope.$on("scrollTop",function(){
+            if(constdata.isChrome()){
+                $("body").scrollTop(0);                    //chrome
+            }else if(constdata.isIE() || constdata.isFirefox()){
+                document.documentElement.scrollTop = 0;   //firefox
+            }else{
+                window.pageYOffset = 0;                   //safari
+            }
+        });
 
         $scope.$on("mapResize",function(d,opt){
             console.log("main mapResize");
