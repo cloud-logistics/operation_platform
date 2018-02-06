@@ -37,7 +37,7 @@
         $scope.container_num = undefined;
 
         getHistorylocationInfo();
-        getOperationOverview();
+        //getOperationOverview();
 
         function getHistorylocationInfo() {
             ApiServer.getContainerOverviewInfo(function (response) {
@@ -51,13 +51,13 @@
                         weight: item.cnt
                     };
                     return res;
-                })(response.data);
-
+                })(response.data.data);
+                $scope.container_num = response.data.container_num;
                 var bounds = new google.maps.LatLngBounds();
-
                 if (R.isEmpty(histData)) {
                     toastr.error('未查询到云箱信息，请联系管理员！');
                 } else {
+
                     heatmap = new google.maps.visualization.HeatmapLayer({
                         data: histData,
                         map: map,
