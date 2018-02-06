@@ -203,7 +203,7 @@ var switchRecord = function (isShow) {
 
         $scope.conf = {
             currentPage: 1,
-            itemsPerPage: 10,
+            itemsPerPage: 30,
             totalItems: 0,
             pagesLength: 15,
             perPageOptions: [10, 20, 30, 40, 50],
@@ -697,7 +697,7 @@ var switchRecord = function (isShow) {
             if (!flag) {
                 $scope.conf = $scope.confBack ? _.clone($scope['confBack']) : {
                     currentPage: 1,
-                    itemsPerPage: 10,
+                    itemsPerPage: 30,
                     totalItems: 0,
                     pagesLength: 15,
                     perPageOptions: [10, 20, 30, 40, 50],
@@ -706,7 +706,7 @@ var switchRecord = function (isShow) {
             } else {
                 $scope.conf = {
                     currentPage: 1,
-                    itemsPerPage: 10,
+                    itemsPerPage: 30,
                     totalItems: 0,
                     pagesLength: 7,
                     perPageOptions: [10, 20, 30, 40, 50],

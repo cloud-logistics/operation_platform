@@ -41,7 +41,7 @@
 
                         var res = {
                             location: new google.maps.LatLng(lat, lng),
-                            weight:  item.box_num
+                            weight:  1
                         };
                         return res;
                     })(res.data.sites);

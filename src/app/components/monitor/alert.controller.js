@@ -20,7 +20,7 @@
 
         $scope.conf = {
             currentPage: 1,
-            itemsPerPage: 10,
+            itemsPerPage: 30,
             totalItems:0,
             pagesLength: 15,
             perPageOptions: [10, 20, 30, 40, 50],
