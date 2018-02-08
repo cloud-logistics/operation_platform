@@ -27,7 +27,7 @@
         //为请求头添加Authorization属性为'code_bunny'
         $httpProvider.defaults.headers.common['Authorization'] = localStorage.getItem("airspc_access_authorization") ? JSON.parse(localStorage.getItem("airspc_access_authorization")).val.Authorization :"";
       })
-      .directive('angucompleteAlt', ['$q', '$parse', '$http', '$sce', '$timeout', '$templateCache', '$interpolate', function ($q, $parse, $http, $sce, $timeout, $templateCache, $interpolate) {
+      .directive('angucompleteAlt', ['$q', '$parse', '$http', '$sce', '$timeout', '$templateCache', '$interpolate','constdata', function ($q, $parse, $http, $sce, $timeout, $templateCache, $interpolate,constdata) {
     // keyboard events
     var KEY_DW  = 40;
     var KEY_RT  = 39;
@@ -71,6 +71,11 @@
 
     function link(scope, elem, attrs, ctrl) {
       var inputField = elem.find('input');
+      console.log("scope= ",scope)
+      if(scope.isNeedInitial){
+
+        scope.searchStr = constdata.defaultContainerId;
+      }
       var minlength = MIN_LENGTH;
       var searchTimer = null;
       var hideTimer;
@@ -792,6 +797,7 @@
       require: '^?form',
       scope: {
         selectedObject: '=',
+        isNeedInitial :"@",
         selectedObjectData: '=',
         disableInput: '=',
         initialValue: '=',

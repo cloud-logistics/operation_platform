@@ -82,7 +82,6 @@ dataV.prototype = {
         this.context.beginPath();
         this.context.fillStyle = this.conf.arcTextFillStyle;
         this.context.font = this.conf.arcTextFont;
-        console.log("text.length", text);
         var radius = this.conf.innerArcRadius + 3;
         var fs = 3;
         var character = null;
@@ -128,7 +127,6 @@ dataV.prototype = {
         this.context.stroke();
     },
     drawValue: function (thate) {
-        console.log("thate = ", thate)
         //thate= 1.85 * Math.PI
         var harfThate = Math.PI / 180 * 5;
         var radius1 = 40;

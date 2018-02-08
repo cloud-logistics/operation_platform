@@ -22,7 +22,7 @@
                 $rootScope.previousState_params = fromParams;
 
                 $rootScope.$on('$stateChangeStart',
-                    function (event, toState, toParams, fromState, fromParams, options) {g
+                    function (event, toState, toParams, fromState, fromParams, options) {
                         if (toState.name != 'access.signin') {
                             if (StorageService.get(constdata.token) == null) {
                                 event.preventDefault();

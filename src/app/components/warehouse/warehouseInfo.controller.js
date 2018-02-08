@@ -117,7 +117,7 @@ var switchRecord = function (isShow) {
             scope['getBoxbysite'](id, function () {
                 switchRecord(false);
                 switchStatus(true, true);
-            })
+            },true);
         };
         $scope.showRecord = function (id) {
             var dom = document.getElementById("whTable");
@@ -128,7 +128,7 @@ var switchRecord = function (isShow) {
             })
         };
 
-        $scope.getBoxbysite = function (id, callback) {
+        $scope.getBoxbysite = function (id, callback,flag) {
             if (id) {
                 localStorage.setItem("siteId", id);
             } else {
@@ -138,6 +138,23 @@ var switchRecord = function (isShow) {
                     console.log("仓库ID不能为空。");
                     return;
                 }
+            }
+            if(flag){
+                $scope.conf = {
+                    currentPage: 1,
+                    itemsPerPage: 10,
+                    totalItems: 0,
+                    pagesLength: 7,
+                    perPageOptions: [10, 20, 30, 40, 50],
+                    onChange: null
+                };
+                if($scope.watcher){
+                    $scope.watcher();
+                    $scope.watcher =  $scope.$watchGroup(['conf.currentPage', 'conf.itemsPerPage'], function(){
+                        $scope.getBoxbysite(id,callback)
+                    });
+                }
+
             }
             ApiServer.getBoxbysite({
                 "id": id,
@@ -150,12 +167,16 @@ var switchRecord = function (isShow) {
                     if (callback) {
                         callback()
                     }
+                    console.log("response = ",response.data.data)
+                    console.log("scope.conf = ",$scope.conf)
+
                 },
                 "error": function (err) {
                     console.log("Get Stream Info Failed", err);
                 }
             });
-        }
+        };
+
 
         $scope.getSiteStream = function (id, callback, data) {
             $scope.currentId = id;
@@ -203,7 +224,7 @@ var switchRecord = function (isShow) {
 
         $scope.conf = {
             currentPage: 1,
-            itemsPerPage: 30,
+            itemsPerPage: 10,
             totalItems: 0,
             pagesLength: 15,
             perPageOptions: [10, 20, 30, 40, 50],
@@ -427,8 +448,6 @@ var switchRecord = function (isShow) {
         };
 
         var changeMapState = function (lng, lat, zoom) {
-            console.log("lng = ", lng)
-            console.log("lat = ", lat)
             map.setCenter({
                 lat: lat,
                 lng: lng
@@ -697,31 +716,27 @@ var switchRecord = function (isShow) {
             if (!flag) {
                 $scope.conf = $scope.confBack ? _.clone($scope['confBack']) : {
                     currentPage: 1,
-                    itemsPerPage: 30,
+                    itemsPerPage: 10,
                     totalItems: 0,
                     pagesLength: 15,
                     perPageOptions: [10, 20, 30, 40, 50],
                     onChange: null
                 };
-            } else {
-                $scope.conf = {
-                    currentPage: 1,
-                    itemsPerPage: 30,
-                    totalItems: 0,
-                    pagesLength: 7,
-                    perPageOptions: [10, 20, 30, 40, 50],
-                    onChange: null
-                };
+                if($scope.watcher){
+                    $scope.watcher();
+                }
+                setTimeout(function(){
+                    $scope.watcher =  $scope.$watchGroup(['conf.currentPage', 'conf.itemsPerPage'], function(){
+                        retrieveSiteInfo();
+                    });
+                },100)
             }
-        }
+        };
 
-        $scope.$watchGroup(['conf.currentPage', 'conf.itemsPerPage'], function(){
-            if($(".infoMask1").css("display") == "none"){
-                retrieveSiteInfo();
-            }else{
-                $scope.getSiteStream();
-            }
-        })
+
+        $scope.watcher =  $scope.$watchGroup(['conf.currentPage', 'conf.itemsPerPage'], function(){
+            retrieveSiteInfo();
+        });
 
         $scope.$on("mapResize_from_main_to_children", function () {
             console.log("mapResize in children", map);
