@@ -12,6 +12,13 @@
             var count = 0;
 
             $rootScope.$on("$stateChangeSuccess", function (event, toState, toParams, fromState, fromParams) {
+                if(constdata.isChrome()){
+                    $(".app-content").scrollTop(0);                    //chrome
+                }else if(constdata.isIE() || constdata.isFirefox()){
+                    document.documentElement.scrollTop = 0;   //firefox
+                }else{
+                    window.pageYOffset = 0;                   //safari
+                }
                 if (StorageService.get(constdata.token) == null) {
                     event.preventDefault();
                     $state.go('access.signin');

@@ -1,11 +1,8 @@
-/**
- * Created by xianZJ on 2017/10/31.
- */
 var switchStatus = function (isShow, isNotApply) {
     if (isShow) {
         $("#whTable").show();
         $(".infoMask1").show();
-
+        $(".infoMask1").height($(".wrapper-md").height() + 10+"px")
         var dom = document.getElementById("whTable");
         var scope = angular.element(dom).scope();
         scope['switchWatcher'](true);
@@ -93,6 +90,14 @@ var switchRecord = function (isShow) {
             }
         });
 
+        $(".whTable_content")[0].onmousewheel = function(event) {
+            return false;
+            event.preventDefault();
+            event.stopPropagation();
+            event.cancelBubble = true
+            return false;
+        }
+
         $scope.showAdd = false;
         $scope.switchShowAdd = function () {
             $scope.showAdd = !$scope.showAdd;
@@ -142,7 +147,7 @@ var switchRecord = function (isShow) {
             if(flag){
                 $scope.conf = {
                     currentPage: 1,
-                    itemsPerPage: 10,
+                    itemsPerPage: 30,
                     totalItems: 0,
                     pagesLength: 7,
                     perPageOptions: [10, 20, 30, 40, 50],
@@ -176,7 +181,6 @@ var switchRecord = function (isShow) {
                 }
             });
         };
-
 
         $scope.getSiteStream = function (id, callback, data) {
             $scope.currentId = id;
@@ -224,7 +228,7 @@ var switchRecord = function (isShow) {
 
         $scope.conf = {
             currentPage: 1,
-            itemsPerPage: 10,
+            itemsPerPage: 30,
             totalItems: 0,
             pagesLength: 15,
             perPageOptions: [10, 20, 30, 40, 50],
@@ -716,7 +720,7 @@ var switchRecord = function (isShow) {
             if (!flag) {
                 $scope.conf = $scope.confBack ? _.clone($scope['confBack']) : {
                     currentPage: 1,
-                    itemsPerPage: 10,
+                    itemsPerPage: 30,
                     totalItems: 0,
                     pagesLength: 15,
                     perPageOptions: [10, 20, 30, 40, 50],
@@ -732,7 +736,6 @@ var switchRecord = function (isShow) {
                 },100)
             }
         };
-
 
         $scope.watcher =  $scope.$watchGroup(['conf.currentPage', 'conf.itemsPerPage'], function(){
             retrieveSiteInfo();

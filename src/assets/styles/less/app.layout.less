@@ -7,7 +7,7 @@ html{
 	position:relative;
 }
 body{
-	overflow-x: hidden;
+	overflow: hidden;
 }
 
 .app{
@@ -83,6 +83,7 @@ body{
 // content
 .app-content{
 	height: 100%;
+	overflow:scroll;
 	background-color: @body-bg;
 	.clearfix();
 }
@@ -130,6 +131,7 @@ body{
 		display: table-cell;
 		vertical-align: top;
 		height: 100%;
+		width:100%;
 		float: none;
 	}
 }

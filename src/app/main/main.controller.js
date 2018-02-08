@@ -83,7 +83,7 @@
 
         $scope.$on("scrollTop",function(){
             if(constdata.isChrome()){
-                $("body").scrollTop(0);                    //chrome
+                $(".app-content").scrollTop(0);                    //chrome
             }else if(constdata.isIE() || constdata.isFirefox()){
                 document.documentElement.scrollTop = 0;   //firefox
             }else{

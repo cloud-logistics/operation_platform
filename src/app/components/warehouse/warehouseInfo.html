@@ -182,34 +182,37 @@
                     </div>
 
                 </div>
-                <div ng-show="vm.gettingData" class="grid_gettingData" style="padding:150px;">
-                    <span class="ngGrid_loading_mask"></span>
-                    <img class="ngGrid_loading_img" src="images/drop.gif"/>
-                </div>
-                <div ng-show="!vm.gettingData">
-                    <div ng-show="!vm.siteInfoList.length" style="margin-top:100px;">
-                        <ng-no-data-fount conf="'filter'"></ng-no-data-fount>
+                <div style="margin-top:30px;margin-bottom:50px;">
+
+                    <div ng-show="vm.gettingData" class="grid_gettingData" style="padding:150px;">
+                        <span class="ngGrid_loading_mask"></span>
+                        <img class="ngGrid_loading_img" src="images/drop.gif"/>
                     </div>
-                    <div class="row bb-table whTable" ng-show="!showAdd && vm.siteInfoList.length">
-                        <div class="grid_tr">
-                            <div class="grid_th" ng-style="row.style" ng-repeat="row in vm.table">{{row.name}}</div>
+                    <div ng-show="!vm.gettingData">
+                        <div ng-show="!vm.siteInfoList.length" style="margin-top:100px;">
+                            <ng-no-data-fount conf="'filter'"></ng-no-data-fount>
                         </div>
-
-                        <div class="grid_tr" ng-repeat="item in vm.siteInfoList track by $index">
-                            <div class="grid_td" ng-style="vm.table[0].style" title="{{item.name}}">{{item.name}}</div>
-                            <div class="grid_td" ng-style="vm.table[1].style" title="{{item.site_code}}">{{item.site_code}}</div>
-
-                            <div class="grid_td" ng-style="vm.table[2].style" title="{{item.location}}">{{item.location}}</div>
-                            <div class="grid_td" ng-style="vm.table[3].style" title="{{item.volume}}">{{item.volume}}</div>
-                            <div class="grid_td" ng-style="vm.table[4].style" title="{{item.telephone}}">{{item.telephone}}</div>
-                            <div class="grid_td" ng-style="vm.table[5].style">
-                                <span class="bb-kind-btn" ng-click="showStatus(item.id)">在库云箱</span>
-                                <span class="bb-kind-btn" ng-click="showRecord(item.id)">出入记录</span>
-                                <span class="bb-edit-btn"  ng-click="vm.edit(item,true)">编辑</span>
+                        <div class="row bb-table whTable" ng-show="!showAdd && vm.siteInfoList.length">
+                            <div class="grid_tr">
+                                <div class="grid_th" ng-style="row.style" ng-repeat="row in vm.table">{{row.name}}</div>
                             </div>
 
+                            <div class="grid_tr" ng-repeat="item in vm.siteInfoList track by $index">
+                                <div class="grid_td" ng-style="vm.table[0].style" title="{{item.name}}">{{item.name}}</div>
+                                <div class="grid_td" ng-style="vm.table[1].style" title="{{item.site_code}}">{{item.site_code}}</div>
+
+                                <div class="grid_td" ng-style="vm.table[2].style" title="{{item.location}}">{{item.location}}</div>
+                                <div class="grid_td" ng-style="vm.table[3].style" title="{{item.volume}}">{{item.volume}}</div>
+                                <div class="grid_td" ng-style="vm.table[4].style" title="{{item.telephone}}">{{item.telephone}}</div>
+                                <div class="grid_td" ng-style="vm.table[5].style">
+                                    <span class="bb-kind-btn" ng-click="showStatus(item.id)">在库云箱</span>
+                                    <span class="bb-kind-btn" ng-click="showRecord(item.id)">出入记录</span>
+                                    <span class="bb-edit-btn"  ng-click="vm.edit(item,true)">编辑</span>
+                                </div>
+
+                            </div>
+                            <tm-pagination style="float:right;" conf="conf" callback="vm.retrieveSiteInfo"></tm-pagination>
                         </div>
-                        <tm-pagination style="float:right;" conf="conf" callback="vm.retrieveSiteInfo"></tm-pagination>
                     </div>
                 </div>
 

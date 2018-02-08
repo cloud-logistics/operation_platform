@@ -133,7 +133,7 @@
         </modal-dialog>
 
         <div id="content" style="height: 100vh;">
-            <div class="row wrapper-md">
+            <div class="wrapper-md">
                 <div class="row" style="background-color: #fff">
                     <div class="bb-title" style="margin-top:25px;">
                         <span class="common_panel_label">录入云箱基础信息</span>
@@ -283,50 +283,54 @@
                         </div>
                     </div>
                 </div>
-                <div ng-show="vm.gettingData" class="row grid_gettingData mt30" style="padding:150px;">
-                    <span class="ngGrid_loading_mask"></span>
-                    <img class="ngGrid_loading_img" src="images/drop.gif"/>
-                </div>
-                <div ng-show="!vm.gettingData" class="row mt30">
-                    <div ng-show="!vm.basicInfoManage.length" style="margin-top:50px;">
-                        <ng-no-data-fount conf="'search'"></ng-no-data-fount>
+                <div style="margin-top:30px;margin-bottom:50px;">
+                    <div ng-show="vm.gettingData" class="row grid_gettingData mt30" style="padding:150px;">
+                        <span class="ngGrid_loading_mask"></span>
+                        <img class="ngGrid_loading_img" src="images/drop.gif"/>
                     </div>
-                    <div ng-show="vm.basicInfoManage.length">
-                        <div class="grid_tr">
-                            <div class="grid_th" ng-style="row.style" ng-repeat="row in vm.table">{{row.name}}
-                            </div>
+                    <div ng-show="!vm.gettingData" class="row" style="background-color: #fff;">
+                        <div ng-show="!vm.basicInfoManage.length" style="margin-top:50px;">
+                            <ng-no-data-fount conf="'search'"></ng-no-data-fount>
                         </div>
-                        <div class="grid_tr" ng-repeat="item in vm.basicInfoManage track by $index">
-                            <div class="grid_td"  ng-style="vm.table[0].style" title="{{item.deviceid}}">
-                                {{item.deviceid}}
+                        <div ng-show="vm.basicInfoManage.length">
+                            <div class="grid_tr">
+                                <div class="grid_th" ng-style="row.style" ng-repeat="row in vm.table">{{row.name}}
+                                </div>
                             </div>
-                            <div class="grid_td"  ng-style="vm.table[1].style" title="{{item.tid}}">
-                                {{item.tid}}
+                            <div class="grid_tr" ng-repeat="item in vm.basicInfoManage track by $index">
+                                <div class="grid_td"  ng-style="vm.table[0].style" title="{{item.deviceid}}">
+                                    {{item.deviceid}}
+                                </div>
+                                <div class="grid_td"  ng-style="vm.table[1].style" title="{{item.tid}}">
+                                    {{item.tid}}
+                                </div>
+                                <div class="grid_td"  ng-style="vm.table[2].style" title="{{item.box_type_name}}">
+                                    {{item.box_type_name}}
+                                </div>
+                                <div class="grid_td"  ng-style="vm.table[3].style" title="{{item.produce_area}}">
+                                    {{item.produce_area}}
+                                </div>
+                                <div class="grid_td"  ng-style="vm.table[4].style" title="{{item.manufacturer}}">
+                                    {{item.manufacturer}}
+                                </div>
+                                <div class="grid_td"  ng-style="vm.table[5].style"
+                                     title="{{item.date_of_production | date:' yyyy-MM-dd'}}">
+                                    {{item.date_of_production | date:"yyyy-MM-dd"}}
+                                </div>
+                                <div class="grid_td"  ng-style="vm.table[6].style" title="{{item.battery_detail}}">
+                                    {{item.battery_detail}}
+                                </div>
+                                <div class="grid_td"  ng-style="vm.table[7].style" class="button-group">
+                                    <span class="bb-edit-btn" ng-click="basicUpdate(item)">编辑</span>
+                                    <span class="bb-del-btn" ng-click="deleteBoxBasic(item)">删除</span>
+                                </div>
                             </div>
-                            <div class="grid_td"  ng-style="vm.table[2].style" title="{{item.box_type_name}}">
-                                {{item.box_type_name}}
-                            </div>
-                            <div class="grid_td"  ng-style="vm.table[3].style" title="{{item.produce_area}}">
-                                {{item.produce_area}}
-                            </div>
-                            <div class="grid_td"  ng-style="vm.table[4].style" title="{{item.manufacturer}}">
-                                {{item.manufacturer}}
-                            </div>
-                            <div class="grid_td"  ng-style="vm.table[5].style"
-                                 title="{{item.date_of_production | date:' yyyy-MM-dd'}}">
-                                {{item.date_of_production | date:"yyyy-MM-dd"}}
-                            </div>
-                            <div class="grid_td"  ng-style="vm.table[6].style" title="{{item.battery_detail}}">
-                                {{item.battery_detail}}
-                            </div>
-                            <div class="grid_td"  ng-style="vm.table[7].style" class="button-group">
-                                <span class="bb-edit-btn" ng-click="basicUpdate(item)">编辑</span>
-                                <span class="bb-del-btn" ng-click="deleteBoxBasic(item)">删除</span>
-                            </div>
+
                         </div>
                         <tm-pagination style="float:right;" conf="conf"></tm-pagination>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

@@ -603,7 +603,7 @@ html {
   position: relative;
 }
 body {
-  overflow-x: hidden;
+  overflow: hidden;
 }
 .app {
   height: auto;
@@ -669,6 +669,7 @@ body {
 }
 .app-content {
   height: 100%;
+  overflow: scroll;
   background-color: #f0f3f4;
 }
 .app-content:before,
@@ -718,6 +719,7 @@ body {
   display: table-cell;
   vertical-align: top;
   height: 100%;
+  width: 100%;
   float: none;
 }
 .v-middle {
@@ -6873,6 +6875,7 @@ a.text-black:hover {
   margin-right: 20px;
 }
 .bp-param-1 {
+  display: inline-block;
   background-color: #fff;
   border: 1px solid #6dc0a7;
   border-radius: 8px;
@@ -6930,6 +6933,9 @@ a.text-black:hover {
 .bp-param-1 .bp-param-content1 select {
   width: 160px;
   margin-left: 15px;
+}
+.bp-param-1:last-child {
+  margin-bottom: 50px;
 }
 select {
   background-color: #f7f7f7!important;

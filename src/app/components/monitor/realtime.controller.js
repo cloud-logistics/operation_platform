@@ -416,7 +416,6 @@
 
         /*初始化温度bar chart*/
         function initTempBar(days, historyStatus) {
-            console.log(historyStatus);
             var xData = R.map(R.prop("time"))(historyStatus);
             var tempValues = R.map(R.prop("value"))(historyStatus);
 
