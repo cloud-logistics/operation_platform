@@ -12,13 +12,17 @@
             var count = 0;
 
             $rootScope.$on("$stateChangeSuccess", function (event, toState, toParams, fromState, fromParams) {
+                if (StorageService.get(constdata.token) == null) {
+                    event.preventDefault();
+                    $state.go('access.signin');
+                }
                 // to be used for back button //won't work when page is reloaded.
                 var findedIndex = -1;
                 $rootScope.previousState_name = fromState.name;
                 $rootScope.previousState_params = fromParams;
 
                 $rootScope.$on('$stateChangeStart',
-                    function (event, toState, toParams, fromState, fromParams, options) {
+                    function (event, toState, toParams, fromState, fromParams, options) {g
                         if (toState.name != 'access.signin') {
                             if (StorageService.get(constdata.token) == null) {
                                 event.preventDefault();
