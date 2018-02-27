@@ -184,7 +184,7 @@
                 </div>
                 <div style="margin-top:30px;margin-bottom:50px;">
 
-                    <div ng-show="vm.gettingData" class="grid_gettingData" style="padding:150px;">
+                    <div ng-show="vm.gettingData" class="grid_gettingData"  style="padding:150px;">
                         <span class="ngGrid_loading_mask"></span>
                         <img class="ngGrid_loading_img" src="images/drop.gif"/>
                     </div>
@@ -192,7 +192,7 @@
                         <div ng-show="!vm.siteInfoList.length" style="margin-top:100px;">
                             <ng-no-data-fount conf="'filter'"></ng-no-data-fount>
                         </div>
-                        <div class="row bb-table whTable" ng-show="!showAdd && vm.siteInfoList.length">
+                        <div class="row bb-table whTable table4IeFirefox" ng-show="!showAdd && vm.siteInfoList.length">
                             <div class="grid_tr">
                                 <div class="grid_th" ng-style="row.style" ng-repeat="row in vm.table">{{row.name}}</div>
                             </div>

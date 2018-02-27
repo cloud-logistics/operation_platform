@@ -15,7 +15,12 @@
                 if(constdata.isChrome()){
                     $(".app-content").scrollTop(0);                    //chrome
                 }else if(constdata.isIE() || constdata.isFirefox()){
-                    document.documentElement.scrollTop = 0;   //firefox
+                    setTimeout(function(){
+                        document.documentElement.scrollTop = 0;   //firefox
+                        $(".table4IeFirefox").css("overflow-y","scroll");
+                        $(".table4IeFirefox").css("overflow-x","hidden");
+                    },100)
+
                 }else{
                     window.pageYOffset = 0;                   //safari
                 }
