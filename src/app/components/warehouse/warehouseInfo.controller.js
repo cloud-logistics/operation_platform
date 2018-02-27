@@ -2,7 +2,7 @@ var switchStatus = function (isShow, isNotApply) {
     if (isShow) {
         $("#whTable").show();
         $(".infoMask1").show();
-        $(".infoMask1").height($(".wrapper-md").height() + 10+"px")
+        $(".infoMask1").height($(".wrapper-md").height() + 10+"px");
         var dom = document.getElementById("whTable");
         var scope = angular.element(dom).scope();
         scope['switchWatcher'](true);
@@ -27,6 +27,7 @@ var switchRecord = function (isShow) {
     if (isShow) {
         $("#whHistory").show();
         $(".infoMask2").show();
+        $(".infoMask2").height($(".wrapper-md").height() + 10+"px");
         scope.$emit("scrollTop");
     } else {
         $("#whHistory").hide();
