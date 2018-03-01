@@ -37,7 +37,7 @@
                       ng-repeat="message in vm.messages"
                       style="line-height: 40px;padding: 5px 10px;">
                     <span>{{message.name}}</span>
-                    <span class="header-msg badge  bg-danger pull-right-xs">{{message.count}}</span>
+                    <span ng-show="message.count" class="header-msg badge  bg-danger pull-right-xs">{{message.count}}</span>
                 </div>
             </li>
             <li class="dropdown">
